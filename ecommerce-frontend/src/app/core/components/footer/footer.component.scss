@@ -1,0 +1,68 @@
+
+@mixin flex(
+    $direction: row,
+    $justify: flex-start,
+    $align: stretch,
+    $gap: 0,
+    $wrap: nowrap
+) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+    gap: $gap;
+    flex-wrap: $wrap;
+}
+
+@mixin grid(
+    $template: ".",
+    $gap: 0,
+    $justify-items: stretch,
+    $align-items: stretch,
+    $justify-content: stretch,
+    $align-content: stretch
+) {
+    display: grid;
+    grid-template: $template;
+    grid-gap: $gap;
+    justify-items: $justify-items;
+    align-items: $align-items;
+    justify-content: $justify-content;
+    align-content: $align-content;
+}
+
+@mixin center($direction: row) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.page-footer {
+    @include flex(column, center, start, 1ch);
+    font-size: var(--font-size-medium);
+    font-weight: var(--font-weight-regular);
+    padding: 0.2em 2em;
+    border-top: var(--border);
+    background-color: var(--background-color);
+
+    .footer-links {
+        @include grid(
+            1fr / 1fr auto 1fr,
+            $justify-content: center,
+            $gap: 3ch
+        );
+        align-self: center;
+        > .links-1-2 {
+            @include flex(row, end, center, 3ch);
+        }
+        > .links-4-5 {
+            @include flex(row, start, center, 3ch);
+        }
+        .footer-link {
+            color: var(--text-color-3);
+            font-weight: var(--font-weight-bolder);
+        }
+    }
+}
