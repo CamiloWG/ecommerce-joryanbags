@@ -1,13 +1,9 @@
 import { Component, ViewEncapsulation, HostBinding } from "@angular/core";
 import { Router } from "@angular/router";
-import { Search } from "../Search/Search.component";
-import { BuildingBlocksSegmentedButt } from "../BuildingBlocksSegmentedButt/BuildingBlocksSegmentedButt.component";
 
 @Component({
   selector: 'header-menu',
-  imports: [
-    Search,
-    BuildingBlocksSegmentedButt],
+  imports: [],
   templateUrl: './header-menu.component.html',
   styleUrl: './header-menu.component.scss'
 })
