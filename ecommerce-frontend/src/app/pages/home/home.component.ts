@@ -3,6 +3,8 @@ import { HeaderMenuComponent } from '../../core/components/shared/header-menu/he
 import { CategoriasComponent } from '../../core/components/categorias/categorias.component';
 import { Portada } from '../../core/components/portada/portada.component';
 import { TopComprasComponent } from '../../core/components/top-compras/top-compras.component';
+import { Comentarios } from '../../core/components/Comentarios/Comentarios.component';
+import { FooterComponent } from '../../core/components/shared/footer/footer.component';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +12,9 @@ import { TopComprasComponent } from '../../core/components/top-compras/top-compr
     HeaderMenuComponent,
     CategoriasComponent,
     Portada,
-    TopComprasComponent
+    TopComprasComponent,
+    Comentarios,
+    FooterComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'

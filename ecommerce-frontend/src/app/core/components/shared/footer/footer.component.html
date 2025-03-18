@@ -1,24 +1,38 @@
-
-<footer class="page-footer">
-    <section class="footer-links">
-        <div class="links-1-2">
-            <a class="footer-link custom-link" [routerLink]="links[0].url">{{
-                links[0].name
-            }}</a>
-            <a class="footer-link custom-link" [routerLink]="links[1].url">{{
-                links[1].name
-            }}</a>
+<header class="self-stretch flex flex-row items-start justify-start py-0 pl-[71px] pr-[79px] box-border max-w-full text-left text-body-size-medium text-darkslategray font-subheading mq750:pl-[35px] mq750:pr-[39px] mq750:box-border" (ngStyle)="frameHeaderStyle">
+    <div class="flex-1 flex flex-col items-end justify-start gap-[47px] max-w-full mq750:gap-[23px]" (ngStyle)="frameDivStyle">
+      <div class="self-stretch h-px relative border-background-brand-secondary border-solid border-t-[1px] box-border" ></div>
+      <div class="self-stretch flex flex-row items-end justify-between gap-5 max-w-full mq1050:flex-wrap">
+        <div class="w-[195.1px] flex flex-col items-end justify-start gap-[51px]">
+          <img class="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full object-cover" loading="lazy" alt="" [src]="image5" />
+          <div class="flex flex-row items-start justify-end py-0 pl-2.5 pr-px">
+            <div class="flex flex-row items-start justify-start gap-spacing-xs">
+              <img class="h-10 w-10 relative rounded object-cover" loading="lazy" alt="" src="assets/icons/buttons--icon@2x.png" />
+              <img class="h-10 w-10 relative rounded object-cover" alt="" src="assets/icons/buttons--icon-1@2x.png" />
+              <img class="h-10 w-10 relative rounded object-cover" alt="" src="assets/icons/buttons--icon-2@2x.png" />
+              <img class="h-10 w-10 relative rounded object-cover" alt="" src="assets/icons/buttons--icon-3@2x.png" />
+            </div>
+          </div>
         </div>
-        <a class="footer-link custom-link" [routerLink]="links[2].url">{{
-            links[2].name
-        }}</a>
-        <div class="links-4-5">
-            <a class="footer-link custom-link" [routerLink]="links[3].url">{{
-                links[3].name
-            }}</a>
-            <a class="footer-link custom-link" [routerLink]="links[4].url">{{
-                links[4].name
-            }}</a>
+        <div class="w-[624px] flex flex-row items-start justify-start gap-[31.5px] max-w-full mq750:gap-4 mq750:flex-wrap">
+          <div class="flex-1 flex flex-col items-end justify-center gap-spacing-s min-w-[140px]">
+            <div class="self-stretch relative leading-[150%] font-[500] text-black">Topic</div>
+            <div class="self-stretch relative leading-[150%] font-[500]">Page</div>
+            <div class="self-stretch relative leading-[150%] font-[500]">Page</div>
+            <div class="self-stretch relative leading-[150%] font-[500]">Page</div>
+          </div>
+          <div class="flex-1 flex flex-col items-end justify-center gap-spacing-s min-w-[140px]">
+            <div class="self-stretch relative leading-[150%] font-[500] text-black">Topic</div>
+            <div class="self-stretch relative leading-[150%] font-[500]">Page</div>
+            <div class="self-stretch relative leading-[150%] font-[500]">Page</div>
+            <div class="self-stretch relative leading-[150%] font-[500]">Page</div>
+          </div>
+          <div class="flex-1 flex flex-col items-end justify-center gap-spacing-s min-w-[140px]">
+            <div class="self-stretch relative leading-[150%] font-[500] text-black">Topic</div>
+            <div class="self-stretch relative leading-[150%] font-[500]">Page</div>
+            <div class="self-stretch relative leading-[150%] font-[500]">Page</div>
+            <div class="self-stretch relative leading-[150%] font-[500]">Page</div>
+          </div>
         </div>
-    </section>
-</footer>
+      </div>
+    </div>
+  </header>

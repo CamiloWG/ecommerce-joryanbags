@@ -1,22 +1,35 @@
 
-<header-menu></header-menu>
 
-<section class="w-[1429px] flex flex-row items-start justify-start pt-0 px-[21px] pb-[223px] box-border max-w-full lg:pb-[145px] lg:box-border mq750:pb-[94px] mq750:box-border">
-    <div class="flex flex-row items-start justify-start gap-[20px] max-w-full mq750:gap-4">
-        <div class="flex flex-col">
-            <div class="w-[307px] h-[121px] rounded-8xs overflow-hidden shrink-0 flex flex-row items-start justify-start p-xl box-border">
-                <img class="w-[81px] relative max-h-full object-cover" alt="" src="assets/images/logo-icono.png" />
-                <img class="w-[196px] relative max-h-full object-cover z-[1] ml-[-10px]" loading="lazy" alt="" src="assets/images/logo-texto.png" />
+<div class="pb-10">
+    <header-menu class="w-full"></header-menu>
+
+    <section class="w-[1429px] mx-auto flex flex-row items-start justify-start pt-0 px-[21px] pb-[223px] box-border max-w-full lg:pb-[145px] lg:box-border mq750:pb-[94px] mq750:box-border">
+        <div class="flex flex-row items-start justify-start gap-[20px] max-w-full mq750:gap-4">
+            <div class="flex flex-col">
+                <div class="w-[307px] h-[121px] rounded-8xs overflow-hidden shrink-0 flex flex-row items-start justify-start p-xl box-border">
+                    <img class="w-[81px] relative max-h-full object-cover" alt="" src="assets/images/logo-icono.png" />
+                    <img class="w-[196px] relative max-h-full object-cover z-[1] ml-[-10px]" loading="lazy" alt="" src="assets/images/logo-texto.png" />
+                </div>
+
+                <div class="flex flex-col gap-10">
+                    <menu-categorias></menu-categorias>
+                    <top-compras></top-compras>
+                </div>
             </div>
-            
-            <div class="flex flex-col gap-10">
-                <menu-categorias></menu-categorias>
-                <top-compras></top-compras>
+            <div class="flex-1 flex flex-col items-start justify-start pt-5 px-0 pb-0 box-border max-w-[calc(100%_-_309px)] text-center text-45xl text-background-default-default mq1050:max-w-full">
+                <portada></portada>
             </div>
         </div>
-        <div class="flex-1 flex flex-col items-start justify-start pt-5 px-0 pb-0 box-border max-w-[calc(100%_-_309px)] text-center text-45xl text-background-default-default mq1050:max-w-full">
-            <portada></portada>
+    </section>
+
+    <section class="self-stretch h-[712px] flex flex-col items-start justify-start gap-[51px] max-w-full text-left text-29xl text-black font-subheading mq750:gap-[25px]">
+        <div class="w-full flex justify-center py-0 px-20 box-border max-w-full mq750:pl-10 mq750:pr-10 mq750:box-border">
+            <comentarios></comentarios>
         </div>
-        
+        <img class="self-stretch relative max-w-full overflow-hidden max-h-full object-cover" loading="lazy" alt="" src="assets/images/pie@2x.png" />
+    </section>
+
+    <div class="pt-[15px] max-w-[75%] m-auto">
+        <app-footer [frameHeaderAlignSelf]="'unset'" [frameHeaderPadding]="'0px 70px'" [frameDivFlex]="'unset'" [frameDivWidth]="'1290px'" [image5]="'assets/images/image-5@2x.png'"></app-footer>
     </div>
-</section>
+</div>
