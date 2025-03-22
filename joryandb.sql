@@ -1073,8 +1073,7 @@ AS
 		SELECT * FROM users WHERE user_id = @user_id
 	END
 GO
-USE [master]
-GO
+
 ALTER DATABASE [joryan_db] SET  READ_WRITE 
 GO
 
