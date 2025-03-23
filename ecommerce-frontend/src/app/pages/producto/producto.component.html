@@ -1,0 +1,40 @@
+<div class="min-h-screen flex flex-col">
+  <header-menu></header-menu>
+
+  <main class="flex-1 flex flex-row items-start justify-start pb-[268px] pl-3 pr-[18px] box-border max-w-full lg:pb-[113px] lg:box-border mq750:pb-[73px] mq750:box-border">
+    <section class="h-[1059px] flex-1 relative max-w-full">
+      <div class="absolute top-[19px] left-[365px] flex flex-col items-start justify-start gap-[174px] max-w-full">
+        <div class="flex flex-col items-start justify-start gap-[30px]">
+          <route></route>
+          <app-product></app-product>
+        </div>
+      </div>
+      <app-logo></app-logo>
+      <menu-categorias class="flex ml-8 max-w-[275px]"></menu-categorias>
+    </section>
+
+    <section>
+      <div class="absolute top-[900px] left-[100px] right-[100px] flex flex-col items-start justify-start gap-[174px] max-w-full">
+        <div class="w-[1286px] flex-1 bg-white flex flex-col items-start justify-start p-4 gap-6 max-w-full">
+          <div class="flex flex-col items-start justify-start gap-2">
+            <h3 class="font-subheading text-2xl font-semibold">Productos Relacionados</h3>
+          </div>
+          <div>
+            <div class="self-stretch flex flex-row items-center justify-start flex-wrap gap-3">
+              <!-- Producto 1 -->
+              <div class="flex-1"><app-productcard></app-productcard></div>
+              <!-- Producto 2 -->
+              <div class="flex-1"><app-productcard></app-productcard></div>
+              <!-- Producto 3 -->
+              <div class="flex-1"><app-productcard></app-productcard></div>
+            </div>              
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="mt-auto mb-10">
+    <app-footer [frameHeaderAlignSelf]="'unset'" [frameHeaderPadding]="'0px 70px'" [frameDivFlex]="'unset'" [frameDivWidth]="'1290px'" [image5]="'assets/images/image-5@2x.png'"></app-footer>
+  </footer>
+</div>
