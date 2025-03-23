@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:latest
+    container_name: sqlserver
+    environment:
+      SA_PASSWORD: "DataBase2423+"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    volumes:
+      - ./joryandb.sql:/docker-entrypoint-initdb.d/init.sql
+    command: >
+      /bin/bash -c "
+      /opt/mssql/bin/sqlservr & 
+      sleep 30 && 
+      /opt/mssql-tools18/bin/sqlcmd -S localhost -U SA -P 'DataBase2423+' -d master -i /docker-entrypoint-initdb.d/init.sql -C &&
+      wait"
