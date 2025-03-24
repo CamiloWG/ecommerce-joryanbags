@@ -3,17 +3,22 @@
 
   <main class="flex flex-col items-start justify-start pb-[50px] pl-3 pr-[18px] box-border max-w-full lg:pb-[50px] lg:box-border mq750:pb-[30px] mq750:box-border">
     
-    <section class="h-auto w-full flex relative">
-      <div class="absolute top-[19px] left-[365px] flex flex-col items-start justify-start gap-[50px] max-w-full">
-        <div class="flex flex-col items-start justify-start gap-[30px]">
-          <route></route>
+    <section class="relative w-full h-[150px] flex"> 
+      
+      <app-logo class="absolute top-0 left-0"></app-logo>
+    
+      <div class="absolute top-[19px] left-[365px] flex flex-col items-start justify-start gap-[50px] w-[calc(100%-365px)]">
+        <div class="w-full flex flex-col">
+          <route [breadcrumbs]="[
+            { label: 'Catálogo' },
+            { label: 'Categoría' },
+            { label: 'Producto X' }
+          ]"></route>
         </div>
       </div>
-      <app-logo></app-logo>
-      
     </section>
 
-    <section class="max-w-[100%] flex flex-row gap-8 px-10 py-10 mx-auto ">
+    <section class="max-w-[100%] flex flex-row gap-8 mx-auto ">
       <div class="flex-1 flex flex-col gap-4">
         <menu-categorias class="max-w-[275px]"></menu-categorias>
       </div>
