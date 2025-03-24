@@ -1,26 +1,35 @@
-<div class="min-h-screen flex flex-col">
+<div class="flex flex-col">
   <header-menu></header-menu>
 
-  <main class="flex-1 flex flex-row items-start justify-start pb-[268px] pl-3 pr-[18px] box-border max-w-full lg:pb-[113px] lg:box-border mq750:pb-[73px] mq750:box-border">
-    <section class="h-[1059px] flex-1 relative max-w-full">
-      <div class="absolute top-[19px] left-[365px] flex flex-col items-start justify-start gap-[174px] max-w-full">
+  <main class="flex flex-col items-start justify-start pb-[50px] pl-3 pr-[18px] box-border max-w-full lg:pb-[50px] lg:box-border mq750:pb-[30px] mq750:box-border">
+    
+    <section class="h-auto w-full flex relative">
+      <div class="absolute top-[19px] left-[365px] flex flex-col items-start justify-start gap-[50px] max-w-full">
         <div class="flex flex-col items-start justify-start gap-[30px]">
           <route></route>
-          <app-product></app-product>
         </div>
       </div>
       <app-logo></app-logo>
-      <menu-categorias class="flex ml-8 max-w-[275px]"></menu-categorias>
+      
     </section>
 
-    <section>
-      <div class="absolute top-[900px] left-[100px] right-[100px] flex flex-col items-start justify-start gap-[174px] max-w-full">
-        <div class="w-[1286px] flex-1 bg-white flex flex-col items-start justify-start p-4 gap-6 max-w-full">
-          <div class="flex flex-col items-start justify-start gap-2">
+    <section class="max-w-[100%] flex flex-row gap-8 px-10 py-10 mx-auto ">
+      <div class="flex-1 flex flex-col gap-4">
+        <menu-categorias class="max-w-[275px]"></menu-categorias>
+      </div>
+      <div class="w-[80%] flex-shrink-0">
+        <app-product></app-product>  
+      </div>
+    </section>
+
+    <section class="max-w-[90%] flex flex-row justify-center items-start gap-8 mx-auto text-center">
+      <div class="flex-1 flex flex-col gap-4">
+        <div class="w-[80%] flex-1 bg-white flex flex-col items-start justify-start p-4 max-w-full">
+          <div class="flex flex-col items-start justify-start ">
             <h3 class="font-subheading text-2xl font-semibold">Productos Relacionados</h3>
           </div>
           <div>
-            <div class="self-stretch flex flex-row items-center justify-start flex-wrap gap-3">
+            <div class="self-stretch flex flex-rowflex-wrap gap-6">
               <!-- Producto 1 -->
               <div class="flex-1"><app-productcard></app-productcard></div>
               <!-- Producto 2 -->
@@ -34,7 +43,9 @@
     </section>
   </main>
 
-  <footer class="mt-auto mb-10">
-    <app-footer [frameHeaderAlignSelf]="'unset'" [frameHeaderPadding]="'0px 70px'" [frameDivFlex]="'unset'" [frameDivWidth]="'1290px'" [image5]="'assets/images/image-5@2x.png'"></app-footer>
+  <footer class="w-full mt-5 mb-10">
+    <app-footer [frameHeaderAlignSelf]="'unset'" [frameHeaderPadding]="'0px 70px'" 
+                [frameDivFlex]="'unset'" [frameDivWidth]="'1290px'" 
+                [image5]="'assets/images/image-5@2x.png'"></app-footer>
   </footer>
 </div>
