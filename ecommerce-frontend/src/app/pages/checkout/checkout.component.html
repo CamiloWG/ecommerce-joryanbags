@@ -11,30 +11,31 @@
         <app-logo></app-logo>
       </section>
 
-      <section class="mx-auto w-full max-w-[90%] flex flex-row justify-between items-start gap-8 px-10 py-10">
-        <div class="flex-1 flex flex-col gap-4">
-            <app-infopedido></app-infopedido>
+      <section class="mx-auto w-full max-w-[80%] flex flex-row justify-between items-start gap-8 px-10 py-10">
+        <div class="w-[70%] flex-1 flex flex-col gap-4">
+            <app-infopedido [isConfirmationPage]="false"></app-infopedido>
         </div>
-        <div class="w-[20%] flex-shrink-0 ">
+        <div class="w-[30%] flex-shrink-0 ">
           <app-cartbill title="Resumen de compras" buttonText="Volver al carrito"></app-cartbill>
-          <div class="h-[300px] flex flex-col items-start justify-start px-0 py-2 pb-0 box-border">
-            <div class="flex-1 shadow-md rounded-lg bg-background-default-default border border-solid border-border-default-default 
-                        overflow-hidden flex flex-col p-2 relative">
-              
-              <div class="font-subheading bg-tan-200 p-2 text-body-size-medium text-text-default-default font-body-font-weight-strong">
+          <div class="self-stretch flex flex-col items-start justify-start gap-space-600  px-0 py-5">
+            <div class="self-stretch rounded-radius-200 bg-background-default-default border-border-default-default 
+              border-solid border-stroke-border box-border flex flex-row items-start justify-start flex-wrap 
+              content-start py-[22px] px-[23px] relative gap-space-600 min-w-[240px]">
+    
+              <div class="w-full font-subheading bg-tan-200 p-2 text-body-size-medium text-text-default-default font-body-font-weight-strong">
                 Pago
               </div>
               
               <div class="w-full h-px bg-border-default-default my-2"></div>
               
-              <div class="w-[285px] flex flex-row justify-between items-center p-2">
+              <div class="w-full flex flex-row justify-between items-center p-2">
                 <div class="text-body-size-medium font-subheading">Precio total</div>
                 <div class="font-subheading">$$$$$$</div>
               </div>
           
               <div class="w-full h-px bg-border-default-default my-2"></div>
           
-              <div class="w-[285px] flex flex-row justify-between items-center p-2">
+              <div class="w-full flex flex-row justify-between items-center p-2">
                 <div class="text-body-size-medium font-subheading aling-center mx-auto">Pasarela de pagos</div>
               </div>
           

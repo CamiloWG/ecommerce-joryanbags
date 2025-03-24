@@ -4,6 +4,7 @@ import { CatalogoComponent } from './pages/catalogo/catalogo.component';
 import { ProductoComponent } from './pages/producto/producto.component';
 import { CarritoComponent } from './pages/carrito/carrito.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
+import { ConfirmacioncompraComponent } from './pages/confirmacioncompra/confirmacioncompra.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -31,5 +32,10 @@ export const routes: Routes = [
         path: 'checkout',
         title: 'Checkout | Joryan Bags',
         component: CheckoutComponent
+    },
+    {
+        path: 'confirmacioncompra',
+        title: 'Confirmacion | Joryan Bags',
+        component: ConfirmacioncompraComponent
     }
 ];
