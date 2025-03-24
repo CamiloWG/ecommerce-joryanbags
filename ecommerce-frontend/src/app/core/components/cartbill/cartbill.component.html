@@ -1,35 +1,35 @@
 <div class="h-[300px] flex flex-col items-start justify-start px-0 pb-0 box-border">
-    <div class="flex-1 shadow-[0px_4px_4px_-1px_rgba(12,_12,_13,_0.1),_0px_4px_4px_-1px_rgba(12,_12,_13,_0.05)] 
-                rounded-radius-200 bg-background-default-default border border-solid border-border-default-default 
-                overflow-hidden flex flex-col p-2 relative">
-      
-      <div class="font-subheading bg-tan-200 p-2 text-body-size-medium text-text-default-default font-body-font-weight-strong">
-        Mi carro de compras
-      </div>
-      
-      <div class="w-full h-px bg-border-default-default my-2"></div>
-      
-      <div class="w-[285px] flex flex-row justify-between items-center gap-space-300 p-2">
-        <div class="text-body-size-medium font-subheading">Nombre producto</div>
-        <div class="font-subheading">$$$$$$</div>
-      </div>
-
-      <div class="w-[285px] flex flex-row justify-between items-center gap-space-300 p-2">
-        <div class="text-body-size-medium font-subheading">Número de productos</div>
-        <div class="font-subheading">#</div>
-      </div>
-
-      <div class="w-full h-px bg-border-default-default my-2"></div>
-
-      <div class="w-[285px] flex flex-row justify-between items-center gap-space-300 p-2">
-        <div class="text-body-size-medium font-subheading">Precio total</div>
-        <div class="font-subheading">$$$$</div>
-      </div>
-  
-      <button class="w-full py-2 mt-4 bg-background-brand-default text-text-brand-on-brand font-heading rounded-radius-200 
-                     hover:bg-dimgray hover:border-dimgray">
-        Checkout
-      </button>
+  <div class="flex-1 shadow-md rounded-lg bg-background-default-default border border-solid border-border-default-default 
+              overflow-hidden flex flex-col p-2 relative">
+    
+    <!-- Título dinámico -->
+    <div class="font-subheading bg-tan-200 p-2 text-body-size-medium text-text-default-default font-body-font-weight-strong">
+      {{ title }}
     </div>
+    
+    <div class="w-full h-px bg-border-default-default my-2"></div>
+    
+    <div class="w-[285px] flex flex-row justify-between items-center p-2">
+      <div class="text-body-size-medium font-subheading">Nombre producto</div>
+      <div class="font-subheading">$$$$$$</div>
+    </div>
+
+    <div class="w-[285px] flex flex-row justify-between items-center p-2">
+      <div class="text-body-size-medium font-subheading">Número de productos</div>
+      <div class="font-subheading">#</div>
+    </div>
+
+    <div class="w-full h-px bg-border-default-default my-2"></div>
+
+    <div class="w-[285px] flex flex-row justify-between items-center p-2">
+      <div class="text-body-size-medium font-subheading">Precio total</div>
+      <div class="font-subheading">$$$$</div>
+    </div>
+
+    <!-- Botón con texto dinámico -->
+    <button class="w-full py-2 mt-4 bg-background-brand-default text-text-brand-on-brand font-heading rounded-lg 
+                   hover:bg-dimgray hover:border-dimgray">
+      {{ buttonText }}
+    </button>
   </div>
-  
+</div>

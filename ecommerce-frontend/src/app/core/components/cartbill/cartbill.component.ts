@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-cartbill',
@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './cartbill.component.css'
 })
 export class CartbillComponent {
-
+  @Input() title: string = 'Mi carro de compras';
+  @Input() buttonText: string = 'Checkout';
 }
