@@ -1,0 +1,73 @@
+<div class="p-space-300 bg-background-default-default flex flex-col gap-space-60 min-w-[240px] max-w-[90%]">
+  <!-- Contenedor principal con imagen y detalles -->
+  <div class="flex flex-row flex-wrap justify-center gap-space-1600 mq1050:gap-8 mq750:gap-4">
+    
+    <!-- Imagen del producto -->
+    <img 
+      class="flex-1 min-w-[289px] max-h-[400px] max-w-[400px] max-w-full object-cover self-stretch z-[0] rounded-radius-200" 
+      loading="lazy" 
+      alt="Producto" 
+      src="assets/images/image-8-1@2x.png" 
+    />
+
+    <!-- Contenedor de información -->
+    <div class="flex-1 flex flex-col justify-center gap-space-60 max-w[5px] min-w-[289px] z-[1]">
+      
+      <!-- Título y etiqueta -->
+      <div class="flex flex-col">
+        <h3 class="font-subheading">Text Heading</h3>
+        <div class="w-8 rounded-radius-200 bg-green-300  p-space-200">
+          <div class="font-subheading leading-[100%]">Tag</div>
+        </div>
+      </div>
+
+      <!-- Sección de estrellas -->
+      <div class="flex items-center gap-3">
+        <img class="w-6 h-6" loading="lazy" src="assets/icons/star1.svg" />
+        <img class="w-6 h-6" src="assets/icons/star1.svg" />
+        <img class="w-6 h-6" src="assets/icons/star1.svg" />
+        <img class="w-6 h-6" src="assets/icons/star1.svg" />
+        <img class="w-6 h-6" src="assets/icons/star1.svg" />
+      </div>
+
+      <!-- Precio -->
+      <div class="font-subheading flex items-end text-heading-size-base text-text-default-default gap-2">
+        <h3 class="text-inherit tracking-[-0.02em] font-bold">$</h3>
+        <b class="text-[40px] tracking-[-0.02em]">50</b>
+      </div>
+
+      <!-- Información adicional -->
+      <div class="h-auto gap-1 flex-col text-text-default-secondary">
+        <p class="font-subheading text-m">Categoría principal:</p>
+        <p class="font-subheading text-m">Código:</p>
+        <p class="font-subheading text-m">Disponibilidad:</p>
+      </div>
+
+      <!-- Selector de cantidad -->
+      <div class="h-auto flex flex-col items-start justify-start gap-space-100">
+        <div class="font-subheading relative leading-[140%]">Cantidad</div>
+        <div class="rounded-radius-200 bg-background-default-default border border-gray-400 border-solid box-border flex flex-row items-center justify-start py-space-300 px-space-400">
+          <input class="w-16 border-none outline-none font-heading text-body-size-medium bg-transparent flex-1 text-text-default-default text-left" placeholder="#" type="number" min="1" />
+        </div>
+      </div>      
+
+      <!-- Botón de añadir al carrito -->
+      <button class="cursor-pointer bg-background-brand-default border border-background-brand-default p-space-300 rounded-radius-200 flex items-center justify-center w-full mt-6">
+
+        <div class="font-subheading text-body-size-medium text-text-brand-on-brand">Añadir al carrito</div>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- Descripción -->
+  <div class="w-[922px] flex gap-space-600 text-heading-size-base">
+    <img class="h-20 w-8" loading="lazy" alt="info" src="assets/icons/info.svg" />
+    <div class=" flex-col gap-space-400 min-w-[160px]">
+      <h3 class="font-subheading tracking-[-0.02em] font-semibold">Descripción</h3>
+      <p class="font-subheading text-body-size-medium text-text-default-secondary">
+        Body text for whatever you’d like to say. Add main takeaway points, quotes, anecdotes, or even a very very short story.
+      </p>
+    </div>
+  </div>
+</div>

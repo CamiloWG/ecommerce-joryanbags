@@ -1,0 +1,59 @@
+<div class="flex flex-col">
+    <header-menu></header-menu>
+  
+    <main class="flex flex-col items-start justify-start pb-[50px] pl-3 pr-[18px] box-border max-w-full lg:pb-[50px] lg:box-border mq750:pb-[30px] mq750:box-border">
+
+      <section class="relative w-full h-[150px] flex"> 
+        
+        <app-logo class="absolute top-0 left-0"></app-logo>
+      
+        <div class="absolute top-[19px] left-[365px] flex flex-col items-start justify-start gap-[50px] w-[calc(100%-365px)]">
+          <div class="w-full flex flex-col">
+            <route [breadcrumbs]="[
+              { label: 'Carrito' },
+              { label: 'Checkout' }
+            ]"></route>
+          </div>
+        </div>
+      </section>
+
+      <section class="mx-auto w-full max-w-[80%] flex flex-row justify-between items-start gap-8">
+        <div class="w-[70%] flex-1 flex flex-col gap-4">
+            <app-infopedido [isConfirmationPage]="false"></app-infopedido>
+        </div>
+        <div class="w-[30%] flex-shrink-0 ">
+          <app-cartbill title="Resumen de compras" buttonText="Volver al carrito"></app-cartbill>
+          <div class="self-stretch flex flex-col items-start justify-start gap-space-600  px-0 py-5">
+            <div class="self-stretch rounded-radius-200 bg-background-default-default border-border-default-default 
+              border-solid border-stroke-border box-border flex flex-row items-start justify-start flex-wrap 
+              content-start py-[22px] px-[23px] relative gap-space-600 min-w-[240px]">
+    
+              <div class="w-full font-subheading bg-tan-200 p-2 text-body-size-medium text-text-default-default font-body-font-weight-strong">
+                Pago
+              </div>
+              
+              <div class="w-full h-px bg-border-default-default my-2"></div>
+              
+              <div class="w-full flex flex-row justify-between items-center p-2">
+                <div class="text-body-size-medium font-subheading">Precio total</div>
+                <div class="font-subheading">$$$$$$</div>
+              </div>
+          
+              <div class="w-full h-px bg-border-default-default my-2"></div>
+          
+              <div class="w-full flex flex-row justify-between items-center p-2">
+                <div class="text-body-size-medium font-subheading aling-center mx-auto">Pasarela de pagos</div>
+              </div>
+          
+            </div>
+          </div>          
+        </div>
+      </section>
+    </main>
+
+    <footer class="w-full mt-5 mb-10">
+        <app-footer [frameHeaderAlignSelf]="'unset'" [frameHeaderPadding]="'0px 70px'" 
+                    [frameDivFlex]="'unset'" [frameDivWidth]="'1290px'" 
+                    [image5]="'assets/images/image-5@2x.png'"></app-footer>
+    </footer>
+</div>

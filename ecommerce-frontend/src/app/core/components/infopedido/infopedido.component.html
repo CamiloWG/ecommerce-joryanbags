@@ -1,0 +1,145 @@
+<div class="self-stretch flex flex-col items-start justify-start gap-space-600">
+  <!-- Información Personal -->
+  <div class="self-stretch rounded-radius-200 bg-background-default-default border-border-default-default 
+              border-solid border-stroke-border box-border flex flex-row items-start justify-start flex-wrap 
+              content-start py-[22px] px-[23px] relative gap-space-600 min-w-[240px]">
+    
+    <!-- Título -->
+    <div class="font-subheading w-full bg-tan-200 p-2 text-body-size-medium text-text-default-default font-body-font-weight-strong">
+      Información personal
+    </div>
+
+    <div class="w-full h-px bg-border-default-default"></div>
+
+    <!-- Nombre Completo -->
+    <div class="w-full flex flex-col items-start justify-start p-2 gap-2">
+      <label class="text-body-size-medium font-subheading">Nombre completo</label>
+      
+      <ng-container *ngIf="isConfirmationPage; else editModeNombre">
+        <p class="w-full font-subheading rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200">
+          {{ nombreCompleto }}
+        </p>
+      </ng-container>
+
+      <ng-template #editModeNombre>
+        <input [(ngModel)]="nombreCompleto" class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-background-default-default" placeholder="Ingresa tu nombre" type="text"/>
+      </ng-template>
+    </div>
+
+    <!-- Teléfono -->
+    <div class="w-full flex flex-col items-start justify-start p-2 gap-2">
+      <label class="text-body-size-medium font-subheading">Teléfono</label>
+
+      <ng-container *ngIf="isConfirmationPage; else editModeTelefono">
+        <p class="w-full font-subheading rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200">
+          {{ telefono }}
+        </p>
+      </ng-container>
+
+      <ng-template #editModeTelefono>
+        <input [(ngModel)]="telefono" class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-background-default-default" placeholder="Ingresa tu teléfono" type="text"/>
+      </ng-template>
+    </div>
+
+    <!-- Email -->
+    <div class="w-full font-subheading flex flex-col items-start justify-start p-2 gap-2">
+      <label class="text-body-size-medium font-subheading">Email</label>
+
+      <ng-container *ngIf="isConfirmationPage; else editModeEmail">
+        <p class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200">
+          {{ email }}
+        </p>
+      </ng-container>
+
+      <ng-template #editModeEmail>
+        <input [(ngModel)]="email" class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-background-default-default" placeholder="Ingresa tu correo" type="email"/>
+      </ng-template>
+    </div>
+  </div>
+
+  <!-- Información de Envío -->
+  <div class="self-stretch rounded-radius-200 bg-background-default-default border-border-default-default 
+              border-solid border-stroke-border box-border flex flex-row items-start justify-start flex-wrap 
+              content-start py-[22px] px-[23px] relative gap-space-600 min-w-[240px]">
+
+    <!-- Título -->
+    <div class="w-full font-subheading bg-tan-200 p-2 text-body-size-medium text-text-default-default font-body-font-weight-strong">
+      Información de envío
+    </div>
+
+    <div class="w-full h-px bg-border-default-default my-1"></div>
+
+    <!-- Dirección -->
+    <div class="w-full font-subheading flex flex-col items-start justify-start p-2 gap-2">
+      <label class="text-body-size-medium font-subheading">Dirección</label>
+
+      <ng-container *ngIf="isConfirmationPage; else editModeDireccion">
+        <p class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200">
+          {{ direccion }}
+        </p>
+      </ng-container>
+
+      <ng-template #editModeDireccion>
+        <input [(ngModel)]="direccion" class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-background-default-default" placeholder="Ingresa tu dirección" type="text"/>
+      </ng-template>
+    </div>
+
+    <!-- Departamento -->
+    <div class="w-full font-subheading flex flex-col items-start justify-start p-2 gap-2">
+      <label class="text-body-size-medium font-subheading">Departamento</label>
+
+      <ng-container *ngIf="isConfirmationPage; else editModeDepartamento">
+        <p class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200">
+          {{ departamento }}
+        </p>
+      </ng-container>
+
+      <ng-template #editModeDepartamento>
+        <select [(ngModel)]="departamento" class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-background-default-default">
+          <option>Selecciona una opción</option>
+          <option>Opción 1</option>
+          <option>Opción 2</option>
+          <option>Opción 3</option>
+        </select>
+      </ng-template>
+    </div>
+
+    <!-- Ciudad -->
+    <div class="w-full font-subheading flex flex-col items-start justify-start p-2 gap-2">
+      <label class="text-body-size-medium font-subheading">Ciudad</label>
+
+      <ng-container *ngIf="isConfirmationPage; else editModeCiudad">
+        <p class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200">
+          {{ ciudad }}
+        </p>
+      </ng-container>
+
+      <ng-template #editModeCiudad>
+        <select [(ngModel)]="ciudad" class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-background-default-default">
+          <option>Selecciona una opción</option>
+          <option>Opción 1</option>
+          <option>Opción 2</option>
+          <option>Opción 3</option>
+        </select>
+      </ng-template>
+    </div>
+    <!-- Información Adicional -->
+    <div class="w-full self-stretch flex flex-col items-start justify-start gap-space-200">
+      <div class="self-stretch relative leading-[140%] font-subheading text-body-size-medium">
+        Información adicional
+      </div>
+
+      <ng-container *ngIf="isConfirmationPage; else editModeInformacionAdicional">
+        <p class="w-full font-subheading rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200">
+          {{ informacionAdicional }}
+        </p>
+      </ng-container>
+
+      <ng-template #editModeInformacionAdicional>
+        <textarea [(ngModel)]="informacionAdicional" class="font-subheading border-border-default-default border-solid border-stroke-border bg-background-default-default h-[81px] w-auto [outline:none] self-stretch rounded-radius-200 box-border overflow-hidden shrink-0 flex flex-row items-start justify-start py-space-300 px-space-400 font-heading text-body-size-medium text-icon-default-tertiary min-w-[240px] min-h-[80px]" placeholder="Ingresa información adicional" rows="4" cols="48"></textarea>
+      </ng-template>
+    </div>
+  </div>
+
+  
+</div>
