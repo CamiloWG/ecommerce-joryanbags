@@ -7,6 +7,7 @@ import {
 
 import { CommonModule } from "@angular/common";
 import { Button1 } from "../Button1/Button1.component";
+
 @Component({
   selector: "button-group",
   standalone: true,

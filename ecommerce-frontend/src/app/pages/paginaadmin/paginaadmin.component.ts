@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-paginaadmin',
@@ -8,4 +9,19 @@ import { Component } from '@angular/core';
 })
 export class PaginaadminComponent {
 
+  constructor(private router: Router) {}
+
+  onHomeIconClick() {
+    this.router.navigate(["/inicio"]);
+  }
+
+  onUserIconClick() {
+    this.router.navigate(["/"]);
+  }
+
+  onShoppingCartIconClick() {
+    this.router.navigate(["/carrito"]);
+  }
 }
+
+
