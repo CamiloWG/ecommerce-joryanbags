@@ -1,0 +1,8 @@
+<div class="self-stretch flex flex-col items-start justify-start gap-space-200 text-left text-body-size-medium text-text-default-default font-single-line-body-small-strong" [attr.data-state]="state" [attr.data-valueType]="valueType" [ngStyle]="inputFieldStyle">
+      <div class="self-stretch relative leading-[140%]" *ngIf="hasLabel">{{label}}</div>
+      <div class="w-60 relative leading-[140%] text-text-default-secondary" *ngIf="hasDescription">{{description}}</div>
+      <div class="self-stretch rounded-radius-200 bg-background-default-default border-border-default-default border-solid border-stroke-border box-border overflow-hidden flex flex-row items-center justify-start py-space-300 px-space-400 min-w-[240px]">
+        <input class="w-full [border:none] [outline:none] font-single-line-body-small-strong text-body-size-medium bg-[transparent] flex-1 relative leading-[100%] text-icon-default-tertiary text-left inline-block" [placeholder]="placeholder" type="text" [ngStyle]="valueStyle" />
+      </div>
+      <div class="relative leading-[140%]" *ngIf="hasError">{{error}}</div>
+    </div>

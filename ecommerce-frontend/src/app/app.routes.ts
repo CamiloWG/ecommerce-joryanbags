@@ -5,6 +5,10 @@ import { ProductoComponent } from './pages/producto/producto.component';
 import { CarritoComponent } from './pages/carrito/carrito.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { ConfirmacioncompraComponent } from './pages/confirmacioncompra/confirmacioncompra.component';
+import { LoginComponent } from './pages/login/login.component';
+import { PaginaadminComponent } from './pages/paginaadmin/paginaadmin.component';
+import { RegistrousuarioComponent } from './pages/registrousuario/registrousuario.component';
+
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -37,5 +41,20 @@ export const routes: Routes = [
         path: 'confirmacioncompra',
         title: 'Confirmacion | Joryan Bags',
         component: ConfirmacioncompraComponent
+    },
+    {
+        path: 'login',
+        title: 'Login | Joryan Bags',
+        component: LoginComponent
+    },
+    {
+        path: 'paginaadmin',
+        title: 'Pagina Administrador | Joryan Bags',
+        component: PaginaadminComponent
+    },
+    {
+        path: 'registrousuario',
+        title: 'Confirmacion | Joryan Bags',
+        component: RegistrousuarioComponent 
     }
 ];
