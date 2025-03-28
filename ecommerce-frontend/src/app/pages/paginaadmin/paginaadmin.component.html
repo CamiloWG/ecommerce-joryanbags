@@ -1,40 +1,22 @@
-<div class="w-full relative bg-background-default-default overflow-hidden flex flex-col items-start justify-start pt-0 px-0 pb-[115px] box-border gap-3.5 leading-[normal] tracking-[normal]">
-    <header class="self-stretch bg-tan-100 overflow-hidden flex flex-row items-start justify-between py-[25px] pl-[79px] pr-[85px] box-border gap-5 top-[0] z-[99] sticky max-w-full mq1050:pl-[39px] mq1050:pr-[42px] mq1050:box-border mq450:pr-5 mq450:box-border">
-      <div class="w-[864px] flex flex-row items-end justify-start gap-[70px] max-w-full mq450:gap-[17px] mq750:gap-[35px]">
-        <div class="flex flex-col items-start justify-end pt-0 px-0 pb-[15px]">
-          <img class="w-[26px] h-[26px] relative overflow-hidden shrink-0 cursor-pointer" loading="lazy" alt="" src="assets/home-111.svg" (click)="onHomeIconClick()" />
-        </div>
-        <div class="h-[57px] flex-1 relative max-w-full">
-          <div class="absolute top-[4px] left-[0px] rounded-radius-full bg-background-default-default border-border-default-default border-solid border-stroke-border box-border w-[769px] h-[50px] overflow-hidden flex flex-row items-center justify-start py-space-300 px-space-400 gap-space-200">
-            <input class="w-[calc(100%_-_48px)] [border:none] [outline:none] font-single-line-body-small-strong text-body-size-medium bg-[transparent] flex-1 relative leading-[100%] text-text-default-default text-left inline-block" placeholder="Value" type="text" />
-            <img class="w-4 relative h-4 overflow-hidden shrink-0" alt="" />
-          </div>
-          <div class="absolute top-[0px] left-[625px] w-[143px] h-[57px] flex flex-row items-center justify-center py-1 px-0 box-border">
-            <button class="cursor-pointer border-gray-200 border-solid border-[1px] p-0 bg-colors-brown self-stretch flex-1 rounded-tl-none rounded-tr-81xl rounded-br-81xl rounded-bl-none overflow-hidden flex flex-col items-center justify-center">
-              <div class="self-stretch flex-1 flex flex-row items-center justify-center py-2.5 px-3 gap-2">
-                <img class="w-[18px] relative h-[18px] hidden" alt="" src="assets/selected-icon2.svg" />
-                <div class="relative text-label-large-size tracking-[0.1px] leading-[20px] font-[500] font-m3-body-large text-background-default-default text-center">BUSCAR</div>
-              </div>
-            </button>
-          </div>
+<div class="flex flex-col">
+  <header-menu></header-menu>
+
+  <main class="flex flex-col items-start justify-start pb-[115px] box-border max-w-full">
+    <!-- Sección del logo (COMPLETA) -->
+  
+    <section class="relative w-full h-[150px] flex"> 
+      <app-logo class="absolute top-0 left-0"></app-logo>
+      <div class="absolute top-[19px] left-[365px] flex flex-col items-start justify-start gap-[50px] w-[calc(100%-365px)]">
+        <div class="w-full flex flex-col">
+          <route [breadcrumbs]="[{ label: 'Administrador' }]"></route>
         </div>
       </div>
-      <div class="w-[108px] flex flex-col items-start justify-start pt-3.5 px-0 pb-0 box-border">
-        <div class="self-stretch flex flex-row items-start justify-between gap-5">
-          <img class="h-[26px] w-[26px] relative overflow-hidden shrink-0 cursor-pointer" loading="lazy" alt="" src="assets/user-1.svg" (click)="onUserIconClick()" />
-          <div class="flex flex-col items-start justify-start pt-0.5 px-0 pb-0">
-            <img class="w-[26px] h-[26px] relative overflow-hidden shrink-0 cursor-pointer" loading="lazy" alt="" src="assets/shopping-cart11.svg" (click)="onShoppingCartIconClick()" />
-          </div>
-        </div>
-      </div>
-    </header>
+    </section>
+
+    <!-- PRIMERA SECCIÓN DE CONTENIDO (COMPLETA) -->
     <section class="w-[1339px] flex flex-row items-start justify-start pt-0 px-[21px] pb-3.5 box-border max-w-full text-left text-heading-size-base text-text-default-default font-single-line-body-small-strong">
       <div class="flex-1 flex flex-row items-start justify-center gap-[27px] max-w-full lg:flex-wrap">
         <div class="h-[549px] flex flex-col items-start justify-start gap-[29px] min-w-[589px] max-w-full lg:flex-1 mq1050:min-w-full">
-          <div class="w-[307px] h-[121px] rounded-8xs overflow-hidden shrink-0 flex flex-row items-start justify-start p-xl box-border">
-            <img class="w-[81px] relative max-h-full object-cover" alt="" src="assets/property-1logo-mesa-de-trabajo-1-copia-12-12@2x.png" />
-            <img class="w-[196px] relative max-h-full object-cover z-[1] ml-[-10px]" loading="lazy" alt="" src="assets/property-1logo-mesa-de-trabajo-1-copia-12-1-111@2x.png" />
-          </div>
           <div class="self-stretch flex-1 flex flex-row items-start justify-end max-w-full">
             <div class="self-stretch w-[493px] flex flex-col items-start justify-start gap-[162px] max-w-full mq1050:gap-[81px]">
               <div class="self-stretch flex-1 flex flex-row items-start justify-start py-0 pl-[3px] pr-0 box-border max-w-full">
@@ -42,10 +24,6 @@
                   <h3 class="m-0 w-[217px] relative text-inherit tracking-[-0.02em] leading-[120%] font-[600] font-[inherit] inline-block mq450:text-lgi mq450:leading-[23px]">Tu desempeño</h3>
                   <div class="self-stretch flex-1 rounded-radius-200 bg-background-default-default border-border-default-default border-solid border-stroke-border box-border flex flex-row items-start justify-start flex-wrap content-start p-space-600 relative gap-space-600 min-w-[240px] z-[1] text-body-size-medium text-icon-default-tertiary">
                     <h3 class="m-0 w-[217px] relative text-heading-size-base tracking-[-0.02em] leading-[120%] font-[600] font-[inherit] text-text-default-default inline-block shrink-0 z-[0] mq450:text-lgi mq450:leading-[23px]">Resumen</h3>
-                    <div class="h-[69px] w-[76px] absolute !m-[0] top-[70px] left-[calc(50%_-_221px)] z-[1]">
-                      <img class="absolute top-[0px] left-[calc(50%_-_24px)] w-12 h-[47px]" loading="lazy" alt="" src="assets/chat-bubble.svg" />
-                      <div class="absolute top-[47px] left-[0px] leading-[140%] flex items-center w-[76px]">Reseñas</div>
-                    </div>
                     <div class="h-[69px] w-[77px] absolute !m-[0] top-[70px] left-[calc(50%_-_112px)] z-[2]">
                       <img class="absolute top-[0px] left-[calc(50%_-_23.5px)] w-[47px] h-[47px]" loading="lazy" alt="" src="assets/folder-filled.svg" />
                       <div class="absolute top-[47px] left-[0px] leading-[140%] flex items-center w-[77px]">Ordenes</div>
@@ -69,8 +47,6 @@
           <div class="self-stretch h-[371px] flex flex-col items-start justify-start gap-[116px] max-w-full mq1050:gap-[58px] mq450:gap-[29px]">
             <div class="w-[632px] flex flex-row items-start justify-center py-0 px-5 box-border max-w-full">
               <div class="h-[29px] w-[332px] relative max-w-full">
-                <div class="absolute top-[-23px] left-[-392px] rounded bg-tan-200 w-[1035px] h-[73px] min-h-[24px]" ></div>
-                <img class="absolute top-[1px] left-[128px] w-[76px] h-7 z-[1]" loading="lazy" alt="" src="assets/group-11.svg" />
               </div>
             </div>
             <div class="self-stretch flex-1 rounded-radius-200 bg-background-default-default border-border-default-default border-solid border-stroke-border box-border flex flex-row items-start justify-start flex-wrap content-start p-space-600 relative gap-space-600 min-w-[240px] z-[1]">
@@ -90,6 +66,8 @@
         </div>
       </div>
     </section>
+
+    <!-- SEGUNDA SECCIÓN DE CONTENIDO (COMPLETA) -->
     <section class="flex flex-row items-start justify-start py-0 px-[70px] box-border max-w-full text-left text-body-size-medium text-text-default-default font-single-line-body-small-strong mq1050:pl-[35px] mq1050:pr-[35px] mq1050:box-border">
       <div class="w-[1290px] flex flex-col items-end justify-start gap-[154px] max-w-full lg:gap-[77px] mq1050:gap-[38px] mq450:gap-[19px]">
         <div class="flex flex-row items-start justify-end py-0 px-[30px] box-border max-w-full">
@@ -123,17 +101,17 @@
                     </div>
                     <div class="w-[139px] flex flex-row items-start justify-start gap-space-300 text-body-size-medium text-text-default-secondary">
                       <div class="w-icon-large relative rounded-radius-full h-icon-large overflow-hidden shrink-0 hidden">
-                        <div class="absolute top-[calc(50%_-_20px)] left-[calc(50%_-_20px)] w-10 h-10" ></div>
+                        <div class="absolute top-[calc(50%_-_20px)] left-[calc(50%_-_20px)] w-10 h-10"></div>
                       </div>
                       <div class="flex-1 flex flex-col items-start justify-start gap-space-050">
-                        <div class="w-[87px] relative leading-[140%] font-body-font-weight-strong hidden" ></div>
+                        <div class="w-[87px] relative leading-[140%] font-body-font-weight-strong hidden"></div>
                         <div class="self-stretch relative leading-[140%] text-icon-default-tertiary">En centro de distribucion</div>
                       </div>
                     </div>
                   </div>
                   <div class="h-[170px] w-[311px] !m-[0] absolute top-[88px] left-[371px] rounded-radius-200 bg-background-default-default border-border-default-default border-solid border-stroke-border box-border flex flex-col items-start justify-start p-space-600 gap-space-600 min-w-[240px] z-[5]">
                     <div class="w-48 h-[29px] hidden flex-row items-start justify-start">
-                      <div class="w-48 relative tracking-[-0.02em] leading-[120%] font-heading-font-weight hidden">“Quote”</div>
+                      <div class="w-48 relative tracking-[-0.02em] leading-[120%] font-heading-font-weight hidden">"Quote"</div>
                     </div>
                     <div class="w-[139px] hidden flex-row items-start justify-start gap-space-300 text-body-size-medium text-text-default-secondary">
                       <img class="w-icon-large relative rounded-radius-full h-icon-large overflow-hidden shrink-0 object-cover" alt="" src="assets/avatar1@2x.png" />
@@ -145,7 +123,7 @@
                   </div>
                   <div class="h-[170px] w-[311px] !m-[0] absolute top-[88px] left-[718px] rounded-radius-200 bg-background-default-default border-border-default-default border-solid border-stroke-border box-border flex flex-col items-start justify-start p-space-600 gap-space-600 min-w-[240px] z-[6]">
                     <div class="self-stretch flex flex-row items-start justify-start">
-                      <div class="w-48 relative tracking-[-0.02em] leading-[120%] font-heading-font-weight hidden">“Quote”</div>
+                      <div class="w-48 relative tracking-[-0.02em] leading-[120%] font-heading-font-weight hidden">"Quote"</div>
                     </div>
                     <div class="w-[139px] hidden flex-row items-start justify-start gap-space-300 text-body-size-medium text-text-default-secondary">
                       <img class="h-icon-large w-icon-large relative rounded-radius-full overflow-hidden shrink-0 object-cover" alt="" src="assets/avatar1@2x.png" />
@@ -213,41 +191,27 @@
           </div>
         </div>
         <div class="self-stretch flex flex-col items-end justify-start gap-[47px] max-w-full text-darkslategray mq1050:gap-[23px]">
-          <div class="self-stretch h-px relative border-background-brand-secondary border-solid border-t-[1px] box-border" ></div>
+          <div class="self-stretch h-px relative border-background-brand-secondary border-solid border-t-[1px] box-border"></div>
           <div class="self-stretch flex flex-row items-end justify-between gap-5 max-w-full mq750:flex-wrap">
             <div class="w-[195.1px] flex flex-col items-end justify-start gap-[51px]">
               <img class="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full object-cover" loading="lazy" alt="" src="assets/image-511@2x.png" />
               <div class="flex flex-row items-start justify-end py-0 pl-2.5 pr-px">
-                <div class="flex flex-row items-start justify-start gap-spacing-xs">
-                  <img class="h-10 w-10 relative rounded object-cover" loading="lazy" alt="" src="assets/buttons--icon11@2x.png" />
-                  <img class="h-10 w-10 relative rounded object-cover" loading="lazy" alt="" src="assets/buttons--icon-111@2x.png" />
-                  <img class="h-10 w-10 relative rounded object-cover" loading="lazy" alt="" src="assets/buttons--icon-211@2x.png" />
-                  <img class="h-10 w-10 relative rounded object-cover" loading="lazy" alt="" src="assets/buttons--icon-311@2x.png" />
-                </div>
-              </div>
-            </div>
-            <div class="w-[624px] flex flex-row items-start justify-start gap-[31.5px] max-w-full mq1050:gap-4 mq1050:flex-wrap">
-              <div class="flex-1 flex flex-col items-end justify-center gap-spacing-s min-w-[140px]">
-                <div class="self-stretch relative leading-[150%] font-[500] text-m3-black">Topic</div>
-                <div class="self-stretch relative leading-[150%] font-[500]">Page</div>
-                <div class="self-stretch relative leading-[150%] font-[500]">Page</div>
-                <div class="self-stretch relative leading-[150%] font-[500]">Page</div>
-              </div>
-              <div class="flex-1 flex flex-col items-end justify-center gap-spacing-s min-w-[140px]">
-                <div class="self-stretch relative leading-[150%] font-[500] text-m3-black">Topic</div>
-                <div class="self-stretch relative leading-[150%] font-[500]">Page</div>
-                <div class="self-stretch relative leading-[150%] font-[500]">Page</div>
-                <div class="self-stretch relative leading-[150%] font-[500]">Page</div>
-              </div>
-              <div class="flex-1 flex flex-col items-end justify-center gap-spacing-s min-w-[140px]">
-                <div class="self-stretch relative leading-[150%] font-[500] text-m3-black">Topic</div>
-                <div class="self-stretch relative leading-[150%] font-[500]">Page</div>
-                <div class="self-stretch relative leading-[150%] font-[500]">Page</div>
-                <div class="self-stretch relative leading-[150%] font-[500]">Page</div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-  </div>
+  </main>
+
+  <!-- Footer (COMPLETO) -->
+  <footer class="w-full mt-5 mb-10">
+    <app-footer 
+      [frameHeaderAlignSelf]="'unset'" 
+      [frameHeaderPadding]="'0px 70px'" 
+      [frameDivFlex]="'unset'" 
+      [frameDivWidth]="'1290px'" 
+      [image5]="'assets/images/image-5@2x.png'">
+    </app-footer>
+  </footer>
+</div>
