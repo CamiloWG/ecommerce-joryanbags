@@ -66,13 +66,16 @@ export class ProductController {
     };
     static create = async (req, res) => {
         try {
+            console.error("Solicitud: ");
+            console.error(req);
+            
             checkPermissions(req, res, 2);
             const product = await ProductServices.create(req.body);
             renameImage(req.file, `product_${product.product_id}.png`);
             res.send(product);
         } catch (error) {
             res.status(500).json({
-                error: "Hubo un error",
+                error: "Hubo un error " + error,
             });
             console.error(error);
         }

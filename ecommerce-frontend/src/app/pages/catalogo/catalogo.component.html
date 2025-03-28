@@ -23,26 +23,16 @@
               <div class="self-stretch flex flex-row items-center justify-between">
                 <tag-toggle-group></tag-toggle-group>              
               </div>
-              <div class="w-[1047px] h-[356px] flex flex-row items-center justify-start flex-wrap content-center py-0 pl-0 pr-[9px] box-border gap-space-600 shrink-0">
-                <product-info-card [showDescription]="false" [image]="'assets/images/image@2x.png'" titulo="Bolso" precio="$50.000"> </product-info-card>
-                <product-info-card [showDescription]="false" [productInfoCardWidth]="'246px'" [image]="'assets/images/image-1@2x.png'" titulo="Bolso" precio="$50.000"> </product-info-card>
-                <product-info-card [showDescription]="false" [productInfoCardWidth]="'240px'" [image]="'assets/images/image-2@2x.png'" titulo="Bolso" precio="$50.000"> </product-info-card>
-                <product-info-card [showDescription]="false" [productInfoCardWidth]="'240px'" [image]="'assets/images/image-3@2x.png'" titulo="Bolso" precio="$50.000"> </product-info-card>
-                
-              </div>
-              <div class="w-[1047px] h-[356px] flex flex-row items-center justify-start flex-wrap content-center py-0 pl-0 pr-[9px] box-border gap-space-600 shrink-0">
-                <product-info-card [showDescription]="false" [image]="'assets/images/image@2x.png'" titulo="Bolso" precio="$50.000"> </product-info-card>
-                <product-info-card [showDescription]="false" [productInfoCardWidth]="'246px'" [image]="'assets/images/image-1@2x.png'" titulo="Bolso" precio="$50.000"> </product-info-card>
-                <product-info-card [showDescription]="false" [productInfoCardWidth]="'240px'" [image]="'assets/images/image-2@2x.png'" titulo="Bolso" precio="$50.000"> </product-info-card>
-                <product-info-card [showDescription]="false" [productInfoCardWidth]="'240px'" [image]="'assets/images/image-3@2x.png'" titulo="Bolso" precio="$50.000"> </product-info-card>
-                
-              </div>
-              <div class="w-[1047px] h-[356px] flex flex-row items-center justify-start flex-wrap content-center py-0 pl-0 pr-[9px] box-border gap-space-600 shrink-0">
-                <product-info-card [showDescription]="false" [image]="'assets/images/image@2x.png'" titulo="Bolso" precio="$50.000"> </product-info-card>
-                <product-info-card [showDescription]="false" [productInfoCardWidth]="'246px'" [image]="'assets/images/image-1@2x.png'" titulo="Bolso" precio="$50.000"> </product-info-card>
-                <product-info-card [showDescription]="false" [productInfoCardWidth]="'240px'" [image]="'assets/images/image-2@2x.png'" titulo="Bolso" precio="$50.000"> </product-info-card>
-                <product-info-card [showDescription]="false" [productInfoCardWidth]="'240px'" [image]="'assets/images/image-3@2x.png'" titulo="Bolso" precio="$50.000"> </product-info-card>
-                
+              <div class="w-[1047px] flex flex-row flex-wrap items-center justify-start content-center py-0 pl-0 pr-[9px] box-border gap-space-600">
+                @for(product of products; track product) {
+                  <product-info-card                  
+                  [showDescription]="false"
+                  [productInfoCardWidth]="product.width"
+                  [image]="product.image"
+                  [titulo]="product.titulo"
+                  [precio]="product.precio">
+                  </product-info-card>
+                }
               </div>
             </div>
           </div>

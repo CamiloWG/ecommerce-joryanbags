@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { HeaderMenuComponent } from '../../core/components/shared/header-menu/header-menu.component';
 import { Route } from '../../core/components/shared/Route/Route.component';
 import { LogoComponent } from '../../core/components/shared/logo/logo.component';
@@ -23,5 +23,14 @@ import { FooterComponent } from '../../core/components/shared/footer/footer.comp
   styleUrl: './catalogo.component.css'
 })
 export class CatalogoComponent {
+  @Input() products = [
+  { image: "http://localhost:4000/public/product_14.png", titulo: 'Bolso', precio: '$50.000', width: '240px' },
+  { image: 'assets/images/image-1@2x.png', titulo: 'Bolso', precio: '$50.000', width: '240px' },
+  { image: 'assets/images/image-2@2x.png', titulo: 'Bolso', precio: '$50.000', width: '240px' },
+  { image: 'assets/images/image-3@2x.png', titulo: 'Bolso', precio: '$50.000', width: '240px' },  
+  { image: 'assets/images/image@2x.png', titulo: 'Bolso', precio: '$50.000', width: '240px' },
+  { image: 'assets/images/image-1@2x.png', titulo: 'Bolso', precio: '$50.000', width: '240px' },
+  { image: 'assets/images/image-2@2x.png', titulo: 'Bolso', precio: '$50.000', width: '240px' },
+];
 
 }
