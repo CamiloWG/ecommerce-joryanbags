@@ -27,10 +27,10 @@
                 @for(product of products; track product) {
                   <product-info-card                  
                   [showDescription]="false"
-                  [productInfoCardWidth]="product.width"
-                  [image]="product.image"
-                  [titulo]="product.titulo"
-                  [precio]="product.precio">
+                  productInfoCardWidth="240px"
+                  [image]="product.image_url"
+                  [titulo]="product.name"
+                  [precio]="'$'+product.price">
                   </product-info-card>
                 }
               </div>

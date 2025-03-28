@@ -13,7 +13,7 @@ const upload = multer({
 
 const router = Router();
 
-router.use(authenticate);
+
 
 router.get("/count", ProductController.getCount);
 router.get("/", ProductController.getAll);
@@ -38,6 +38,8 @@ router.get(
     param("category_id").optional(),
     ProductController.getBy
 );
+
+router.use(authenticate);
 
 router.post(
     "/create",

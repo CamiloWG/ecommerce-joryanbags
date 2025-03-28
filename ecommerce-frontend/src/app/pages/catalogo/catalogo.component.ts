@@ -7,6 +7,8 @@ import { TagToggleGroup } from '../../core/components/TagToggleGroup/TagToggleGr
 import { ProductInfoCard } from '../../core/components/ProductInfoCard/ProductInfoCard.component';
 import { CatalogFilterComponent } from '../../core/components/CatalogFilter/CatalogFilter.component';
 import { FooterComponent } from '../../core/components/shared/footer/footer.component';
+import { ProductListService } from '../../core/services/product-list.service';
+import { Product } from '../../core/interfaces/product.interface';
 
 @Component({
   selector: 'app-catalogo',
@@ -23,7 +25,15 @@ import { FooterComponent } from '../../core/components/shared/footer/footer.comp
   styleUrl: './catalogo.component.css'
 })
 export class CatalogoComponent {
-  @Input() products = [
+  products: Product[] = []
+
+  constructor(private ProductService: ProductListService) {
+    ProductService.GetProducts().subscribe(data => {
+      this.products = data;
+    });
+  }
+
+  /*products = [
   { image: "http://localhost:4000/public/product_14.png", titulo: 'Bolso', precio: '$50.000', width: '240px' },
   { image: 'assets/images/image-1@2x.png', titulo: 'Bolso', precio: '$50.000', width: '240px' },
   { image: 'assets/images/image-2@2x.png', titulo: 'Bolso', precio: '$50.000', width: '240px' },
@@ -31,6 +41,6 @@ export class CatalogoComponent {
   { image: 'assets/images/image@2x.png', titulo: 'Bolso', precio: '$50.000', width: '240px' },
   { image: 'assets/images/image-1@2x.png', titulo: 'Bolso', precio: '$50.000', width: '240px' },
   { image: 'assets/images/image-2@2x.png', titulo: 'Bolso', precio: '$50.000', width: '240px' },
-];
+];*/
 
 }
