@@ -8,7 +8,7 @@ import { FooterComponent } from '../../core/components/shared/footer/footer.comp
 @Component({
   selector: 'app-paginaadmin',
   imports: [
-      HeaderMenuComponent, 
+       HeaderMenuComponent, 
         Route, 
         LogoComponent,
         FooterComponent,

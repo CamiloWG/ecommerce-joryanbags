@@ -1,22 +1,25 @@
 <div class="flex flex-col">
   <header-menu></header-menu>
-
+  
   <main class="flex flex-col items-start justify-start pb-[50px] pl-3 pr-[18px] box-border max-w-full lg:pb-[50px] lg:box-border mq750:pb-[30px] mq750:box-border">
-    
+
     <section class="relative w-full h-[150px] flex"> 
       <app-logo class="absolute top-0 left-0"></app-logo>
+
+      
       <div class="absolute top-[19px] left-[365px] flex flex-col items-start justify-start gap-[50px] w-[calc(100%-365px)]">
-        <div class="w-full flex flex-col">
+        <div class="w-full flex flex-col font-subheading">
           <route [breadcrumbs]="[{ label: 'Iniciar sesión' }]"></route>
         </div>
       </div>
     </section>
+
     <div class="flex items-center justify-center min-h-screen w-full">
       <section class="w-[1000px] flex flex-col items-center justify-center pt-0 px-[21px] pb-[149px] box-border max-w-full mq1050:pb-[97px] mq1050:box-border mx-auto">
         <div class="flex flex-col items-center justify-center gap-10 max-w-full mq1050:gap-5">
           <div class="w-[1098px] flex flex-row items-center justify-between gap-5 max-w-full mq1050:flex-wrap">
             <div class="flex flex-col items-center justify-center pt-[42px] px-0 pb-0 box-border max-w-full">
-              <div class="self-stretch h-[29px] relative"></div>
+              <div class="self-stretch h-[29px] relative font-subheading"></div>
             </div>
           </div>
           
@@ -27,21 +30,27 @@
               border-stroke-border box-border flex flex-col items-center justify-center py-space-600 px-[23px] gap-space-600 
               w-full max-w-[800px] z-[1] mq450:min-h-[auto]" data-scroll-to="formContact">
                 
-                <input-field1 class="w-full" [state]="'Default'" [valueType]="'Placeholder'" [label]="'Correo'"></input-field1>
-                <input-field1 class="w-full" [state]="'Default'" [valueType]="'Placeholder'" [label]="'Contraseña'"></input-field1>
+                <input-field1 class="w-full font-subheading" [state]="'Default'" [valueType]="'Placeholder'" [label]="'Correo'"></input-field1>
+                <input-field1 class="w-full font-subheading" [state]="'Default'" [valueType]="'Placeholder'" [label]="'Contraseña'"></input-field1>
                 <app-button 
+                  class="font-subheading"
                   [buttonText]="'Ingresar'" 
                   [buttonRoute]="'/home'" 
                   [showButton]="true" 
                   type="submit">
                 </app-button>
               </form>
-              <!-- Sección para nuevo usuario -->
+            
               <div class="flex flex-col items-center justify-center pt-[41px] px-0 pb-0 box-border max-w-full mq1050:min-w-full mq450:flex-1">
-                <div class="flex flex-col items-center justify-center text-center">
+                <div class="flex flex-col items-center justify-center text-center font-subheading">
                   <component1></component1>
-                  <!-- Botón para registrarse -->
-                  <app-button [buttonText]="'Continuar'" [buttonRoute]="'/registrousuario'" [showButton]="true"></app-button>
+        
+                  <app-button 
+                    class="font-subheading"
+                    [buttonText]="'Continuar'" 
+                    [buttonRoute]="'/registrousuario'" 
+                    [showButton]="true">
+                  </app-button>
 
                 </div>
               </div>
@@ -53,7 +62,7 @@
     </div>
   </main>
 
-  <footer class="w-full mt-5 mb-10">
+  <footer class="w-full mt-5 mb-10 font-subheading">
     <app-footer 
       [frameHeaderAlignSelf]="'unset'" 
       [frameHeaderPadding]="'0px 70px'" 
