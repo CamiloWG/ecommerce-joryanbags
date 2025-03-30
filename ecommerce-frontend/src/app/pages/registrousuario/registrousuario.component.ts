@@ -20,7 +20,4 @@ import { ButtonComponent } from '../../core/components/button/button.component';
   styleUrl: './registrousuario.component.css'
 })
 export class RegistrousuarioComponent {
-
-  
-
 }

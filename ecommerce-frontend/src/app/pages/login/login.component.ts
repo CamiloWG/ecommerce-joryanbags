@@ -4,8 +4,6 @@ import { HeaderMenuComponent } from '../../core/components/shared/header-menu/he
 import { Route } from '../../core/components/shared/Route/Route.component';
 import { LogoComponent } from '../../core/components/shared/logo/logo.component';
 import { ButtonComponent } from '../../core/components/button/button.component';
-import { Component1 } from "../../core/components/Component1/Component1.component";
-import { InputField1 } from "../../core/components/InputField1/InputField1.component";
 import { FooterComponent } from '../../core/components/shared/footer/footer.component';
 
 
@@ -15,8 +13,6 @@ import { FooterComponent } from '../../core/components/shared/footer/footer.comp
     HeaderMenuComponent, 
     Route, 
     LogoComponent,
-    Component1,
-    InputField1,
     FooterComponent,
     ButtonComponent,
     RouterModule

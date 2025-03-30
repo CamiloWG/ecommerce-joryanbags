@@ -30,8 +30,26 @@
               border-stroke-border box-border flex flex-col items-center justify-center py-space-600 px-[23px] gap-space-600 
               w-full max-w-[800px] z-[1] mq450:min-h-[auto]" data-scroll-to="formContact">
                 
-                <input-field1 class="w-full font-subheading" [state]="'Default'" [valueType]="'Placeholder'" [label]="'Correo'"></input-field1>
-                <input-field1 class="w-full font-subheading" [state]="'Default'" [valueType]="'Placeholder'" [label]="'Contraseña'"></input-field1>
+              <div class="flex flex-col w-full">
+                <label class="font-subheading text-gray-700">Correo</label>
+                <input 
+                  type="email" 
+                  formControlName="correo" 
+                  placeholder="Correo" 
+                  class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300" 
+                />
+              </div>
+              
+              <div class="flex flex-col w-full">
+                <label class="font-subheading text-gray-700">Contraseña</label>
+                <input 
+                  type="password" 
+                  formControlName="contrasena" 
+                  placeholder="Contraseña" 
+                  class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300" 
+                />
+              </div>
+              
                 <app-button 
                   class="font-subheading"
                   [buttonText]="'Ingresar'" 
@@ -43,7 +61,10 @@
             
               <div class="flex flex-col items-center justify-center pt-[41px] px-0 pb-0 box-border max-w-full mq1050:min-w-full mq450:flex-1">
                 <div class="flex flex-col items-center justify-center text-center font-subheading">
-                  <component1></component1>
+                  <div class="w-[492px] h-[205px] flex flex-col items-start justify-start pt-0 px-0 pb-[67px] box-border gap-3.5 z-[1] text-left text-heading-size-base text-text-default-default font-single-line-body-small-strong">
+                    <h3 class="m-0 w-[200px] h-[29px] relative text-inherit tracking-[-0.02em] leading-[120%] font-[600] font-[inherit] inline-block">Nuevo usuario</h3>
+                    <div class="w-[492px] relative text-subheading-size-medium leading-[120%] text-text-default-secondary inline-block">Al crear una cuenta, podrás comprar más rápido, estar actualizado sobre el estado de un pedido y realizar un seguimiento de los pedidos que hayas realizado anteriormente.</div>
+                  </div>
         
                   <app-button 
                     class="font-subheading"
@@ -54,7 +75,6 @@
 
                 </div>
               </div>
-
             </div>
           </div>
         </div>
