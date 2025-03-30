@@ -48,12 +48,17 @@ export const routes: Routes = [
         component: LoginComponent
     },
     {
-        path: 'paginaadmin',
+        path: 'administrador',
         title: 'Pagina Administrador | Joryan Bags',
         component: PaginaadminComponent
     },
     {
-        path: 'registrousuario',
+        path: 'usuario',
+        title: 'Pagina Usuario | Joryan Bags',
+        component: PaginaadminComponent
+    },
+    {
+        path: 'registro',
         title: 'Confirmacion | Joryan Bags',
         component: RegistrousuarioComponent 
     }

@@ -1,217 +1,104 @@
-<div class="flex flex-col">
-  <header-menu></header-menu>
+<header-menu></header-menu>
 
-  <main class="flex flex-col items-start justify-start pb-[115px] box-border max-w-full">
-    <!-- Sección del logo (COMPLETA) -->
-  
-    <section class="relative w-full h-[150px] flex"> 
-      <app-logo class="absolute top-0 left-0"></app-logo>
-      <div class="absolute top-[19px] left-[365px] flex flex-col items-start justify-start gap-[50px] w-[calc(100%-365px)]">
-        <div class="w-full flex flex-col">
-          <route [breadcrumbs]="[{ label: 'Administrador' }]"></route>
+<main class="flex flex-col items-start justify-start pb-[50px] pl-3 pr-[18px] box-border w-full lg:pb-[50px] lg:box-border mq750:pb-[30px] mq750:box-border">
+
+  <section class="relative w-full h-[130px] flex"> 
+    <app-logo class="absolute top-0 left-0"></app-logo>
+
+    <div class="absolute top-[19px] left-[365px] flex flex-col items-start justify-start gap-[50px] w-[calc(100%-365px)]">
+      <div class="w-full flex flex-col">
+        <route [breadcrumbs]="[{ label: 'Administrador' }]"></route>
+      </div>
+    </div>
+  </section>
+
+</main> 
+
+<div class="container w-full px-6">
+  <h3 class="text-left ml-20 font-subheading mt-0">Tu desempeño</h3>
+  <div class="flex flex-row justify-center items-center mt-0 gap-2">
+    <div class="w-1/3 flex flex-col items-center bg-white p-4 rounded-lg shadow-md">
+      <h3 class="text-center font-subheading">Resumen</h3>
+      <div class="flex flex-row justify-center gap-10 mt-2">
+        <div class="text-center">
+          <img src="assets/icons/chat-bubble.svg" alt="Reseñas" class="w-10 h-10 mx-auto" />
+          <p class = "font-subheading">Reseñas</p>
+        </div>
+        <div class="text-center">
+          <img src="../../assets/icons/folder-filled.svg" alt="Órdenes" class="w-10 h-10 mx-auto" />
+          <p class = "font-subheading">Órdenes</p>
+        </div>
+        <div class="text-center">
+          <img src="assets/icons/archive.svg" alt="Stock" class="w-10 h-10 mx-auto" />
+          <p class = "font-subheading">Stock</p>
         </div>
       </div>
-    </section>
-
-    <!-- PRIMERA SECCIÓN DE CONTENIDO (COMPLETA) -->
-    <section class="w-[1339px] flex flex-row items-start justify-start pt-0 px-[21px] pb-3.5 box-border max-w-full text-left text-heading-size-base text-text-default-default font-single-line-body-small-strong">
-      <div class="flex-1 flex flex-row items-start justify-center gap-[27px] max-w-full lg:flex-wrap">
-        <div class="h-[549px] flex flex-col items-start justify-start gap-[29px] min-w-[589px] max-w-full lg:flex-1 mq1050:min-w-full">
-          <div class="self-stretch flex-1 flex flex-row items-start justify-end max-w-full">
-            <div class="self-stretch w-[493px] flex flex-col items-start justify-start gap-[162px] max-w-full mq1050:gap-[81px]">
-              <div class="self-stretch flex-1 flex flex-row items-start justify-start py-0 pl-[3px] pr-0 box-border max-w-full">
-                <div class="self-stretch flex-1 flex flex-col items-start justify-start gap-2 max-w-full">
-                  <h3 class="m-0 w-[217px] relative text-inherit tracking-[-0.02em] leading-[120%] font-[600] font-[inherit] inline-block mq450:text-lgi mq450:leading-[23px]">Tu desempeño</h3>
-                  <div class="self-stretch flex-1 rounded-radius-200 bg-background-default-default border-border-default-default border-solid border-stroke-border box-border flex flex-row items-start justify-start flex-wrap content-start p-space-600 relative gap-space-600 min-w-[240px] z-[1] text-body-size-medium text-icon-default-tertiary">
-                    <h3 class="m-0 w-[217px] relative text-heading-size-base tracking-[-0.02em] leading-[120%] font-[600] font-[inherit] text-text-default-default inline-block shrink-0 z-[0] mq450:text-lgi mq450:leading-[23px]">Resumen</h3>
-                    <div class="h-[69px] w-[77px] absolute !m-[0] top-[70px] left-[calc(50%_-_112px)] z-[2]">
-                      <img class="absolute top-[0px] left-[calc(50%_-_23.5px)] w-[47px] h-[47px]" loading="lazy" alt="" src="assets/folder-filled.svg" />
-                      <div class="absolute top-[47px] left-[0px] leading-[140%] flex items-center w-[77px]">Ordenes</div>
-                    </div>
-                    <div class="h-16 w-[79px] absolute !m-[0] top-[72px] left-[calc(50%_-_2px)] z-[3]">
-                      <img class="absolute top-[0px] left-[calc(50%_-_24.5px)] w-[49px] h-11 overflow-hidden" loading="lazy" alt="" src="assets/mail.svg" />
-                      <div class="absolute top-[42px] left-[0px] leading-[140%] flex items-center w-[79px]">Despacho</div>
-                    </div>
-                    <div class="h-[65px] w-[53px] absolute !m-[0] top-[74px] left-[calc(50%_+_110px)] z-[4]">
-                      <img class="absolute top-[0px] left-[calc(50%_-_26.5px)] w-12 h-12 overflow-hidden" loading="lazy" alt="" src="assets/archive.svg" />
-                      <div class="absolute top-[43px] left-[0px] leading-[140%] flex items-center w-[53px]">Stock</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <h3 class="m-0 w-[217px] relative text-inherit tracking-[-0.02em] leading-[120%] font-[600] font-[inherit] inline-block mq450:text-lgi mq450:leading-[23px]">Ventas</h3>
-            </div>
-          </div>
+    </div>
+    <div class="w-1/3 flex flex-col items-center bg-white p-4 rounded-lg shadow-md">
+      <h3 class="text-center font-subheading">Métricas de negocio</h3>
+      <div class="flex flex-row justify-center gap-10 mt-2">
+        <div class="text-center">
+          <p class="text-sm font-subheading">Ventas brutas</p>
+          <p class="font-bold">$ $$. $$$</p>
         </div>
-        <div class="flex-1 flex flex-col items-start justify-start pt-[42px] px-0 pb-0 box-border min-w-[443px] max-w-full text-body-size-medium text-icon-default-tertiary mq1050:min-w-full mq450:pt-[27px] mq450:box-border">
-          <div class="self-stretch h-[371px] flex flex-col items-start justify-start gap-[116px] max-w-full mq1050:gap-[58px] mq450:gap-[29px]">
-            <div class="w-[632px] flex flex-row items-start justify-center py-0 px-5 box-border max-w-full">
-              <div class="h-[29px] w-[332px] relative max-w-full">
-              </div>
-            </div>
-            <div class="self-stretch flex-1 rounded-radius-200 bg-background-default-default border-border-default-default border-solid border-stroke-border box-border flex flex-row items-start justify-start flex-wrap content-start p-space-600 relative gap-space-600 min-w-[240px] z-[1]">
-              <h3 class="m-0 h-[42px] w-[272px] relative text-heading-size-base tracking-[-0.02em] leading-[120%] font-[600] font-[inherit] text-text-default-default inline-block shrink-0 z-[0] mq450:text-lgi mq450:leading-[23px]">Metricas de negocio</h3>
-              <div class="h-[60px] w-[139px] !m-[0] absolute top-[97px] left-[160px] flex flex-col items-start justify-start gap-2.5 z-[1]">
-                <div class="w-[139px] relative leading-[140%] flex items-center">Ventas brutas</div>
-                <div class="w-[110px] h-7 relative text-subheading-size-medium leading-[120%] text-text-default-secondary inline-block mq450:text-body-size-medium mq450:leading-[19px]">$ $$.$$$</div>
-              </div>
-              <div class="h-[61px] w-[191px] !m-[0] absolute top-[97px] left-[383px] flex flex-col items-start justify-start gap-2 z-[2]">
-                <div class="w-[191px] relative leading-[140%] flex items-center">Cantidad de ventas</div>
-                <div class="flex flex-row items-start justify-start py-0 pl-[17px] pr-4 text-subheading-size-medium text-text-default-secondary">
-                  <div class="h-[31px] w-[158px] relative leading-[120%] inline-block mq450:text-body-size-medium mq450:leading-[19px]">####</div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="text-center">
+          <p class="text-sm font-subheading">Cantidad de ventas</p>
+          <p class="font-bold">####</p>
         </div>
       </div>
-    </section>
-
-    <!-- SEGUNDA SECCIÓN DE CONTENIDO (COMPLETA) -->
-    <section class="flex flex-row items-start justify-start py-0 px-[70px] box-border max-w-full text-left text-body-size-medium text-text-default-default font-single-line-body-small-strong mq1050:pl-[35px] mq1050:pr-[35px] mq1050:box-border">
-      <div class="w-[1290px] flex flex-col items-end justify-start gap-[154px] max-w-full lg:gap-[77px] mq1050:gap-[38px] mq450:gap-[19px]">
-        <div class="flex flex-row items-start justify-end py-0 px-[30px] box-border max-w-full">
-          <div class="w-[1220px] flex flex-col items-start justify-start gap-8 max-w-full mq1050:gap-4">
-            <div class="self-stretch flex flex-row items-start justify-start py-0 pl-px pr-0 box-border max-w-full text-heading-size-base">
-              <div class="flex-1 rounded-radius-200 bg-background-default-default border-border-default-default border-solid border-stroke-border box-border flex flex-row items-start justify-start flex-wrap content-start py-[22px] px-space-600 min-w-[240px] max-w-full">
-                <div class="h-[294px] flex-1 rounded-radius-200 bg-background-default-default border-border-default-default border-solid border-stroke-border box-border flex flex-row items-start justify-start flex-wrap content-start p-space-600 relative gap-space-600 min-w-[240px]">
-                  <button class="cursor-pointer [border:none] p-0 bg-m3-black h-10 rounded-81xl overflow-hidden flex flex-col items-center justify-center z-[0]">
-                    <div class="self-stretch flex-1 flex flex-row items-center justify-center py-2.5 px-6">
-                      <div class="relative text-label-large-size tracking-[0.1px] leading-[20px] font-[500] font-m3-body-large text-background-default-default text-center">Envios de hoy</div>
-                    </div>
-                  </button>
-                  <button class="cursor-pointer [border:none] p-0 bg-m3-black h-10 rounded-81xl overflow-hidden flex flex-col items-center justify-center z-[1]">
-                    <div class="self-stretch flex-1 flex flex-row items-center justify-center py-2.5 px-6">
-                      <div class="relative text-label-large-size tracking-[0.1px] leading-label-large-line-height font-[500] font-m3-body-large text-background-default-default text-center">Próximos días</div>
-                    </div>
-                  </button>
-                  <button class="cursor-pointer [border:none] p-0 bg-m3-black h-10 rounded-81xl overflow-hidden flex flex-col items-center justify-center z-[2]">
-                    <div class="self-stretch flex-1 flex flex-row items-center justify-center py-2.5 px-6">
-                      <div class="relative text-label-large-size tracking-[0.1px] leading-label-large-line-height font-[500] font-m3-body-large text-background-default-default text-center">En tránsito</div>
-                    </div>
-                  </button>
-                  <button class="cursor-pointer [border:none] p-0 bg-m3-black h-10 rounded-81xl overflow-hidden flex flex-col items-center justify-center z-[3]">
-                    <div class="self-stretch flex-1 flex flex-row items-center justify-center py-2.5 px-6">
-                      <div class="relative text-label-large-size tracking-[0.1px] leading-label-large-line-height font-[500] font-m3-body-large text-background-default-default text-center">Finalizadas</div>
-                    </div>
-                  </button>
-                  <div class="h-[170px] w-[311px] !m-[0] absolute top-[88px] left-[24px] rounded-radius-200 bg-background-default-default border-border-default-default border-solid border-stroke-border box-border flex flex-col items-start justify-start p-space-600 gap-space-600 min-w-[240px] z-[4]">
-                    <div class="self-stretch flex flex-row items-start justify-start">
-                      <h3 class="m-0 flex-1 relative text-inherit tracking-[-0.02em] leading-[120%] font-[600] font-[inherit]">EN SEGUIMIENTO</h3>
-                    </div>
-                    <div class="w-[139px] flex flex-row items-start justify-start gap-space-300 text-body-size-medium text-text-default-secondary">
-                      <div class="w-icon-large relative rounded-radius-full h-icon-large overflow-hidden shrink-0 hidden">
-                        <div class="absolute top-[calc(50%_-_20px)] left-[calc(50%_-_20px)] w-10 h-10"></div>
-                      </div>
-                      <div class="flex-1 flex flex-col items-start justify-start gap-space-050">
-                        <div class="w-[87px] relative leading-[140%] font-body-font-weight-strong hidden"></div>
-                        <div class="self-stretch relative leading-[140%] text-icon-default-tertiary">En centro de distribucion</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="h-[170px] w-[311px] !m-[0] absolute top-[88px] left-[371px] rounded-radius-200 bg-background-default-default border-border-default-default border-solid border-stroke-border box-border flex flex-col items-start justify-start p-space-600 gap-space-600 min-w-[240px] z-[5]">
-                    <div class="w-48 h-[29px] hidden flex-row items-start justify-start">
-                      <div class="w-48 relative tracking-[-0.02em] leading-[120%] font-heading-font-weight hidden">"Quote"</div>
-                    </div>
-                    <div class="w-[139px] hidden flex-row items-start justify-start gap-space-300 text-body-size-medium text-text-default-secondary">
-                      <img class="w-icon-large relative rounded-radius-full h-icon-large overflow-hidden shrink-0 object-cover" alt="" src="assets/avatar1@2x.png" />
-                      <div class="w-[87px] hidden flex-col items-start justify-start gap-space-050">
-                        <div class="self-stretch relative leading-[140%] font-body-font-weight-strong">Title</div>
-                        <div class="self-stretch relative leading-[140%] text-icon-default-tertiary">Description</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="h-[170px] w-[311px] !m-[0] absolute top-[88px] left-[718px] rounded-radius-200 bg-background-default-default border-border-default-default border-solid border-stroke-border box-border flex flex-col items-start justify-start p-space-600 gap-space-600 min-w-[240px] z-[6]">
-                    <div class="self-stretch flex flex-row items-start justify-start">
-                      <div class="w-48 relative tracking-[-0.02em] leading-[120%] font-heading-font-weight hidden">"Quote"</div>
-                    </div>
-                    <div class="w-[139px] hidden flex-row items-start justify-start gap-space-300 text-body-size-medium text-text-default-secondary">
-                      <img class="h-icon-large w-icon-large relative rounded-radius-full overflow-hidden shrink-0 object-cover" alt="" src="assets/avatar1@2x.png" />
-                      <div class="w-[87px] hidden flex-col items-start justify-start gap-space-050">
-                        <div class="self-stretch relative leading-[140%] font-body-font-weight-strong">Title</div>
-                        <div class="self-stretch relative leading-[140%] text-icon-default-tertiary">Description</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="flex flex-row items-start justify-start py-0 px-[29px] box-border max-w-full text-m3-sys-light-on-surface-variant font-m3-body-large">
-              <div class="h-[30px] w-[404px] rounded-9xl bg-state-layers-secondary-opacity-16 overflow-hidden shrink-0 flex flex-row items-center justify-start min-w-[360px] max-w-[720px]">
-                <div class="self-stretch flex-1 flex flex-row items-center justify-start p-1 gap-1">
-                  <div class="h-12 w-12 flex flex-col items-center justify-center">
-                    <div class="rounded-81xl overflow-hidden flex flex-row items-center justify-center">
-                      <div class="flex flex-row items-center justify-center p-2">
-                        <img class="w-6 relative h-6" alt="" src="assets/icon.svg" />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="self-stretch flex-1 flex flex-row items-center justify-start">
-                    <div class="relative tracking-[0.5px] leading-[24px]">Hinted search text</div>
-                  </div>
-                  <div class="flex flex-row items-center justify-end">
-                    <div class="h-12 w-12 flex flex-col items-center justify-center">
-                      <div class="rounded-81xl overflow-hidden flex flex-row items-center justify-center">
-                        <div class="flex flex-row items-center justify-center p-2">
-                          <img class="h-6 w-6 relative" alt="" src="assets/icon-1.svg" />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="w-12 bg-m3-sys-light-on-surface-variant h-12 hidden flex-col items-center justify-center">
-                      <div class="rounded-81xl overflow-hidden flex flex-row items-center justify-center">
-                        <div class="flex flex-row items-center justify-center p-2">
-                          <img class="h-6 w-6 relative" alt="" src="assets/icon-2.svg" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="self-stretch h-[170px] rounded-radius-200 bg-background-default-default border-border-default-default border-solid border-stroke-border box-border flex flex-col items-start justify-start py-[22px] px-space-600 relative gap-space-600 min-w-[240px] z-[2] text-text-default-secondary">
-              <div class="flex flex-col items-center justify-center p-1 z-[0]">
-                <div class="rounded-81xl flex flex-row items-center justify-center p-2xs">
-                  <input class="m-0 h-[18px] w-[18px] relative rounded-sm border-m3-sys-light-on-surface-variant border-solid border-[2px] box-border" type="checkbox" />
-                </div>
-              </div>
-              <img class="w-[50px] h-[59px] relative object-cover z-[1]" loading="lazy" alt="" src="assets/3d-avatars--8@2x.png" />
-              <div class="w-[1103px] absolute !m-[0] top-[39px] left-[74px] leading-[140%] inline-block z-[2]">#000000000000</div>
-              <h3 class="!m-[0] w-[1103px] absolute top-[81px] left-[88px] text-heading-size-base tracking-[-0.02em] leading-[120%] font-[600] font-[inherit] text-text-default-default inline-block z-[3] mq450:text-lgi mq450:leading-[23px]">Procesando en bodega</h3>
-              <div class="w-[1103px] absolute !m-[0] top-[111px] left-[88px] leading-[140%] inline-block z-[4]">
-                <p class="m-0">PRODUCTO PRODUCTO</p>
-                <p class="m-0">DESCRIPCION</p>
-              </div>
-              <button class="cursor-pointer border-background-brand-default border-solid border-stroke-border p-space-300 bg-background-brand-default w-[221px] h-[37px] !m-[0] absolute top-[77px] left-[906px] rounded-radius-200 box-border overflow-hidden shrink-0 flex flex-row items-center justify-center gap-space-200 z-[5]">
-                <img class="w-4 relative h-4 overflow-hidden shrink-0 hidden" alt="" src="assets/star5.svg" />
-                <div class="relative text-body-size-medium leading-[100%] font-single-line-body-small-strong text-text-brand-on-brand text-left">Seguir envio</div>
-                <img class="w-4 relative h-4 overflow-hidden shrink-0 hidden" alt="" src="assets/x10.svg" />
-              </button>
-              <div class="w-[143px] absolute !m-[0] top-[79px] left-[704px] leading-[140%] inline-block z-[6]">PRECIO</div>
-            </div>
-          </div>
-        </div>
-        <div class="self-stretch flex flex-col items-end justify-start gap-[47px] max-w-full text-darkslategray mq1050:gap-[23px]">
-          <div class="self-stretch h-px relative border-background-brand-secondary border-solid border-t-[1px] box-border"></div>
-          <div class="self-stretch flex flex-row items-end justify-between gap-5 max-w-full mq750:flex-wrap">
-            <div class="w-[195.1px] flex flex-col items-end justify-start gap-[51px]">
-              <img class="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full object-cover" loading="lazy" alt="" src="assets/image-511@2x.png" />
-              <div class="flex flex-row items-start justify-end py-0 pl-2.5 pr-px">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer (COMPLETO) -->
-  <footer class="w-full mt-5 mb-10">
-    <app-footer 
-      [frameHeaderAlignSelf]="'unset'" 
-      [frameHeaderPadding]="'0px 70px'" 
-      [frameDivFlex]="'unset'" 
-      [frameDivWidth]="'1290px'" 
-      [image5]="'assets/images/image-5@2x.png'">
-    </app-footer>
-  </footer>
+    </div>
+  </div>
 </div>
+
+<div class="relative w-full max-w-[500px] mx-auto mt-[30px]">
+  <div class="rounded-full bg-white border border-gray-300 w-full h-[40px] flex items-center py-2 px-4 gap-2 shadow-sm">
+    <input
+      placeholder="Buscar"
+      type="text"
+      class="w-full border-none outline-none text-gray-700 text-lg bg-transparent"
+    />
+  </div>
+</div>
+
+<div
+  class="w-full max-w-[1220px] rounded-lg bg-white border border-gray-300 flex flex-row items-center justify-between p-4"
+>
+  <!-- Imagen de avatar -->
+  <img
+    class="w-[50px] h-[59px] object-cover"
+    loading="lazy"
+    alt="Avatar"
+    src="assets/images/3d-avatars--8@2x.png"
+  />
+
+  <!-- Información del producto -->
+  <div class="flex flex-col flex-1 px-4">
+    <div class="text-gray-500 text-sm">
+      #000000000000
+    </div>
+    <h3 class="text-lg font-semibold text-gray-800">
+      Procesando en bodega
+    </h3>
+    <div class="text-gray-600 text-sm">
+      <p class="m-0">PRODUCTO PRODUCTO</p>
+      <p class="m-0">DESCRIPCIÓN</p>
+    </div>
+  </div>
+
+  <!-- Precio alineado a la derecha -->
+  <div class="w-[143px] text-right text-gray-800 font-semibold">
+    PRECIO
+  </div>
+</div>
+
+
+
+<footer class="w-full mt-5 mb-10">
+  <app-footer 
+    [frameHeaderAlignSelf]="'unset'" 
+    [frameHeaderPadding]="'0px 70px'" 
+    [frameDivFlex]="'unset'" 
+    [frameDivWidth]="'1290px'" 
+    [image5]="'assets/images/image-5@2x.png'">
+  </app-footer>
+</footer>

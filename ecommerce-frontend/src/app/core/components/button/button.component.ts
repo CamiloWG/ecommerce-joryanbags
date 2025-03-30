@@ -17,4 +17,5 @@ export class ButtonComponent {
 @Input() buttonText: string = 'Botón';
 @Input() showButton: boolean = true;
 @Input() type: 'button' | 'submit' | 'reset' = 'button'; 
+
 }

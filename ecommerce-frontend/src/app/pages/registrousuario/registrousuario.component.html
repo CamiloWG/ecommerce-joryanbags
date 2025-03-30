@@ -15,10 +15,10 @@
 
     <div class="flex items-center justify-center min-h-screen w-full">
       <section class="w-[1000px] flex flex-col items-center justify-center pt-0 px-[21px] pb-[149px] box-border max-w-full mq1050:pb-[97px] mq1050:box-border mx-auto">
-        <div class="flex flex-col items-center justify-center gap-10 max-w-full mq1050:gap-5">
-          <div class="w-[1098px] flex flex-col items-start justify-center gap-[2px] max-w-full z-[10]">
-            <h1 class="text-xl font-bold font-subheading">Crea una cuenta</h1>
-            <p class="text-gray-600 font-subheading">Si ya tiene una cuenta, por favor ingrese en la página de login.</p>
+        <div class="w-full flex flex-col items-center">
+          <div class="w-[600px] max-w-full flex flex-col items-start text-left mb-6">
+            <h1 class="text-xl font-bold font-subheading mb-1">Crea una cuenta</h1>
+            <p class="text-gray-600 font-subheading mt-0">Si ya tiene una cuenta, por favor ingrese en la página de login.</p>            
           </div>
           
           <div class="self-stretch h-[357px] flex flex-row items-center justify-center max-w-full">
@@ -27,11 +27,11 @@
               <!-- Formulario de registro -->
               <div class="m-0 rounded-radius-200 bg-background-default-default border-border-default-default border-solid 
               border-stroke-border box-border flex flex-col items-center justify-center py-space-400 px-[16px] gap-space-400 
-              w-full max-w-[400px] z-[1] mt-[100px] mq450:min-h-[auto]">
-               <app-info-usuario></app-info-usuario>
+              w-full max-w-[600px] z-[1] mt-[160px] mq450:min-h-[auto]">
+                <app-info-usuario class="w-full"></app-info-usuario>
               </div>
-              
-              <div class="flex flex-col items-center justify-center pt-[41px] px-0 pb-0 box-border max-w-full mq1050:min-w-full mq450:flex-1">
+
+              <div class="flex flex-col items-center justify-center pt-[0px] px-0 pb-0 box-border max-w-full mq1050:min-w-full mq450:flex-1">
                 <div class="flex flex-col items-center justify-center text-center font-subheading">
         
                   <app-button 
@@ -41,6 +41,7 @@
                     [showButton]="true">
 
                   </app-button>
+                  
                 </div>
               </div>
             </div>
