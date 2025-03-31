@@ -12,7 +12,7 @@
           <route [breadcrumbs]="[
             { label: 'Catálogo' },
             { label: 'Categoría' },
-            { label: 'Producto X' }
+            { label: producto.name }
           ]"></route>
         </div>
       </div>
@@ -23,7 +23,7 @@
         <menu-categorias class="max-w-[275px]"></menu-categorias>
       </div>
       <div class="w-[80%] flex-shrink-0">
-        <app-product></app-product>  
+        <app-product [titulo]="producto.name" [precio]="producto.price" [image]="producto.image_url" [stock]="producto.stock" [id]="producto.product_id"></app-product>  
       </div>
     </section>
 

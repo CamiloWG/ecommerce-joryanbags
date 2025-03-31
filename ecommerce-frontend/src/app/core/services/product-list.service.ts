@@ -8,10 +8,18 @@ import { Observable } from 'rxjs';
 })
 export class ProductListService {
   private URL_API_GET: string = "http://localhost:4000/api/products"
+
+  private productos: Product[] = [];
   
   constructor(private http: HttpClient) { }
 
   GetProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.URL_API_GET); 
   }
+
+  GetProductById(id: string | number): Observable<Product> {
+    return this.http.get<Product>(`${this.URL_API_GET}/get/${id}`);
+  }
+
+
 }

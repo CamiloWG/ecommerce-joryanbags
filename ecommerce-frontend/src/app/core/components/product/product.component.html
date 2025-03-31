@@ -7,7 +7,7 @@
       class="flex-1 min-w-[289px] max-h-[400px] max-w-[400px] max-w-full object-cover self-stretch z-[0] rounded-radius-200" 
       loading="lazy" 
       alt="Producto" 
-      src="assets/images/image-8-1@2x.png" 
+      [src]="image" 
     />
 
     <!-- Contenedor de información -->
@@ -15,46 +15,36 @@
       
       <!-- Título y etiqueta -->
       <div class="flex flex-col">
-        <h3 class="font-subheading">Text Heading</h3>
+        <h3 class="font-subheading">{{ titulo }}</h3>
         <div class="w-8 rounded-radius-200 bg-green-300  p-space-200">
           <div class="font-subheading leading-[100%]">Tag</div>
         </div>
       </div>
 
-      <!-- Sección de estrellas -->
-      <div class="flex items-center gap-3">
-        <img class="w-6 h-6" loading="lazy" src="assets/icons/star1.svg" />
-        <img class="w-6 h-6" src="assets/icons/star1.svg" />
-        <img class="w-6 h-6" src="assets/icons/star1.svg" />
-        <img class="w-6 h-6" src="assets/icons/star1.svg" />
-        <img class="w-6 h-6" src="assets/icons/star1.svg" />
-      </div>
-
       <!-- Precio -->
       <div class="font-subheading flex items-end text-heading-size-base text-text-default-default gap-2">
         <h3 class="text-inherit tracking-[-0.02em] font-bold">$</h3>
-        <b class="text-[40px] tracking-[-0.02em]">50</b>
+        <b class="text-[40px] tracking-[-0.02em]">{{ precio }}</b>
       </div>
 
       <!-- Información adicional -->
       <div class="h-auto gap-1 flex-col text-text-default-secondary">
         <p class="font-subheading text-m">Categoría principal:</p>
-        <p class="font-subheading text-m">Código:</p>
-        <p class="font-subheading text-m">Disponibilidad:</p>
+        <p class="font-subheading text-m">Disponibilidad: {{ stock }}</p>
       </div>
 
       <!-- Selector de cantidad -->
       <div class="h-auto flex flex-col items-start justify-start gap-space-100">
         <div class="font-subheading relative leading-[140%]">Cantidad</div>
         <div class="rounded-radius-200 bg-background-default-default border border-gray-400 border-solid box-border flex flex-row items-center justify-start py-space-300 px-space-400">
-          <input class="w-16 border-none outline-none font-heading text-body-size-medium bg-transparent flex-1 text-text-default-default text-left" placeholder="#" type="number" min="1" />
+          <input class="w-16 border-none outline-none font-heading text-body-size-medium bg-transparent flex-1 text-text-default-default text-left" placeholder="#" type="number" min="1" value="1"/>
         </div>
       </div>      
 
       <!-- Botón de añadir al carrito -->
       <button class="cursor-pointer bg-background-brand-default border border-background-brand-default p-space-300 rounded-radius-200 flex items-center justify-center w-full mt-6">
 
-        <div class="font-subheading text-body-size-medium text-text-brand-on-brand">Añadir al carrito</div>
+        <div class="font-subheading text-body-size-medium text-text-brand-on-brand text-white">Añadir al carrito</div>
       </button>
 
     </div>

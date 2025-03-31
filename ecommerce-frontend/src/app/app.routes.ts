@@ -19,7 +19,7 @@ export const routes: Routes = [
         component: CatalogoComponent
     },
     {
-        path: 'producto',
+        path: 'producto/:id',
         title: 'Producto | Joryan Bags',
         component: ProductoComponent
     },

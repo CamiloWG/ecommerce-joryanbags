@@ -6,6 +6,7 @@ import {
 } from "@angular/core";
 
 import { CommonModule } from "@angular/common";
+import { Router } from "@angular/router";
 @Component({
   selector: "product-info-card",
   standalone: true,
@@ -14,20 +15,20 @@ import { CommonModule } from "@angular/common";
   templateUrl: "./ProductInfoCard.component.html",
 })
 export class ProductInfoCard {
+  constructor(private router: Router) {}
+
   @HostBinding("style.display") display = "contents";
-
-  constructor() {}
-
-  /** Value props */
+  
   @Input() showDescription: boolean = false;
+  @Input() productId: number = 1;
   @Input() image: string = "";
   @Input() precio: string = "";
   @Input() titulo: string = "";
-  /** Style props */
+  
   @Input() productInfoCardWidth: string | number = "";
 
   onProductInfoCardClick() {
-    // Please sync "Página de producto" to the project
+    this.router.navigate(['producto', this.productId]);
   }
   get productInfoCardStyle() {
     return {

@@ -33,14 +33,4 @@ export class CatalogoComponent {
     });
   }
 
-  /*products = [
-  { image: "http://localhost:4000/public/product_14.png", titulo: 'Bolso', precio: '$50.000', width: '240px' },
-  { image: 'assets/images/image-1@2x.png', titulo: 'Bolso', precio: '$50.000', width: '240px' },
-  { image: 'assets/images/image-2@2x.png', titulo: 'Bolso', precio: '$50.000', width: '240px' },
-  { image: 'assets/images/image-3@2x.png', titulo: 'Bolso', precio: '$50.000', width: '240px' },  
-  { image: 'assets/images/image@2x.png', titulo: 'Bolso', precio: '$50.000', width: '240px' },
-  { image: 'assets/images/image-1@2x.png', titulo: 'Bolso', precio: '$50.000', width: '240px' },
-  { image: 'assets/images/image-2@2x.png', titulo: 'Bolso', precio: '$50.000', width: '240px' },
-];*/
-
 }
