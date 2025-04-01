@@ -14,8 +14,8 @@
         
         <ng-template #textBreadcrumb>
           <div 
-            class="font-subheading cursor-pointer font-body-font-weight-strong"
-            (click)="navigateTo(crumb.url)">
+            (click)="navigateTo(crumb.url)"
+            class="font-subheading cursor-pointer font-body-font-weight-strong">
             {{ crumb.label }}
           </div>
         </ng-template>

@@ -10,8 +10,8 @@
       <div class="absolute top-[19px] left-[365px] flex flex-col items-start justify-start gap-[50px] w-[calc(100%-365px)]">
         <div class="w-full flex flex-col">
           <route [breadcrumbs]="[
-            { label: 'Catálogo' },
-            { label: producto.category_name },
+            { label: 'Catálogo', url: 'catalogo' },
+            { label: producto.category_name, url: 'catalogo' },
             { label: producto.name }
           ]"></route>
         </div>
