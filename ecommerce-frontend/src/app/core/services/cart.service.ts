@@ -6,19 +6,20 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class CartService {
-  
+
   private cart = new BehaviorSubject<ProductInCart[]>([]);
   cart$ = this.cart.asObservable();
 
   constructor() {}
 
   
-  addToCart(product: Product, cantidad: number = 1) {
+  addToCart(product: Product | ProductInCart, cantidad: number = 1) {
     let currentCart = this.cart.getValue();
     let existingProduct = currentCart.find((p) => p.product_id === product.product_id);
 
     if (existingProduct) {
-      existingProduct.quantity += cantidad; 
+      existingProduct.quantity += cantidad;
+      if(existingProduct.quantity <= 0) return this.removeFromCart(product.product_id);
     } else {
       currentCart.push({ ...product, quantity: cantidad });
     }

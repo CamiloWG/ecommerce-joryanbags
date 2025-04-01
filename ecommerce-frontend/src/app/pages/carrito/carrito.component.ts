@@ -34,4 +34,8 @@ export class CarritoComponent {
     this.cartService.removeFromCart(product.product_id);
   }
 
+  onChangeQuantity(product: ProductInCart, quantity: number) {
+    this.cartService.addToCart(product, quantity)
+  }
+
 }
