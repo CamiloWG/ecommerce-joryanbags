@@ -1,0 +1,104 @@
+<header-menu></header-menu>
+
+<main class="flex flex-col items-start justify-start pb-[50px] pl-3 pr-[18px] box-border w-full lg:pb-[50px] lg:box-border mq750:pb-[30px] mq750:box-border">
+
+  <section class="relative w-full h-[130px] flex"> 
+    <app-logo class="absolute top-0 left-0"></app-logo>
+
+    <div class="absolute top-[19px] left-[365px] flex flex-col items-start justify-start gap-[50px] w-[calc(100%-365px)]">
+      <div class="w-full flex flex-col">
+        <route [breadcrumbs]="[{ label: 'Administrador' }]"></route>
+      </div>
+    </div>
+  </section>
+
+</main> 
+
+<div class="container w-full px-6">
+  <h3 class="text-left ml-20 font-subheading mt-0">Tu desempeño</h3>
+  <div class="flex flex-row justify-center items-center mt-0 gap-2">
+    <div class="w-2/5 flex flex-col items-left bg-white p-4 rounded-lg shadow-md">
+      <h3 class="text-center font-subheading">Resumen</h3>
+      <div class="flex flex-row justify-center gap-10 mt-2">
+        <div class="text-center">
+          <img src="assets/icons/chat-bubble.svg" alt="Reseñas" class="w-10 h-10 mx-auto" />
+          <p class = "font-subheading">Reseñas</p>
+        </div>
+        <div class="text-center">
+          <img src="../../assets/icons/folder-filled.svg" alt="Órdenes" class="w-10 h-10 mx-auto" />
+          <p class = "font-subheading">Órdenes</p>
+        </div>
+        <div class="text-center">
+          <img src="assets/icons/archive.svg" alt="Stock" class="w-10 h-10 mx-auto" />
+          <p class = "font-subheading">Stock</p>
+        </div>
+      </div>
+    </div>
+    <div class="w-2/3 flex flex-col items-center bg-white p-4 rounded-lg shadow-md">
+      <h3 class="text-center font-subheading">Métricas de negocio</h3>
+      <div class="flex flex-row justify-center gap-10 mt-2">
+        <div class="text-center">
+          <p class="text-sm font-subheading">Ventas brutas</p>
+          <p class="font-bold">$ $$. $$$</p>
+        </div>
+        <div class="text-center">
+          <p class="text-sm font-subheading">Cantidad de ventas</p>
+          <p class="font-bold">####</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="relative w-full max-w-[500px] mx-auto mt-[30px]">
+  <div class="rounded-full bg-white border border-gray-300 w-full h-[40px] flex items-center py-2 px-4 gap-2 shadow-sm">
+    <input
+      placeholder="Buscar"
+      type="text"
+      class="w-full border-none outline-none text-gray-700 text-lg bg-transparent"
+    />
+  </div>
+</div>
+
+<div
+  class="w-full max-w-[1220px] rounded-lg bg-white border border-gray-300 flex flex-row items-center justify-between p-4"
+>
+  <!-- Imagen de avatar -->
+  <img
+    class="w-[50px] h-[59px] object-cover"
+    loading="lazy"
+    alt="Avatar"
+    src="assets/images/3d-avatars--8@2x.png"
+  />
+
+  <!-- Información del producto -->
+  <div class="flex flex-col flex-1 px-4">
+    <div class="text-gray-500 text-sm">
+      #000000000000
+    </div>
+    <h3 class="text-lg font-semibold text-gray-800">
+      Procesando en bodega
+    </h3>
+    <div class="text-gray-600 text-sm">
+      <p class="m-0">PRODUCTO PRODUCTO</p>
+      <p class="m-0">DESCRIPCIÓN</p>
+    </div>
+  </div>
+
+  <!-- Precio alineado a la derecha -->
+  <div class="w-[143px] text-right text-gray-800 font-semibold">
+    PRECIO
+  </div>
+</div>
+
+
+
+<footer class="w-full mt-5 mb-10">
+  <app-footer 
+    [frameHeaderAlignSelf]="'unset'" 
+    [frameHeaderPadding]="'0px 70px'" 
+    [frameDivFlex]="'unset'" 
+    [frameDivWidth]="'1290px'" 
+    [image5]="'assets/images/image-5@2x.png'">
+  </app-footer>
+</footer>

@@ -23,6 +23,6 @@ export class Route {
   }
 
   onHomeIconClick() {
-    this.router.navigate(["/inicio"]);
+    this.router.navigate(["/"]);
   }
 }

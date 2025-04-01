@@ -13,7 +13,7 @@ export class HeaderMenuComponent {
   constructor(private router: Router) {}
 
   onHomeIconClick() {
-    this.router.navigate(["/inicio"]);
+    this.router.navigate(["/"]);
   }
 
   onUserIconClick() {
@@ -21,6 +21,6 @@ export class HeaderMenuComponent {
   }
 
   onShoppingCartIconClick() {
-    // Please sync "Carrito" to the project
+    this.router.navigate(['/carrito']);
   }
 }

@@ -1,6 +1,7 @@
 import { where } from "sequelize";
 import { sequelize } from "../data/db.js";
 import { Product } from "../models/productModel.js";
+import { Category } from "../models/categoryModel.js";
 
 export class ProductServices {
     static getCount = async () => {
@@ -46,7 +47,8 @@ export class ProductServices {
 
     static getByProductId = async (product_id) => {
         const result = await Product.findByPk(product_id);
-        return result.dataValues;
+        const categoria = await Category.findByPk(result.dataValues.category_id);
+        return {...result.dataValues, category_name: categoria.dataValues.name};
     };
 
     static create = async (data) => {

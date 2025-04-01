@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { HeaderMenuComponent } from '../../core/components/shared/header-menu/header-menu.component';
 import { Route } from '../../core/components/shared/Route/Route.component';
 import { LogoComponent } from '../../core/components/shared/logo/logo.component';
@@ -9,6 +9,7 @@ import { ProductcardComponent } from '../../core/components/productcard/productc
 import { ActivatedRoute } from '@angular/router';
 import { ProductListService } from '../../core/services/product-list.service';
 import { Product } from '../../core/interfaces/product.interface';
+import { CartService } from '../../core/services/cart.service';
 
 @Component({
   selector: 'app-producto',
@@ -25,14 +26,28 @@ import { Product } from '../../core/interfaces/product.interface';
 })
 export class ProductoComponent {
   producto: Product = {} as Product;
-  constructor(private route: ActivatedRoute, private productService: ProductListService) {}
+  private cartService = inject(CartService);
+  constructor(private route: ActivatedRoute, private productService: ProductListService) { }
 
-  ngOnInit(): void {
-    const idProduct = this.route.snapshot.paramMap.get('id') || 1;
-    console.log( this.route.snapshot.paramMap.get('id'));
+  ngOnInit(): void {    
+    const idProduct = this.route.snapshot.paramMap.get('id') || 1;    
     
     this.productService.GetProductById(idProduct).subscribe(data => {
       this.producto = data;
     })
+
+    this.gotoTop(); 
+  }
+
+  gotoTop() {
+    window.scroll({ 
+      top: 0, 
+      left: 0, 
+      behavior: 'smooth' 
+    });
+  }
+
+  onAdd(cantidad: number) {    
+    this.cartService.addToCart(this.producto, cantidad);  
   }
 }

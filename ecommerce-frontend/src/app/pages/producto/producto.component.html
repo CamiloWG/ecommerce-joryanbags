@@ -10,8 +10,8 @@
       <div class="absolute top-[19px] left-[365px] flex flex-col items-start justify-start gap-[50px] w-[calc(100%-365px)]">
         <div class="w-full flex flex-col">
           <route [breadcrumbs]="[
-            { label: 'Catálogo' },
-            { label: 'Categoría' },
+            { label: 'Catálogo', url: 'catalogo' },
+            { label: producto.category_name, url: 'catalogo' },
             { label: producto.name }
           ]"></route>
         </div>
@@ -23,7 +23,7 @@
         <menu-categorias class="max-w-[275px]"></menu-categorias>
       </div>
       <div class="w-[80%] flex-shrink-0">
-        <app-product [titulo]="producto.name" [precio]="producto.price" [image]="producto.image_url" [stock]="producto.stock" [id]="producto.product_id"></app-product>  
+        <app-product [titulo]="producto.name" [precio]="producto.price" [image]="producto.image_url" [stock]="producto.stock" [id]="producto.product_id" [categoria]="producto.category_name" (buttonAddEvent)="onAdd($event)"></app-product>  
       </div>
     </section>
 

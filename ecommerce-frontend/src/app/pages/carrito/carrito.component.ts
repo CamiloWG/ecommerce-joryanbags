@@ -5,6 +5,8 @@ import { LogoComponent } from '../../core/components/shared/logo/logo.component'
 import { CartproductComponent } from '../../core/components/cartproduct/cartproduct.component';
 import { CartbillComponent } from '../../core/components/cartbill/cartbill.component';
 import { FooterComponent } from '../../core/components/shared/footer/footer.component';
+import { CartService } from '../../core/services/cart.service';
+import { ProductInCart } from '../../core/interfaces/product.interface';
 
 @Component({
   selector: 'app-carrito',
@@ -19,5 +21,21 @@ import { FooterComponent } from '../../core/components/shared/footer/footer.comp
   styleUrl: './carrito.component.css'
 })
 export class CarritoComponent {
+  totalProductos: ProductInCart[] = [];
+
+  constructor(private cartService: CartService) {
+    this.cartService.cart$.subscribe(productos => {
+      this.totalProductos = productos;
+    });
+  }
+
+
+  onDeleteProduct(product: ProductInCart) {    
+    this.cartService.removeFromCart(product.product_id);
+  }
+
+  onChangeQuantity(product: ProductInCart, quantity: number) {
+    this.cartService.addToCart(product, quantity)
+  }
 
 }

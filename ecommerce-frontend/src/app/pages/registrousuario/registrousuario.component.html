@@ -1,0 +1,83 @@
+<div class="flex flex-col">
+  <header-menu></header-menu>
+  
+  <main class="flex flex-col items-start justify-start pb-[30px] pl-3 pr-[18px] box-border max-w-full lg:pb-[30px] lg:box-border mq750:pb-[20px] mq750:box-border">
+    <section class="relative w-full h-[120px] flex"> 
+      <app-logo class="absolute top-0 left-0"></app-logo>
+      <div class="absolute top-[15px] left-[365px] flex flex-col items-start justify-start gap-[30px] w-[calc(100%-365px)]">
+        <div class="w-full flex flex-col font-subheading">
+          <route [breadcrumbs]="[{ label: 'Crear cuenta' }]"></route>
+        </div>
+      </div>
+    </section>
+
+    <div class="flex items-center justify-center w-full">
+      <section class="w-[1000px] flex flex-col items-center justify-center pt-0 px-[21px] pb-[50px] box-border max-w-full mq1050:pb-[40px] mq1050:box-border mx-auto">
+        <div class="w-full flex flex-col items-center">
+          <div class="w-[600px] max-w-full flex flex-col items-center text-center mb-4">  <!-- Cambiado items-start a items-center y text-left a text-center -->
+            <h1 class="text-xl font-bold font-subheading mb-1">Crea una cuenta</h1>
+            <p class="text-gray-600 font-subheading mt-0">Si ya tiene una cuenta, por favor ingrese en la página de login.</p>
+          </div>
+          
+          <div class="self-stretch w-[1305px] flex flex-col items-center justify-center gap-[20px] max-w-full mq1050:gap-[15px]">
+            <div class="m-0 rounded-radius-200 bg-background-default-default box-border flex flex-col items-center justify-center py-space-300 px-[30px] w-full max-w-[600px] z-[1] mt-[0px] mq450:min-h-[auto]">
+              <form (ngSubmit)="onRegistro()" class="m-0 w-full max-w-[500px] flex flex-col items-center gap-space-400" data-scroll-to="formRegister">
+                <div class="flex flex-col w-full">
+                  <label class="font-subheading text-gray-700 text-left">Nombre</label>
+                  <input type="text" formControlName="nombre" placeholder="Nombre" class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300" />
+                </div>
+
+                <div class="flex flex-col w-full">
+                  <label class="font-subheading text-gray-700 text-left">Apellido</label>
+                  <input type="text" formControlName="apellido" placeholder="Apellido" class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300" />
+                </div>
+
+                <div class="flex flex-col w-full">
+                  <label class="font-subheading text-gray-700 text-left">Correo</label>
+                  <input type="email" formControlName="correo" placeholder="Correo" class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300" />
+                </div>
+
+                <div class="flex flex-col w-full">
+                  <label class="font-subheading text-gray-700 text-left">Confirme su correo</label>
+                  <input type="email" formControlName="confirmarCorreo" placeholder="Confirme su correo" class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300" />
+                </div>
+
+                <div class="flex flex-col w-full">
+                  <label class="font-subheading text-gray-700 text-left">Contraseña</label>
+                  <input type="password" formControlName="contrasena" placeholder="Contraseña" class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300" />
+                </div>
+
+                <div class="flex flex-col w-full">
+                  <label class="font-subheading text-gray-700 text-left">Confirme su contraseña</label>
+                  <input type="password" formControlName="confirmarContrasena" placeholder="Confirme su contraseña" class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300" />
+                </div>
+
+                <div class="w-full">
+                  <p class="font-subheading text-gray-700 text-left">¿Quiere recibir novedades de nuestra web?</p>
+                  <div class="flex gap-4">
+                    <label class="font-subheading text-gray-700">
+                      <input type="radio" formControlName="novedades" value="si" class="mr-1" /> Sí
+                    </label>
+                    <label class="font-subheading text-gray-700">
+                      <input type="radio" formControlName="novedades" value="no" class="mr-1" /> No
+                    </label>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <div class="flex flex-col items-center justify-center pt-[0px] px-0 pb-0 box-border max-w-full mq1050:min-w-full mq450:flex-1">
+              <div class="flex flex-col items-center justify-center text-center font-subheading">
+                <app-button class="font-subheading" [buttonText]="'Ingresar'" [buttonRoute]="'/login'" [showButton]="true"></app-button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="w-full mt-3 mb-5 font-subheading">
+    <app-footer [frameHeaderAlignSelf]="'unset'" [frameHeaderPadding]="'0px 70px'" [frameDivFlex]="'unset'" [frameDivWidth]="'1290px'" [image5]="'assets/images/image-5@2x.png'"></app-footer>
+  </footer>
+</div>
