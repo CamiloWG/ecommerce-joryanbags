@@ -87,7 +87,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"jonnathann@gjj.com\",\r\n    \"password\": \"clave1234516\"\r\n}",
+							"raw": "{\r\n    \"email\": \"ejemplo@gjj.com\",\r\n    \"password\": \"clave1234516\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -117,7 +117,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"jonnathann@gjj.com\",\r\n    \"password\": \"clave1234516\",\r\n    \"full_name\": \"Administrador\",\r\n    \"phone\": \"41212166\",\r\n    \"birthday\": \"2005-01-08\"\r\n}",
+							"raw": "{\r\n    \"email\": \"ejemplo@gjj.com\",\r\n    \"password\": \"clave1234516\",\r\n    \"full_name\": \"Administrador\",\r\n    \"phone\": \"41212166\",\r\n    \"birthday\": \"2005-01-08\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -291,7 +291,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"jonnathann@gjj.com\",\r\n    \"password\": \"clave1234516\"\r\n}",
+							"raw": "{\r\n    \"email\": \"ejemplo@gjj.com\",\r\n    \"password\": \"clave1234516\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
