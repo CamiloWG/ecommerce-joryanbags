@@ -1,0 +1,42 @@
+
+  <form class="space-y-4">
+    <div class="flex flex-col">
+      <label class="font-subheading text-gray-700">Nombre</label>
+      <input type="text" formControlName="nombre" class="w-full p-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300" />
+    </div>
+
+    <div class="flex flex-col">
+      <label class="font-subheading text-gray-700">Apellido</label>
+      <input type="text" formControlName="apellido" class="w-full p-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300" />
+    </div>
+
+    <div class="flex flex-col">
+      <label class="font-subheading text-gray-700">Correo</label>
+      <input type="email" formControlName="correo" class="w-full p-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300" />
+    </div>
+
+    <div class="flex flex-col">
+      <label class="font-subheading text-gray-700">Confirme su correo</label>
+      <input type="email" formControlName="confirmarCorreo" class="w-full p-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300" />
+    </div>
+
+    <div class="flex flex-col">
+      <label class="font-subheading text-gray-700">Contraseña</label>
+      <input type="password" formControlName="contrasena" class="w-full p-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300" />
+    </div>
+
+    <div class="flex flex-col">
+      <label class="font-subheading text-gray-700">Confirme su contraseña</label>
+      <input type="password" formControlName="confirmarContrasena" class="w-full p-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300" />
+    </div>
+
+    <div class="mt-4">
+      <p class="font-subheading text-gray-700">¿Quiere recibir novedades de nuestra web?</p>
+      <div class="flex gap-4">
+        <label class="font-subheading text-gray-700"><input type="radio" formControlName="novedades" value="si" class="mr-1" /> Sí</label>
+        <label class="font-subheading text-gray-700"><input type="radio" formControlName="novedades" value="no" class="mr-1" /> No</label>
+      </div>
+    </div>
+
+  </form>
+
