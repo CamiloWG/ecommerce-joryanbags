@@ -13,23 +13,21 @@
       </div>
     </section>
 
-    <div class="flex items-center justify-center min-h-screen w-full">
-      <section class="w-[1000px] flex flex-col items-center justify-center pt-0 px-[21px] pb-[100px] box-border max-w-full mq1050:pb-[80px] mq1050:box-border mx-auto">
+    <div class="items-center justify-center min-h-screen w-full">
+      <section class=" w-[60%] flex-col items-center justify-center pb-[100px] box-border  mx-auto">
         <div class="flex flex-col items-center justify-center gap-5 max-w-full mq1050:gap-3">
-          <div class="w-[1098px] flex flex-row items-center justify-between gap-5 max-w-full mq1050:flex-wrap">
-            <div class="flex flex-col items-center justify-center pt-[30px] px-0 pb-0 box-border max-w-full">
-              <div class="self-stretch h-[29px] relative font-subheading"></div>
-            </div>
-          </div>
           
           <div class="self-stretch h-[auto] flex flex-row items-center justify-center max-w-full">
-            <div class="self-stretch w-[1305px] flex flex-col items-center justify-center gap-[20px] max-w-full mq1050:gap-[15px]">
-
-              <h1 class="text-3xl font-bold text-gray-800 mb-2 mt-[-10px] font-subheading">Inicia sesión con tu cuenta</h1>
+            <div class="self-stretch w-[100%] flex flex-col items-center justify-center gap-[20px] max-w-full mq1050:gap-[15px]">
               
               <form (ngSubmit)="onLogin()" class="m-0 rounded-radius-200 bg-background-default-default border-border-default-default border-solid 
               border-stroke-border box-border flex flex-col items-center justify-center py-4 px-6 
-              w-full max-w-[400px] min-h-[320px] z-[1]" data-scroll-to="formContact">
+              w-full min-h-[320px] z-[1]" data-scroll-to="formContact">
+
+              <div class="mx-auto font-subheading w-full bg-tan-200 p-1 text-body-size-medium text-text-default-default font-body-font-weight-strong">
+                <h1 class="text-center">Inicia sesión con tu cuenta</h1>
+              </div>
+              <div class="w-full h-px bg-border-default-default my-5"></div>
                 
                 <div class="flex flex-col w-full max-w-[320px]">
                   <label class="font-subheading text-gray-700 text-left mb-1">Correo</label>
