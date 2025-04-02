@@ -9,7 +9,7 @@
       <ng-container *ngFor="let crumb of breadcrumbs; let last = last">
         
         <ng-container *ngIf="crumb.label === 'Carrito'; else textBreadcrumb">
-          <img class="w-[27px] h-[26px] cursor-pointer" alt="Carrito" src="assets\icons\shopping-cart-2.svg" />
+          <img class="w-[27px] h-[26px] cursor-pointer" alt="Carrito" src="assets\icons\shopping-cart-2.svg" (click)="navigateTo(crumb.url)"/>
         </ng-container>
         
         <ng-template #textBreadcrumb>

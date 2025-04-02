@@ -10,6 +10,8 @@ export class CartproductComponent {
   @Input() nombreProducto = "";
   @Input() urlImagen = "";
   @Input() cantidad = 1;
+  @Input() descripcion = "";
+  @Input() precio = 0;
 
   @Output() onDelete = new EventEmitter();
   @Output() onChangeQty: EventEmitter<number> = new EventEmitter<number>();

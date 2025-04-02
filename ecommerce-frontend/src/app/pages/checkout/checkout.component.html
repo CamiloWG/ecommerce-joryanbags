@@ -10,7 +10,7 @@
         <div class="absolute top-[19px] left-[365px] flex flex-col items-start justify-start gap-[50px] w-[calc(100%-365px)]">
           <div class="w-full flex flex-col">
             <route [breadcrumbs]="[
-              { label: 'Carrito' },
+              { label: 'Carrito', url: 'carrito'},
               { label: 'Checkout' }
             ]"></route>
           </div>
@@ -22,7 +22,7 @@
             <app-infopedido [isConfirmationPage]="false"></app-infopedido>
         </div>
         <div class="w-[30%] flex-shrink-0 ">
-          <app-cartbill title="Resumen de compras" buttonText="Volver al carrito"></app-cartbill>
+          <app-cartbill title="Resumen de compras" buttonText="Volver al carrito" rutaBttn="/carrito"></app-cartbill>
           <div class="self-stretch flex flex-col items-start justify-start gap-space-600  px-0 py-5">
             <div class="self-stretch rounded-radius-200 bg-background-default-default border-border-default-default 
               border-solid border-stroke-border box-border flex flex-row items-start justify-start flex-wrap 

@@ -19,11 +19,11 @@
     <section class="mx-auto w-full max-w-[80%] flex flex-row justify-between items-start gap-8 px-10">
       <div class="flex-1 flex flex-col gap-4">
         @for(item of totalProductos; track item) {
-          <app-cartproduct (onChangeQty)="onChangeQuantity(item, $event)" (onDelete)="onDeleteProduct(item)" [nombreProducto]="item.name" [cantidad]="item.quantity" [urlImagen]="item.image_url"></app-cartproduct>
+          <app-cartproduct (onChangeQty)="onChangeQuantity(item, $event)" (onDelete)="onDeleteProduct(item)" [nombreProducto]="item.name" [cantidad]="item.quantity" [urlImagen]="item.image_url" [descripcion]="item.category_name" [precio]="item.price"></app-cartproduct>
         }
       </div>
       <div class="w-[350px] flex-shrink-0">
-        <app-cartbill title="Mi carro de compras" buttonText="Checkout"></app-cartbill>
+        <app-cartbill title="Mi carro de compras" buttonText="Checkout" rutaBttn="/checkout"></app-cartbill>
       </div>
     </section>
 

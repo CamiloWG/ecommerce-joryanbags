@@ -1,7 +1,7 @@
 <div class="self-stretch flex flex-col items-start justify-start px-0 pb-0 box-border">
   <div class="self-stretch rounded-radius-200 bg-background-default-default border-border-default-default 
               border-solid border-stroke-border box-border flex flex-row items-start justify-start flex-wrap 
-              content-start py-[22px] px-[23px] relative gap-space-600 min-w-[240px]">
+              content-start py-[22px] px-[23px] relative gap-space-300 min-w-[240px]">
     
     <!-- Título dinámico -->
     <div class="w-full font-subheading bg-tan-200 p-2 text-body-size-medium text-text-default-default font-body-font-weight-strong">
@@ -9,27 +9,29 @@
     </div>
     
     <div class="w-full h-px bg-border-default-default my-2"></div>
+
+    @for(item of productos; track item) {
+      <div class="w-full flex flex-row justify-between items-center p-2">
+        <div class="text-body-size-medium font-subheading">{{item.name}} x{{item.quantity}}</div>
+        <div class="font-subheading">${{item.price * item.quantity}}</div>
+      </div>
+    }
     
-    <div class="w-full flex flex-row justify-between items-center p-2">
-      <div class="text-body-size-medium font-subheading">Nombre producto</div>
-      <div class="font-subheading">$$$$$$</div>
-    </div>
-
-    <div class="w-full flex flex-row justify-between items-center p-2">
-      <div class="text-body-size-medium font-subheading">Número de productos</div>
-      <div class="font-subheading">#</div>
-    </div>
-
     <div class="w-full h-px bg-border-default-default my-2"></div>
 
     <div class="w-full flex flex-row justify-between items-center p-2">
-      <div class="text-body-size-medium font-subheading">Precio total</div>
-      <div class="font-subheading">$$$$</div>
+      <div class="text-body-size-medium font-subheading">Costo de envio</div>
+      <div class="font-subheading">${{costoEnvio}}</div>
+    </div>
+
+    <div class="w-full flex flex-row justify-between items-center p-2">
+      <div class="text-body-size-medium font-subheading">Costo total</div>
+      <div class="font-subheading">${{costoTotal}}</div>
     </div>
 
     <!-- Botón con texto dinámico -->
-    <button *ngIf="showButton" class="w-full py-2 mt-4 bg-background-brand-default text-text-brand-on-brand font-heading rounded-lg 
-                   hover:bg-dimgray hover:border-dimgray text-white">
+    <button *ngIf="showButton" (click)="onButtonClick()" class="w-full font-[550] py-2 mt-4 bg-background-brand-default text-text-brand-on-brand font-heading rounded-lg 
+    border-border-neutral-secondary border-solid border-stroke-border hover:bg-white hover:text-black transition text-white cursor-pointer">
       {{ buttonText }}
     </button>
   </div>
