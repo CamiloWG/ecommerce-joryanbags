@@ -1,25 +1,33 @@
 <div class="self-stretch flex flex-col items-start justify-start px-0 pb-0 box-border">
-  <div class="w-full h-[73px] flex flex-col items-start justify-start text-left text-subheading-size-medium text-schemes-on-surface font-heading">
-    <div class="mx-auto mt-[-2px] w-full h-[73px] rounded bg-tan-200 flex flex-row items-center justify-center py-1 px-2 box-border gap-2.5">
+  <div class="w-full flex flex-col items-start justify-start text-left text-subheading-size-medium text-schemes-on-surface font-heading">
+    
+    <div class="mx-auto mt-[-2px] w-full min-h-[73px] bg-tan-200 
+                flex flex-wrap items-center justify-center 
+                py-2 px-3 box-border gap-2 transition-all duration-300">
       
+      <!-- Ícono Home -->
       <img class="w-[27.2px] h-[26px] cursor-pointer" alt="Home" src="assets/icons/home-1.svg" (click)="onHomeIconClick()" />
 
+      <!-- Flecha (si hay breadcrumbs) -->
       <img *ngIf="breadcrumbs.length > 0" class="w-[25.1px] h-6" alt="Flecha" src="assets/icons/play-arrow-filled.svg" />
 
       <ng-container *ngFor="let crumb of breadcrumbs; let last = last">
         
         <ng-container *ngIf="crumb.label === 'Carrito'; else textBreadcrumb">
-          <img class="w-[27px] h-[26px] cursor-pointer" alt="Carrito" src="assets\icons\shopping-cart-2.svg" (click)="navigateTo(crumb.url)"/>
+          <!-- Ícono Carrito -->
+          <img class="w-[27px] h-[26px] cursor-pointer" alt="Carrito" src="assets/icons/shopping-cart-2.svg" (click)="navigateTo(crumb.url)"/>
         </ng-container>
         
         <ng-template #textBreadcrumb>
+          <!-- Texto Breadcrumb -->
           <div 
             (click)="navigateTo(crumb.url)"
-            class="font-subheading cursor-pointer font-body-font-weight-strong">
+            class="font-subheading cursor-pointer font-body-font-weight-strong whitespace-nowrap">
             {{ crumb.label }}
           </div>
         </ng-template>
 
+        <!-- Flecha entre Breadcrumbs -->
         <img *ngIf="!last" class="w-[25.1px] h-6" alt="Flecha" src="assets/icons/play-arrow-filled.svg" />
 
       </ng-container>
@@ -27,4 +35,3 @@
     </div>
   </div>
 </div>
-

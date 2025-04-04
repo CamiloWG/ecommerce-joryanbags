@@ -1,17 +1,15 @@
 <div class="self-stretch flex flex-col items-start justify-start gap-space-600">
-  <!-- Información Personal -->
+
   <div class="self-stretch rounded-radius-200 bg-background-default-default border-border-default-default 
               border-solid border-stroke-border box-border flex flex-row items-start justify-start flex-wrap 
               content-start py-[22px] px-[23px] relative gap-space-600 min-w-[240px]">
     
-    <!-- Título -->
     <div class="font-subheading w-full bg-tan-200 p-2 text-body-size-medium text-text-default-default font-body-font-weight-strong">
       Información personal
     </div>
 
     <div class="w-full h-px bg-border-default-default"></div>
 
-    <!-- Nombre Completo -->
     <div class="w-full flex flex-col items-start justify-start p-2 gap-2">
       <label class="text-body-size-medium font-subheading">Nombre completo</label>
       
@@ -26,7 +24,6 @@
       </ng-template>
     </div>
 
-    <!-- Teléfono -->
     <div class="w-full flex flex-col items-start justify-start p-2 gap-2">
       <label class="text-body-size-medium font-subheading">Teléfono</label>
 
@@ -41,7 +38,6 @@
       </ng-template>
     </div>
 
-    <!-- Email -->
     <div class="w-full font-subheading flex flex-col items-start justify-start p-2 gap-2">
       <label class="text-body-size-medium font-subheading">Email</label>
 
@@ -55,21 +51,22 @@
         <input [(ngModel)]="email" class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-background-default-default" placeholder="Ingresa tu correo" type="email"/>
       </ng-template>
     </div>
+    <button *ngIf="showButton"  class="w-full font-[550] py-2 mt-4 bg-background-brand-default text-text-brand-on-brand font-heading rounded-lg 
+    border-border-neutral-secondary border-solid border-stroke-border hover:bg-white hover:text-black transition text-white cursor-pointer">
+      Guardar
+    </button>
   </div>
 
-  <!-- Información de Envío -->
   <div class="self-stretch rounded-radius-200 bg-background-default-default border-border-default-default 
               border-solid border-stroke-border box-border flex flex-row items-start justify-start flex-wrap 
               content-start py-[22px] px-[23px] relative gap-space-600 min-w-[240px]">
 
-    <!-- Título -->
     <div class="w-full font-subheading bg-tan-200 p-2 text-body-size-medium text-text-default-default font-body-font-weight-strong">
       Información de envío
     </div>
 
     <div class="w-full h-px bg-border-default-default my-1"></div>
 
-    <!-- Dirección -->
     <div class="w-full font-subheading flex flex-col items-start justify-start p-2 gap-2">
       <label class="text-body-size-medium font-subheading">Dirección</label>
 
@@ -84,7 +81,6 @@
       </ng-template>
     </div>
 
-    <!-- Departamento -->
     <div class="w-full font-subheading flex flex-col items-start justify-start p-2 gap-2">
       <label class="text-body-size-medium font-subheading">Departamento</label>
 
@@ -138,6 +134,10 @@
       <ng-template #editModeInformacionAdicional>
         <textarea [(ngModel)]="informacionAdicional" class="font-subheading border-border-default-default border-solid border-stroke-border bg-background-default-default h-[81px] w-auto [outline:none] self-stretch rounded-radius-200 box-border overflow-hidden shrink-0 flex flex-row items-start justify-start py-space-300 px-space-400 font-heading text-body-size-medium text-icon-default-tertiary min-w-[240px] min-h-[80px]" placeholder="Ingresa información adicional" rows="4" cols="48"></textarea>
       </ng-template>
+      <button *ngIf="showButton"  class="w-full font-[550] py-2 mt-4 bg-background-brand-default text-text-brand-on-brand font-heading rounded-lg 
+      border-border-neutral-secondary border-solid border-stroke-border hover:bg-white hover:text-black transition text-white cursor-pointer">
+        Guardar
+      </button>
     </div>
   </div>
 

@@ -7,6 +7,7 @@ import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { ConfirmacioncompraComponent } from './pages/confirmacioncompra/confirmacioncompra.component';
 import { LoginComponent } from './pages/login/login.component';
 import { PaginaadminComponent } from './pages/paginaadmin/paginaadmin.component';
+import { PaginausuarioComponent } from './pages/paginausuario/paginausuario.component';
 import { RegistrousuarioComponent } from './pages/registrousuario/registrousuario.component';
 
 
@@ -55,7 +56,7 @@ export const routes: Routes = [
     {
         path: 'usuario',
         title: 'Pagina Usuario | Joryan Bags',
-        component: PaginaadminComponent
+        component: PaginausuarioComponent
     },
     {
         path: 'registro',
