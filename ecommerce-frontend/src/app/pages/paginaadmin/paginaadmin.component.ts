@@ -6,13 +6,14 @@ import { LogoComponent } from '../../core/components/shared/logo/logo.component'
 import { FooterComponent } from '../../core/components/shared/footer/footer.component';
 
 
+
 @Component({
   selector: 'app-paginaadmin',
   imports: [
        HeaderMenuComponent, 
         Route, 
         LogoComponent,
-        FooterComponent
+        FooterComponent  
   ],
 
   templateUrl: './paginaadmin.component.html',
