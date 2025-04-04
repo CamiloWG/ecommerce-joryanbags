@@ -17,7 +17,7 @@ export class HeaderMenuComponent {
   }
 
   onUserIconClick() {
-    // Please sync "Login" to the project
+    this.router.navigate(['/login']);
   }
 
   onShoppingCartIconClick() {
