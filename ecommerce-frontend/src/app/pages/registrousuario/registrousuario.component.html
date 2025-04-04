@@ -2,16 +2,18 @@
   <header-menu></header-menu>
   
   <main class="flex flex-col items-start justify-start pb-[30px] pl-3 pr-[18px] box-border max-w-full lg:pb-[30px] lg:box-border mq750:pb-[20px] mq750:box-border">
-    <section class="relative w-full h-[120px] flex"> 
-      <app-logo class="absolute top-0 left-0"></app-logo>
-      <div class="absolute top-[15px] left-[365px] flex flex-col items-start justify-start gap-[30px] w-[calc(100%-365px)]">
-        <div class="w-full flex flex-col font-subheading">
+    <section class="relative w-full min-h-[150px] flex flex-wrap items-start sm:items-center">
+  
+      <app-logo class="mx-auto flex-shrink-0 "></app-logo>
+    
+      <div class="flex-1 min-w-[250px] sm:min-w-[365px] flex flex-col items-start justify-start gap-[50px]">
+        <div class="w-full flex flex-col">
           <route [breadcrumbs]="[{ label: 'Crear cuenta' }]"></route>
         </div>
       </div>
     </section>
 
-    <div class="flex items-center justify-center w-full">
+    <div class="py-2 flex items-center justify-center w-full">
       <section class="w-[1000px] flex flex-col items-center justify-center pt-0 px-[21px] pb-[50px] box-border max-w-full mq1050:pb-[40px] mq1050:box-border mx-auto">
         <div class="w-full flex flex-col items-center">
           <div class="w-[600px] max-w-full flex flex-col items-center text-center mb-4">  <!-- Cambiado items-start a items-center y text-left a text-center -->

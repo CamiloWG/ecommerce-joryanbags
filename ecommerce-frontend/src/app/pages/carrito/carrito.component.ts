@@ -7,6 +7,7 @@ import { CartbillComponent } from '../../core/components/cartbill/cartbill.compo
 import { FooterComponent } from '../../core/components/shared/footer/footer.component';
 import { CartService } from '../../core/services/cart.service';
 import { ProductInCart } from '../../core/interfaces/product.interface';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-carrito',
@@ -15,7 +16,8 @@ import { ProductInCart } from '../../core/interfaces/product.interface';
     LogoComponent,
     CartproductComponent,
     CartbillComponent,
-    FooterComponent
+    FooterComponent,
+    CommonModule
   ],
   templateUrl: './carrito.component.html',
   styleUrl: './carrito.component.css'
