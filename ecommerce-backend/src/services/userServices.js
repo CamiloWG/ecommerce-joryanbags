@@ -44,7 +44,6 @@ export class UserServices {
             user_id,
             email = null,
             full_name = null,
-            phone = null,
             birthday = null,
             address = null,
             rol_id = null,
@@ -52,14 +51,12 @@ export class UserServices {
         } = data;
 
         const [results] = await sequelize.query(
-            "EXECUTE [dbo].[UpdateUser] :user_id, :email, :full_name, :phone, :birthday, :address, :is_disabled, :rol_id ",
+            "EXECUTE [dbo].[UpdateUser] :user_id, :email, :full_name, :phone, :address, :is_disabled, :rol_id ",
             {
                 replacements: {
                     user_id,
                     email,
                     full_name,
-                    phone,
-                    birthday,
                     address,
                     is_disabled,
                     rol_id,

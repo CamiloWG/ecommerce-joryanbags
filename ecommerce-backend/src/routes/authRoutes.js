@@ -14,8 +14,7 @@ router.post(
     body("full_name")
         .isLength({ min: 5 })
         .withMessage("Nombre completo inválido"),
-    body("phone").isLength({ min: 8, max: 8 }).withMessage("Teléfono inválido"),
-    body("birthday").isISO8601().withMessage("Fecha de nacimiento inválido"),
+    body("phone").isLength({ min: 10, max: 10 }).withMessage("Teléfono inválido"),
     body("rol_id")
         .isInt({ min: 1, max: 3 })
         .withMessage("El rol_id es inválido"),
