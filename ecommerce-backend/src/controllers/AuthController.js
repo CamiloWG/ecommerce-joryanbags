@@ -27,7 +27,7 @@ export class AuthController {
             });
             const { user_id } = user[0];
             const token = generateJWT({ user_id });
-            res.send(token);
+            res.send({token});
         } catch (error) {
             res.status(500).json({
                 message: "Hubo un error al intentar registrar al usuario",
@@ -68,7 +68,7 @@ export class AuthController {
             }
             const { user_id } = user.dataValues;
             const token = generateJWT({ user_id });
-            res.send(token);
+            res.send({token});
         } catch (error) {
             res.status(500).json({
                 error: "Hubo un error al intentar iniciar sesión del usuario",
