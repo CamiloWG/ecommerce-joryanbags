@@ -46,8 +46,8 @@ export class LoginComponent {
     const { email, password } = this.loginForm.value;
 
     this.authService.logearUsuario(email, password).subscribe({
-      next: (response) => {        
-        localStorage.setItem('token', response.token);
+      next: (response) => {
+        this.authService.setToken(response.token);
         this.router.navigate(['/usuario']);
       },
       error: (err) => {        

@@ -9,6 +9,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { UsuarioComponent } from './pages/usuario/usuario.component';
 import { RegistroComponent } from './pages/registro/registro.component';
+import { AuthGuard } from './core/guards/auth.guard';
 
 
 export const routes: Routes = [
@@ -56,7 +57,8 @@ export const routes: Routes = [
     {
         path: 'usuario',
         title: 'Pagina Usuario | Joryan Bags',
-        component: UsuarioComponent
+        component: UsuarioComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'registro',
