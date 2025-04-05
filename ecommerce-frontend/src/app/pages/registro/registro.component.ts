@@ -3,7 +3,6 @@ import { HeaderMenuComponent } from '../../core/components/shared/header-menu/he
 import { Route } from '../../core/components/shared/Route/Route.component';
 import { LogoComponent } from '../../core/components/shared/logo/logo.component';
 import { FooterComponent } from '../../core/components/shared/footer/footer.component';
-import { ButtonComponent } from '../../core/components/button/button.component';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../core/services/auth.service';
 import { User } from '../../core/interfaces/user.interface';
@@ -18,7 +17,6 @@ import { Router } from '@angular/router';
     Route,
     LogoComponent,
     FooterComponent,
-    ButtonComponent,
     ReactiveFormsModule,
     CommonModule
   ],
@@ -76,8 +74,7 @@ export class RegistroComponent {
     };
 
     this.registroService.registrarUsuario(data).subscribe({
-      next: (response) => {       
-        localStorage.setItem('token', response.token);  
+      next: (response) => {        
         Swal.fire({
           icon: 'success',
           title: '¡Registro exitoso!',

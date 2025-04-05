@@ -20,44 +20,63 @@
           <div class="self-stretch h-[auto] flex flex-row items-center justify-center max-w-full">
             <div class="self-stretch w-[100%] flex flex-col items-center justify-center gap-[20px] max-w-full mq1050:gap-[15px]">
               
-              <form (ngSubmit)="onLogin()" class="m-0 rounded-radius-200 bg-background-default-default border-border-default-default border-solid 
-              border-stroke-border box-border flex flex-col items-center justify-center py-4 px-6 
-              w-full min-h-[320px] z-[1]" data-scroll-to="formContact">
+              <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="m-0 rounded-radius-200 bg-background-default-default border-border-default-default border-solid 
+                            border-stroke-border box-border flex flex-col items-center justify-center py-4 px-6 
+                            w-full min-h-[320px] z-[1]" data-scroll-to="formContact">
 
-              <div class="mx-auto font-subheading w-full bg-tan-200 p-1 text-body-size-medium text-text-default-default font-body-font-weight-strong">
-                <h1 class="text-center">Inicia sesión con tu cuenta</h1>
-              </div>
-              <div class="w-full h-px bg-border-default-default my-5"></div>
-                
+                <div class="mx-auto font-subheading w-full bg-tan-200 p-1 text-body-size-medium text-text-default-default font-body-font-weight-strong">
+                  <h1 class="text-center">Inicia sesión con tu cuenta</h1>
+                </div>
+
+                <div class="w-full h-px bg-border-default-default my-5"></div>
+
+                <!-- Campo Correo -->
                 <div class="flex flex-col w-full max-w-[320px]">
                   <label class="font-subheading text-gray-700 text-left mb-1">Correo</label>
                   <input 
                     type="email" 
-                    formControlName="correo" 
+                    formControlName="email" 
                     placeholder="Correo" 
-                    class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300" 
+                    class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2"
+                    [ngClass]="{
+                      'border-red-500': loginForm.get('email')?.invalid && loginForm.get('email')?.touched,
+                      'border-gray-300': !(loginForm.get('email')?.invalid && loginForm.get('email')?.touched)
+                    }"
                   />
+                  <div *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid"
+                    class="text-red-500 text-sm mt-1 font-subheading">
+                    <div *ngIf="loginForm.get('email')?.errors?.['required']">El correo es obligatorio.</div>
+                    <div *ngIf="loginForm.get('email')?.errors?.['email']">El correo no es válido.</div>
+                  </div>
                 </div>
-                
+
+                <!-- Campo Contraseña -->
                 <div class="flex flex-col w-full max-w-[320px] mt-3">
                   <label class="font-subheading text-gray-700 text-left mb-1">Contraseña</label>
                   <input 
                     type="password" 
-                    formControlName="contrasena" 
+                    formControlName="password" 
                     placeholder="Contraseña" 
-                    class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300" 
+                    class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2"
+                    [ngClass]="{
+                      'border-red-500': loginForm.get('password')?.invalid && loginForm.get('password')?.touched,
+                      'border-gray-300': !(loginForm.get('password')?.invalid && loginForm.get('password')?.touched)
+                    }"
                   />
+                  <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid"
+                    class="text-red-500 text-sm mt-1 font-subheading">
+                    <div *ngIf="loginForm.get('password')?.errors?.['required']">La contraseña es obligatoria.</div>
+                  </div>
                 </div>
-                
-                <app-button 
-                  class="font-subheading w-full max-w-[320px] mt-5"
-                  [buttonText]="'Ingresar'" 
-                  [buttonRoute]="'/home'" 
-                  [showButton]="true" 
-                  type="submit">
-                </app-button>
-              </form>
 
+                <!-- Botón -->
+                <button type="submit" class="group max-w-[338px] cursor-pointer bg-background-brand-default border border-background-brand-default p-space-300 rounded-radius-200 flex items-center justify-center w-full mt-6 hover:bg-white hover:text-black transition">
+                  <div class="font-subheading text-body-size-medium text-text-brand-on-brand text-white group-hover:text-black transition">
+                    Ingresar
+                  </div>
+                </button>
+              </form> 
+              
               <div class="flex flex-col items-center justify-center pt-[10px] px-0 pb-0 box-border max-w-full w-full">
                 <div class="flex flex-col items-center justify-center text-center font-subheading gap-2 w-full max-w-[400px]">
                   <div class="w-full flex flex-col items-center justify-start pt-0 px-0 box-border z-[1] text-center">

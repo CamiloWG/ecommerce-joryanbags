@@ -6,3 +6,7 @@ export interface User {
     phone: string,
     rol_id: number
 }
+
+export interface TokenUser {
+    token: string
+}
