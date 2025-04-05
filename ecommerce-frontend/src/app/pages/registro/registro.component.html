@@ -23,55 +23,138 @@
           
           <div class="self-stretch w-[1305px] flex flex-col items-center justify-center gap-[20px] max-w-full mq1050:gap-[15px]">
             <div class="m-0 rounded-radius-200 bg-background-default-default box-border flex flex-col items-center justify-center py-space-300 px-[30px] w-full max-w-[600px] z-[1] mt-[0px] mq450:min-h-[auto]">
-              <form (ngSubmit)="onRegistro()" class="m-0 w-full max-w-[500px] flex flex-col items-center gap-space-400" data-scroll-to="formRegister">
+              <form [formGroup]="form" (ngSubmit)="onRegistro()" class="m-0 w-full max-w-[500px] flex flex-col items-center gap-space-400" data-scroll-to="formRegister">
+                <!-- Nombre -->
                 <div class="flex flex-col w-full">
                   <label class="font-subheading text-gray-700 text-left">Nombre</label>
-                  <input type="text" formControlName="nombre" placeholder="Nombre" class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300" />
-                </div>
-
-                <div class="flex flex-col w-full">
-                  <label class="font-subheading text-gray-700 text-left">Apellido</label>
-                  <input type="text" formControlName="apellido" placeholder="Apellido" class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300" />
-                </div>
-
-                <div class="flex flex-col w-full">
-                  <label class="font-subheading text-gray-700 text-left">Correo</label>
-                  <input type="email" formControlName="correo" placeholder="Correo" class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300" />
-                </div>
-
-                <div class="flex flex-col w-full">
-                  <label class="font-subheading text-gray-700 text-left">Confirme su correo</label>
-                  <input type="email" formControlName="confirmarCorreo" placeholder="Confirme su correo" class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300" />
-                </div>
-
-                <div class="flex flex-col w-full">
-                  <label class="font-subheading text-gray-700 text-left">Contraseña</label>
-                  <input type="password" formControlName="contrasena" placeholder="Contraseña" class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300" />
-                </div>
-
-                <div class="flex flex-col w-full">
-                  <label class="font-subheading text-gray-700 text-left">Confirme su contraseña</label>
-                  <input type="password" formControlName="confirmarContrasena" placeholder="Confirme su contraseña" class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300" />
-                </div>
-
-                <div class="w-full">
-                  <p class="font-subheading text-gray-700 text-left">¿Quiere recibir novedades de nuestra web?</p>
-                  <div class="flex gap-4">
-                    <label class="font-subheading text-gray-700">
-                      <input type="radio" formControlName="novedades" value="si" class="mr-1" /> Sí
-                    </label>
-                    <label class="font-subheading text-gray-700">
-                      <input type="radio" formControlName="novedades" value="no" class="mr-1" /> No
-                    </label>
+                  <input
+                    type="text"
+                    formControlName="nombre"
+                    placeholder="Nombre"
+                    [ngClass]="{
+                      'border-red-500 focus:ring-red-300': form.get('nombre')?.touched && form.get('nombre')?.invalid,
+                      'border-gray-300 focus:ring-gray-300': !(form.get('nombre')?.touched && form.get('nombre')?.invalid)
+                    }"
+                    class="w-full p-2 border rounded-lg focus:outline-none transition" />
+                  <div *ngIf="form.get('nombre')?.touched && form.get('nombre')?.invalid" class="text-red-500 text-sm mt-1 font-subheading">
+                    <span *ngIf="form.get('nombre')?.errors?.['required']">El nombre es obligatorio.</span>
                   </div>
                 </div>
+              
+                <!-- Apellido -->
+                <div class="flex flex-col w-full">
+                  <label class="font-subheading text-gray-700 text-left">Apellido</label>
+                  <input
+                    type="text"
+                    formControlName="apellido"
+                    placeholder="Apellido"
+                    [ngClass]="{
+                      'border-red-500 focus:ring-red-300': form.get('apellido')?.touched && form.get('apellido')?.invalid,
+                      'border-gray-300 focus:ring-gray-300': !(form.get('apellido')?.touched && form.get('apellido')?.invalid)
+                    }"
+                    class="w-full p-2 border rounded-lg focus:outline-none transition" />
+                  <div *ngIf="form.get('apellido')?.touched && form.get('apellido')?.invalid" class="text-red-500 text-sm mt-1 font-subheading">
+                    <span *ngIf="form.get('apellido')?.errors?.['required']">El apellido es obligatorio.</span>
+                  </div>
+                </div>
+              
+                <!-- Correo -->
+                <div class="flex flex-col w-full">
+                  <label class="font-subheading text-gray-700 text-left">Correo</label>
+                  <input
+                    type="email"
+                    formControlName="correo"
+                    placeholder="Correo"
+                    [ngClass]="{
+                      'border-red-500 focus:ring-red-300': form.get('correo')?.touched && form.get('correo')?.invalid,
+                      'border-gray-300 focus:ring-gray-300': !(form.get('correo')?.touched && form.get('correo')?.invalid)
+                    }"
+                    class="w-full p-2 border rounded-lg focus:outline-none transition" />
+                  <div *ngIf="form.get('correo')?.touched && form.get('correo')?.invalid" class="text-red-500 text-sm mt-1 font-subheading">
+                    <span *ngIf="form.get('correo')?.errors?.['required']">El correo es obligatorio.</span>
+                    <span *ngIf="form.get('correo')?.errors?.['email']">Correo inválido.</span>
+                  </div>
+                </div>
+              
+                <!-- Teléfono -->
+                <div class="flex flex-col w-full">
+                  <label class="font-subheading text-gray-700 text-left">Teléfono</label>
+                  <input
+                    type="tel"
+                    formControlName="telefono"
+                    placeholder="Teléfono"
+                    [ngClass]="{
+                      'border-red-500 focus:ring-red-300': form.get('telefono')?.touched && form.get('telefono')?.invalid,
+                      'border-gray-300 focus:ring-gray-300': !(form.get('telefono')?.touched && form.get('telefono')?.invalid)
+                    }"
+                    class="w-full p-2 border rounded-lg focus:outline-none transition" />
+                  <div *ngIf="form.get('telefono')?.touched && form.get('telefono')?.invalid" class="text-red-500 text-sm mt-1 font-subheading">
+                    <span *ngIf="form.get('telefono')?.errors?.['required']">El teléfono es obligatorio.</span>
+                  </div>
+                </div>
+              
+                <!-- Contraseña -->
+                <div class="flex flex-col w-full">
+                  <label class="font-subheading text-gray-700 text-left">Contraseña</label>
+                  <input
+                    type="password"
+                    formControlName="contrasena"
+                    placeholder="Contraseña"
+                    [ngClass]="{
+                      'border-red-500 focus:ring-red-300': form.get('contrasena')?.touched && form.get('contrasena')?.invalid,
+                      'border-gray-300 focus:ring-gray-300': !(form.get('contrasena')?.touched && form.get('contrasena')?.invalid)
+                    }"
+                    class="w-full p-2 border rounded-lg focus:outline-none transition" />
+                  <div *ngIf="form.get('contrasena')?.touched && form.get('contrasena')?.invalid" class="text-red-500 text-sm mt-1 font-subheading">
+                    <span *ngIf="form.get('contrasena')?.errors?.['required']">La contraseña es obligatoria.</span>
+                    <span *ngIf="form.get('contrasena')?.errors?.['minlength']">Debe tener al menos 6 caracteres.</span>
+                  </div>
+                </div>
+              
+                <!-- Confirmar contraseña -->
+                <div class="flex flex-col w-full">
+                  <label class="font-subheading text-gray-700 text-left">Confirme su contraseña</label>
+                  <input
+                    type="password"
+                    formControlName="confirmarContrasena"
+                    placeholder="Confirme su contraseña"
+                    [ngClass]="{
+                      'border-red-500 focus:ring-red-300': form.get('confirmarContrasena')?.touched && form.get('confirmarContrasena')?.invalid,
+                      'border-gray-300 focus:ring-gray-300': !(form.get('confirmarContrasena')?.touched && form.get('confirmarContrasena')?.invalid)
+                    }"
+                    class="w-full p-2 border rounded-lg focus:outline-none transition" />
+                  <div *ngIf="form.get('confirmarContrasena')?.touched && form.get('confirmarContrasena')?.invalid" class="text-red-500 text-sm mt-1 font-subheading">
+                    <span *ngIf="form.get('confirmarContrasena')?.errors?.['required']">Debe confirmar la contraseña.</span>
+                    <span *ngIf="form.hasError('noCoinciden')">Las contraseñas no coinciden.</span>
+                  </div>
+                </div>
+              
+                <!-- Términos y condiciones -->
+                <div class="w-full">
+                  <p class="font-subheading text-gray-700 text-left">¿Aceptas los términos y condiciones?</p>
+                  <div class="flex gap-4">
+                    <label class="font-subheading text-gray-700">
+                      <input
+                        type="checkbox"
+                        formControlName="terminos"
+                        class="mr-1" /> Sí
+                    </label>
+                  </div>
+                  <div *ngIf="form.get('terminos')?.touched && form.get('terminos')?.invalid" class="text-red-500 text-sm mt-1 font-subheading">
+                    Debes aceptar los términos y condiciones.
+                  </div>
+                </div>
+              
+                <!-- Botón de enviar -->
+                <button type="submit" class="group cursor-pointer bg-background-brand-default border border-background-brand-default p-space-300 rounded-radius-200 flex items-center justify-center w-full mt-6 hover:bg-white hover:text-black transition">
+                  <div class="font-subheading text-body-size-medium text-text-brand-on-brand text-white group-hover:text-black transition">
+                    Registrarme
+                  </div>
+                </button>
               </form>
-            </div>
-
-            <div class="flex flex-col items-center justify-center pt-[0px] px-0 pb-0 box-border max-w-full mq1050:min-w-full mq450:flex-1">
-              <div class="flex flex-col items-center justify-center text-center font-subheading">
-                <app-button class="font-subheading" [buttonText]="'Ingresar'" [buttonRoute]="'/login'" [showButton]="true"></app-button>
-              </div>
+              
+              
+              
             </div>
           </div>
         </div>
