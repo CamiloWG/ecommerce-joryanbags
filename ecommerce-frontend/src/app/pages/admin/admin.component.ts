@@ -8,7 +8,7 @@ import { FooterComponent } from '../../core/components/shared/footer/footer.comp
 
 
 @Component({
-  selector: 'app-paginaadmin',
+  selector: 'app-admin',
   imports: [
        HeaderMenuComponent, 
         Route, 
@@ -16,10 +16,10 @@ import { FooterComponent } from '../../core/components/shared/footer/footer.comp
         FooterComponent  
   ],
 
-  templateUrl: './paginaadmin.component.html',
-  styleUrl: './paginaadmin.component.css'
+  templateUrl: './admin.component.html',
+  styleUrl: './admin.component.css'
 })
-export class PaginaadminComponent {
+export class AdminComponent {
 
   constructor(private router: Router) {}
 

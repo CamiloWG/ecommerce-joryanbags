@@ -6,7 +6,7 @@ import { FooterComponent } from '../../core/components/shared/footer/footer.comp
 import { PedidoComponent } from '../../core/components/pedido/pedido.component';
 
 @Component({
-  selector: 'app-paginausuario',
+  selector: 'app-usuario',
   imports: [
     HeaderMenuComponent,
     LogoComponent,
@@ -14,9 +14,9 @@ import { PedidoComponent } from '../../core/components/pedido/pedido.component';
     PedidoComponent,
     FooterComponent,
   ],
-  templateUrl: './paginausuario.component.html',
-  styleUrl: './paginausuario.component.css'
+  templateUrl: './usuario.component.html',
+  styleUrl: './usuario.component.css'
 })
-export class PaginausuarioComponent {
+export class UsuarioComponent {
 
 }

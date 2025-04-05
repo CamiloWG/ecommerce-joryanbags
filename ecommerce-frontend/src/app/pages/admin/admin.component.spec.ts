@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PaginaadminComponent } from './paginaadmin.component';
+import { PaginaadminComponent } from './admin.component';
 
 describe('PaginaadminComponent', () => {
   let component: PaginaadminComponent;

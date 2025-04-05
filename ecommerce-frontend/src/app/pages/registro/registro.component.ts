@@ -6,7 +6,7 @@ import { FooterComponent } from '../../core/components/shared/footer/footer.comp
 import { ButtonComponent } from '../../core/components/button/button.component';
 
 @Component({
-  selector: 'app-registrousuario',
+  selector: 'app-registro',
   imports: [
     HeaderMenuComponent,
     Route,
@@ -14,10 +14,10 @@ import { ButtonComponent } from '../../core/components/button/button.component';
     FooterComponent,
     ButtonComponent,
   ],
-  templateUrl: './registrousuario.component.html',
-  styleUrl: './registrousuario.component.css'
+  templateUrl: './registro.component.html',
+  styleUrl: './registro.component.css'
 })
-export class RegistrousuarioComponent {
+export class RegistroComponent {
   onRegistro(): void {
   }
 }

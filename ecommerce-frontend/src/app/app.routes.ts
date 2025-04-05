@@ -6,9 +6,9 @@ import { CarritoComponent } from './pages/carrito/carrito.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { ConfirmacioncompraComponent } from './pages/confirmacioncompra/confirmacioncompra.component';
 import { LoginComponent } from './pages/login/login.component';
-import { PaginaadminComponent } from './pages/paginaadmin/paginaadmin.component';
-import { PaginausuarioComponent } from './pages/usuario/usuario.component';
-import { RegistrousuarioComponent } from './pages/registro/registro.component';
+import { AdminComponent } from './pages/admin/admin.component';
+import { UsuarioComponent } from './pages/usuario/usuario.component';
+import { RegistroComponent } from './pages/registro/registro.component';
 
 
 export const routes: Routes = [
@@ -51,16 +51,16 @@ export const routes: Routes = [
     {
         path: 'administrador',
         title: 'Pagina Administrador | Joryan Bags',
-        component: PaginaadminComponent
+        component: AdminComponent
     },
     {
         path: 'usuario',
         title: 'Pagina Usuario | Joryan Bags',
-        component: PaginausuarioComponent
+        component: UsuarioComponent
     },
     {
         path: 'registro',
         title: 'Confirmacion | Joryan Bags',
-        component: RegistrousuarioComponent 
+        component: RegistroComponent 
     }
 ];
