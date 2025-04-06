@@ -46,6 +46,11 @@ export class InfopedidoComponent {
   ) {}
 
   ngOnInit(): void {
+    window.scroll({ 
+      top: 0, 
+      left: 0, 
+      behavior: 'smooth' 
+    });
     this.departamentos = colombiaData;
 
     this.form = this.fb.group({
@@ -92,8 +97,7 @@ export class InfopedidoComponent {
       this.form.markAllAsTouched(); 
       return;
     }
-    console.log(this.form.value);
-    
+
     this.orderService.setOrder(this.form.value);
     this.router.navigate(['/confirmacioncompra'])
   }

@@ -1,11 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { HeaderMenuComponent } from '../../core/components/shared/header-menu/header-menu.component';
 import { Route } from '../../core/components/shared/Route/Route.component';
 import { LogoComponent } from '../../core/components/shared/logo/logo.component';
 import { CartbillComponent } from '../../core/components/cartbill/cartbill.component';
 import { FooterComponent } from '../../core/components/shared/footer/footer.component';
 import { InfopedidoComponent } from '../../core/components/infopedido/infopedido.component';
+import { OrderService } from '../../core/services/order.service';
+import { CartService } from '../../core/services/cart.service';
+import { RawOrder } from '../../core/interfaces/order.interface';
 
+interface BoldCheckout {
+  load: () => void;
+}
+
+declare global {
+  interface Window {
+    boldCheckout?: BoldCheckout;
+  }
+}
 @Component({
   selector: 'app-confirmacioncompra',
   imports: [ HeaderMenuComponent,
@@ -20,4 +32,80 @@ import { InfopedidoComponent } from '../../core/components/infopedido/infopedido
 })
 export class ConfirmacioncompraComponent {
 
+  constructor(private orderService: OrderService, private cartService: CartService) { }
+
+
+  ngAfterViewInit() {
+    this.cargarBotonBold();
+    console.log('Cargado');
+    
+  }
+  
+
+  async cargarBotonBold() {
+    const cliente = this.orderService.getOrder();
+    const productos = this.cartService.getCart();
+    const monto = productos.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  
+    const container = document.getElementById('bold-button-container');
+    if (!container) return;
+  
+    container.innerHTML = '';
+  
+    const oldBoldScript = document.querySelector('script[src="https://checkout.bold.co/library/boldPaymentButton.js"]');
+    if (oldBoldScript) {
+      oldBoldScript.remove();
+    }
+
+    const script = document.createElement('script');
+    script.src = 'https://checkout.bold.co/library/boldPaymentButton.js';
+    script.async = true;
+    script.onload = () => {
+      console.log('✅ Script BOLD cargado y listo');
+    };
+    document.head.appendChild(script);
+  
+    const boton = document.createElement('script');
+    boton.setAttribute('data-bold-button', 'dark-L');
+    boton.setAttribute('data-api-key', 'dxzLd_YF_InRvzQTh2UIYl-C8eRsZM9wT1Wvb58Ycgs');
+    boton.setAttribute('data-integrity-signature', await this.generateHash('order-12330000COPh6zLQThK3fBAghlP8TWqEA'));
+    boton.setAttribute('data-amount', monto.toString());
+    boton.setAttribute('data-order-id', 'order-123');
+    boton.setAttribute('data-currency', 'COP');
+    script.setAttribute('data-customer-data', this.userDataFormatted(cliente));
+    boton.setAttribute('data-description', 'Compra en JoryanBags');
+    boton.setAttribute('data-redirect-url', 'http://localhost:4200/pago-exitoso');
+    container.appendChild(boton);
+  
+  }
+
+  private userDataFormatted(data: RawOrder) {
+    const userInfo = {
+      email: data.email,
+      fullName: data.nombreCompleto,
+      phone: data.telefono,
+      dialCode: '+57',
+      documentNumber: data.cedula,
+      documentType: 'CC'
+    };
+    return userInfo.toString();
+  }
+
+  async generateHash(cadena: string) {
+    // Codificar la cadena en UTF-8
+    const encodedText = new TextEncoder().encode(cadena);
+   
+    // Generar el hash SHA-256
+    const hashBuffer = await crypto.subtle.digest('SHA-256', encodedText);
+   
+    // Convertir el buffer del hash en un array de bytes
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+   
+    // Convertir cada byte en una representación hexadecimal y unirlos en una sola cadena
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+   
+    return hashHex;
+  }
+  
+  
 }
