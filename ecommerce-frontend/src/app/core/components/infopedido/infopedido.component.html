@@ -1,145 +1,297 @@
-<div class="self-stretch flex flex-col items-start justify-start gap-space-600">
-
-  <div class="self-stretch rounded-radius-200 bg-background-default-default border-border-default-default 
-              border-solid border-stroke-border box-border flex flex-row items-start justify-start flex-wrap 
-              content-start py-[22px] px-[23px] relative gap-space-600 min-w-[240px]">
-    
-    <div class="font-subheading w-full bg-tan-200 p-2 text-body-size-medium text-text-default-default font-body-font-weight-strong">
+<form
+  [formGroup]="form"
+  class="self-stretch flex flex-col items-start justify-start gap-space-600"
+>
+  <!-- Información personal -->
+  <div
+    class="self-stretch rounded-radius-200 bg-background-default-default border-border-default-default border-solid border-stroke-border box-border flex flex-row items-start justify-start flex-wrap content-start py-[22px] px-[23px] relative gap-space-600 min-w-[240px]"
+  >
+    <div
+      class="font-subheading w-full bg-tan-200 p-2 text-body-size-medium text-text-default-default font-body-font-weight-strong"
+    >
       Información personal
     </div>
-
     <div class="w-full h-px bg-border-default-default"></div>
 
+    <!-- Campo: Nombre completo -->
     <div class="w-full flex flex-col items-start justify-start p-2 gap-2">
-      <label class="text-body-size-medium font-subheading">Nombre completo</label>
-      
-      <ng-container *ngIf="isConfirmationPage; else editModeNombre">
-        <p class="w-full font-subheading rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200">
-          {{ nombreCompleto }}
+      <label class="text-body-size-medium font-subheading"
+        >Nombre completo</label
+      >
+      <ng-container *ngIf="isConfirmationPage; else editNombre">
+        <p
+          class="w-full font-subheading rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200"
+        >
+          {{ form.get("nombreCompleto")?.value }}
         </p>
       </ng-container>
-
-      <ng-template #editModeNombre>
-        <input [(ngModel)]="nombreCompleto" class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-background-default-default" placeholder="Ingresa tu nombre" type="text"/>
+      <ng-template #editNombre>
+        <input
+          formControlName="nombreCompleto"
+          class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-background-default-default opacity-75"
+        />
       </ng-template>
     </div>
 
+    <!-- Campo: Teléfono -->
     <div class="w-full flex flex-col items-start justify-start p-2 gap-2">
       <label class="text-body-size-medium font-subheading">Teléfono</label>
-
-      <ng-container *ngIf="isConfirmationPage; else editModeTelefono">
-        <p class="w-full font-subheading rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200">
-          {{ telefono }}
+      <ng-container *ngIf="isConfirmationPage; else editTelefono">
+        <p
+          class="w-full font-subheading rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200"
+        >
+          {{ form.get("telefono")?.value }}
         </p>
       </ng-container>
-
-      <ng-template #editModeTelefono>
-        <input [(ngModel)]="telefono" class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-background-default-default" placeholder="Ingresa tu teléfono" type="text"/>
+      <ng-template #editTelefono>
+        <input
+          formControlName="telefono"
+          type="text"
+          class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-background-default-default opacity-75"
+        />
       </ng-template>
     </div>
 
-    <div class="w-full font-subheading flex flex-col items-start justify-start p-2 gap-2">
+    <!-- Campo: Email -->
+    <div class="w-full flex flex-col items-start justify-start p-2 gap-2">
       <label class="text-body-size-medium font-subheading">Email</label>
-
-      <ng-container *ngIf="isConfirmationPage; else editModeEmail">
-        <p class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200">
-          {{ email }}
+      <ng-container *ngIf="isConfirmationPage; else editEmail">
+        <p
+          class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200"
+        >
+          {{ form.get("email")?.value }}
         </p>
       </ng-container>
-
-      <ng-template #editModeEmail>
-        <input [(ngModel)]="email" class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-background-default-default" placeholder="Ingresa tu correo" type="email"/>
+      <ng-template #editEmail>
+        <input
+          formControlName="email"
+          type="email"
+          class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-background-default-default opacity-75"
+        />
       </ng-template>
     </div>
-    <button *ngIf="showButton"  class="w-full font-[550] py-2 mt-4 bg-background-brand-default text-text-brand-on-brand font-heading rounded-lg 
-    border-border-neutral-secondary border-solid border-stroke-border hover:bg-white hover:text-black transition text-white cursor-pointer">
-      Guardar
-    </button>
+
+    <!-- Campo: Cédula -->
+    <div class="w-full flex flex-col items-start justify-start p-2 gap-2">
+      <label class="text-body-size-medium font-subheading">Cédula</label>
+      <ng-container *ngIf="isConfirmationPage; else editCedula">
+        <p
+          class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200"
+        >
+          {{ form.get("cedula")?.value }}
+        </p>
+      </ng-container>
+      <ng-template #editCedula>
+        <input
+          formControlName="cedula"
+          type="number"
+          class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-background-default-default"
+          [ngClass]="{
+            'border-red-500':
+              form.get('cedula')?.invalid && form.get('cedula')?.touched
+          }"
+        />
+        <div
+          *ngIf="form.get('cedula')?.invalid && form.get('cedula')?.touched"
+          class="text-red-500 text-sm font-subheading"
+        >
+          La cédula es obligatoria.
+        </div>
+      </ng-template>
+    </div>
   </div>
 
-  <div class="self-stretch rounded-radius-200 bg-background-default-default border-border-default-default 
-              border-solid border-stroke-border box-border flex flex-row items-start justify-start flex-wrap 
-              content-start py-[22px] px-[23px] relative gap-space-600 min-w-[240px]">
-
-    <div class="w-full font-subheading bg-tan-200 p-2 text-body-size-medium text-text-default-default font-body-font-weight-strong">
+  <!-- Información de envío -->
+  <div
+    class="self-stretch rounded-radius-200 bg-background-default-default border-border-default-default border-solid border-stroke-border box-border flex flex-row items-start justify-start flex-wrap content-start py-[22px] px-[23px] relative gap-space-600 min-w-[240px]"
+  >
+    <div
+      class="w-full font-subheading bg-tan-200 p-2 text-body-size-medium text-text-default-default font-body-font-weight-strong"
+    >
       Información de envío
     </div>
-
     <div class="w-full h-px bg-border-default-default my-1"></div>
 
-    <div class="w-full font-subheading flex flex-col items-start justify-start p-2 gap-2">
-      <label class="text-body-size-medium font-subheading">Dirección</label>
-
-      <ng-container *ngIf="isConfirmationPage; else editModeDireccion">
-        <p class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200">
-          {{ direccion }}
-        </p>
-      </ng-container>
-
-      <ng-template #editModeDireccion>
-        <input [(ngModel)]="direccion" class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-background-default-default" placeholder="Ingresa tu dirección" type="text"/>
-      </ng-template>
-    </div>
-
-    <div class="w-full font-subheading flex flex-col items-start justify-start p-2 gap-2">
+    <!-- Departamento -->
+    <div class="w-full flex flex-col items-start justify-start p-2 gap-2">
       <label class="text-body-size-medium font-subheading">Departamento</label>
-
-      <ng-container *ngIf="isConfirmationPage; else editModeDepartamento">
-        <p class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200">
-          {{ departamento }}
+      <ng-container *ngIf="isConfirmationPage; else editDepartamento">
+        <p
+          class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200"
+        >
+          {{ form.get("departamento")?.value }}
         </p>
       </ng-container>
-
-      <ng-template #editModeDepartamento>
-        <select [(ngModel)]="departamento" class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-background-default-default">
-          <option>Selecciona una opción</option>
-          <option>Opción 1</option>
-          <option>Opción 2</option>
-          <option>Opción 3</option>
+      <ng-template #editDepartamento>
+        <select
+          formControlName="departamento"
+          [ngClass]="{
+            'border-red-500':
+              form.get('departamento')?.invalid &&
+              form.get('departamento')?.touched
+          }"
+          class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-background-default-default"
+        >
+          <option value="" disabled selected>Selecciona un departamento</option>
+          <option
+            *ngFor="let dpto of departamentos"
+            [value]="dpto.departamento"
+          >
+            {{ dpto.departamento }}
+          </option>
         </select>
+        <div
+          *ngIf="
+            form.get('departamento')?.invalid &&
+            form.get('departamento')?.touched
+          "
+          class="text-red-500 text-sm font-subheading"
+        >
+          El departamento es obligatorio.
+        </div>
       </ng-template>
     </div>
 
     <!-- Ciudad -->
-    <div class="w-full font-subheading flex flex-col items-start justify-start p-2 gap-2">
+    <div class="w-full flex flex-col items-start justify-start p-2 gap-2">
       <label class="text-body-size-medium font-subheading">Ciudad</label>
-
-      <ng-container *ngIf="isConfirmationPage; else editModeCiudad">
-        <p class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200">
-          {{ ciudad }}
+      <ng-container *ngIf="isConfirmationPage; else editCiudad">
+        <p
+          class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200"
+        >
+          {{ form.get("ciudad")?.value }}
         </p>
       </ng-container>
-
-      <ng-template #editModeCiudad>
-        <select [(ngModel)]="ciudad" class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-background-default-default">
-          <option>Selecciona una opción</option>
-          <option>Opción 1</option>
-          <option>Opción 2</option>
-          <option>Opción 3</option>
+      <ng-template #editCiudad>
+        <select
+          formControlName="ciudad"
+          [ngClass]="{
+            'border-red-500':
+              form.get('ciudad')?.invalid && form.get('ciudad')?.touched
+          }"
+          class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-background-default-default"
+        >
+          <option value="" disabled selected>Selecciona una ciudad</option>
+          <option *ngFor="let ciudad of ciudadesFiltradas" [value]="ciudad">
+            {{ ciudad }}
+          </option>
         </select>
+        <div
+          *ngIf="form.get('ciudad')?.invalid && form.get('ciudad')?.touched"
+          class="text-red-500 text-sm font-subheading"
+        >
+          La ciudad es obligatoria.
+        </div>
       </ng-template>
     </div>
-    <!-- Información Adicional -->
-    <div class="w-full self-stretch flex flex-col items-start justify-start gap-space-200">
-      <div class="self-stretch relative leading-[140%] font-subheading text-body-size-medium">
-        Información adicional
-      </div>
 
-      <ng-container *ngIf="isConfirmationPage; else editModeInformacionAdicional">
-        <p class="w-full font-subheading rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200">
-          {{ informacionAdicional }}
+    <!-- Barrio -->
+    <div class="w-full flex flex-col items-start justify-start p-2 gap-2">
+      <label class="text-body-size-medium font-subheading">Barrio</label>
+      <ng-container *ngIf="isConfirmationPage; else editBarrio">
+        <p
+          class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200"
+        >
+          {{ form.get("barrio")?.value }}
         </p>
       </ng-container>
-
-      <ng-template #editModeInformacionAdicional>
-        <textarea [(ngModel)]="informacionAdicional" class="font-subheading border-border-default-default border-solid border-stroke-border bg-background-default-default h-[81px] w-auto [outline:none] self-stretch rounded-radius-200 box-border overflow-hidden shrink-0 flex flex-row items-start justify-start py-space-300 px-space-400 font-heading text-body-size-medium text-icon-default-tertiary min-w-[240px] min-h-[80px]" placeholder="Ingresa información adicional" rows="4" cols="48"></textarea>
+      <ng-template #editBarrio>
+        <input
+          formControlName="barrio"
+          type="text"
+          [ngClass]="{
+            'border-red-500':
+              form.get('barrio')?.invalid && form.get('barrio')?.touched
+          }"
+          class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-background-default-default"
+        />
+        <div
+          *ngIf="form.get('barrio')?.invalid && form.get('barrio')?.touched"
+          class="text-red-500 text-sm font-subheading"
+        >
+          El barrio es obligatorio.
+        </div>
       </ng-template>
-      <button *ngIf="showButton"  class="w-full font-[550] py-2 mt-4 bg-background-brand-default text-text-brand-on-brand font-heading rounded-lg 
-      border-border-neutral-secondary border-solid border-stroke-border hover:bg-white hover:text-black transition text-white cursor-pointer">
+    </div>
+
+    <!-- Dirección -->
+    <div class="w-full flex flex-col items-start justify-start p-2 gap-2">
+      <label class="text-body-size-medium font-subheading">Dirección</label>
+      <ng-container *ngIf="isConfirmationPage; else editDireccion">
+        <p
+          class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200"
+        >
+          {{ form.get("direccion")?.value }}
+        </p>
+      </ng-container>
+      <ng-template #editDireccion>
+        <input
+          formControlName="direccion"
+          type="text"
+          [ngClass]="{
+            'border-red-500':
+              form.get('direccion')?.invalid && form.get('direccion')?.touched
+          }"
+          class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-background-default-default"
+        />
+        <div
+          *ngIf="
+            form.get('direccion')?.invalid && form.get('direccion')?.touched
+          "
+          class="text-red-500 text-sm font-subheading"
+        >
+          La dirección es obligatoria.
+        </div>
+      </ng-template>
+    </div>
+
+    <!-- Información adicional -->
+    <div
+      class="w-full self-stretch flex flex-col items-start justify-start gap-space-200"
+    >
+      <div
+        class="self-stretch relative leading-[140%] font-subheading text-body-size-medium"
+      >
+        Información adicional
+      </div>
+      <ng-container *ngIf="isConfirmationPage; else editInfo">
+        <p
+          class="w-full font-subheading rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200"
+        >
+          {{ form.get("informacionAdicional")?.value }}
+        </p>
+      </ng-container>
+      <ng-template #editInfo>
+        <textarea
+          formControlName="informacionAdicional"
+          [ngClass]="{
+            'border-red-500':
+              form.get('informacionAdicional')?.invalid &&
+              form.get('informacionAdicional')?.touched
+          }"
+          rows="4"
+          cols="48"
+          class="font-subheading border-border-default-default border-solid border-stroke-border bg-background-default-default h-[81px] w-auto outline-none self-stretch rounded-radius-200 box-border overflow-hidden shrink-0 flex flex-row items-start justify-start py-space-300 px-space-400 font-heading text-body-size-medium text-icon-default-tertiary min-w-[240px] min-h-[80px]"
+          placeholder="Ingresa información adicional del envío"
+        ></textarea>
+        <div
+          *ngIf="
+            form.get('informacionAdicional')?.invalid &&
+            form.get('informacionAdicional')?.touched
+          "
+          class="text-red-500 text-sm font-subheading"
+        >
+          Este campo es obligatorio.
+        </div>
+      </ng-template>
+
+      <button
+        *ngIf="showButton"
+        class="w-full font-[550] py-2 mt-4 bg-background-brand-default text-text-brand-on-brand font-heading rounded-lg border-border-neutral-secondary border-solid border-stroke-border hover:bg-white hover:text-black transition text-white cursor-pointer"
+        (click)="guardar()"
+      >
         Guardar
       </button>
     </div>
   </div>
-
-  
-</div>
+</form>

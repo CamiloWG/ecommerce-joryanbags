@@ -37,7 +37,8 @@ export const routes: Routes = [
     {
         path: 'checkout',
         title: 'Checkout | Joryan Bags',
-        component: CheckoutComponent
+        component: CheckoutComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'confirmacioncompra',

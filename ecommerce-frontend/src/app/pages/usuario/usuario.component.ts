@@ -33,8 +33,6 @@ export class UsuarioComponent {
     if(number) {
       this.userService.getUserById(number).subscribe(data => {
         this.usuario = data[0];
-        console.log(this.usuario);
-        
       });
     } else {
       this.router.navigate(['/login']);
