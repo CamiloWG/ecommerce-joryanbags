@@ -5,8 +5,9 @@ import { User } from '../../interfaces/user.interface';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
-import { ColombiaData } from '../../interfaces/colombia.interface';
 import colombiaData from '../../../../assets/data/colombia.min.json';
+import { OrderService } from '../../services/order.service';
+import { RawOrder } from '../../interfaces/order.interface';
 
 @Component({
   selector: 'app-infopedido',
@@ -40,6 +41,7 @@ export class InfopedidoComponent {
     private fb: FormBuilder,
     private authService: AuthService,
     private userService: UserService,
+    private orderService: OrderService,
     private router: Router
   ) {}
 
@@ -80,15 +82,20 @@ export class InfopedidoComponent {
     this.form.get('telefono')?.disable();
     this.form.get('email')?.disable();
      
+
+    if(this.isConfirmationPage) this.showOrderInfo();
   }
+
 
   guardar(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched(); 
       return;
     }
-
-    console.log('Formulario válido:', this.form.value);
+    console.log(this.form.value);
+    
+    this.orderService.setOrder(this.form.value);
+    this.router.navigate(['/confirmacioncompra'])
   }
 
   campoInvalido(controlName: string): boolean {
@@ -102,4 +109,16 @@ export class InfopedidoComponent {
     this.ciudadesFiltradas = departamentoEncontrado ? departamentoEncontrado.ciudades : [];
   }
 
+
+  showOrderInfo(): void {
+    const pedido: RawOrder = this.orderService.getOrder();
+    this.form.patchValue({
+      cedula: pedido.cedula,
+      departamento: pedido.departamento,
+      ciudad: pedido.ciudad,
+      barrio: pedido.barrio,
+      direccion: pedido.direccion,
+      informacionAdicional: pedido.informacionAdicional
+    });
+  }
 }

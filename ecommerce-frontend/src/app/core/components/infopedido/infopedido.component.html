@@ -20,7 +20,7 @@
       >
       <ng-container *ngIf="isConfirmationPage; else editNombre">
         <p
-          class="w-full font-subheading rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200"
+          class="w-full font-subheading font-subheading rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200"
         >
           {{ form.get("nombreCompleto")?.value }}
         </p>
@@ -38,7 +38,7 @@
       <label class="text-body-size-medium font-subheading">Teléfono</label>
       <ng-container *ngIf="isConfirmationPage; else editTelefono">
         <p
-          class="w-full font-subheading rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200"
+          class="w-full font-subheading font-subheading rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200"
         >
           {{ form.get("telefono")?.value }}
         </p>
@@ -57,7 +57,7 @@
       <label class="text-body-size-medium font-subheading">Email</label>
       <ng-container *ngIf="isConfirmationPage; else editEmail">
         <p
-          class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200"
+          class="w-full font-subheading rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200"
         >
           {{ form.get("email")?.value }}
         </p>
@@ -76,7 +76,7 @@
       <label class="text-body-size-medium font-subheading">Cédula</label>
       <ng-container *ngIf="isConfirmationPage; else editCedula">
         <p
-          class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200"
+          class="w-full font-subheading rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200"
         >
           {{ form.get("cedula")?.value }}
         </p>
@@ -85,6 +85,7 @@
         <input
           formControlName="cedula"
           type="number"
+          placeholder="Ingresa tu cédula"
           class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-background-default-default"
           [ngClass]="{
             'border-red-500':
@@ -117,7 +118,7 @@
       <label class="text-body-size-medium font-subheading">Departamento</label>
       <ng-container *ngIf="isConfirmationPage; else editDepartamento">
         <p
-          class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200"
+          class="w-full font-subheading rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200"
         >
           {{ form.get("departamento")?.value }}
         </p>
@@ -157,7 +158,7 @@
       <label class="text-body-size-medium font-subheading">Ciudad</label>
       <ng-container *ngIf="isConfirmationPage; else editCiudad">
         <p
-          class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200"
+          class="w-full font-subheading rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200"
         >
           {{ form.get("ciudad")?.value }}
         </p>
@@ -190,7 +191,7 @@
       <label class="text-body-size-medium font-subheading">Barrio</label>
       <ng-container *ngIf="isConfirmationPage; else editBarrio">
         <p
-          class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200"
+          class="w-full font-subheading rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200"
         >
           {{ form.get("barrio")?.value }}
         </p>
@@ -199,6 +200,7 @@
         <input
           formControlName="barrio"
           type="text"
+          placeholder="Ingrese el barrio"
           [ngClass]="{
             'border-red-500':
               form.get('barrio')?.invalid && form.get('barrio')?.touched
@@ -219,7 +221,7 @@
       <label class="text-body-size-medium font-subheading">Dirección</label>
       <ng-container *ngIf="isConfirmationPage; else editDireccion">
         <p
-          class="w-full rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200"
+          class="w-full font-subheading rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200"
         >
           {{ form.get("direccion")?.value }}
         </p>
@@ -228,6 +230,7 @@
         <input
           formControlName="direccion"
           type="text"
+          placeholder="Ingrese la direccion"
           [ngClass]="{
             'border-red-500':
               form.get('direccion')?.invalid && form.get('direccion')?.touched
@@ -256,7 +259,7 @@
       </div>
       <ng-container *ngIf="isConfirmationPage; else editInfo">
         <p
-          class="w-full font-subheading rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200"
+          class="w-full font-subheading font-subheading rounded-lg border border-border-default-default p-2 text-body-size-medium bg-tan-200"
         >
           {{ form.get("informacionAdicional")?.value }}
         </p>
@@ -290,7 +293,7 @@
         class="w-full font-[550] py-2 mt-4 bg-background-brand-default text-text-brand-on-brand font-heading rounded-lg border-border-neutral-secondary border-solid border-stroke-border hover:bg-white hover:text-black transition text-white cursor-pointer"
         (click)="guardar()"
       >
-        Guardar
+        Ir a pagar
       </button>
     </div>
   </div>
