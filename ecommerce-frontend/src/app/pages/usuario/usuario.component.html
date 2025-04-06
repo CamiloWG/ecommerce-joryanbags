@@ -18,28 +18,48 @@
       </section>
       
       <section class="py-2 w-[70%] mx-auto self-stretch flex flex-col items-start justify-start gap-space-600">
-        <div class="mx-auto w-full self-stretch rounded-radius-200 border border-border-default-default 
-            border-solid border-stroke-border box-border flex flex-col items-start justify-start flex-wrap 
-            content-start py-[22px] px-[23px] relative gap-space-500 min-w-[240px]">
-        
+        <div *ngIf="usuario; else skeleton" 
+            class="mx-auto w-full self-stretch rounded-radius-200 border border-border-default-default 
+                    border-solid border-stroke-border box-border flex flex-col items-start justify-start flex-wrap 
+                    content-start py-[22px] px-[23px] relative gap-space-500 min-w-[240px]">
+                
             <div class="px-2 flex flex-row">
                 <img class="h-20 w-8" loading="lazy" alt="info" src="assets/icons/info.svg" />
                 <h3 class="m-7 font-subheading flex">Tu perfil</h3>
             </div>
 
-            <!-- Contenedor flexible que cambia entre fila y columna -->
             <div class="flex flex-wrap items-center sm:items-start w-full gap-4">
                 <img class="px-3 h-30 min-w-[60px]" src="assets/icons/generic-avatar.svg">
-                
-                <!-- Contenedor de texto adaptable -->
-                <div class=" flex-col flex-1 min-w-[200px]">
-                    <p class="px-6 font-subheading font-body-font-weight-strong">Nombre Apellido</p>
-                    <p class="px-6 font-subheading text-gray-600">correo&#64;electronico.com</p>
-                    <p class="px-6 font-subheading text-gray-600">DIRECION ## CALLE ## CARRERA ##</p>
+
+                <div class="flex-col flex-1 min-w-[200px]">
+                    <p class="px-6 font-subheading font-body-font-weight-strong">{{ usuario.full_name }}</p>
+                    <p class="px-6 font-subheading text-gray-600">{{ usuario.email }}</p>
+                    <p class="px-6 font-subheading text-gray-600">Teléfono: {{ usuario.phone }}</p>
                 </div>
             </div>
-
         </div>
+
+        <ng-template #skeleton>
+          <div class="mx-auto w-full self-stretch rounded-radius-200 border border-border-default-default 
+                      border-solid border-stroke-border box-border flex flex-col items-start justify-start flex-wrap 
+                      content-start py-[22px] px-[23px] relative gap-space-500 min-w-[240px] animate-pulse">
+              
+              <div class="px-2 flex flex-row">
+                  <div class="h-8 w-8 bg-gray-300 rounded-full"></div>
+                  <div class="ml-4 h-6 w-32 bg-gray-300 rounded"></div>
+              </div>
+
+              <div class="flex flex-wrap items-center sm:items-start w-full gap-4 mt-4">
+                  <div class="px-3 h-24 w-24 bg-gray-300 rounded-full"></div>
+
+                  <div class="flex flex-col gap-2 flex-1 min-w-[200px]">
+                      <div class="h-4 w-3/4 bg-gray-300 rounded"></div>
+                      <div class="h-4 w-2/3 bg-gray-300 rounded"></div>
+                      <div class="h-4 w-1/2 bg-gray-300 rounded"></div>
+                  </div>
+              </div>
+          </div>
+        </ng-template>
 
         <div class="mx-auto w-[100%] self-stretch rounded-radius-200 border-border-default-default 
                     border-solid border-stroke-border box-border flex flex-col items-start justify-start flex-wrap 
