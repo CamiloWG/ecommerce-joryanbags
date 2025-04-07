@@ -15,27 +15,17 @@
     
     <div class="flex flex-row gap-6 items-start">
       <!-- Resumen -->
-      <div class="bg-white rounded-md shadow border p-6 w-[700px] h-[150px] flex flex-col">
-        <h3 class="font-bold font-subheading text-lg mb-4">Resumen</h3>
-        <div class="flex justify-around items-start text-center flex-1">
-          <div class="flex flex-col items-center justify-start h-full">
-            <img src="assets/icons/chat-bubble.svg" alt="Reseñas" class="w-9 h-9 mb-2 cursor-pointer" />
-            <span class="text-sm text-gray-500 font-subheading">Reseñas</span>
-          </div>
-          <div class="flex flex-col items-center justify-start h-full">
-            <img src="../../assets/icons/folder-filled.svg" alt="Órdenes" class="w-9 h-9 mb-2 cursor-pointer" />
-            <span class="text-sm text-gray-500 font-subheading">Órdenes</span>
-          </div>
-          <div class="flex flex-col items-center justify-start h-full">
-            <img src="assets/icons/archive.svg" alt="Stock" class="w-9 h-9 mb-2 cursor-pointer" />
-            <span class="text-sm text-gray-500 font-subheading">Stock</span>
-          </div>
-        </div>
+      <div class="bg-white rounded-md shadow border p-6 w-[900px] h-[200px]">
+        <app-resumen 
+          [resumenActivo]="resumenActivo"
+          (resumenSeleccionado)="actualizarResumen($event)">
+        </app-resumen>
       </div>
+      
      
 
   <!-- Métricas de negocio -->
-  <div class="bg-white rounded-md shadow border p-6 w-[1000px] h-[200px] flex flex-col justify-between">
+  <div class="bg-white rounded-md shadow border p-6 w-[800px] h-[200px] flex flex-col justify-between">
     <h3 class="font-bold font-subheading text-lg mb-2">Métricas de negocio</h3>
     <div class="grid grid-cols-2 gap-4 mt-2">
       <div class="text-center">
@@ -71,70 +61,14 @@
 
 
 <div class="bg-white rounded-md shadow p-4 mb-6 max-w-[1790px]">
-  <!-- ID y Checkbox -->
-  <div class="flex items-center justify-between mb-3">
-    <div class="flex items-center space-x-4">
-      <input type="checkbox" class="h-5 w-5">
-      <span class="text-gray-400 font-subheading text-sm">#000000000000</span>
-    </div>
-  </div>
-
-  <!-- Contenido principal -->
-  <div class="flex justify-between items-center">
-    <!-- Info producto -->
-    <div class="flex items-center space-x-4">
-      <div class="bg-blue-100 rounded-full p-2">
-        <img
-          class="w-[50px] h-[59px] object-cover"
-          loading="lazy"
-          alt="Avatar"
-          src="assets/images/3d-avatars--8@2x.png"
-        />
-      </div>
-      <div class="leading-tight">
-        <h4 class="font-bold font-subheading text-sm">Procesando en bodega</h4>
-        <p class="text-gray-500 text-sm font-subheading">PRODUCTO PRODUCTO</p>
-        <p class="text-gray-500 text-sm font-subheading">DESCRIPCION</p>
-      </div>
-    </div>
-
-    <!-- PRECIO y botón centrados verticalmente -->
-    <div class="flex items-center space-x-60 pr-20">
-      <p class="text-gray-500 text-sm font-subheading">PRECIO</p>
-      <button class="bg-gray-800 text-white px-20 py-2 rounded-md font-subheading text-sm cursor-pointer">
-        Seguir envío
-      </button>
-    </div>
-  </div>
+  <app-contenido [tipoResumen]="resumenActivo"></app-contenido>
 </div>
 
 
 
     <h2 class="text-xl font-bold mb-4 font-subheading">Ventas</h2>
-    <div class="bg-white rounded-md shadow p-6 max-w-[1780px]">
-      <div class="flex space-x-4 mb-6">
-        <button class="bg-black text-white px-4 py-2 rounded-full font-subheading cursor-pointer">Envíos de hoy</button>
-        <button class="bg-black text-white px-4 py-2 rounded-full font-subheading cursor-pointer">Próximos días</button>
-        <button class="bg-black text-white px-4 py-2 rounded-full font-subheading cursor-pointer">En tránsito</button>
-        <button class="bg-black text-white px-4 py-2 rounded-full font-subheading cursor-pointer">Finalizadas</button>
-      </div>
-
-      <div class="grid grid-cols-3 md:grid-cols-3 gap-4 max-w-[1600px]">
-        <!-- Bloque 1 -->
-        <div class="shadow border border-gray-200 rounded-md p-4">
-          <h4 class="font-bold mb-2 font-subheading">EN SEGUIMIENTO</h4>
-          <p class="text-gray-500 text-sm font-subheading">En centro de distribución</p>
-        </div>
-      
-        <!-- Bloque 2 -->
-        <div class="shadow border border-gray-200 rounded-md p-4">
-        </div>
-      
-        <!-- Bloque 3 -->
-        <div class="shadow border border-gray-200 rounded-md p-4">
-        </div>
-      </div>
-      
+    <div class="bg-white rounded-md shadow p-6 max-w-[1790px]">
+      <app-adminventas></app-adminventas>
     </div>
   </main>
 

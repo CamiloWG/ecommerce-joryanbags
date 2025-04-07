@@ -1,0 +1,45 @@
+<div class="flex space-x-4 mb-6">
+    <button class="bg-black text-white px-4 py-2 rounded-full font-subheading cursor-pointer" (click)="seleccionarPeriodo('hoy')">Hoy</button>
+    <button class="bg-black text-white px-4 py-2 rounded-full font-subheading cursor-pointer" (click)="seleccionarPeriodo('ultimaSemana')">Última semana</button>
+    <button class="bg-black text-white px-4 py-2 rounded-full font-subheading cursor-pointer" (click)="seleccionarPeriodo('ultimoMes')">Último mes</button>
+    <button class="bg-black text-white px-4 py-2 rounded-full font-subheading cursor-pointer" (click)="seleccionarPeriodo('ultimosTresMeses')">Últimos tres meses</button>
+  </div>
+  
+  <div class="gap-4 max-w-[1700px]">
+    <!-- Bloque 1 - Hoy -->
+    <div *ngIf="periodoSeleccionado === 'hoy'" class="shadow border border-gray-200 rounded-md p-4">
+      <h4 class="font-bold mb-2 font-subheading">Ventas realizadas - Hoy</h4>
+      <div class="mt-4">
+        <p class="text-gray-700 font-semibold">Número de ventas: {{ ventasHoy.cantidad }}</p>
+        <p class="text-gray-700 font-semibold">Total de ventas: ${{ ventasHoy.dinero }}</p>
+      </div>
+    </div>
+  
+    <!-- Bloque 2 - Última semana -->
+    <div *ngIf="periodoSeleccionado === 'ultimaSemana'" class="shadow border border-gray-200 rounded-md p-4">
+      <h4 class="font-bold mb-2 font-subheading">Ventas realizadas - Última Semana</h4>
+      <div class="mt-4">
+        <p class="text-gray-700 font-semibold">Número de ventas: {{ ventasUltimaSemana.cantidad }}</p>
+        <p class="text-gray-700 font-semibold">Total de ventas: ${{ ventasUltimaSemana.dinero }}</p>
+      </div>
+    </div>
+  
+    <!-- Bloque 3 - Último mes -->
+    <div *ngIf="periodoSeleccionado === 'ultimoMes'" class="shadow border border-gray-200 rounded-md p-4">
+      <h4 class="font-bold mb-2 font-subheading">Ventas realizadas - Último Mes</h4>
+      <div class="mt-4">
+        <p class="text-gray-700 font-semibold">Número de ventas: {{ ventasUltimoMes.cantidad }}</p>
+        <p class="text-gray-700 font-semibold">Total de ventas: ${{ ventasUltimoMes.dinero }}</p>
+      </div>
+    </div>
+  
+    <!-- Bloque 4 - Últimos tres meses -->
+    <div *ngIf="periodoSeleccionado === 'ultimosTresMeses'" class="shadow border border-gray-200 rounded-md p-4">
+      <h4 class="font-bold mb-2 font-subheading">Ventas realizadas - Últimos tres meses</h4>
+      <div class="mt-4">
+        <p class="text-gray-700 font-semibold">Número de ventas: {{ ventasUltimosTresMeses.cantidad }}</p>
+        <p class="text-gray-700 font-semibold">Total de ventas: ${{ ventasUltimosTresMeses.dinero }}</p>
+      </div>
+    </div>
+  </div>
+  
