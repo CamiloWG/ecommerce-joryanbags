@@ -27,17 +27,9 @@ export class CartbillComponent {
   ngOnInit() {
     this.cartService.cart$.subscribe(carrito => {
       this.productos = carrito;
-      this.updateBill();
+      this.costoEnvio = this.cartService.getShipmentCost();
+      this.costoTotal = this.cartService.getTotalCost();
     });
-  }
-
-
-  updateBill() {
-    let total: number = this.costoEnvio;
-    this.productos.forEach(producto => {
-      total += (producto.price * producto.quantity);
-    });
-    this.costoTotal = total;
   }
 
   onButtonClick() {

@@ -8,9 +8,15 @@ import { BehaviorSubject } from 'rxjs';
 export class CartService {
 
   private cart = new BehaviorSubject<ProductInCart[]>([]);
+  private SHIPMENT_COST: number = 18000;
+  private CART_KEY: string = 'JY_CART';
+
   cart$ = this.cart.asObservable();
 
-  constructor() {}
+  constructor() {
+    this.loadCartFromLocalStorage();
+    this.cart$.subscribe(() => this.updateLocalCart());
+  }
 
   
   addToCart(product: Product | ProductInCart, cantidad: number = 1) {
@@ -37,9 +43,36 @@ export class CartService {
     this.cart.next([]);
   }
 
+  getShipmentCost(): number {
+    return this.SHIPMENT_COST;
+  }
+
+  getTotalCost(): number {
+    const monto = this.cart.value.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    return monto + this.SHIPMENT_COST;
+  }
+
   
   removeFromCart(productId: number) {
     let updatedCart = this.cart.getValue().filter((p) => p.product_id !== productId);
-    this.cart.next(updatedCart);
+    this.cart.next(updatedCart);    
   }
+
+  private updateLocalCart(): void {
+    localStorage.setItem(this.CART_KEY, JSON.stringify(this.cart.getValue()));
+  }
+
+  private loadCartFromLocalStorage(): void {
+    const savedCart = localStorage.getItem(this.CART_KEY);
+    if (savedCart) {
+      try {
+        const parsedCart: ProductInCart[] = JSON.parse(savedCart);
+        this.cart.next(parsedCart);
+      } catch (error) {
+        console.error('Error parsing cart from localStorage:', error);
+        localStorage.removeItem(this.CART_KEY);
+      }
+    }
+  }
+  
 }

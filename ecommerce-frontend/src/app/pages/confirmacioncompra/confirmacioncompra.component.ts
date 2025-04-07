@@ -44,8 +44,9 @@ export class ConfirmacioncompraComponent {
 
   async cargarBotonBold() {
     const cliente = this.orderService.getOrder();
-    const productos = this.cartService.getCart();
-    const monto = productos.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    const OrderKey = this.orderService.saveOrderLocal();
+    const TotalCost = this.cartService.getTotalCost().toString();
+    const secretKey = 'h6zLQThK3fBAghlP8TWqEA';
   
     const container = document.getElementById('bold-button-container');
     if (!container) return;
@@ -61,16 +62,16 @@ export class ConfirmacioncompraComponent {
     script.src = 'https://checkout.bold.co/library/boldPaymentButton.js';
     script.async = true;
     script.onload = () => {
-      console.log('✅ Script BOLD cargado y listo');
+      console.log('Script BOLD cargado y listo');
     };
     document.head.appendChild(script);
   
     const boton = document.createElement('script');
     boton.setAttribute('data-bold-button', 'dark-L');
     boton.setAttribute('data-api-key', 'dxzLd_YF_InRvzQTh2UIYl-C8eRsZM9wT1Wvb58Ycgs');
-    boton.setAttribute('data-integrity-signature', await this.generateHash('order-12330000COPh6zLQThK3fBAghlP8TWqEA'));
-    boton.setAttribute('data-amount', monto.toString());
-    boton.setAttribute('data-order-id', 'order-123');
+    boton.setAttribute('data-integrity-signature', await this.generateHash(`${OrderKey}${TotalCost}COP${secretKey}`));
+    boton.setAttribute('data-amount', TotalCost);
+    boton.setAttribute('data-order-id', OrderKey);
     boton.setAttribute('data-currency', 'COP');
     script.setAttribute('data-customer-data', this.userDataFormatted(cliente));
     boton.setAttribute('data-description', 'Compra en JoryanBags');
@@ -91,17 +92,13 @@ export class ConfirmacioncompraComponent {
     return userInfo.toString();
   }
 
-  async generateHash(cadena: string) {
-    // Codificar la cadena en UTF-8
+  async generateHash(cadena: string) {  
     const encodedText = new TextEncoder().encode(cadena);
-   
-    // Generar el hash SHA-256
+    
     const hashBuffer = await crypto.subtle.digest('SHA-256', encodedText);
-   
-    // Convertir el buffer del hash en un array de bytes
+      
     const hashArray = Array.from(new Uint8Array(hashBuffer));
-   
-    // Convertir cada byte en una representación hexadecimal y unirlos en una sola cadena
+       
     const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
    
     return hashHex;
