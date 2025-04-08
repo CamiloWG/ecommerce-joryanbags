@@ -830,3 +830,44 @@ AS
 	END
 go
 
+
+
+ALTER DATABASE [joryan_db] SET  READ_WRITE 
+GO
+
+
+SET IDENTITY_INSERT [dbo].[roles] ON 
+
+INSERT [dbo].[roles] ([rol_id], [name], [permissions]) VALUES (1, N'Cliente', 0)
+INSERT [dbo].[roles] ([rol_id], [name], [permissions]) VALUES (2, N'Operador', 0)
+INSERT [dbo].[roles] ([rol_id], [name], [permissions]) VALUES (3, N'Administrador', 0)
+SET IDENTITY_INSERT [dbo].[roles] OFF
+GO
+
+
+SET IDENTITY_INSERT [dbo].[users] ON 
+INSERT [dbo].[users] ([user_id], [email], [password], [full_name], [phone], [birthday], [date_creation], [address], [rol_id], [is_disabled]) VALUES (1, N'admin@admin.com', N'$2b$10$ImHCY/ZWQa2C0gqiyyEAX.XH3eDJF4ghPREH.r/oWxJajKhV1Ne7m', N'Administrador', N'41619127', CAST(N'2003-01-04' AS Date), CAST(N'2025-01-06T23:19:38.487' AS DateTime), N'Sin Direccion', 3, 0)
+SET IDENTITY_INSERT [dbo].[users] OFF
+GO
+
+SET IDENTITY_INSERT [dbo].[status] ON
+INSERT [dbo].[status] ([status_id], [name]) VALUES (1, N'Pendiente')
+INSERT [dbo].[status] ([status_id], [name]) VALUES (2, N'Aprobado')
+INSERT [dbo].[status] ([status_id], [name]) VALUES (3, N'Rechazado')
+INSERT [dbo].[status] ([status_id], [name]) VALUES (4, N'Cancelado')
+INSERT [dbo].[status] ([status_id], [name]) VALUES (5, N'Entregado')
+SET IDENTITY_INSERT [dbo].[status] OFF
+GO
+
+SET IDENTITY_INSERT [dbo].[products] ON
+INSERT INTO joryan_db.dbo.products (name,brand,price,stock,category_id,code,date_creation,image_url,is_disabled) VALUES
+	 (N'Bolso Rojo',N'Joryan',20000.00,5,1,NULL,'2025-03-28 20:40:32.56',N'http://localhost:4000/public/product_14.png',0),
+	 (N'Bolso Morado',N'Joryan',30000.00,5,1,NULL,'2025-03-28 21:21:24.867',N'http://localhost:4000/public/product_15.png',0),
+	 (N'Bolso Negro',N'Joryan',50000.00,5,1,NULL,'2025-03-28 21:22:11.523',N'http://localhost:4000/public/product_16.png',0),
+	 (N'Bolso Cafe',N'Joryan',43000.00,10,1,NULL,'2025-04-02 16:26:16.833',N'http://localhost:4000/public/product_1002.png',0),
+	 (N'Bolso Purpura',N'Joryan',36000.00,10,1,NULL,'2025-04-02 16:27:05.69',N'http://localhost:4000/public/product_1003.png',0)
+
+SET IDENTITY_INSERT [dbo].[products] OFF
+GO
+
+
