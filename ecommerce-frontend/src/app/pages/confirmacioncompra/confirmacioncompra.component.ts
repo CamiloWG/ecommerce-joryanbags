@@ -73,8 +73,8 @@ export class ConfirmacioncompraComponent {
     boton.setAttribute('data-amount', TotalCost);
     boton.setAttribute('data-order-id', OrderKey);
     boton.setAttribute('data-currency', 'COP');
-    script.setAttribute('data-customer-data', this.userDataFormatted(cliente));
-    boton.setAttribute('data-description', 'Compra en JoryanBags');
+    boton.setAttribute('data-customer-data', this.userDataFormatted(cliente));
+    boton.setAttribute('data-description', 'Compra en JoryanBags\nBolso 1\nBolso 2');
     boton.setAttribute('data-redirect-url', 'http://localhost:4200/pago-exitoso');
     container.appendChild(boton);
   
@@ -89,7 +89,7 @@ export class ConfirmacioncompraComponent {
       documentNumber: data.cedula,
       documentType: 'CC'
     };
-    return userInfo.toString();
+    return JSON.stringify(userInfo);
   }
 
   async generateHash(cadena: string) {  

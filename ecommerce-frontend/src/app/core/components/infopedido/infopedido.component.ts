@@ -97,8 +97,13 @@ export class InfopedidoComponent {
       this.form.markAllAsTouched(); 
       return;
     }
-
-    this.orderService.setOrder(this.form.value);
+    const pedido = {
+      ...this.form.value,
+      nombreCompleto: this.usuario?.full_name,
+      telefono: this.usuario?.phone,
+      email: this.usuario?.email
+    };
+    this.orderService.setOrder(pedido);
     this.router.navigate(['/confirmacioncompra'])
   }
 
@@ -114,8 +119,12 @@ export class InfopedidoComponent {
   }
 
 
-  showOrderInfo(): void {
+  showOrderInfo(): void  {
     const pedido: RawOrder = this.orderService.getOrder();
+    if(pedido.cedula == undefined) {
+      this.router.navigate(['/carrito']);
+      return;
+    }
     this.form.patchValue({
       cedula: pedido.cedula,
       departamento: pedido.departamento,
