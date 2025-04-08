@@ -1,14 +1,90 @@
-
 USE [master]
 GO
-
+/****** Object:  Database [joryan_db]    Script Date: 8/04/2025 6:08:02 p. m. ******/
 CREATE DATABASE [joryan_db]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'joryan_db', FILENAME = N'/var/opt/mssql/data/joryan_db.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'joryan_db_log', FILENAME = N'/var/opt/mssql/data/joryan_db_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT, LEDGER = OFF
 GO
-
-
+ALTER DATABASE [joryan_db] SET COMPATIBILITY_LEVEL = 160
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [joryan_db].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [joryan_db] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [joryan_db] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [joryan_db] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [joryan_db] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [joryan_db] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [joryan_db] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [joryan_db] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [joryan_db] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [joryan_db] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [joryan_db] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [joryan_db] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [joryan_db] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [joryan_db] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [joryan_db] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [joryan_db] SET  ENABLE_BROKER 
+GO
+ALTER DATABASE [joryan_db] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [joryan_db] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [joryan_db] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [joryan_db] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [joryan_db] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [joryan_db] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [joryan_db] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [joryan_db] SET RECOVERY FULL 
+GO
+ALTER DATABASE [joryan_db] SET  MULTI_USER 
+GO
+ALTER DATABASE [joryan_db] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [joryan_db] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [joryan_db] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [joryan_db] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [joryan_db] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [joryan_db] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+GO
+EXEC sys.sp_db_vardecimal_storage_format N'joryan_db', N'ON'
+GO
+ALTER DATABASE [joryan_db] SET QUERY_STORE = ON
+GO
+ALTER DATABASE [joryan_db] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEANUP_POLICY = (STALE_QUERY_THRESHOLD_DAYS = 30), DATA_FLUSH_INTERVAL_SECONDS = 900, INTERVAL_LENGTH_MINUTES = 60, MAX_STORAGE_SIZE_MB = 1000, QUERY_CAPTURE_MODE = AUTO, SIZE_BASED_CLEANUP_MODE = AUTO, MAX_PLANS_PER_QUERY = 200, WAIT_STATS_CAPTURE_MODE = ON)
+GO
 USE [joryan_db]
 GO
-/****** Object:  Table [dbo].[products]    Script Date: 07/01/2025 15:34:27 ******/
+/****** Object:  Table [dbo].[products]    Script Date: 8/04/2025 6:08:02 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -30,7 +106,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  View [dbo].[ActiveAvailableProducts]    Script Date: 07/01/2025 15:34:27 ******/
+/****** Object:  View [dbo].[ActiveAvailableProducts]    Script Date: 8/04/2025 6:08:02 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -46,40 +122,7 @@ AS
 	FROM products 
 	WHERE is_disabled = 0 AND stock > 0
 GO
-/****** Object:  Table [dbo].[orders]    Script Date: 07/01/2025 15:34:27 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[orders](
-	[order_id] [int] IDENTITY(1,1) NOT NULL,
-	[user_id] [int] NULL,
-	[date_creation] [datetime] NULL,
-	[status_id] [int] NULL,
-	[total_price] [decimal](38, 0) NULL,
-	[address] [varchar](250) NULL,
-	[client_name] [varchar](50) NULL,
-	[client_phone] [varchar](8) NULL,
-	[details] [nvarchar](1) NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[order_id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  View [dbo].[TotalInAugust2024]    Script Date: 07/01/2025 15:34:27 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
--- dbo.TotalInAugust2024 source
-
-/* 
- * VISTA PARA GANANCIAS EN ORDENES ACEPTADAS DE AGOSTO DEL 2024 
-*/
-
-
-/****** Object:  Table [dbo].[order_products]    Script Date: 07/01/2025 15:34:27 ******/
+/****** Object:  Table [dbo].[order_products]    Script Date: 8/04/2025 6:08:02 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -96,7 +139,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  View [dbo].[TopTenProducts]    Script Date: 07/01/2025 15:34:27 ******/
+/****** Object:  View [dbo].[TopTenProducts]    Script Date: 8/04/2025 6:08:02 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -110,7 +153,29 @@ AS
 	GROUP BY p.product_id, p.name
 	ORDER BY total_quantity DESC
 GO
-/****** Object:  Table [dbo].[users]    Script Date: 07/01/2025 15:34:27 ******/
+/****** Object:  Table [dbo].[orders]    Script Date: 8/04/2025 6:08:02 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[orders](
+	[order_id] [int] IDENTITY(1,1) NOT NULL,
+	[user_id] [int] NULL,
+	[date_creation] [datetime] NULL,
+	[status_id] [int] NULL,
+	[total_price] [decimal](38, 0) NULL,
+	[address] [varchar](250) NULL,
+	[client_name] [varchar](50) NULL,
+	[client_phone] [varchar](8) NULL,
+	[details] [varchar](200) NULL,
+	[order_payment_id] [varchar](100) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[order_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[users]    Script Date: 8/04/2025 6:08:02 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -121,7 +186,6 @@ CREATE TABLE [dbo].[users](
 	[password] [varchar](255) NOT NULL,
 	[full_name] [varchar](50) NULL,
 	[phone] [varchar](8) NULL,
-	[birthday] [date] NULL,
 	[date_creation] [datetime] NULL,
 	[address] [varchar](250) NULL,
 	[rol_id] [int] NULL,
@@ -129,14 +193,10 @@ CREATE TABLE [dbo].[users](
 PRIMARY KEY CLUSTERED 
 (
 	[user_id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
-UNIQUE NONCLUSTERED 
-(
-	[email] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  View [dbo].[TopTenClients]    Script Date: 07/01/2025 15:34:27 ******/
+/****** Object:  View [dbo].[TopTenClients]    Script Date: 8/04/2025 6:08:02 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -152,7 +212,7 @@ AS
 	GROUP BY u.user_id, u.email, u.full_name
 	ORDER BY total_spend DESC
 GO
-/****** Object:  Table [dbo].[categories]    Script Date: 07/01/2025 15:34:27 ******/
+/****** Object:  Table [dbo].[categories]    Script Date: 8/04/2025 6:08:02 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -167,7 +227,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[roles]    Script Date: 07/01/2025 15:34:27 ******/
+/****** Object:  Table [dbo].[roles]    Script Date: 8/04/2025 6:08:02 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -182,7 +242,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[status]    Script Date: 07/01/2025 15:34:27 ******/
+/****** Object:  Table [dbo].[status]    Script Date: 8/04/2025 6:08:02 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -195,6 +255,63 @@ CREATE TABLE [dbo].[status](
 	[status_id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[categories] ON 
+
+INSERT [dbo].[categories] ([category_id], [name], [is_disabled]) VALUES (1, N'Bolsos Clasicos', 0)
+SET IDENTITY_INSERT [dbo].[categories] OFF
+GO
+SET IDENTITY_INSERT [dbo].[products] ON 
+
+INSERT [dbo].[products] ([product_id], [name], [brand], [price], [stock], [category_id], [code], [date_creation], [image_url], [is_disabled]) VALUES (1, N'Bolso Rojo', N'Joryan', CAST(30000.00 AS Decimal(10, 2)), 5, 1, NULL, CAST(N'2025-03-30T23:33:09.757' AS DateTime), N'http://localhost:4000/public/product_1.png', 0)
+INSERT [dbo].[products] ([product_id], [name], [brand], [price], [stock], [category_id], [code], [date_creation], [image_url], [is_disabled]) VALUES (2, N'Bolso Morado', N'Joryan', CAST(25000.00 AS Decimal(10, 2)), 2, 1, NULL, CAST(N'2025-03-31T00:10:21.987' AS DateTime), N'http://localhost:4000/public/product_2.png', 0)
+INSERT [dbo].[products] ([product_id], [name], [brand], [price], [stock], [category_id], [code], [date_creation], [image_url], [is_disabled]) VALUES (1002, N'Bolso Rojo', N'Joryan', CAST(20000.00 AS Decimal(10, 2)), 5, 1, NULL, CAST(N'2025-03-28T20:40:32.560' AS DateTime), N'http://localhost:4000/public/product_14.png', 0)
+INSERT [dbo].[products] ([product_id], [name], [brand], [price], [stock], [category_id], [code], [date_creation], [image_url], [is_disabled]) VALUES (1003, N'Bolso Morado', N'Joryan', CAST(30000.00 AS Decimal(10, 2)), 5, 1, NULL, CAST(N'2025-03-28T21:21:24.867' AS DateTime), N'http://localhost:4000/public/product_15.png', 0)
+INSERT [dbo].[products] ([product_id], [name], [brand], [price], [stock], [category_id], [code], [date_creation], [image_url], [is_disabled]) VALUES (1004, N'Bolso Negro', N'Joryan', CAST(50000.00 AS Decimal(10, 2)), 5, 1, NULL, CAST(N'2025-03-28T21:22:11.523' AS DateTime), N'http://localhost:4000/public/product_16.png', 0)
+INSERT [dbo].[products] ([product_id], [name], [brand], [price], [stock], [category_id], [code], [date_creation], [image_url], [is_disabled]) VALUES (1005, N'Bolso Cafe', N'Joryan', CAST(43000.00 AS Decimal(10, 2)), 10, 1, NULL, CAST(N'2025-04-02T16:26:16.833' AS DateTime), N'http://localhost:4000/public/product_1002.png', 0)
+INSERT [dbo].[products] ([product_id], [name], [brand], [price], [stock], [category_id], [code], [date_creation], [image_url], [is_disabled]) VALUES (1006, N'Bolso Purpura', N'Joryan', CAST(36000.00 AS Decimal(10, 2)), 10, 1, NULL, CAST(N'2025-04-02T16:27:05.690' AS DateTime), N'http://localhost:4000/public/product_1003.png', 0)
+SET IDENTITY_INSERT [dbo].[products] OFF
+GO
+SET IDENTITY_INSERT [dbo].[roles] ON 
+
+INSERT [dbo].[roles] ([rol_id], [name], [permissions]) VALUES (1, N'Cliente', 0)
+INSERT [dbo].[roles] ([rol_id], [name], [permissions]) VALUES (2, N'Operador', 0)
+INSERT [dbo].[roles] ([rol_id], [name], [permissions]) VALUES (3, N'Administrador', 0)
+SET IDENTITY_INSERT [dbo].[roles] OFF
+GO
+SET IDENTITY_INSERT [dbo].[status] ON 
+
+INSERT [dbo].[status] ([status_id], [name]) VALUES (1, N'Pendiente')
+INSERT [dbo].[status] ([status_id], [name]) VALUES (2, N'Aprobado')
+INSERT [dbo].[status] ([status_id], [name]) VALUES (3, N'Rechazado')
+INSERT [dbo].[status] ([status_id], [name]) VALUES (4, N'Cancelado')
+INSERT [dbo].[status] ([status_id], [name]) VALUES (5, N'Entregado')
+SET IDENTITY_INSERT [dbo].[status] OFF
+GO
+SET IDENTITY_INSERT [dbo].[users] ON 
+
+INSERT [dbo].[users] ([user_id], [email], [password], [full_name], [phone], [date_creation], [address], [rol_id], [is_disabled]) VALUES (1, N'admin@admin.com', N'$2b$10$ImHCY/ZWQa2C0gqiyyEAX.XH3eDJF4ghPREH.r/oWxJajKhV1Ne7m', N'Administrador', N'41619127', CAST(N'2025-01-06T23:19:38.487' AS DateTime), N'Dirección nueva', 3, 0)
+INSERT [dbo].[users] ([user_id], [email], [password], [full_name], [phone], [date_creation], [address], [rol_id], [is_disabled]) VALUES (1007, N'asdas@asdasd.com', N'$2b$10$natwYasgwMBtyslr8NomxeUADGjzzdjrT8P/HVvUEv1.sBwxsOTkm', N'sadasda dasasdas', N'31257964', CAST(N'2025-04-05T21:46:45.193' AS DateTime), N'Sin dirección', 1, 0)
+INSERT [dbo].[users] ([user_id], [email], [password], [full_name], [phone], [date_creation], [address], [rol_id], [is_disabled]) VALUES (1008, N'asdasdas@asdasd.com', N'$2b$10$Pji1bXK43HJplJ7kkb5Due9lHZNk0Ki2s/TkwfSnhPhpZc/NjaLP6', N'asdasd asdasdas', N'31257964', CAST(N'2025-04-05T21:48:31.077' AS DateTime), N'Sin dirección', 1, 0)
+INSERT [dbo].[users] ([user_id], [email], [password], [full_name], [phone], [date_creation], [address], [rol_id], [is_disabled]) VALUES (1009, N'fasdd@aac.com', N'$2b$10$y4ufNYEVAIvmKBvvvAhe4e79Vh3zJZ4/hZullViymUp3GFw2nlyTy', N'dfasdfasd fsadfasd', N'31257964', CAST(N'2025-04-05T21:48:53.617' AS DateTime), N'Sin dirección', 1, 0)
+INSERT [dbo].[users] ([user_id], [email], [password], [full_name], [phone], [date_creation], [address], [rol_id], [is_disabled]) VALUES (1010, N'fasdd@aac.awsd', N'$2b$10$CsihYo26OdoJLJ.u32UWceRwZX6BYFWJTjn0auIAuzn3PjOhrujiG', N'asdasd asdsad', N'31257964', CAST(N'2025-04-05T22:23:15.217' AS DateTime), N'Sin dirección', 1, 0)
+SET IDENTITY_INSERT [dbo].[users] OFF
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [order_pay_unique]    Script Date: 8/04/2025 6:08:02 p. m. ******/
+ALTER TABLE [dbo].[orders] ADD  CONSTRAINT [order_pay_unique] UNIQUE NONCLUSTERED 
+(
+	[order_payment_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [UQ__users__AB6E6164908C714F]    Script Date: 8/04/2025 6:08:02 p. m. ******/
+ALTER TABLE [dbo].[users] ADD UNIQUE NONCLUSTERED 
+(
+	[email] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 GO
 ALTER TABLE [dbo].[categories] ADD  DEFAULT ((0)) FOR [is_disabled]
 GO
@@ -217,8 +334,83 @@ GO
 ALTER TABLE [dbo].[order_products]  WITH NOCHECK ADD FOREIGN KEY([order_id])
 REFERENCES [dbo].[orders] ([order_id])
 GO
+ALTER TABLE [dbo].[order_products]  WITH NOCHECK ADD FOREIGN KEY([order_id])
+REFERENCES [dbo].[orders] ([order_id])
+GO
+ALTER TABLE [dbo].[order_products]  WITH NOCHECK ADD FOREIGN KEY([order_id])
+REFERENCES [dbo].[orders] ([order_id])
+GO
+ALTER TABLE [dbo].[order_products]  WITH NOCHECK ADD FOREIGN KEY([order_id])
+REFERENCES [dbo].[orders] ([order_id])
+GO
+ALTER TABLE [dbo].[order_products]  WITH NOCHECK ADD FOREIGN KEY([order_id])
+REFERENCES [dbo].[orders] ([order_id])
+GO
+ALTER TABLE [dbo].[order_products]  WITH NOCHECK ADD FOREIGN KEY([order_id])
+REFERENCES [dbo].[orders] ([order_id])
+GO
 ALTER TABLE [dbo].[order_products]  WITH NOCHECK ADD FOREIGN KEY([product_id])
 REFERENCES [dbo].[products] ([product_id])
+GO
+ALTER TABLE [dbo].[order_products]  WITH NOCHECK ADD FOREIGN KEY([product_id])
+REFERENCES [dbo].[products] ([product_id])
+GO
+ALTER TABLE [dbo].[order_products]  WITH NOCHECK ADD FOREIGN KEY([product_id])
+REFERENCES [dbo].[products] ([product_id])
+GO
+ALTER TABLE [dbo].[order_products]  WITH NOCHECK ADD FOREIGN KEY([product_id])
+REFERENCES [dbo].[products] ([product_id])
+GO
+ALTER TABLE [dbo].[order_products]  WITH NOCHECK ADD FOREIGN KEY([product_id])
+REFERENCES [dbo].[products] ([product_id])
+GO
+ALTER TABLE [dbo].[order_products]  WITH NOCHECK ADD FOREIGN KEY([product_id])
+REFERENCES [dbo].[products] ([product_id])
+GO
+ALTER TABLE [dbo].[orders]  WITH NOCHECK ADD FOREIGN KEY([status_id])
+REFERENCES [dbo].[status] ([status_id])
+GO
+ALTER TABLE [dbo].[orders]  WITH NOCHECK ADD FOREIGN KEY([status_id])
+REFERENCES [dbo].[status] ([status_id])
+GO
+ALTER TABLE [dbo].[orders]  WITH NOCHECK ADD FOREIGN KEY([status_id])
+REFERENCES [dbo].[status] ([status_id])
+GO
+ALTER TABLE [dbo].[orders]  WITH NOCHECK ADD FOREIGN KEY([status_id])
+REFERENCES [dbo].[status] ([status_id])
+GO
+ALTER TABLE [dbo].[orders]  WITH NOCHECK ADD FOREIGN KEY([status_id])
+REFERENCES [dbo].[status] ([status_id])
+GO
+ALTER TABLE [dbo].[orders]  WITH NOCHECK ADD FOREIGN KEY([status_id])
+REFERENCES [dbo].[status] ([status_id])
+GO
+ALTER TABLE [dbo].[orders]  WITH NOCHECK ADD FOREIGN KEY([status_id])
+REFERENCES [dbo].[status] ([status_id])
+GO
+ALTER TABLE [dbo].[orders]  WITH NOCHECK ADD FOREIGN KEY([status_id])
+REFERENCES [dbo].[status] ([status_id])
+GO
+ALTER TABLE [dbo].[orders]  WITH NOCHECK ADD FOREIGN KEY([status_id])
+REFERENCES [dbo].[status] ([status_id])
+GO
+ALTER TABLE [dbo].[orders]  WITH NOCHECK ADD FOREIGN KEY([status_id])
+REFERENCES [dbo].[status] ([status_id])
+GO
+ALTER TABLE [dbo].[orders]  WITH NOCHECK ADD FOREIGN KEY([status_id])
+REFERENCES [dbo].[status] ([status_id])
+GO
+ALTER TABLE [dbo].[orders]  WITH NOCHECK ADD FOREIGN KEY([status_id])
+REFERENCES [dbo].[status] ([status_id])
+GO
+ALTER TABLE [dbo].[orders]  WITH NOCHECK ADD FOREIGN KEY([status_id])
+REFERENCES [dbo].[status] ([status_id])
+GO
+ALTER TABLE [dbo].[orders]  WITH NOCHECK ADD FOREIGN KEY([status_id])
+REFERENCES [dbo].[status] ([status_id])
+GO
+ALTER TABLE [dbo].[orders]  WITH NOCHECK ADD FOREIGN KEY([status_id])
+REFERENCES [dbo].[status] ([status_id])
 GO
 ALTER TABLE [dbo].[orders]  WITH NOCHECK ADD FOREIGN KEY([status_id])
 REFERENCES [dbo].[status] ([status_id])
@@ -232,13 +424,58 @@ GO
 ALTER TABLE [dbo].[orders]  WITH NOCHECK ADD FOREIGN KEY([user_id])
 REFERENCES [dbo].[users] ([user_id])
 GO
+ALTER TABLE [dbo].[orders]  WITH NOCHECK ADD FOREIGN KEY([user_id])
+REFERENCES [dbo].[users] ([user_id])
+GO
+ALTER TABLE [dbo].[orders]  WITH NOCHECK ADD FOREIGN KEY([user_id])
+REFERENCES [dbo].[users] ([user_id])
+GO
+ALTER TABLE [dbo].[orders]  WITH NOCHECK ADD FOREIGN KEY([user_id])
+REFERENCES [dbo].[users] ([user_id])
+GO
+ALTER TABLE [dbo].[orders]  WITH NOCHECK ADD FOREIGN KEY([user_id])
+REFERENCES [dbo].[users] ([user_id])
+GO
+ALTER TABLE [dbo].[orders]  WITH NOCHECK ADD FOREIGN KEY([user_id])
+REFERENCES [dbo].[users] ([user_id])
+GO
+ALTER TABLE [dbo].[products]  WITH NOCHECK ADD FOREIGN KEY([category_id])
+REFERENCES [dbo].[categories] ([category_id])
+GO
+ALTER TABLE [dbo].[products]  WITH NOCHECK ADD FOREIGN KEY([category_id])
+REFERENCES [dbo].[categories] ([category_id])
+GO
+ALTER TABLE [dbo].[products]  WITH NOCHECK ADD FOREIGN KEY([category_id])
+REFERENCES [dbo].[categories] ([category_id])
+GO
+ALTER TABLE [dbo].[products]  WITH NOCHECK ADD FOREIGN KEY([category_id])
+REFERENCES [dbo].[categories] ([category_id])
+GO
+ALTER TABLE [dbo].[products]  WITH NOCHECK ADD FOREIGN KEY([category_id])
+REFERENCES [dbo].[categories] ([category_id])
+GO
 ALTER TABLE [dbo].[products]  WITH NOCHECK ADD FOREIGN KEY([category_id])
 REFERENCES [dbo].[categories] ([category_id])
 GO
 ALTER TABLE [dbo].[users]  WITH NOCHECK ADD FOREIGN KEY([rol_id])
 REFERENCES [dbo].[roles] ([rol_id])
 GO
-/****** Object:  StoredProcedure [dbo].[CheckProductStock]    Script Date: 07/01/2025 15:34:27 ******/
+ALTER TABLE [dbo].[users]  WITH NOCHECK ADD FOREIGN KEY([rol_id])
+REFERENCES [dbo].[roles] ([rol_id])
+GO
+ALTER TABLE [dbo].[users]  WITH NOCHECK ADD FOREIGN KEY([rol_id])
+REFERENCES [dbo].[roles] ([rol_id])
+GO
+ALTER TABLE [dbo].[users]  WITH NOCHECK ADD FOREIGN KEY([rol_id])
+REFERENCES [dbo].[roles] ([rol_id])
+GO
+ALTER TABLE [dbo].[users]  WITH NOCHECK ADD FOREIGN KEY([rol_id])
+REFERENCES [dbo].[roles] ([rol_id])
+GO
+ALTER TABLE [dbo].[users]  WITH NOCHECK ADD FOREIGN KEY([rol_id])
+REFERENCES [dbo].[roles] ([rol_id])
+GO
+/****** Object:  StoredProcedure [dbo].[CheckProductStock]    Script Date: 8/04/2025 6:08:02 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -268,7 +505,7 @@ AS
 	END
 	
 GO
-/****** Object:  StoredProcedure [dbo].[CreateOrder]    Script Date: 07/01/2025 15:34:27 ******/
+/****** Object:  StoredProcedure [dbo].[CreateOrder]    Script Date: 8/04/2025 6:08:02 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -282,8 +519,10 @@ GO
  * 
 */
 
-CREATE PROCEDURE [dbo].[CreateOrder]
-	@user_id int
+CREATE   PROCEDURE [dbo].[CreateOrder]
+	@user_id int,
+	@payment_id varchar(100),
+	@detalles varchar(200)
 AS
 	BEGIN
 		DECLARE @order_id int
@@ -300,14 +539,18 @@ AS
 			date_creation,
 			address,
 			client_name,
-			client_phone
+			client_phone,
+			details,
+			order_payment_id
 		)
 		VALUES (
 			@user_id,
 			GETDATE(),
 			@address,
 			@client_name,
-			@client_phone
+			@client_phone,
+			@detalles,
+			@payment_id
 		)
 
 		SET @order_id = SCOPE_IDENTITY()
@@ -316,7 +559,7 @@ AS
 		
 	END
 GO
-/****** Object:  StoredProcedure [dbo].[CreateOrderProducts]    Script Date: 07/01/2025 15:34:27 ******/
+/****** Object:  StoredProcedure [dbo].[CreateOrderProducts]    Script Date: 8/04/2025 6:08:02 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -369,7 +612,7 @@ AS
 		
 	END
 GO
-/****** Object:  StoredProcedure [dbo].[CreateProduct]    Script Date: 07/01/2025 15:34:27 ******/
+/****** Object:  StoredProcedure [dbo].[CreateProduct]    Script Date: 8/04/2025 6:08:02 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -423,7 +666,7 @@ AS
 		SELECT * FROM products WHERE product_id = @product_id
 	END
 GO
-/****** Object:  StoredProcedure [dbo].[CreateProductCategory]    Script Date: 07/01/2025 15:34:27 ******/
+/****** Object:  StoredProcedure [dbo].[CreateProductCategory]    Script Date: 8/04/2025 6:08:02 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -454,7 +697,7 @@ AS
 		SELECT * FROM categories WHERE category_id = @category_id
 	END
 GO
-/****** Object:  StoredProcedure [dbo].[CreateUser]    Script Date: 07/01/2025 15:34:27 ******/
+/****** Object:  StoredProcedure [dbo].[CreateUser]    Script Date: 8/04/2025 6:08:02 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -473,12 +716,11 @@ GO
  * 
 */
 
-CREATE PROCEDURE [dbo].[CreateUser]
+CREATE   PROCEDURE [dbo].[CreateUser]
 	@email varchar(50),
 	@password varchar(255),
 	@full_name varchar(50),
 	@phone varchar(8),
-	@birthday datetime,
 	@rol_id int,
 	@address varchar(250)
 AS
@@ -489,7 +731,6 @@ AS
 			password,
 			full_name,
 			phone,
-			birthday,
 			date_creation,
 			rol_id,
 			address
@@ -499,7 +740,6 @@ AS
 			@password,
 			@full_name,
 			@phone,
-			@birthday,
 			GETDATE(),
 			@rol_id,
 			@address
@@ -511,7 +751,7 @@ AS
 	END
 RETURN 0
 GO
-/****** Object:  StoredProcedure [dbo].[LoadAllProducts]    Script Date: 07/01/2025 15:34:27 ******/
+/****** Object:  StoredProcedure [dbo].[LoadAllProducts]    Script Date: 8/04/2025 6:08:02 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -541,12 +781,12 @@ AS
 	END
 	
 GO
-/****** Object:  StoredProcedure [dbo].[LoadOrder]    Script Date: 07/01/2025 15:34:27 ******/
+/****** Object:  StoredProcedure [dbo].[LoadOrder]    Script Date: 8/04/2025 6:08:02 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROCEDURE [dbo].[LoadOrder]
+CREATE   PROCEDURE [dbo].[LoadOrder]
 
 /* 
  * PROCEDIMIENTO PARA CARGAR UNA ORDEN
@@ -559,7 +799,7 @@ CREATE PROCEDURE [dbo].[LoadOrder]
 
 AS
 	BEGIN
-		SELECT o.order_id, o.user_id, o.client_name, o.client_phone,o.date_creation, o.address, o.total_price, o.status_id, s.name
+		SELECT o.order_id, o.user_id, o.client_name, o.client_phone,o.date_creation, o.address, o.total_price, o.details, o.status_id, s.name
 		FROM orders o 
 		INNER JOIN status s
 		ON o.status_id = s.status_id
@@ -567,7 +807,7 @@ AS
 		WHERE o.order_id = @order_id
 	END
 GO
-/****** Object:  StoredProcedure [dbo].[LoadOrderDetailsByMaster]    Script Date: 07/01/2025 15:34:27 ******/
+/****** Object:  StoredProcedure [dbo].[LoadOrderDetailsByMaster]    Script Date: 8/04/2025 6:08:02 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -592,12 +832,12 @@ AS
 		WHERE op.order_id = @order_id
 	END
 GO
-/****** Object:  StoredProcedure [dbo].[LoadOrders]    Script Date: 07/01/2025 15:34:27 ******/
+/****** Object:  StoredProcedure [dbo].[LoadOrders]    Script Date: 8/04/2025 6:08:02 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROCEDURE [dbo].[LoadOrders]
+CREATE   PROCEDURE [dbo].[LoadOrders]
 
 /* 
  * PROCEDIMIENTO PARA CARGAR TODAS LAS ORDENES Y EL NOMBRE DEL CLIENTE
@@ -610,7 +850,7 @@ CREATE PROCEDURE [dbo].[LoadOrders]
 AS
 	BEGIN
 		
-		SELECT o.order_id, o.user_id, u.full_name, o.date_creation, o.address, o.total_price, o.status_id, s.name
+		SELECT o.order_id, o.user_id, o.client_name, o.client_phone,o.date_creation, o.address, o.total_price, o.details, o.status_id, s.name
 		FROM orders o 
 		INNER JOIN users u 
 		ON o.user_id = u.user_id
@@ -618,12 +858,12 @@ AS
 		ON o.status_id = s.status_id
 	END
 GO
-/****** Object:  StoredProcedure [dbo].[LoadOrdersByUser]    Script Date: 07/01/2025 15:34:27 ******/
+/****** Object:  StoredProcedure [dbo].[LoadOrdersByUser]    Script Date: 8/04/2025 6:08:02 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROCEDURE [dbo].[LoadOrdersByUser]
+CREATE   PROCEDURE [dbo].[LoadOrdersByUser]
 
 /* 
  * PROCEDIMIENTO PARA CARGAR TODAS LAS ORDENES DEL CLIENTE
@@ -634,14 +874,14 @@ CREATE PROCEDURE [dbo].[LoadOrdersByUser]
 @user_id int
 AS
 	BEGIN
-		SELECT o.order_id, o.date_creation, o.total_price, o.status_id, s.name
+		SELECT o.order_id, o.user_id, o.client_name, o.client_phone,o.date_creation, o.address, o.total_price, o.details, o.status_id, s.name
 		FROM orders o 
 		INNER JOIN status s
 		ON o.status_id = s.status_id
 		WHERE user_id = @user_id
 	END
 GO
-/****** Object:  StoredProcedure [dbo].[LoadProductByCode]    Script Date: 07/01/2025 15:34:27 ******/
+/****** Object:  StoredProcedure [dbo].[LoadProductByCode]    Script Date: 8/04/2025 6:08:02 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -663,7 +903,7 @@ AS
 	END
 	
 GO
-/****** Object:  StoredProcedure [dbo].[LoadProducts]    Script Date: 07/01/2025 15:34:27 ******/
+/****** Object:  StoredProcedure [dbo].[LoadProducts]    Script Date: 8/04/2025 6:08:02 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -703,7 +943,7 @@ AS
 	END
 	
 GO
-/****** Object:  StoredProcedure [dbo].[LoadTopProducts]    Script Date: 07/01/2025 15:34:27 ******/
+/****** Object:  StoredProcedure [dbo].[LoadTopProducts]    Script Date: 8/04/2025 6:08:02 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -737,7 +977,7 @@ AS
 	END
 	
 GO
-/****** Object:  StoredProcedure [dbo].[LoadUserData]    Script Date: 07/01/2025 15:34:27 ******/
+/****** Object:  StoredProcedure [dbo].[LoadUserData]    Script Date: 8/04/2025 6:08:02 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -758,7 +998,7 @@ AS
 	END
 	
 GO
-/****** Object:  StoredProcedure [dbo].[LoadUserPassword]    Script Date: 07/01/2025 15:34:27 ******/
+/****** Object:  StoredProcedure [dbo].[LoadUserPassword]    Script Date: 8/04/2025 6:08:02 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -779,12 +1019,12 @@ AS
 	END
 	
 GO
-/****** Object:  StoredProcedure [dbo].[LoadUsersData]    Script Date: 07/01/2025 15:34:27 ******/
+/****** Object:  StoredProcedure [dbo].[LoadUsersData]    Script Date: 8/04/2025 6:08:02 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROCEDURE [dbo].[LoadUsersData]
+CREATE   PROCEDURE [dbo].[LoadUsersData]
 /* 
  * PROCEDIMIENTO PARA CARGAR TODOS LOS USUARIOS
  *  
@@ -792,11 +1032,11 @@ CREATE PROCEDURE [dbo].[LoadUsersData]
 */
 AS 
 	BEGIN
-		SELECT user_id, email, full_name, rol_id, phone, address, birthday, date_creation, is_disabled FROM users
+		SELECT user_id, email, full_name, rol_id, phone, address, date_creation, is_disabled FROM users
 	END
 	
 GO
-/****** Object:  StoredProcedure [dbo].[UpdateCategory]    Script Date: 07/01/2025 15:34:27 ******/
+/****** Object:  StoredProcedure [dbo].[UpdateCategory]    Script Date: 8/04/2025 6:08:02 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -824,7 +1064,7 @@ AS
 	END
 
 GO
-/****** Object:  StoredProcedure [dbo].[UpdateCategoryStatus]    Script Date: 07/01/2025 15:34:27 ******/
+/****** Object:  StoredProcedure [dbo].[UpdateCategoryStatus]    Script Date: 8/04/2025 6:08:02 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -852,7 +1092,7 @@ AS
 	END
 
 GO
-/****** Object:  StoredProcedure [dbo].[UpdateOrderProducts]    Script Date: 07/01/2025 15:34:27 ******/
+/****** Object:  StoredProcedure [dbo].[UpdateOrderProducts]    Script Date: 8/04/2025 6:08:02 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -911,7 +1151,7 @@ AS
 		SELECT * FROM orders WHERE order_id = @order_id
 	END
 GO
-/****** Object:  StoredProcedure [dbo].[UpdateOrderStatus]    Script Date: 07/01/2025 15:34:27 ******/
+/****** Object:  StoredProcedure [dbo].[UpdateOrderStatus]    Script Date: 8/04/2025 6:08:02 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -953,7 +1193,7 @@ AS
 		EXEC LoadOrder @order_id = @order_id
 	END
 GO
-/****** Object:  StoredProcedure [dbo].[UpdateProduct]    Script Date: 07/01/2025 15:34:27 ******/
+/****** Object:  StoredProcedure [dbo].[UpdateProduct]    Script Date: 8/04/2025 6:08:02 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -999,7 +1239,7 @@ AS
 	END
 
 GO
-/****** Object:  StoredProcedure [dbo].[UpdateProductStatus]    Script Date: 07/01/2025 15:34:27 ******/
+/****** Object:  StoredProcedure [dbo].[UpdateProductStatus]    Script Date: 8/04/2025 6:08:02 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1027,12 +1267,12 @@ AS
 	END
 
 GO
-/****** Object:  StoredProcedure [dbo].[UpdateUser]    Script Date: 07/01/2025 15:34:27 ******/
+/****** Object:  StoredProcedure [dbo].[UpdateUser]    Script Date: 8/04/2025 6:08:02 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROCEDURE [dbo].[UpdateUser]
+CREATE   PROCEDURE [dbo].[UpdateUser]
 
 /* 
  * PROCEDIMIENTO PARA ACTUALIZAR UN USUARIO
@@ -1051,8 +1291,7 @@ CREATE PROCEDURE [dbo].[UpdateUser]
 	
 	@email VARCHAR(100) = NULL,
 	@full_name VARCHAR(50) = NULL,
-	@phone VARCHAR(8) = NULL,
-	@birthday DATE = NULL,
+	@phone VARCHAR(8) = NULL,	
 	@address VARCHAR(250) = NULL,
 	@is_disabled BIT = NULL,
 	@rol_id INT = NULL
@@ -1064,8 +1303,7 @@ AS
 		SET 
 			email = COALESCE(@email, email),
 			full_name = COALESCE(@full_name, full_name),
-			phone = COALESCE(@phone, phone),
-			birthday = COALESCE(@birthday, birthday),
+			phone = COALESCE(@phone, phone),			
 			address = COALESCE(@address, address),
 			is_disabled = COALESCE(@is_disabled, is_disabled),
 			rol_id = COALESCE(@rol_id, rol_id)
@@ -1074,30 +1312,7 @@ AS
 		SELECT * FROM users WHERE user_id = @user_id
 	END
 GO
-
+USE [master]
+GO
 ALTER DATABASE [joryan_db] SET  READ_WRITE 
-GO
-
-
-SET IDENTITY_INSERT [dbo].[roles] ON 
-
-INSERT [dbo].[roles] ([rol_id], [name], [permissions]) VALUES (1, N'Cliente', 0)
-INSERT [dbo].[roles] ([rol_id], [name], [permissions]) VALUES (2, N'Operador', 0)
-INSERT [dbo].[roles] ([rol_id], [name], [permissions]) VALUES (3, N'Administrador', 0)
-SET IDENTITY_INSERT [dbo].[roles] OFF
-GO
-
-
-SET IDENTITY_INSERT [dbo].[users] ON 
-INSERT [dbo].[users] ([user_id], [email], [password], [full_name], [phone], [birthday], [date_creation], [address], [rol_id], [is_disabled]) VALUES (1, N'admin@admin.com', N'$2b$10$ImHCY/ZWQa2C0gqiyyEAX.XH3eDJF4ghPREH.r/oWxJajKhV1Ne7m', N'Administrador', N'41619127', CAST(N'2003-01-04' AS Date), CAST(N'2025-01-06T23:19:38.487' AS DateTime), N'Sin Direccion', 3, 0)
-SET IDENTITY_INSERT [dbo].[users] OFF
-GO
-
-SET IDENTITY_INSERT [dbo].[status] ON 
-INSERT [dbo].[status] ([status_id], [name]) VALUES (1, N'Pendiente')
-INSERT [dbo].[status] ([status_id], [name]) VALUES (2, N'Aprobado')
-INSERT [dbo].[status] ([status_id], [name]) VALUES (3, N'Rechazado')
-INSERT [dbo].[status] ([status_id], [name]) VALUES (4, N'Cancelado')
-INSERT [dbo].[status] ([status_id], [name]) VALUES (5, N'Entregado')
-SET IDENTITY_INSERT [dbo].[status] OFF
 GO
