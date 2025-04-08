@@ -10,6 +10,7 @@ import { AdminComponent } from './pages/admin/admin.component';
 import { UsuarioComponent } from './pages/usuario/usuario.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { AuthGuard } from './core/guards/auth.guard';
+import { PaymentResultComponent } from './pages/payment-result/payment-result.component';
 
 
 export const routes: Routes = [
@@ -65,5 +66,10 @@ export const routes: Routes = [
         path: 'registro',
         title: 'Confirmacion | Joryan Bags',
         component: RegistroComponent 
+    },
+    {
+        path: 'payment-result',
+        title: 'Pago | Joryan Bags',
+        component: PaymentResultComponent
     }
 ];
