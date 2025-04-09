@@ -205,4 +205,31 @@ export class OrderController {
             console.error(error);
         }
     };
+
+    static webhookBold = async (req, res) => {
+        try {
+            const { type, data } = req.body;
+            let status = 1;
+            if (type === "SALE_APPROVED") {
+                status = 2;
+            } else if(type === 'SALE_REJECTED') {
+                status = 3;
+            } else {
+                return res.status(200).json({ message: "Evento ignorado." });
+            }
+    
+            const paymentReference = data?.metadata?.reference;
+            if (!paymentReference) {
+                return res.status(400).json({ error: "No se encontró el reference." });
+            }
+    
+            await OrderServices.updateStatusFromPaymentReference(paymentReference, status);
+    
+            res.status(200).json({ message: "Estado actualizado correctamente." });
+        } catch (error) {
+            console.error("Error en webhook:", error);
+            res.status(500).json({ error: "Error procesando el webhook." });
+        }
+    };
+    
 }

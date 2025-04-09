@@ -108,8 +108,6 @@ export class InfopedidoComponent {
       this.orderService.setOrder(pedido);
       const address: string = `${pedido.direccion} Barrio ${pedido.barrio} ${pedido.ciudad}, ${pedido.departamento} | ${pedido.informacionAdicional}`;
       this.userService.updateUserById(idUser, {address}).subscribe();
-      console.log(address);
-      
       this.router.navigate(['/confirmacioncompra'])
     }
     

@@ -7,6 +7,8 @@ import { authenticate } from "../middleware/auth.js";
 
 const router = Router();
 
+router.post("/payment", OrderController.webhookBold);
+
 router.use(authenticate);
 
 router.get("/earnings", OrderController.getEarnings);

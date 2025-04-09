@@ -53,6 +53,31 @@ export class OrderServices {
         return results;
     };
 
+    static updateStatusFromPaymentReference = async (paymentReference, status) => {        
+        const [orders] = await sequelize.query(
+            "SELECT order_id FROM orders WHERE order_payment_id = :paymentReference",
+            {
+                replacements: { paymentReference },
+            }
+        );
+    
+        if (!orders || orders.length === 0) {
+            throw new Error("No se encontró ninguna orden con ese paymentReference.");
+        }
+    
+        const order_id = orders[0].order_id;
+    
+        const [result] = await sequelize.query(
+            "EXECUTE UpdateOrderStatus :order_id, :status",
+            {
+                replacements: { order_id, status },
+            }
+        );
+    
+        return result;
+    };
+    
+
     static getStock = async (products) => {
         const stock = await Product.findAll({
             where: {

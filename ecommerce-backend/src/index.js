@@ -11,4 +11,6 @@ server.listen(port, () => {
             `Servidor iniciado en ${process.env.SERVER_URL}${port}`
         )
     );
+    console.log(process.env.DB_USER, process.env.DB_PASSWORD, process.env.DB_HOST);
+
 });
