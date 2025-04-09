@@ -9,6 +9,7 @@ import { OrderService } from '../../core/services/order.service';
 import { CartService } from '../../core/services/cart.service';
 import { RawOrder } from '../../core/interfaces/order.interface';
 import { environment } from '../../../environments/environment';
+import { AuthService } from '../../core/services/auth.service';
 
 interface BoldCheckout {
   load: () => void;
@@ -33,7 +34,8 @@ declare global {
 })
 export class ConfirmacioncompraComponent {
 
-  constructor(private orderService: OrderService, private cartService: CartService) { }
+  order_key: string = '';
+  constructor(private orderService: OrderService, private cartService: CartService, private authService: AuthService) { }
 
 
   ngAfterViewInit() {
@@ -45,7 +47,7 @@ export class ConfirmacioncompraComponent {
 
   async cargarBotonBold() {
     const cliente = this.orderService.getOrder();
-    const OrderKey = this.orderService.saveOrderLocal();
+    this.order_key = this.orderService.generateOrderUniqueKey();
     const TotalCost = this.cartService.getTotalCost().toString();
     const secretKey = 'h6zLQThK3fBAghlP8TWqEA';
   
@@ -70,15 +72,23 @@ export class ConfirmacioncompraComponent {
     const boton = document.createElement('script');
     boton.setAttribute('data-bold-button', 'dark-L');
     boton.setAttribute('data-api-key', 'dxzLd_YF_InRvzQTh2UIYl-C8eRsZM9wT1Wvb58Ycgs');
-    boton.setAttribute('data-integrity-signature', await this.generateHash(`${OrderKey}${TotalCost}COP${secretKey}`));
+    boton.setAttribute('data-integrity-signature', await this.generateHash(`${this.order_key}${TotalCost}COP${secretKey}`));
     boton.setAttribute('data-amount', TotalCost);
-    boton.setAttribute('data-order-id', OrderKey);
+    boton.setAttribute('data-order-id', this.order_key);
     boton.setAttribute('data-currency', 'COP');
     boton.setAttribute('data-customer-data', this.userDataFormatted(cliente));
     boton.setAttribute('data-description', 'Compra en JoryanBags\nBolso 1\nBolso 2');
     boton.setAttribute('data-redirection-url', `${environment.URL_APP}/payment-result/`);
     container.appendChild(boton);
   
+  }
+
+  crearPedido() {
+    const idUser = this.authService.getUserIdFromToken();
+    if(idUser) {
+      this.orderService.createOrder(idUser, this.order_key, this.orderService.getOrder().cedula, this.cartService.getCart()).subscribe();
+      this.cartService.clearCart();
+    }    
   }
 
   private userDataFormatted(data: RawOrder) {

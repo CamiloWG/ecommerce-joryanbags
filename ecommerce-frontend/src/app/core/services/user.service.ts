@@ -21,6 +21,8 @@ export class UserService {
 
   updateUserById(userId: number | string, body: any): Observable<User[]> {
     const updatedBody = { ...body, user_id: userId };
+    console.log(updatedBody);
+    
     return this.http.patch<User[]>(this.API_URL_UPDATE, updatedBody);
   }
 }

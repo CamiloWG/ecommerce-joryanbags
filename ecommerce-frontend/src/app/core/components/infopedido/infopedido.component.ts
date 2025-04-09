@@ -97,14 +97,22 @@ export class InfopedidoComponent {
       this.form.markAllAsTouched(); 
       return;
     }
-    const pedido = {
-      ...this.form.value,
-      nombreCompleto: this.usuario?.full_name,
-      telefono: this.usuario?.phone,
-      email: this.usuario?.email
-    };
-    this.orderService.setOrder(pedido);
-    this.router.navigate(['/confirmacioncompra'])
+    const idUser = this.authService.getUserIdFromToken();
+    if(idUser) {
+      const pedido = {
+        ...this.form.value,
+        nombreCompleto: this.usuario?.full_name,
+        telefono: this.usuario?.phone,
+        email: this.usuario?.email
+      };
+      this.orderService.setOrder(pedido);
+      const address: string = `${pedido.direccion} Barrio ${pedido.barrio} ${pedido.ciudad}, ${pedido.departamento} | ${pedido.informacionAdicional}`;
+      this.userService.updateUserById(idUser, {address}).subscribe();
+      console.log(address);
+      
+      this.router.navigate(['/confirmacioncompra'])
+    }
+    
   }
 
   campoInvalido(controlName: string): boolean {
