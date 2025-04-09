@@ -5,10 +5,12 @@ import { Portada } from '../../core/components/portada/portada.component';
 import { TopComprasComponent } from '../../core/components/top-compras/top-compras.component';
 import { Comentarios } from '../../core/components/Comentarios/Comentarios.component';
 import { FooterComponent } from '../../core/components/shared/footer/footer.component';
+import { LogoComponent } from '../../core/components/shared/logo/logo.component';
 
 @Component({
   selector: 'app-home',
   imports: [
+    LogoComponent,
     HeaderMenuComponent,
     CategoriasComponent,
     Portada,
