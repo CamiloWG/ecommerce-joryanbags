@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Product } from '../interfaces/product.interface';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -15,11 +15,23 @@ export class ProductListService {
   constructor(private http: HttpClient) { }
 
   GetProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.URL_API_GET); 
+    return this.http.get<Product[]>(this.URL_API_GET).pipe(
+      map(products => 
+        products.map(product => ({
+          ...product,
+          image_url: `${environment.URL_APP}${product.image_url}`
+        }))
+      )
+    );
   }
 
   GetProductById(id: string | number): Observable<Product> {
-    return this.http.get<Product>(`${this.URL_API_GET}/get/${id}`);
+    return this.http.get<Product>(`${this.URL_API_GET}/get/${id}`).pipe(
+      map(product => ({
+        ...product,
+        image_url: `${environment.URL_APP}${product.image_url}`
+      }))
+    );
   }
 
 
