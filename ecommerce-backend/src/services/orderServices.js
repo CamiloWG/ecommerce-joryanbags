@@ -63,9 +63,11 @@ export class OrderServices {
         return stock;
     };
 
-    static create = async (user_id) => {
-        const [order] = await sequelize.query("EXECUTE CreateOrder :user_id", {
-            replacements: { user_id },
+    static create = async (data) => {
+        console.log(data);
+        
+        const [order] = await sequelize.query("EXECUTE CreateOrder :user_id, :payment_id, :detalles", {
+            replacements: data,
         });
         return order;
     };
