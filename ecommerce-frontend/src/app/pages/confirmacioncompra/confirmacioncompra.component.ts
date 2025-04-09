@@ -10,6 +10,7 @@ import { CartService } from '../../core/services/cart.service';
 import { RawOrder } from '../../core/interfaces/order.interface';
 import { environment } from '../../../environments/environment';
 import { AuthService } from '../../core/services/auth.service';
+import * as CryptoJS from 'crypto-js';
 
 interface BoldCheckout {
   load: () => void;
@@ -104,12 +105,8 @@ export class ConfirmacioncompraComponent {
   }
 
   async generateHash(cadena: string) {    
-    const encoder = new TextEncoder();
-    const data = encoder.encode(cadena);
-    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-    return hashHex;
+    const hash = CryptoJS.SHA256(cadena).toString(CryptoJS.enc.Hex);
+    return hash;
   }
   
   
