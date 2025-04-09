@@ -10,7 +10,6 @@ import { CartService } from '../../core/services/cart.service';
 import { RawOrder } from '../../core/interfaces/order.interface';
 import { environment } from '../../../environments/environment';
 import { AuthService } from '../../core/services/auth.service';
-import { createHash } from 'crypto';
 
 interface BoldCheckout {
   load: () => void;
@@ -104,8 +103,20 @@ export class ConfirmacioncompraComponent {
     return JSON.stringify(userInfo);
   }
 
-  async generateHash(cadena: string) {  
-    return createHash('sha256').update(cadena).digest('hex');
+  async generateHash(cadena: string) {    
+    if (typeof window !== 'undefined' && window.crypto?.subtle) {
+      const encodedText = new TextEncoder().encode(cadena);
+      const hashBuffer = await window.crypto.subtle.digest('SHA-256', encodedText);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+  
+    if (typeof process !== 'undefined' && process.versions?.node) {
+      const { createHash } = await import('crypto');
+      return createHash('sha256').update(cadena).digest('hex');
+    }
+  
+    throw new Error('No se pudo generar el hash: entorno no compatible');
   }
   
   
