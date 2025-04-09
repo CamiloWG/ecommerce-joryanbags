@@ -2,14 +2,15 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../interfaces/user.interface';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private apiUrl = 'http://localhost:4000/api/users';
-  private API_URL_UPDATE = 'http://localhost:4000/api/users/update';
+  private apiUrl = `${environment.API_URL_BASE}/api/users`;
+  private API_URL_UPDATE = `${environment.API_URL_BASE}/api/users/update`;
 
   constructor(private http: HttpClient) { }
 

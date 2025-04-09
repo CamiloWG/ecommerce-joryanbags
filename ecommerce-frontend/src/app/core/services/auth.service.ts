@@ -2,14 +2,15 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TokenUser, User } from '../interfaces/user.interface';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private URL_API_REGISTER: string = "http://localhost:4000/api/auth/register";
-  private URL_API_LOGIN: string = "http://localhost:4000/api/auth/login";
+  private URL_API_REGISTER: string = `${environment.API_URL_BASE}/api/auth/register`;
+  private URL_API_LOGIN: string = `${environment.API_URL_BASE}/api/auth/login`;
   private TOKEN_KEY: string = 'JY_TKN';
 
   constructor(private http: HttpClient) {}

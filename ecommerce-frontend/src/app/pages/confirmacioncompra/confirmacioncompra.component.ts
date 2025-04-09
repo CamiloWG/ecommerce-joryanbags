@@ -8,6 +8,7 @@ import { InfopedidoComponent } from '../../core/components/infopedido/infopedido
 import { OrderService } from '../../core/services/order.service';
 import { CartService } from '../../core/services/cart.service';
 import { RawOrder } from '../../core/interfaces/order.interface';
+import { environment } from '../../../environments/environment';
 
 interface BoldCheckout {
   load: () => void;
@@ -75,7 +76,7 @@ export class ConfirmacioncompraComponent {
     boton.setAttribute('data-currency', 'COP');
     boton.setAttribute('data-customer-data', this.userDataFormatted(cliente));
     boton.setAttribute('data-description', 'Compra en JoryanBags\nBolso 1\nBolso 2');
-    boton.setAttribute('data-redirect-url', 'http://localhost:4200/pago-exitoso');
+    boton.setAttribute('data-redirection-url', `${environment.URL_APP}/payment-result/`);
     container.appendChild(boton);
   
   }
