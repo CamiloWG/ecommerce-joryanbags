@@ -19,7 +19,7 @@ export class ProductListService {
       map(products => 
         products.map(product => ({
           ...product,
-          image_url: `${environment.URL_APP}${product.image_url}`
+          image_url: `${environment.API_URL_BASE}${product.image_url}`
         }))
       )
     );
@@ -29,7 +29,7 @@ export class ProductListService {
     return this.http.get<Product>(`${this.URL_API_GET}/get/${id}`).pipe(
       map(product => ({
         ...product,
-        image_url: `${environment.URL_APP}${product.image_url}`
+        image_url: `${environment.API_URL_BASE}${product.image_url}`
       }))
     );
   }
