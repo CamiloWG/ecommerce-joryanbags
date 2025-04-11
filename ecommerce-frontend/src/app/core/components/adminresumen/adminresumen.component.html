@@ -1,0 +1,28 @@
+<div class="bg-white rounded-md p-6 w-full">
+    <!-- Subtítulo-->
+    <h3 class="font-bold mb-6 font-subheading text-left">Resumen</h3>
+  
+    <!-- Botones centrados y bien separados -->
+    <div class="flex justify-around text-center">
+      <!-- Botón Órdenes -->
+      <div class="flex flex-col items-center cursor-pointer" (click)="seleccionarResumen('ordenes')">
+        <img 
+          src="assets/icons/folder-filled.svg"
+          [ngClass]="{ 'opacity-100': resumenActivo === 'ordenes', 'opacity-40': resumenActivo !== 'ordenes' }"
+          class="w-10 h-10 mx-auto mb-2"
+        />
+        <span class="text-sm font-subheading text-gray-500">Órdenes</span>
+      </div>
+  
+      <!-- Botón Stock -->
+      <div class="flex flex-col items-center cursor-pointer" (click)="seleccionarResumen('stock')">
+        <img 
+          src="assets/icons/archive.svg"
+          [ngClass]="{ 'opacity-100': resumenActivo === 'stock', 'opacity-40': resumenActivo !== 'stock' }"
+          class="w-10 h-10 mx-auto mb-2"
+        />
+        <span class="text-sm font-subheading text-gray-500">Stock</span>
+      </div>
+    </div>
+  </div>
+  
