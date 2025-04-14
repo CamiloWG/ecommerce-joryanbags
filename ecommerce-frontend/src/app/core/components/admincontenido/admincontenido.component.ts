@@ -50,10 +50,11 @@ export class ContenidoResumenComponent {
   }
 
   seleccionarVistaStock(tipo: 'listado' | 'nuevo') {
-    this.vistaStock = tipo;
+    if(tipo === 'listado') this.productService.GetProducts().subscribe(data => this.productos = data);
+    this.vistaStock = tipo;    
   }
 
-  seleccionarVistaOrden(tipo: 'pendientes' | 'todas' | 'aprobadas') {
+  seleccionarVistaOrden(tipo: 'pendientes' | 'todas' | 'aprobadas') {    
     this.vistaOrden = tipo;
   }
 

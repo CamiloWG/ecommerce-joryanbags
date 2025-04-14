@@ -16,6 +16,7 @@ export class ProductComponent {
   @Input() titulo: string = "";
   @Input() stock: number = 1;
   @Input() categoria: string = "";
+  @Input() descripcion: string = '';
 
   @Output() buttonAddEvent = new EventEmitter<number>();
 

@@ -23,7 +23,7 @@
         <menu-categorias class="max-w-[275px]"></menu-categorias>
       </div>
       <div class="w-[80%] flex-shrink-0">
-        <app-product [titulo]="producto.name" [precio]="producto.price" [image]="producto.image_url" [stock]="producto.stock" [id]="producto.product_id" [categoria]="producto.category_name" (buttonAddEvent)="onAdd($event)"></app-product>  
+        <app-product [titulo]="producto.name" [precio]="producto.price" [image]="producto.image_url" [stock]="producto.stock" [id]="producto.product_id" [categoria]="producto.category_name" [descripcion]="producto.description" (buttonAddEvent)="onAdd($event)"></app-product>  
       </div>
     </section>
 
