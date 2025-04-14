@@ -1,22 +1,51 @@
-<div class="mx-auto w-[100%] self-stretch rounded-radius-200 border-border-default-default 
-    border-solid border-stroke-border box-border flex flex-row items-center justify-start flex-wrap 
-    content-start py-[22px] px-[23px] relative gap-space-600 min-w-[240px] ">
-    <img src="assets\images\image-2@2x.png" alt="" class="h-40 object-cover flex-shrink-0 ">    
-    <div class="flex-col flex-grow min-w-[50px] items-start">
-        <h2 class="font-subheading m-2">{{ titulo }}</h2>
-        <h3 class="font-subheading bg-black text-white px-3 py-1 rounded-full inline-block text-sm m-2">{{ estado }}</h3>
-        <p class="font-subheading text-gray-600 m-2">
-            {{ infoPedido }}
-        </p>
-    </div>
-    <div class="flex flex-col sm:flex-row gap-2 min-w-[200px] items-center">
-        <button class="w-full font-[550] py-2 px-4 bg-background-brand-default text-text-brand-on-brand font-heading rounded-lg 
-        border-border-neutral-secondary border-solid border-stroke-border hover:bg-white hover:text-black transition text-white cursor-pointer">
-            Ver compra
-        </button>
-        <button class="w-full font-[550] py-2 px-4 bg-background-brand-default text-text-brand-on-brand font-heading rounded-lg 
-        border-border-neutral-secondary border-solid border-stroke-border hover:bg-white hover:text-black transition text-white cursor-pointer">
-            Dar Valoración
-        </button>
-    </div>
+<div
+  class="mx-auto w-full self-stretch rounded-radius-200 border border-border-default-default 
+         border-solid box-border flex flex-row items-center justify-start flex-wrap 
+         content-start py-6 px-6 relative gap-6 min-w-[240px] bg-white shadow-sm transition">
+
+  <!-- Imagen del producto -->
+  <img src="assets/images/logo-icono.png" alt="Imagen del producto" class="h-40 w-40 object-cover flex-shrink-0 rounded-lg" />
+
+  <!-- Información del pedido -->
+  <div class="flex flex-col flex-grow min-w-[50px] items-start space-y-1">
+    <h2 class="font-subheading text-lg m-2">Pedido #{{ pedido.order_id }}</h2>
+    <h3 class="font-subheading bg-black text-white px-3 py-1 rounded-full inline-block text-sm m-2">
+      {{ pedido.name }}
+    </h3>
+    <p class="font-subheading text-gray-600 m-2">Fecha: {{ pedido.date_creation | date:'dd/MM/yyyy' }}</p>
+    <p class="font-subheading text-gray-600 m-2 max-w-[50%]">Dirección: {{ pedido.address }}</p>
+    <p class="font-subheading text-gray-600 m-2">Precio total: ${{ pedido.total_price + 18000 }}</p>
+  </div>
+
+  <!-- Botones -->
+  <div class="flex flex-col sm:flex-row gap-2 min-w-[200px] items-center">
+    <button
+      (click)="toggleDetalles()"
+      class="w-full font-[550] py-2 px-4 bg-black text-white font-subheading rounded-lg 
+             border border-border-neutral-secondary hover:bg-white hover:text-black transition cursor-pointer">
+      {{ mostrarDetalles ? 'Ocultar detalles' : 'Ver compra' }}
+    </button>
+
+    <button class="w-full font-[550] py-2 px-4 bg-black text-white font-subheading rounded-lg 
+                   border border-border-neutral-secondary hover:bg-white hover:text-black transition cursor-pointer">
+      Dar Valoración
+    </button>
+  </div>
+
+  <!-- Detalles del pedido -->
+  <div *ngIf="mostrarDetalles" class="w-full mt-4 rounded-radius-200 border border-border-default-default 
+  border-solid box-border p-4 rounded-lg col-span-full">
+    <h4 class="font-subheading font-bold mb-2">Productos del pedido:</h4>
+
+    <div *ngIf="cargandoDetalles" class="font-subheading text-gray-600 italic">Cargando detalles...</div>
+
+    <ul *ngIf="!cargandoDetalles" class="space-y-2">
+      <li *ngFor="let item of detalles" class="font-subheading text-gray-700">
+        {{ item.name }} – Cantidad: {{ item.quantity }} – Subtotal: ${{ item.subtotal }}        
+      </li>
+      <li class="font-subheading text-gray-700">
+        Envio - Subtotal: $18000
+      </li>
+    </ul>
+  </div>
 </div>

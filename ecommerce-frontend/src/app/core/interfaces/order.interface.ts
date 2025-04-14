@@ -24,3 +24,10 @@ export interface Order {
     status_id: number,
     name: string
 }
+
+export interface OrderDetails {
+    order_details_id: number,
+    name: string,
+    quantity: number,
+    subtotal: number
+}
