@@ -1,38 +1,44 @@
-<header class="self-stretch flex flex-row items-start justify-start py-0 pl-[71px] pr-[79px] box-border max-w-full text-left text-body-size-medium text-darkslategray font-subheading mq750:pl-[35px] mq750:pr-[39px] mq750:box-border" (ngStyle)="frameHeaderStyle">
-    <div class="flex-1 flex flex-col items-end justify-start gap-[47px] max-w-full mq750:gap-[23px]" (ngStyle)="frameDivStyle">
-      <div class="self-stretch h-px relative border-background-brand-secondary border-solid border-t-[1px] box-border" ></div>
-      <div class="self-stretch flex flex-row items-end justify-between gap-5 max-w-full mq1050:flex-wrap">
-        <div class="w-[195.1px] flex flex-col items-end justify-start gap-[51px]">
-          <img class="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full object-cover" loading="lazy" alt="" [src]="image5" />
-          <div class="flex flex-row items-start justify-end py-0 pl-2.5 pr-px">
-            <div class="flex flex-row items-start justify-start gap-spacing-xs">
-              <img class="h-10 w-10 relative rounded object-cover" loading="lazy" alt="" src="assets/icons/buttons--icon@2x.png" />
-              <img class="h-10 w-10 relative rounded object-cover" alt="" src="assets/icons/buttons--icon-1@2x.png" />
-              <img class="h-10 w-10 relative rounded object-cover" alt="" src="assets/icons/buttons--icon-2@2x.png" />
-              <img class="h-10 w-10 relative rounded object-cover" alt="" src="assets/icons/buttons--icon-3@2x.png" />
-            </div>
-          </div>
+<header class="self-stretch flex flex-row items-start justify-start py-0 px-[5vw] box-border max-w-full text-left text-body-size-medium text-darkslategray font-subheading">
+  <div class="flex-1 flex flex-col items-end justify-start gap-[47px] max-w-full mq750:gap-[23px]" (ngStyle)="frameDivStyle">
+
+    <!-- Línea divisoria -->
+    <div class="self-stretch h-px relative border-background-brand-secondary border-t border-solid box-border"></div>
+
+    <!-- Contenedor principal -->
+    <div class="self-stretch flex flex-row justify-between items-end gap-5 flex-wrap max-w-full mq750:flex-col mq750:items-center mq750:text-center">
+
+      <!-- Logo + íconos -->
+      <div class="w-full max-w-[220px] flex flex-col items-end justify-start gap-[40px] mq750:items-center mq750:gap-[24px]">
+        <img class="w-full h-auto object-contain" loading="lazy" alt="Logo" [src]="image5" />
+        <div class="flex flex-row items-center justify-center gap-spacing-xs">
+          <img class="h-10 w-10 rounded object-cover" loading="lazy" alt="Icono 1" src="assets/icons/buttons--icon@2x.png" />
+          <img class="h-10 w-10 rounded object-cover" alt="Icono 2" src="assets/icons/buttons--icon-1@2x.png" />
+          <img class="h-10 w-10 rounded object-cover" alt="Icono 3" src="assets/icons/buttons--icon-2@2x.png" />
+          <img class="h-10 w-10 rounded object-cover" alt="Icono 4" src="assets/icons/buttons--icon-3@2x.png" />
         </div>
-        <div class="w-[624px] flex flex-row items-start justify-start gap-[31.5px] max-w-full mq750:gap-4 mq750:flex-wrap">
-          <div class="flex-1 flex flex-col items-end justify-center gap-spacing-s min-w-[140px]">
-            <div class="self-stretch relative leading-[150%] font-[500] text-black">Topic</div>
-            <div class="self-stretch relative leading-[150%] font-[500]">Page</div>
-            <div class="self-stretch relative leading-[150%] font-[500]">Page</div>
-            <div class="self-stretch relative leading-[150%] font-[500]">Page</div>
-          </div>
-          <div class="flex-1 flex flex-col items-end justify-center gap-spacing-s min-w-[140px]">
-            <div class="self-stretch relative leading-[150%] font-[500] text-black">Topic</div>
-            <div class="self-stretch relative leading-[150%] font-[500]">Page</div>
-            <div class="self-stretch relative leading-[150%] font-[500]">Page</div>
-            <div class="self-stretch relative leading-[150%] font-[500]">Page</div>
-          </div>
-          <div class="flex-1 flex flex-col items-end justify-center gap-spacing-s min-w-[140px]">
-            <div class="self-stretch relative leading-[150%] font-[500] text-black">Topic</div>
-            <div class="self-stretch relative leading-[150%] font-[500]">Page</div>
-            <div class="self-stretch relative leading-[150%] font-[500]">Page</div>
-            <div class="self-stretch relative leading-[150%] font-[500]">Page</div>
-          </div>
+      </div>
+
+      <!-- Menú de enlaces -->
+      <div class="w-full max-w-[700px] flex flex-row justify-between items-start gap-8 flex-wrap mq750:gap-6">
+        <div class="flex-1 min-w-[140px] flex flex-col items-end justify-center gap-spacing-s mq750:items-center">
+          <div class="font-[500] text-black leading-[150%]">Topic</div>
+          <div class="font-[500] leading-[150%]">Page</div>
+          <div class="font-[500] leading-[150%]">Page</div>
+          <div class="font-[500] leading-[150%]">Page</div>
+        </div>
+        <div class="flex-1 min-w-[140px] flex flex-col items-end justify-center gap-spacing-s mq750:items-center">
+          <div class="font-[500] text-black leading-[150%]">Topic</div>
+          <div class="font-[500] leading-[150%]">Page</div>
+          <div class="font-[500] leading-[150%]">Page</div>
+          <div class="font-[500] leading-[150%]">Page</div>
+        </div>
+        <div class="flex-1 min-w-[140px] flex flex-col items-end justify-center gap-spacing-s mq750:items-center">
+          <div class="font-[500] text-black leading-[150%]">Topic</div>
+          <div class="font-[500] leading-[150%]">Page</div>
+          <div class="font-[500] leading-[150%]">Page</div>
+          <div class="font-[500] leading-[150%]">Page</div>
         </div>
       </div>
     </div>
-  </header>
+  </div>
+</header>

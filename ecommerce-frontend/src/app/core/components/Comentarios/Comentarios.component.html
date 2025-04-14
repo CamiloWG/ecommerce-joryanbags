@@ -1,8 +1,24 @@
-<div class="h-[304px] w-[1280px] flex flex-col items-start justify-start gap-12 text-left text-29xl text-black font-subheading">
-      <h1 class="m-0 w-[625px] relative text-inherit tracking-[-0.02em] font-[600] font-[inherit] inline-block">Comentarios</h1>
-      <div class="w-[1280px] h-[198px] flex flex-row items-start justify-start gap-spacing-sm text-5xl">
-        <customer-quote [aTerrificPieceOfPraise]="'“A terrific piece of praise”'" [avatar]="'assets/images/avatar@2x.png'"> </customer-quote>
-        <customer-quote [customerQuoteAlignSelf]="'stretch'" [aTerrificPieceOfPraise]="'“A fantastic bit of feedback”'" [avatar]="'assets/images/avatar-1@2x.png'"> </customer-quote>
-        <customer-quote [customerQuoteAlignSelf]="'stretch'" [aTerrificPieceOfPraise]="'“A genuinely glowing review”'" [avatar]="'assets/images/avatar-2@2x.png'"> </customer-quote>
-      </div>
-    </div>
+<div class="w-full max-w-[1280px] flex flex-col items-start justify-start gap-12 text-left text-29xl text-black font-subheading px-4 mq750:gap-6">
+  <h1 class="m-0 max-w-[625px] text-inherit tracking-[-0.02em] font-[600] font-[inherit] inline-block text-[2rem] mq750:text-[1.75rem]">
+    Comentarios
+  </h1>
+
+  <div class="w-full flex flex-row items-start justify-start gap-spacing-sm text-5xl mq750:flex-col mq750:items-center mq750:gap-8">
+    <customer-quote 
+      [aTerrificPieceOfPraise]="'“A terrific piece of praise”'" 
+      [avatar]="'assets/images/avatar@2x.png'"> 
+    </customer-quote>
+
+    <customer-quote 
+      [customerQuoteAlignSelf]="'stretch'" 
+      [aTerrificPieceOfPraise]="'“A fantastic bit of feedback”'" 
+      [avatar]="'assets/images/avatar-1@2x.png'"> 
+    </customer-quote>
+
+    <customer-quote 
+      [customerQuoteAlignSelf]="'stretch'" 
+      [aTerrificPieceOfPraise]="'“A genuinely glowing review”'" 
+      [avatar]="'assets/images/avatar-2@2x.png'"> 
+    </customer-quote>
+  </div>
+</div>
