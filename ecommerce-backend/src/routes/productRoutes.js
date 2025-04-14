@@ -50,6 +50,7 @@ router.post(
     body("price")
         .isDecimal({ decimal_digits: 2 })
         .withMessage("Precio inválido"),
+    body("description").optional().isLength({ min: 1, max: 1000 }).withMessage("Descripción inválida"),
     body("stock").isInt({ min: 1 }).withMessage("Cantidad de stock inválido"),
     body("category_id").isInt({ min: 1 }).withMessage("Categoria inválida"),
     body("image_url").optional(),

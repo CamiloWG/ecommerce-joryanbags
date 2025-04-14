@@ -10,6 +10,7 @@ import { environment } from '../../../environments/environment';
 export class ProductListService {
   private URL_API_GET: string = `${environment.API_URL_BASE}/api/products`;
   private URL_API_UPDATE: string = `${environment.API_URL_BASE}/api/products/update`;
+  private URL_API_CREATE: string = `${environment.API_URL_BASE}/api/products/create`;
 
   private productos: Product[] = [];
   
@@ -40,5 +41,8 @@ export class ProductListService {
     return this.http.patch<Product>(this.URL_API_UPDATE, product);
   }
 
+  CreateProduct(product: FormData): Observable<Product> {
+    return this.http.post<Product>(this.URL_API_CREATE, product);
+  }
 
 }

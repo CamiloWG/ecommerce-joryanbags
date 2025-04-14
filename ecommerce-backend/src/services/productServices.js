@@ -53,7 +53,7 @@ export class ProductServices {
 
     static create = async (data) => {
         const [result] = await sequelize.query(
-            "CreateProduct :name, :brand, :price, :stock, :category_id, null",
+            "CreateProduct :name, :brand, :price, :description, :stock, :category_id, null",
             {
                 replacements: data,
             }
@@ -92,7 +92,7 @@ export class ProductServices {
     };
 
     static updateImage = async (product_id) => {
-        const filePath = `${process.env.SERVER_URL}${process.env.SERVER_PORT}/public/product_${product_id}.png`;
+        const filePath = `/public/product_${product_id}.png`;
 
         await Product.update(
             {
