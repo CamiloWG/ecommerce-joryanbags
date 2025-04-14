@@ -3,8 +3,11 @@
     content-start py-[22px] px-[23px] relative gap-space-600 min-w-[240px] ">
     <img src="assets\images\image-2@2x.png" alt="" class="h-40 object-cover flex-shrink-0 ">    
     <div class="flex-col flex-grow min-w-[50px] items-start">
-        <h2 class="font-subheading ">Estado</h2>
-        <p class="font-subheading text-gray-600">Información producto.</p>
+        <h2 class="font-subheading m-2">{{ titulo }}</h2>
+        <h3 class="font-subheading bg-black text-white px-3 py-1 rounded-full inline-block text-sm m-2">{{ estado }}</h3>
+        <p class="font-subheading text-gray-600 m-2">
+            {{ infoPedido }}
+        </p>
     </div>
     <div class="flex flex-col sm:flex-row gap-2 min-w-[200px] items-center">
         <button class="w-full font-[550] py-2 px-4 bg-background-brand-default text-text-brand-on-brand font-heading rounded-lg 

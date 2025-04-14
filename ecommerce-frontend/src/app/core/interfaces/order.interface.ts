@@ -11,3 +11,16 @@ export interface RawOrder {
     direccion: string,
     informacionAdicional: string
 }
+
+export interface Order {
+    order_id: number,
+    user_id: number,
+    client_name: string,
+    client_phone: number,
+    date_creation: string,
+    address: string,
+    total_price: number,
+    details: string,
+    status_id: number,
+    name: string
+}

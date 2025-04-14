@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { RawOrder } from '../interfaces/order.interface';
+import { Order, RawOrder } from '../interfaces/order.interface';
 import { environment } from '../../../environments/environment';
 import { ProductInCart } from '../interfaces/product.interface';
 import { HttpClient } from '@angular/common/http';
@@ -11,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
 export class OrderService {
   
   private API_URL_CREATE_ORDER: string = `${environment.API_URL_BASE}/api/orders/create`;
+  private API_URL_GET_USER_ORDERS: string = `${environment.API_URL_BASE}/api/orders/user`;
 
   private currentOrder = new BehaviorSubject<RawOrder>({} as RawOrder);
 
@@ -41,12 +42,17 @@ export class OrderService {
     const bodyUpdated = {
       user_id: userId,
       payment_id: orderKey,
-      detalles: `C.C${detalles}`,
+      detalles: `CC ${detalles}`,
       cart: carrito.map(producto => ({
         product_id: producto.product_id,
         quantity: producto.quantity
       }))
     }
     return this.http.post(this.API_URL_CREATE_ORDER, bodyUpdated); 
+  }
+
+
+  getAllUserOrders(user_id: string | number): Observable<Order[]> {
+    return this.http.get<Order[]>(`${this.API_URL_GET_USER_ORDERS}/${user_id}`);
   }
 }

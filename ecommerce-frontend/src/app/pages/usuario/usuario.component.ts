@@ -9,6 +9,8 @@ import { UserService } from '../../core/services/user.service';
 import { User } from '../../core/interfaces/user.interface';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { OrderService } from '../../core/services/order.service';
+import { Order } from '../../core/interfaces/order.interface';
 
 @Component({
   selector: 'app-usuario',
@@ -25,17 +27,19 @@ import { CommonModule } from '@angular/common';
 })
 export class UsuarioComponent {
   usuario: User | null = null;
+  orders: Order[] = [];
 
-  constructor(private authService: AuthService, private userService: UserService, private router: Router) { }
+  constructor(private authService: AuthService, private userService: UserService, private orderServide: OrderService, private router: Router) { }
 
   ngOnInit() {
     const number = this.authService.getUserIdFromToken();
     if(number) {
-      this.userService.getUserById(number).subscribe(data => {
-        this.usuario = data[0];
-      });
+      this.userService.getUserById(number).subscribe(data => this.usuario = data[0]);
+      this.orderServide.getAllUserOrders(number).subscribe(result => this.orders = result);
     } else {
       this.router.navigate(['/login']);
     }
   }
+
+
 }

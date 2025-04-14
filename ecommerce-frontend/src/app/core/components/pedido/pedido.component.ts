@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-pedido',
@@ -7,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './pedido.component.css'
 })
 export class PedidoComponent {
-
+  @Input() titulo: string = '';
+  @Input() estado: string = '';
+  @Input() infoPedido: string = '';
 }

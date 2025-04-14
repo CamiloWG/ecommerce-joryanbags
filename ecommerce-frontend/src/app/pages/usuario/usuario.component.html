@@ -90,8 +90,11 @@
                           </button>
                         </div>
                       </div>
-                      <app-pedido class="w-full"></app-pedido>
-                      <app-pedido class="w-full"></app-pedido>
+                      @for(pedido of orders; track orders) 
+                      {
+                        <app-pedido class="w-full" titulo="Pedido #{{ pedido.order_id }}" estado="{{ pedido.name }}" infoPedido="Precio total: ${{ pedido.total_price + 18000 }}"></app-pedido>
+                      }
+                      
                       
         </div>
       </section>
