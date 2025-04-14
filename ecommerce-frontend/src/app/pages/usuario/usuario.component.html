@@ -25,9 +25,9 @@
                 
             <div class="px-2 flex flex-row">
                 <img class="h-20 w-8" loading="lazy" alt="info" src="assets/icons/info.svg" />
-                <h3 class="m-7 font-subheading flex">Tu perfil</h3>
+                <h3 class="m-7 font-subheading flex">Tu perfil</h3>                
             </div>
-
+            
             <div class="flex flex-wrap items-center sm:items-start w-full gap-4">
                 <img class="px-3 h-30 min-w-[60px]" src="assets/icons/generic-avatar.svg">
 
@@ -37,6 +37,7 @@
                     <p class="px-6 font-subheading text-gray-600">Teléfono: {{ usuario.phone }}</p>
                 </div>
             </div>
+            
         </div>
 
         <ng-template #skeleton>
@@ -67,6 +68,11 @@
             <div class="px-2 flex flex-col">
                 <h3 class="m-1 font-subheading flex">Información</h3>
                 <p class="font-subheading text-gray-600">Información de tu cuenta.</p>
+                <button *ngIf="usuario && usuario.rol_id > 1" class="group cursor-pointer [border:none] p-0 bg-[transparent] w-[134px] h-10 flex flex-row items-center justify-start gap-space-400" (click)="adminClick()">
+                  <div class="rounded-radius-200 bg-background-neutral-tertiary border-border-neutral-secondary border-solid border-stroke-border overflow-hidden flex flex-row items-center justify-center p-space-300 gap-space-200 transition group-hover:bg-background-brand-default">
+                    <div class="relative text-body-size-medium leading-[100%] font-subheading text-text-default-default text-left transition group-hover:text-white"> Administracion </div>
+                  </div>
+                </button>
             </div>
         </div>
         <div class="mx-auto w-[100%] self-stretch rounded-radius-200 border-border-default-default 

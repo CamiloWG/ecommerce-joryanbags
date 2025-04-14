@@ -17,45 +17,49 @@
   </div>
 
   <!-- Listado de productos -->
-  <div *ngIf="vistaStock === 'listado'" class="flex justify-between items-center w-full">
-    <div class="flex items-center space-x-4">
-      <div class="rounded-full p-2">
-        <img class="w-[70px] h-[90px]" loading="lazy" src="/assets/images/image-2@2x.png" />
-      </div>
-      <div class="leading-tight">
-        <h4 class="font-bold font-subheading text-sm">Producto en stock</h4>
-        <p class="text-gray-500 text-sm font-subheading">STOCK: PRODUCTO X</p>
   
-        <!-- Cantidad -->
-        <div *ngIf="!editandoStock; else editCantidad">
-          <p class="text-gray-500 text-sm font-subheading">Cantidad disponible: {{ cantidad }}</p>
+    
+      
+  @for(product of productos; track product) 
+  {
+    <div *ngIf="vistaStock === 'listado'" class="flex justify-between items-center w-full  rounded-radius-200 border border-border-default-default 
+    border-solid box-border">
+      <div class="flex items-center space-x-4">
+        <div class="rounded-full p-2">
+          <img class="w-[70px] h-[90px]" loading="lazy" [src]="product.image_url" />
         </div>
-        <ng-template #editCantidad>
-          <input [(ngModel)]="cantidad" type="number"
-                 class="text-sm font-subheading border rounded px-2 py-1 w-24" />
-        </ng-template>
+        <div class="leading-tight">
+          <h4 class="font-bold font-subheading text-sm">{{ product.stock > 0 ? 'Producto en stock' : 'Producto fuera de stock' }}</h4>
+          <p class="text-gray-500 text-sm font-subheading">{{ product.name }}</p>
+    
+          <!-- Cantidad -->
+          <div *ngIf="productoEditandoId !== product.product_id; else editCantidad">
+            <p class="text-gray-500 text-sm font-subheading">Cantidad disponible: {{ product.stock }}</p>
+          </div>
+          <ng-template #editCantidad>
+            <input [(ngModel)]="product.stock" type="number"
+                  class="text-sm font-subheading border rounded px-2 py-1 w-24" />
+          </ng-template>
+        </div>
       </div>
+            <!-- Precio y botón -->
+      <div class="flex items-center space-x-60 pr-40">
+        <div *ngIf="productoEditandoId !== product.product_id; else editPrecio">
+          <p class="text-gray-500 text-sm font-subheading">${{ product.price }}</p>
+        </div>
+        <ng-template #editPrecio>
+          <input [(ngModel)]="product.price" type="number" class="text-sm font-subheading border rounded px-2 py-1 w-24" />
+        </ng-template>
+
+        <!-- Botón toggle -->
+        <button class="bg-gray-800 text-white px-3 py-2 rounded-md font-subheading text-sm cursor-pointer flex items-center gap-1"(click)="toggleEditarStock(product)">
+          <span>{{ productoEditandoId === product.product_id ? 'Guardar' : '✏️ Editar' }}</span>
+        </button>      
+      </div> 
     </div>
+  }
   
- <!-- Precio y botón -->
-  <div class="flex items-center space-x-60 pr-40">
-    <div *ngIf="!editandoStock; else editPrecio">
-      <p class="text-gray-500 text-sm font-subheading">${{ precio }}</p>
-    </div>
-    <ng-template #editPrecio>
-      <input [(ngModel)]="precio" type="number" class="text-sm font-subheading border rounded px-2 py-1 w-24" />
-    </ng-template>
 
-    <!-- Botón toggle -->
-    <button
-      class="bg-gray-800 text-white px-3 py-2 rounded-md font-subheading text-sm cursor-pointer flex items-center gap-1"
-      (click)="toggleEditarStock()">
-      <span *ngIf="!editandoStock">✏️</span>
-      <span>{{ editandoStock ? 'Guardar' : 'Editar' }}</span>
-    </button>
-  </div>
-
-  </div>
   
 
  <!-- Formulario nuevo producto -->

@@ -52,7 +52,7 @@ export const routes: Routes = [
         component: LoginComponent
     },
     {
-        path: 'administrador',
+        path: 'admin',
         title: 'Pagina Administrador | Joryan Bags',
         component: AdminComponent
     },

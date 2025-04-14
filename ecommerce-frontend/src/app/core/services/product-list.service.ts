@@ -9,6 +9,7 @@ import { environment } from '../../../environments/environment';
 })
 export class ProductListService {
   private URL_API_GET: string = `${environment.API_URL_BASE}/api/products`;
+  private URL_API_UPDATE: string = `${environment.API_URL_BASE}/api/products/update`;
 
   private productos: Product[] = [];
   
@@ -32,6 +33,11 @@ export class ProductListService {
         image_url: `${environment.API_URL_BASE}${product.image_url}`
       }))
     );
+  }
+
+
+  UpdateProduct(product: Product): Observable<Product> {
+    return this.http.patch<Product>(this.URL_API_UPDATE, product);
   }
 
 

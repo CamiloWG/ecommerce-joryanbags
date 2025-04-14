@@ -33,17 +33,6 @@ export class AdminComponent {
     this.resumenActivo = tipo;
   }
 
-  onHomeIconClick() {
-    this.router.navigate(["/inicio"]);
-  }
-
-  onUserIconClick() {
-    this.router.navigate(["/"]);
-  }
-
-  onShoppingCartIconClick() {
-    this.router.navigate(["/carrito"]);
-  }
 }
 
 

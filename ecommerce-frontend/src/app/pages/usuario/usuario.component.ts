@@ -41,5 +41,9 @@ export class UsuarioComponent {
     }
   }
 
+  adminClick() {
+    this.router.navigate(['/admin']);
+  }
+
 
 }

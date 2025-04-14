@@ -75,7 +75,7 @@ router.patch(
         .withMessage("Marca inválida"),
     body("price")
         .optional()
-        .isDecimal({ decimal_digits: 2, force_decimal: true })
+        .isDecimal({ decimal_digits: 2 })
         .withMessage("Precio inválido"),
     body("stock")
         .optional()

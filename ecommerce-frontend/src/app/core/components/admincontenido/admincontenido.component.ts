@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; // Necesario para ngModel
+import { ProductListService } from '../../services/product-list.service';
+import { Product } from '../../interfaces/product.interface';
 
 @Component({
   selector: 'app-contenido',
@@ -19,10 +21,14 @@ export class ContenidoResumenComponent {
   // Simulación de datos de una orden (opcional, para mostrar lista)
   ordenesAprobadas: any[] = [];
 
-  // Estado editable del stock
   editandoStock = false;
-  cantidad = 25;
-  precio = 19999;
+  productoEditandoId: number | null = null;
+
+  productos: Product[] = [];
+
+  constructor(private productService: ProductListService) {
+    productService.GetProducts().subscribe(data => this.productos = data);
+  }
 
   seleccionarVistaStock(tipo: 'listado' | 'nuevo') {
     this.vistaStock = tipo;
@@ -37,14 +43,12 @@ export class ContenidoResumenComponent {
     this.vistaOrden = 'aprobadas';
   }
 
-  toggleEditarStock() {
-    if (this.editandoStock) {
-      // Guardar cambios: aquí puedes hacer una llamada a una API
-      console.log('Datos guardados:', {
-        cantidad: this.cantidad,
-        precio: this.precio
-      });
+  toggleEditarStock(product: Product) {
+    if (this.productoEditandoId === product.product_id) {      
+      this.productService.UpdateProduct(product).subscribe();
+      this.productoEditandoId = null;
+    } else {      
+      this.productoEditandoId = product.product_id;
     }
-    this.editandoStock = !this.editandoStock;
   }
 }

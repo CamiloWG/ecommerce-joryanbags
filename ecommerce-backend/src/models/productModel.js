@@ -17,6 +17,9 @@ export const Product = sequelize.define(
         category_id: {
             type: DataTypes.INTEGER,
         },
+        description: {
+            type: DataTypes.STRING,
+        },
         image_url: {
             type: DataTypes.STRING,
         },
