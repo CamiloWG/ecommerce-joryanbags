@@ -56,7 +56,7 @@ router.patch(
     body("category_id")
         .isInt({ min: 1 })
         .withMessage("El category_id ingresado es inváldio"),
-    body("is_disabled").isInt({ min: 0, max: 1 }).withMessage("Valores 1 o 0"),
+    body("is_disabled").isBoolean().withMessage("Solo valores booleanos"),
     body("name")
         .isLength({
             min: 3,

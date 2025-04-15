@@ -17,20 +17,27 @@ import { Order, OrderDetails } from '../../interfaces/order.interface';
 })
 export class ContenidoResumenComponent {
   @Input() tipoResumen: 'ordenes' | 'stock' = 'ordenes';
-  mostrarDetallesOrden1: boolean = false;
-  mostrarDetallesOrden2: boolean = false;
   isLoading: boolean = false;
 
 
-  vistaStock: 'listado' | 'nuevo' = 'listado';
+  vistaStock: 'listado' | 'nuevo' | 'nuevaCategoria' | 'categoria' = 'listado';
   vistaOrden: 'pendientes' | 'enviadas' | 'entregadas' = 'pendientes';
 
 
   editandoStock = false;
   productoEditandoId: number | null = null;
+  categoriaEditandoId: number | null = null;
+  guardandoCategoriaId: number | null = null;
+
+  nuevaCategoria: Partial<Category> = {
+    name: ''
+  };
+  
+  creandoCategoria = false;
 
   productos: Product[] = [];
   categorias: Category[] = [];
+  categoriasActivas: Category[] = [];
   pedidosPendientes: Order[] = [];
   pedidosEnviados: Order[] = [];
   pedidosEntregados: Order[] = [];
@@ -67,8 +74,12 @@ export class ContenidoResumenComponent {
     });
   }
 
-  seleccionarVistaStock(tipo: 'listado' | 'nuevo') {
+  seleccionarVistaStock(tipo: 'listado' | 'nuevo' | 'nuevaCategoria' | 'categoria') {
     if(tipo === 'listado') this.productService.GetProducts().subscribe(data => this.productos = data);
+    if(tipo === 'categoria' || tipo === 'nuevo'){
+      this.categoryService.GetCategories().subscribe(data => this.categorias = data);
+      this.categoriasActivas = this.categorias.filter(c => !c.is_disabled);
+    } 
     this.vistaStock = tipo;    
   }
 
@@ -160,7 +171,63 @@ export class ContenidoResumenComponent {
     });
   }
 
+  toggleEditarCategoria(category: Category) {
+    if (this.categoriaEditandoId === category.category_id) {
+      
+      this.guardandoCategoriaId = category.category_id;
+  
+      this.categoryService.UpdateCategory(category).subscribe({
+        next: () => {
+          this.categoriaEditandoId = null;
+          this.guardandoCategoriaId = null;
+        },
+        error: (err) => {
+          console.error('Error al actualizar la categoría', err);
+          this.guardandoCategoriaId = null;
+        }
+      });
+    } else {
+      this.categoriaEditandoId = category.category_id;
+    }
+  }
+  
 
+  crearCategoria() {
+    if (!this.nuevaCategoria.name?.trim()) return;
+  
+    this.creandoCategoria = true;
+  
+    this.categoryService.CreateCategory(this.nuevaCategoria.name).subscribe({
+      next: () => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Categoría creada',
+          text: 'La categoría se ha creado correctamente.',
+          customClass: {
+            title: "font-sans",
+            popup: "font-sans"
+          }
+        });
+        this.nuevaCategoria = { name: '' };
+        this.creandoCategoria = false;
+        this.seleccionarVistaStock('categoria');
+      },
+      error: (err) => {
+        console.error(err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'No se pudo crear la categoría.',
+          customClass: {
+            title: "font-sans",
+            popup: "font-sans"
+          }
+        });
+        this.creandoCategoria = false;
+      }
+    });
+  }
+  
 
 
 

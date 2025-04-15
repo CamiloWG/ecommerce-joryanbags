@@ -14,6 +14,18 @@
       class="px-4 py-2 rounded-md font-subheading text-sm border cursor-pointer">
       Agregar producto
     </button>
+    <button 
+      (click)="seleccionarVistaStock('categoria')" 
+      [ngClass]="vistaStock === 'categoria' ? 'bg-gray-800 text-white' : 'bg-gray-200 text-gray-700'" 
+      class="px-4 py-2 rounded-md font-subheading text-sm border cursor-pointer">
+      Ver categorias
+    </button>
+    <button 
+      (click)="seleccionarVistaStock('nuevaCategoria')" 
+      [ngClass]="vistaStock === 'nuevaCategoria' ? 'bg-gray-800 text-white' : 'bg-gray-200 text-gray-700'" 
+      class="px-4 py-2 rounded-md font-subheading text-sm border cursor-pointer">
+      Agregar categoría
+    </button>
   </div>
 
   <!-- Listado de productos -->
@@ -80,7 +92,7 @@
         [ngClass]="{ 'border-red-500': campoInvalido('category_id') }"
         class="border p-2 rounded-md">
         <option value="">Seleccione una categoría</option>
-        <option *ngFor="let cat of categorias" [value]="cat.category_id" [disabled]="cat.is_disabled">
+        <option *ngFor="let cat of categoriasActivas" [value]="cat.category_id" [disabled]="cat.is_disabled">
           {{ cat.name }}
         </option>
       </select>
@@ -128,6 +140,86 @@
   </form>
   
 </div>
+
+
+<!-- CATEGORIAS -->
+@for(category of categorias; track category.category_id) {
+  <div *ngIf="vistaStock === 'categoria'" 
+       class="my-4 flex justify-between items-center w-full rounded-radius-200 border border-border-default-default 
+              border-solid box-border p-2">
+
+    <!-- Parte izquierda: Nombre y estado -->
+    <div class="flex items-center">
+      <div class="leading-tight">
+        <!-- Nombre -->
+        <div *ngIf="categoriaEditandoId !== category.category_id; else editNombre">
+          <h4 class="m-2 font-bold font-subheading text-sm">{{ category.name }}</h4>
+        </div>
+        <ng-template #editNombre>
+          <input [(ngModel)]="category.name" type="text"
+                class="m-2 text-sm font-subheading border rounded px-2 py-1 w-40" />
+        </ng-template>
+
+        <!-- Estado is_disabled -->
+        <div *ngIf="categoriaEditandoId !== category.category_id; else editEstado">
+          <p class="m-2 text-sm font-subheading text-gray-500">
+            Estado: {{ category.is_disabled ? 'Deshabilitada' : 'Activa' }}
+          </p>
+        </div>
+        <ng-template #editEstado>
+          <label class="text-sm font-subheading text-gray-500 flex items-center gap-2">
+            <input class="m-2" type="checkbox" [(ngModel)]="category.is_disabled" />
+            ¿Deshabilitada?
+          </label>
+        </ng-template>
+      </div>
+    </div>
+
+    <!-- Parte derecha: botón -->
+    <div class="flex items-center space-x-4">
+      <button class="bg-gray-800 text-white px-3 py-2 rounded-md font-subheading text-sm cursor-pointer flex items-center gap-1"
+        (click)="toggleEditarCategoria(category)"
+        [disabled]="guardandoCategoriaId === category.category_id">
+        <span>
+          {{
+            guardandoCategoriaId === category.category_id
+              ? 'Guardando...'
+              : (categoriaEditandoId === category.category_id ? 'Guardar' : '✏️ Editar')
+          }}
+        </span>
+      </button>
+    </div>
+  </div>
+}
+
+
+<div *ngIf="vistaStock === 'nuevaCategoria'" class="m-4 bg-white p-6 rounded-md shadow w-full max-w-md space-y-4">
+  <h2 class="font-bold font-subheading text-lg">Crear nueva categoría</h2>
+
+  <div class="max-w-[94%]">
+    <input
+      [(ngModel)]="nuevaCategoria.name"
+      type="text"
+      placeholder="Nombre de la categoría"
+      class="w-full py-2 px-3 border rounded-md text-sm font-subheading"
+      [ngClass]="{
+        'border-red-500': !nuevaCategoria.name?.trim()
+      }"
+      required
+    />
+  </div>
+
+  <button
+    (click)="crearCategoria()"
+    [disabled]="!nuevaCategoria.name?.trim() || creandoCategoria"
+    class="bg-gray-800 text-white px-4 py-2 rounded-md font-subheading text-sm cursor-pointer
+    hover:bg-gray-600 transition font-subheading text-sm px-4 py-2 rounded-md w-full transition duration-200"
+  >
+    {{ creandoCategoria ? 'Creando...' : 'Crear Categoría' }}
+  </button>
+</div>
+  
+
 
  
 
