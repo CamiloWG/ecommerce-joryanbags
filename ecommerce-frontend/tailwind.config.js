@@ -110,9 +110,11 @@ export default {
       inherit: "inherit",
     },
     screens: {
-      lg: {
-        max: "1200px",
-      },
+      sm: "640px",      // min-width (por defecto)
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+      "2xl": "1536px",
       mq1050: {
         raw: "screen and (max-width: 1050px)",
       },

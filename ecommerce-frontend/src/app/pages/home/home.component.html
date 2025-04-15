@@ -1,82 +1,84 @@
 <div class="pb-10">
-    <!-- Header -->
-    <header-menu class="w-full"></header-menu>
-  
-    <!-- Contenido principal -->
-    <section class="mx-auto relative bg-background-default-default flex flex-col items-start justify-start pt-0 px-px pb-[109px] box-border gap-3.5 leading-[normal] tracking-[normal]">
-      <div class="mx-auto self-stretch w-full max-w-[95%] grid grid-cols-3 mq1050:grid-cols-1 mq750:grid-cols-1 gap-x-4 gap-y-2 auto-rows-auto items-start">
-        
-        <!-- Logo -->
-        <div class="mx-auto p-0 m-0 order-1">
-          <app-logo class="mx-auto flex-shrink-0 block"></app-logo>
+  <!-- Header -->
+  <header-menu class="w-full"></header-menu>
+
+  <!-- Contenido principal -->
+  <section class="relative bg-background-default-default flex flex-col items-start justify-start pt-0 px-px pb-[10px] box-border gap-3.5 leading-[normal] tracking-[normal]">
+    <div class="mx-auto self-stretch w-full max-w-[95%] lg:max-w-[90%] grid grid-cols-1 lg:grid-cols-[auto,1fr,auto] md:grid-cols-2 gap-x-10 gap-y-2 auto-rows-auto items-start">
+      
+      <!-- Logo -->
+      <div class="w-fit p-0 order-1 md:col-span-2 lg:col-span-1 flex justify-self-center lg:justify-self-end">
+        <app-logo class="block"></app-logo>
+      </div>      
+
+      <!-- Portada -->
+      <div class=" col-span-1 lg:col-span-2 lg:row-span-2 md:col-span-2 p-0 m-0 order-2">
+        <div class="max-w-full">
+          <portada></portada>
         </div>
-  
-        <!-- Portada -->
-        <div class="col-span-2 row-span-2 mq750:col-span-1 mq750:row-span-1 p-0 m-0 order-2">
-          <div class="max-w-full">
-            <portada></portada>
-          </div>
-        </div>
-  
-        <!-- Menú Categorías -->
-        <div class="mx-auto m-0 col-span-1 mq750:col-span-1 order-3">
-          <menu-categorias></menu-categorias>
-        </div>
-  
-        <!-- Top Compras -->
-        <div class="mx-auto col-span-1 mq750:col-span-1 flex justify-center order-4">
-          <top-compras class="block w-full min-h-[200px] bg-transparent"></top-compras>
-        </div>
-  
-        <!-- Celda con tarjetas -->
-        <div class="col-span-2 mq750:col-span-1 mq750:py-2 order-5">
-          <div class="grid grid-cols-2 mq750:grid-cols-1 gap-8 w-full">
-            
-            <!-- Tarjeta 1 -->
-            <div class="mq750:max-w-[70%] mq750:mx-auto h-[541px] flex flex-col items-start justify-start gap-6 cursor-pointer">
-              <img class="w-full h-[350px] object-cover" loading="lazy" alt="Imagen 1" src="assets/images/image-8@2x.png" />
-              <div class="px-4">
-                <h3 class="font-subheading text-2xl font-semibold leading-snug mb-1">Subheading</h3>
-                <p class="font-subheading text-gray-600">Body text for whatever you’d like to share more.</p>
-              </div>
-            </div>
-  
-            <!-- Tarjeta 2 -->
-            <div class="mq750:max-w-[70%] mq750:mx-auto h-[541px] flex flex-col items-start justify-start gap-6 cursor-pointer">
-              <img class="w-full h-[350px] object-cover" loading="lazy" alt="Imagen 2" src="assets/images/image-8-1@2x.png" />
-              <div class="px-4">
-                <h3 class="font-subheading text-2xl font-semibold leading-snug mb-1">Subheading</h3>
-                <p class="font-subheading text-gray-600">Body text for whatever you’d like to expand on the main point.</p>
-              </div>
-            </div>
-  
-          </div>
-        </div>
-  
       </div>
-    </section>
-  
-    <!-- Comentarios + Pie de imagen -->
-    <section class="w-full flex flex-col items-start justify-start gap-[51px] max-w-full text-left text-29xl text-black font-subheading px-4 py-10 mq750:gap-[25px] mq750:py-6">
-      <div class="w-full flex justify-center px-6 box-border max-w-full">
-        <comentarios></comentarios>
+
+      <!-- Menú Categorías -->
+      <div class="w-fit p-0 order-3 md:col-span-1 lg:col-span-1 flex justify-self-center lg:justify-self-end">
+        <menu-categorias></menu-categorias>
       </div>
-      <img 
-        class="w-full relative max-w-full overflow-hidden object-cover z-0" 
-        loading="lazy" 
-        alt="" 
-        src="assets/images/pie@2x.png" />
-    </section>
-  
-    <!-- Footer -->
-    <footer class="w-full mt-5 mb-10 z-[10] relative">
-      <app-footer 
-        [frameHeaderAlignSelf]="'unset'" 
-        [frameHeaderPadding]="'0px 70px'" 
-        [frameDivFlex]="'unset'" 
-        [frameDivWidth]="'1290px'" 
-        [image5]="'assets/images/image-5@2x.png'">
-      </app-footer>
-    </footer>
-  </div>
-  
+
+      <!-- Top Compras -->
+      <div class="w-fit p-0 order-4 md:col-span-1 lg:col-span-1 flex justify-self-center lg:justify-self-end">
+        <top-compras ></top-compras>
+      </div>
+
+      <!-- Celda con tarjetas -->
+      <div class="col-span-1 lg:col-span-2 md:col-span-2 order-5 lg:py-0 py-3">
+        <div class="grid grid-cols-1 md:grid-cols-2 md:gap-8 gap-0 w-[80%] md:w-full mx-auto">
+          
+          <!-- Tarjeta 1 -->
+          <div class="w-full h-[541px] flex flex-col items-start justify-start gap-6 cursor-pointer">
+            <img class="w-full h-[350px] object-cover" loading="lazy" alt="Imagen 1" src="assets/images/image-8@2x.png" />
+            <div class="px-4">
+              <h3 class="font-subheading text-2xl font-semibold leading-snug mb-1">Subheading</h3>
+              <p class="font-subheading text-gray-600">Body text for whatever you’d like to share more.</p>
+            </div>
+          </div>
+
+          <!-- Tarjeta 2 -->
+          <div class="w-full h-[541px] flex flex-col items-start justify-start gap-6 cursor-pointer">
+            <img class="w-full h-[350px] object-cover" loading="lazy" alt="Imagen 2" src="assets/images/image-8-1@2x.png" />
+            <div class="px-4">
+              <h3 class="font-subheading text-2xl font-semibold leading-snug mb-1">Subheading</h3>
+              <p class="font-subheading text-gray-600">Body text for whatever you’d like to expand on the main point.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Comentarios + Pie de imagen -->
+  <section class="w-full flex flex-col items-start justify-start gap-[51px] max-w-full text-left text-29xl text-black font-subheading px-4 md:gap-[25px] box-border">
+    <div class="w-full flex justify-center px-6 box-border max-w-full">
+      <comentarios></comentarios>
+    </div>
+    
+    <!-- Imagen ajustada -->
+    <img 
+      class="w-full max-w-full object-cover box-border"
+      loading="lazy" 
+      alt="" 
+      src="assets/images/pie@2x.png" />
+  </section>
+
+
+  <!-- Footer -->
+  <footer class="w-full mt-5 mb-10 z-[10] relative">
+    <app-footer 
+      [frameHeaderAlignSelf]="'unset'" 
+      [frameHeaderPadding]="'0px 70px'" 
+      [frameDivFlex]="'unset'" 
+      [frameDivWidth]="'1290px'" 
+      [image5]="'assets/images/image-5@2x.png'">
+    </app-footer>
+  </footer>
+</div>
