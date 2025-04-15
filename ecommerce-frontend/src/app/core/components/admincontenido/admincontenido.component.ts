@@ -6,6 +6,8 @@ import { Product } from '../../interfaces/product.interface';
 import { CategoryService } from '../../services/category.service';
 import { Category } from '../../interfaces/category.interface';
 import Swal from 'sweetalert2';
+import { OrderService } from '../../services/order.service';
+import { Order, OrderDetails } from '../../interfaces/order.interface';
 
 @Component({
   selector: 'app-contenido',
@@ -31,13 +33,20 @@ export class ContenidoResumenComponent {
 
   productos: Product[] = [];
   categorias: Category[] = [];
+  pedidosPendientes: Order[] = [];
+  pedidosEnviados: Order[] = [];
   
   formProducto!: FormGroup;
   imagenSeleccionada: File | null = null;
 
-  constructor(private productService: ProductListService, private categoryService: CategoryService, private fb: FormBuilder) {
+  ordenMostrandoDetalles: number | null = null;
+  detallePedidoSeleccionado: OrderDetails[] = [];
+  cargandoDetalles: boolean = false;
+
+  constructor(private productService: ProductListService, private categoryService: CategoryService, private orderService: OrderService, private fb: FormBuilder) {
     productService.GetProducts().subscribe(data => this.productos = data);
     categoryService.GetCategories().subscribe(data => this.categorias = data);
+    this.updateOrders();
 
     this.formProducto = this.fb.group({
       name: ['', Validators.required],
@@ -49,19 +58,26 @@ export class ContenidoResumenComponent {
     });
   }
 
+  updateOrders() {
+    this.pedidosEnviados = [];
+    this.pedidosPendientes = [];
+    this.orderService.getAllOrders().subscribe(data => {
+      this.pedidosPendientes = data.filter(p => p.status_id == 1 || p.status_id == 2 || p.status_id == 3);
+      this.pedidosEnviados = data.filter(p => p.status_id == 4);
+    });
+  }
+
   seleccionarVistaStock(tipo: 'listado' | 'nuevo') {
     if(tipo === 'listado') this.productService.GetProducts().subscribe(data => this.productos = data);
     this.vistaStock = tipo;    
   }
 
-  seleccionarVistaOrden(tipo: 'pendientes' | 'todas' | 'aprobadas') {    
+  seleccionarVistaOrden(tipo: 'pendientes' | 'todas' | 'aprobadas') {       
+    this.updateOrders(); 
     this.vistaOrden = tipo;
   }
 
-  aprobarOrden(orden: any) {
-    this.ordenesAprobadas.push(orden);
-    this.vistaOrden = 'aprobadas';
-  }
+  //////////////// VISTA DE STOCK
 
   toggleEditarStock(product: Product) {
     if (this.productoEditandoId === product.product_id) {      
@@ -143,4 +159,66 @@ export class ContenidoResumenComponent {
       }
     });
   }
+
+
+
+
+
+  ///////////////// VISTA DE ORDENES
+
+  verDetalles(pedido: Order): void {
+    if (this.ordenMostrandoDetalles === pedido.order_id) {
+      
+      this.ordenMostrandoDetalles = null;
+      this.detallePedidoSeleccionado = [];
+      return;
+    }
+  
+    this.cargandoDetalles = true;
+    this.ordenMostrandoDetalles = pedido.order_id;
+    this.detallePedidoSeleccionado = [];
+  
+    this.orderService.getOrderDetails(pedido.order_id).subscribe({
+      next: (detalles) => {
+        this.detallePedidoSeleccionado = detalles;
+        this.cargandoDetalles = false;
+      },
+      error: () => {
+        this.cargandoDetalles = false;
+        Swal.fire('Error', 'No se pudieron cargar los detalles del pedido.', 'error');
+      }
+    });
+  }
+
+  aprobarEnvioOrden(orden: Order) {
+    this.orderService.updateOrderStatus(orden.order_id, 4).subscribe({
+      next: () => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Producto enviado',
+          text: 'El producto fue marcado como enviado exitosamente',
+          confirmButtonColor: '#6366f1',
+          customClass: {
+            title: "font-sans",
+            popup: "font-sans"
+          }
+        });
+        
+      this.updateOrders();
+      },
+      error: (error) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error al cambiar estado del producto',
+          text: error?.message || 'Algo salió mal al marcar como enviado el producto',
+          confirmButtonColor: '#ef4444',
+          customClass: {
+            title: "font-sans",
+            popup: "font-sans"
+          }
+        });
+      }
+    });
+  }
+  
 }

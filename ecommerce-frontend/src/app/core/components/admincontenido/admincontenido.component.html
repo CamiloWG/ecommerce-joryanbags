@@ -23,7 +23,7 @@
   @for(product of productos; track product) 
   {
     <div *ngIf="vistaStock === 'listado'" class="flex justify-between items-center w-full  rounded-radius-200 border border-border-default-default 
-    border-solid box-border">
+    border-solid box-border p-2">
       <div class="flex items-center space-x-4">
         <div class="rounded-full p-2">
           <img class="w-[70px] h-[90px]" loading="lazy" [src]="product.image_url" />
@@ -139,35 +139,78 @@
       (click)="seleccionarVistaOrden('pendientes')" 
       [ngClass]="vistaOrden === 'pendientes' ? 'bg-gray-800 text-white' : 'bg-gray-200 text-gray-700'" 
       class="px-4 py-2 rounded-md font-subheading text-sm cursor-pointer border">
-      Pendientes de aprobación
+      Pendientes de envio
     </button>
     <button 
       (click)="seleccionarVistaOrden('todas')" 
       [ngClass]="vistaOrden === 'todas' ? 'bg-gray-800 text-white' : 'bg-gray-200 text-gray-700'" 
       class="px-4 py-2 rounded-md font-subheading text-sm cursor-pointer border">
-      Ordenes aprobadas
+      Ordenes enviadas
     </button>
   </div>
 
   <!-- Contenido de órdenes pendientes -->
-  <div *ngIf="vistaOrden === 'pendientes'" class="flex justify-between items-center">
-    <div class="flex items-center space-x-4">
-      <div class="bg-blue-100 rounded-full p-2">
-        <img class="w-[50px] h-[59px] object-cover" loading="lazy" alt="Avatar" src="assets/images/3d-avatars--8@2x.png" />
+@for(pedido of pedidosPendientes; track pedido)
+{
+  <div *ngIf="vistaOrden === 'pendientes'" class="rounded-radius-200 border border-border-default-default border-solid box-border">
+    <div class="flex justify-between items-center px-4 py-2">
+      <div class="flex items-center space-x-4">
+        <div class="{{ pedido.status_id == 2 ? 'bg-[#32c471]' :  pedido.status_id == 1 ? 'bg-[#efe97f]' : 'bg-[#d2614b]'}} rounded-full p-2">
+          <img class="w-[50px] h-[59px] object-cover" loading="lazy" alt="Avatar" src="assets/images/logo-icono.png" />
+        </div>
+        <div class="leading-tight">
+          <h4 class="font-bold font-subheading text-sm">Procesando en bodega</h4>
+          <p class="text-gray-500 text-sm font-subheading">ORDEN #{{ pedido.order_id }} - {{ pedido.date_creation | date:'dd/MM/yyyy' }}</p>
+          <p class="text-gray-500 text-sm font-subheading">Cliente: {{ pedido.client_name }} </p>
+          <p class="text-gray-500 text-sm font-subheading">Teléfono: {{ pedido.client_phone }} </p>
+          <p class="text-gray-500 text-sm font-subheading">Dirección: {{ pedido.address }} </p>
+          <p class="text-gray-500 text-sm font-subheading">Pago: {{ pedido.name }} </p>
+        </div>
       </div>
-      <div class="leading-tight">
-        <h4 class="font-bold font-subheading text-sm">Procesando en bodega</h4>
-        <p class="text-gray-500 text-sm font-subheading">ORDEN: PRODUCTO PRODUCTO</p>
-        <p class="text-gray-500 text-sm font-subheading">Descripción de orden</p>
+      
+
+      <!-- Total y botones -->
+      <div class="flex items-center space-x-60 pr-20">
+        <p class="text-gray-500 text-m font-subheading">Total: ${{ pedido.total_price }}</p>
+        <div class="flex flex-col gap-2 w-[280px]">
+          <button class="bg-gray-800 text-white px-20 py-2 font-subheading text-sm cursor-pointer hover:text-black hover:bg-white transition rounded-lg 
+          border border-border-neutral-secondary"(click)="aprobarEnvioOrden(pedido)">
+            Enviar pedido
+          </button>
+          <button class="bg-gray-800 text-white px-20 py-2 font-subheading text-sm cursor-pointer hover:text-black hover:bg-white transition rounded-lg border border-border-neutral-secondary"
+            (click)="verDetalles(pedido)">
+            {{ ordenMostrandoDetalles === pedido.order_id ? 'Ocultar detalles' : 'Ver detalles' }}
+          </button>
+          <button
+            class="text-white px-20 py-2 font-subheading text-sm cursor-pointer bg-red-600 hover:bg-white hover:text-red-600 transition rounded-lg border border-red-500"
+            >
+            Cancelar pedido
+          </button>
+        </div>
       </div>
+
     </div>
-    <div class="flex items-center space-x-60 pr-20">
-      <p class="text-gray-500 text-sm font-subheading">$9.999</p>
-      <button class="bg-gray-800 text-white px-20 py-2 rounded-md font-subheading text-sm cursor-pointer"(click)="aprobarOrden({ id: 1, nombre: 'PRODUCTO PRODUCTO', precio: 9999 })">
-        Aprobar orden
-      </button>
+    <!-- Sección de detalles -->
+    <div
+    *ngIf="ordenMostrandoDetalles === pedido.order_id"
+    class="block m-4 p-4 w-[95%] rounded-radius-200 border border-border-default-default 
+    border-solid box-border">
+    <ng-container *ngIf="cargandoDetalles; else detallesCargados">
+      <p class="text-sm text-gray-600 font-subheading italic">Cargando detalles...</p>
+    </ng-container>
+
+    <ng-template #detallesCargados>
+      <h5 class="font-bold text-sm text-gray-700 font-subheading mb-3">Detalles del pedido:</h5>
+      <ul class="space-y-2">
+        <li *ngFor="let detalle of detallePedidoSeleccionado" class="text-sm text-gray-700 font-subheading">
+          {{ detalle.name }} – Cantidad: {{ detalle.quantity }} – Subtotal: ${{ detalle.subtotal }}
+        </li>
+      </ul>
+    </ng-template>
     </div>
   </div>
+}
+
 
 <!-- Vista futura para todas las órdenes -->
 <div *ngIf="vistaOrden === 'todas'" class="space-y-4">

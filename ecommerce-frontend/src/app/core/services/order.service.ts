@@ -13,6 +13,8 @@ export class OrderService {
   private API_URL_CREATE_ORDER: string = `${environment.API_URL_BASE}/api/orders/create`;
   private API_URL_GET_USER_ORDERS: string = `${environment.API_URL_BASE}/api/orders/user`;
   private API_URL_GET_ORDER_DETAILS: string = `${environment.API_URL_BASE}/api/orders/detail`;
+  private API_URL_GET_ALL_ORDERS: string = `${environment.API_URL_BASE}/api/orders`;
+  private API_URL_UPDATE_ORDER_STATUS: string = `${environment.API_URL_BASE}/api/orders/update-status`;
 
   private currentOrder = new BehaviorSubject<RawOrder>({} as RawOrder);
 
@@ -57,7 +59,16 @@ export class OrderService {
     return this.http.get<Order[]>(`${this.API_URL_GET_USER_ORDERS}/${user_id}`);
   }
 
+  getAllOrders(): Observable<Order[]> {
+    return this.http.get<Order[]>(this.API_URL_GET_ALL_ORDERS);
+  }
+
   getOrderDetails(order_id: string | number): Observable<OrderDetails[]> {
     return this.http.get<OrderDetails[]>(`${this.API_URL_GET_ORDER_DETAILS}/${order_id}`);
   }
+
+  updateOrderStatus(order_id: string | number, status: number): Observable<Order[]> {
+    const body: any = {order_id, status};
+    return this.http.post<Order[]>(this.API_URL_UPDATE_ORDER_STATUS, body);
+  } 
 }
