@@ -54,7 +54,7 @@ router.post(
         .isInt({ min: 1 })
         .withMessage("El order_id ingresado no es válido"),
     body("status")
-        .isInt({ min: 1, max: 5 })
+        .isInt({ min: 1, max: 6 })
         .withMessage("El estado ingresado es inválido."),
 
     handleErrors,

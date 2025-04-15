@@ -4,10 +4,63 @@ import { Product } from "../models/productModel.js";
 
 export class OrderServices {
     static getEarnings = async () => {
-        const [results] = await sequelize.query(
-            "SELECT SUM(total_price) FROM orders WHERE MONTH(date_creation) = MONTH(GETDATE()) AND (status_id = 2)"
-        );
-        return results;
+        const [results] = await sequelize.query(`
+            SELECT
+                -- TOTAL
+                (SELECT SUM(total_price) FROM orders WHERE status_id IN (2, 4, 5)) AS total_earnings,
+                (SELECT COUNT(*) FROM orders WHERE status_id IN (2, 4, 5)) AS total_sales,
+    
+                -- HOY
+                (SELECT SUM(total_price) FROM orders 
+                 WHERE status_id IN (2, 4, 5) AND CONVERT(DATE, date_creation) = CONVERT(DATE, GETDATE())
+                ) AS today_earnings,
+                (SELECT COUNT(*) FROM orders 
+                 WHERE status_id IN (2, 4, 5) AND CONVERT(DATE, date_creation) = CONVERT(DATE, GETDATE())
+                ) AS today_sales,
+    
+                -- ÚLTIMA SEMANA
+                (SELECT SUM(total_price) FROM orders 
+                 WHERE status_id IN (2, 4, 5) AND date_creation >= DATEADD(DAY, -7, GETDATE())
+                ) AS last_week_earnings,
+                (SELECT COUNT(*) FROM orders 
+                 WHERE status_id IN (2, 4, 5) AND date_creation >= DATEADD(DAY, -7, GETDATE())
+                ) AS last_week_sales,
+    
+                -- ÚLTIMO MES
+                (SELECT SUM(total_price) FROM orders 
+                 WHERE status_id IN (2, 4, 5) AND date_creation >= DATEADD(MONTH, -1, GETDATE())
+                ) AS last_month_earnings,
+                (SELECT COUNT(*) FROM orders 
+                 WHERE status_id IN (2, 4, 5) AND date_creation >= DATEADD(MONTH, -1, GETDATE())
+                ) AS last_month_sales,
+    
+                -- ÚLTIMOS 3 MESES
+                (SELECT SUM(total_price) FROM orders 
+                 WHERE status_id IN (2, 4, 5) AND date_creation >= DATEADD(MONTH, -3, GETDATE())
+                ) AS last_3_months_earnings,
+                (SELECT COUNT(*) FROM orders 
+                 WHERE status_id IN (2, 4, 5) AND date_creation >= DATEADD(MONTH, -3, GETDATE())
+                ) AS last_3_months_sales
+        `);
+    
+        const r = results[0];
+    
+        return {
+            earnings: {
+                total: r.total_earnings || 0,
+                today: r.today_earnings || 0,
+                last_week: r.last_week_earnings || 0,
+                last_month: r.last_month_earnings || 0,
+                last_3_months: r.last_3_months_earnings || 0,
+            },
+            salesCount: {
+                total: r.total_sales || 0,
+                today: r.today_sales || 0,
+                last_week: r.last_week_sales || 0,
+                last_month: r.last_month_sales || 0,
+                last_3_months: r.last_3_months_sales || 0,
+            }
+        };
     };
 
     static getCount = async () => {
