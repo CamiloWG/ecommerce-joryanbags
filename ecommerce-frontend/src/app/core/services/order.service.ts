@@ -42,10 +42,11 @@ export class OrderService {
     return key;
   }
 
-  createOrder(userId: string, orderKey: string, detalles: string, carrito: ProductInCart[]): Observable<any> {
+  createOrder(userId: string, orderKey: string, precio: number, detalles: string, carrito: ProductInCart[]): Observable<any> {
     const bodyUpdated = {
       user_id: userId,
       payment_id: orderKey,
+      price: precio,
       detalles: `CC ${detalles}`,
       cart: carrito.map(producto => ({
         product_id: producto.product_id,

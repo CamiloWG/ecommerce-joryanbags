@@ -14,7 +14,7 @@
     </h3>
     <p class="font-subheading text-gray-600 m-2">Fecha: {{ pedido.date_creation | date:'dd/MM/yyyy' }}</p>
     <p class="font-subheading text-gray-600 m-2 max-w-[50%]">Dirección: {{ pedido.address }}</p>
-    <p class="font-subheading text-gray-600 m-2">Precio total: ${{ pedido.total_price + 18000 }}</p>
+    <p class="font-subheading text-gray-600 m-2">Precio total: ${{ pedido.total_price }}</p>
   </div>
 
   <!-- Botones -->
@@ -44,7 +44,7 @@
         {{ item.name }} – Cantidad: {{ item.quantity }} – Subtotal: ${{ item.subtotal }}        
       </li>
       <li class="font-subheading text-gray-700">
-        Envio - Subtotal: $18000
+        Envio - Subtotal: ${{ precioEnvio }}
       </li>
     </ul>
   </div>

@@ -17,6 +17,7 @@ export class PedidoComponent {
   mostrarDetalles: boolean = false;
   detalles: OrderDetails[] = [];
   cargandoDetalles: boolean = false;
+  precioEnvio: number = 0;
 
   constructor(private orderService: OrderService) {}
 
@@ -33,7 +34,8 @@ export class PedidoComponent {
 
     this.orderService.getOrderDetails(this.pedido.order_id).subscribe({
       next: (data: OrderDetails[]) => {
-        this.detalles = data;
+        this.detalles = data;        
+        this.calcularPrecioEnvio();
         this.cargandoDetalles = false;
       },
       error: (err) => {
@@ -41,5 +43,10 @@ export class PedidoComponent {
         this.cargandoDetalles = false;
       }
     });
+  }
+
+  calcularPrecioEnvio(): void {
+    const total = this.detalles.reduce((acc, item) => acc + item.subtotal * item.quantity, 0)
+    this.precioEnvio = this.pedido.total_price - total;
   }
 }

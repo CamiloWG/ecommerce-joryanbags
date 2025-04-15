@@ -115,8 +115,7 @@ export class OrderController {
             console.log(req);
             
             const { user_id } = req.user;
-            const { payment_id } = req.body;
-            const { detalles } = req.body;
+            const { payment_id, detalles, price } = req.body;            
             const { cart } = req.body;
 
             const products = cart.map((item) => item.product_id);
@@ -138,7 +137,7 @@ export class OrderController {
                 }
             }
 
-            const [order] = await OrderServices.create({ user_id, payment_id, detalles });
+            const [order] = await OrderServices.create({ user_id, payment_id, price, detalles });
 
             for (const item of cart) {
                 const { product_id, quantity } = item;

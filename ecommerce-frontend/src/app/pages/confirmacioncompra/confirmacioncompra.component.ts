@@ -87,7 +87,7 @@ export class ConfirmacioncompraComponent {
   crearPedido() {
     const idUser = this.authService.getUserIdFromToken();
     if(idUser) {
-      this.orderService.createOrder(idUser, this.order_key, this.orderService.getOrder().cedula, this.cartService.getCart()).subscribe();
+      this.orderService.createOrder(idUser, this.order_key, this.cartService.getTotalCost(), this.orderService.getOrder().cedula, this.cartService.getCart()).subscribe();
       this.cartService.clearCart();
     }    
   }
