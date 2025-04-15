@@ -2,7 +2,7 @@ import colors from "colors";
 
 import server from "./server.js";
 
-const port = process.env.SERVER_PORT || 4000;
+const port = process.env.PORT || process.env.SERVER_PORT || 4000;
 
 server.listen(port, () => {
     console.log("—————————————————————————————————————");
