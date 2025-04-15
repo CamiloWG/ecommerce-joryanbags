@@ -142,10 +142,16 @@
       Pendientes de envio
     </button>
     <button 
-      (click)="seleccionarVistaOrden('todas')" 
-      [ngClass]="vistaOrden === 'todas' ? 'bg-gray-800 text-white' : 'bg-gray-200 text-gray-700'" 
+      (click)="seleccionarVistaOrden('enviadas')" 
+      [ngClass]="vistaOrden === 'enviadas' ? 'bg-gray-800 text-white' : 'bg-gray-200 text-gray-700'" 
       class="px-4 py-2 rounded-md font-subheading text-sm cursor-pointer border">
       Ordenes enviadas
+    </button>
+    <button 
+      (click)="seleccionarVistaOrden('entregadas')" 
+      [ngClass]="vistaOrden === 'entregadas' ? 'bg-gray-800 text-white' : 'bg-gray-200 text-gray-700'" 
+      class="px-4 py-2 rounded-md font-subheading text-sm cursor-pointer border">
+      Entregadas
     </button>
   </div>
 
@@ -161,7 +167,7 @@
         <div class="leading-tight">
           <h4 class="font-bold font-subheading text-sm">Procesando en bodega</h4>
           <p class="text-gray-500 text-sm font-subheading">ORDEN #{{ pedido.order_id }} - {{ pedido.date_creation | date:'dd/MM/yyyy' }}</p>
-          <p class="text-gray-500 text-sm font-subheading">Cliente: {{ pedido.client_name }} </p>
+          <p class="text-gray-500 text-sm font-subheading">Cliente: {{ pedido.client_name }} | {{ pedido.details }} </p>
           <p class="text-gray-500 text-sm font-subheading">Teléfono: {{ pedido.client_phone }} </p>
           <p class="text-gray-500 text-sm font-subheading">Dirección: {{ pedido.address }} </p>
           <p class="text-gray-500 text-sm font-subheading">Pago: {{ pedido.name }} </p>
@@ -184,7 +190,7 @@
           <button
             class="text-white px-20 py-2 font-subheading text-sm cursor-pointer bg-red-600 hover:bg-white hover:text-red-600 transition rounded-lg border border-red-500"
             >
-            Cancelar pedido
+            Eliminar pedido
           </button>
         </div>
       </div>
@@ -212,80 +218,114 @@
 }
 
 
-<!-- Vista futura para todas las órdenes -->
-<div *ngIf="vistaOrden === 'todas'" class="space-y-4">
-
-  <!-- ORDEN 1 -->
-  <div class="flex flex-col bg-gray-50 p-4 rounded-md shadow">
-    <div class="flex justify-between items-center">
+<!-- Vista ordenes enviadas -->
+@for(pedido of pedidosEnviados; track pedido)
+{
+  <div *ngIf="vistaOrden === 'enviadas'" class="rounded-radius-200 border border-border-default-default border-solid box-border">
+    <div class="flex justify-between items-center px-4 py-2">
       <div class="flex items-center space-x-4">
-        <div class="bg-blue-100 rounded-full p-2">
-          <img class="w-[50px] h-[59px] object-cover" loading="lazy" src="assets/images/3d-avatars--1@2x.png" />
+        <div class="bg-[#b0daff] rounded-full p-2">
+          <img class="w-[50px] h-[59px] object-cover" loading="lazy" alt="Avatar" src="assets/images/logo-icono.png" />
         </div>
         <div class="leading-tight">
-          <h4 class="font-bold font-subheading text-sm">Enviado</h4>
-          <p class="text-gray-500 text-sm font-subheading">ORDEN: PRODUCTO A</p>
-          <p class="text-gray-500 text-sm font-subheading">Pedido entregado</p>
+          <h4 class="font-bold font-subheading text-sm">Pedido enviado</h4>
+          <p class="text-gray-500 text-sm font-subheading">ORDEN #{{ pedido.order_id }} - {{ pedido.date_creation | date:'dd/MM/yyyy' }}</p>
+          <p class="text-gray-500 text-sm font-subheading">Cliente: {{ pedido.client_name }} | {{ pedido.details }} </p>
+          <p class="text-gray-500 text-sm font-subheading">Teléfono: {{ pedido.client_phone }} </p>
+          <p class="text-gray-500 text-sm font-subheading">Dirección: {{ pedido.address }} </p>
+          <p class="text-gray-500 text-sm font-subheading">Estado: {{ pedido.name }} </p>
         </div>
       </div>
-      <div class="flex items-center space-x-60 pr-20">
-        <p class="text-gray-500 text-sm font-subheading">$15.000</p>
-        <button
-          class="bg-gray-800 text-white px-10 py-2 rounded-md font-subheading text-sm cursor-pointer"
-          (click)="mostrarDetallesOrden1 = !mostrarDetallesOrden1">
-          {{ mostrarDetallesOrden1 ? 'Ocultar detalles' : 'Ver detalles' }}
-        </button>
-      </div>
-    </div>
+      
 
-    <!-- Detalles expandibles -->
-    <div *ngIf="mostrarDetallesOrden1" class="mt-4 space-y-2 text-sm text-gray-500 font-subheading border-t pt-4 pr-[508px]">
-      <div class="flex justify-between">
-        <span>Producto 1 (x2)</span>
-        <span>$5.000</span>
+      <!-- Total y botones -->
+      <div class="flex items-center space-x-60 pr-20">
+        <p class="text-gray-500 text-m font-subheading">Total: ${{ pedido.total_price }}</p>
+        <div class="flex flex-col gap-2 w-[280px]">
+          <button class="bg-gray-800 text-white px-20 py-2 font-subheading text-sm cursor-pointer hover:text-black hover:bg-white transition rounded-lg 
+          border border-border-neutral-secondary" (click)="aprobarOrdenEntregada(pedido)">
+            Entregado
+          </button>
+          <button class="bg-gray-800 text-white px-20 py-2 font-subheading text-sm cursor-pointer hover:text-black hover:bg-white transition rounded-lg border border-border-neutral-secondary"
+            (click)="verDetalles(pedido)">
+            {{ ordenMostrandoDetalles === pedido.order_id ? 'Ocultar detalles' : 'Ver detalles' }}
+          </button>
+        </div>
       </div>
-      <div class="flex justify-between">
-        <span>Producto 2 (x1)</span>
-        <span>$10.000</span>
-      </div>
+
+    </div>
+    <!-- Sección de detalles -->
+    <div
+    *ngIf="ordenMostrandoDetalles === pedido.order_id"
+    class="block m-4 p-4 w-[95%] rounded-radius-200 border border-border-default-default 
+    border-solid box-border">
+    <ng-container *ngIf="cargandoDetalles; else detallesCargados">
+      <p class="text-sm text-gray-600 font-subheading italic">Cargando detalles...</p>
+    </ng-container>
+
+    <ng-template #detallesCargados>
+      <h5 class="font-bold text-sm text-gray-700 font-subheading mb-3">Detalles del pedido:</h5>
+      <ul class="space-y-2">
+        <li *ngFor="let detalle of detallePedidoSeleccionado" class="text-sm text-gray-700 font-subheading">
+          {{ detalle.name }} – Cantidad: {{ detalle.quantity }} – Subtotal: ${{ detalle.subtotal }}
+        </li>
+      </ul>
+    </ng-template>
     </div>
   </div>
+}
 
-  <!-- ORDEN 2 -->
-  <div class="flex flex-col bg-gray-50 p-4 rounded-md shadow">
-    <div class="flex justify-between items-center">
+
+
+<!-- Vista ordenes entregadas -->
+@for(pedido of pedidosEntregados; track pedido)
+{
+  <div *ngIf="vistaOrden === 'entregadas'" class="rounded-radius-200 border border-border-default-default border-solid box-border">
+    <div class="flex justify-between items-center px-4 py-2">
       <div class="flex items-center space-x-4">
-        <div class="bg-yellow-100 rounded-full p-2">
-          <img class="w-[50px] h-[59px] object-cover" loading="lazy" src="assets/images/3d-avatars--2@2x.png" />
+        <div class="bg-[#b0daff] rounded-full p-2">
+          <img class="w-[50px] h-[59px] object-cover" loading="lazy" alt="Avatar" src="assets/images/logo-icono.png" />
         </div>
         <div class="leading-tight">
-          <h4 class="font-bold font-subheading text-sm">En preparación</h4>
-          <p class="text-gray-500 text-sm font-subheading">ORDEN: PRODUCTO B</p>
-          <p class="text-gray-500 text-sm font-subheading">Se está preparando el envío</p>
+          <h4 class="font-bold font-subheading text-sm">Pedido entregado</h4>
+          <p class="text-gray-500 text-sm font-subheading">ORDEN #{{ pedido.order_id }} - {{ pedido.date_creation | date:'dd/MM/yyyy' }}</p>
+          <p class="text-gray-500 text-sm font-subheading">Cliente: {{ pedido.client_name }} | {{ pedido.details }} </p>
+          <p class="text-gray-500 text-sm font-subheading">Teléfono: {{ pedido.client_phone }} </p>
+          <p class="text-gray-500 text-sm font-subheading">Dirección: {{ pedido.address }} </p>
+          <p class="text-gray-500 text-sm font-subheading">Estado: {{ pedido.name }} </p>
         </div>
       </div>
-      <div class="flex items-center space-x-60 pr-20">
-        <p class="text-gray-500 text-sm font-subheading">$23.500</p>
-        <button
-          class="bg-gray-800 text-white px-10 py-2 rounded-md font-subheading text-sm cursor-pointer"
-          (click)="mostrarDetallesOrden2 = !mostrarDetallesOrden2">
-          {{ mostrarDetallesOrden2 ? 'Ocultar detalles' : 'Ver detalles' }}
-        </button>
-      </div>
-    </div>
+      
 
-    <!-- Detalles expandibles -->
-    <div *ngIf="mostrarDetallesOrden2" class="mt-4 space-y-2 text-sm text-gray-500 font-subheading border-t pt-4 pr-[508px]">
-      <div class="flex justify-between ">
-        <span>Producto X (x1)</span>
-        <span>$13.500</span>
+      <!-- Total y botones -->
+      <div class="flex items-center space-x-60 pr-20">
+        <p class="text-gray-500 text-m font-subheading">Total: ${{ pedido.total_price }}</p>
+        <div class="flex flex-col gap-2 w-[280px]">
+          <button class="bg-gray-800 text-white px-20 py-2 font-subheading text-sm cursor-pointer hover:text-black hover:bg-white transition rounded-lg border border-border-neutral-secondary"
+            (click)="verDetalles(pedido)">
+            {{ ordenMostrandoDetalles === pedido.order_id ? 'Ocultar detalles' : 'Ver detalles' }}
+          </button>
+        </div>
       </div>
-      <div class="flex justify-between">
-        <span>Producto Y (x2)</span>
-        <span>$10.000</span>
-      </div>
+
+    </div>
+    <!-- Sección de detalles -->
+    <div
+    *ngIf="ordenMostrandoDetalles === pedido.order_id"
+    class="block m-4 p-4 w-[95%] rounded-radius-200 border border-border-default-default 
+    border-solid box-border">
+    <ng-container *ngIf="cargandoDetalles; else detallesCargados">
+      <p class="text-sm text-gray-600 font-subheading italic">Cargando detalles...</p>
+    </ng-container>
+
+    <ng-template #detallesCargados>
+      <h5 class="font-bold text-sm text-gray-700 font-subheading mb-3">Detalles del pedido:</h5>
+      <ul class="space-y-2">
+        <li *ngFor="let detalle of detallePedidoSeleccionado" class="text-sm text-gray-700 font-subheading">
+          {{ detalle.name }} – Cantidad: {{ detalle.quantity }} – Subtotal: ${{ detalle.subtotal }}
+        </li>
+      </ul>
+    </ng-template>
     </div>
   </div>
-</div>
-
-
+}

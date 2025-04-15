@@ -23,10 +23,8 @@ export class ContenidoResumenComponent {
 
 
   vistaStock: 'listado' | 'nuevo' = 'listado';
-  vistaOrden: 'pendientes' | 'todas' | 'aprobadas' = 'pendientes';
+  vistaOrden: 'pendientes' | 'enviadas' | 'entregadas' = 'pendientes';
 
-  // Simulación de datos de una orden (opcional, para mostrar lista)
-  ordenesAprobadas: any[] = [];
 
   editandoStock = false;
   productoEditandoId: number | null = null;
@@ -35,6 +33,7 @@ export class ContenidoResumenComponent {
   categorias: Category[] = [];
   pedidosPendientes: Order[] = [];
   pedidosEnviados: Order[] = [];
+  pedidosEntregados: Order[] = [];
   
   formProducto!: FormGroup;
   imagenSeleccionada: File | null = null;
@@ -64,6 +63,7 @@ export class ContenidoResumenComponent {
     this.orderService.getAllOrders().subscribe(data => {
       this.pedidosPendientes = data.filter(p => p.status_id == 1 || p.status_id == 2 || p.status_id == 3);
       this.pedidosEnviados = data.filter(p => p.status_id == 4);
+      this.pedidosEntregados = data.filter(p => p.status_id == 5);
     });
   }
 
@@ -72,7 +72,7 @@ export class ContenidoResumenComponent {
     this.vistaStock = tipo;    
   }
 
-  seleccionarVistaOrden(tipo: 'pendientes' | 'todas' | 'aprobadas') {       
+  seleccionarVistaOrden(tipo: 'pendientes' | 'enviadas' | 'entregadas') {       
     this.updateOrders(); 
     this.vistaOrden = tipo;
   }
@@ -211,6 +211,38 @@ export class ContenidoResumenComponent {
           icon: 'error',
           title: 'Error al cambiar estado del producto',
           text: error?.message || 'Algo salió mal al marcar como enviado el producto',
+          confirmButtonColor: '#ef4444',
+          customClass: {
+            title: "font-sans",
+            popup: "font-sans"
+          }
+        });
+      }
+    });
+  }
+
+
+  aprobarOrdenEntregada(orden: Order) {
+    this.orderService.updateOrderStatus(orden.order_id, 5).subscribe({
+      next: () => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Producto entregado',
+          text: 'El producto fue marcado como entregado',
+          confirmButtonColor: '#6366f1',
+          customClass: {
+            title: "font-sans",
+            popup: "font-sans"
+          }
+        });
+        
+      this.updateOrders();
+      },
+      error: (error) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error al cambiar estado del producto',
+          text: error?.message || 'Algo salió mal al marcar como entregado el producto',
           confirmButtonColor: '#ef4444',
           customClass: {
             title: "font-sans",
