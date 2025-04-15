@@ -27,14 +27,16 @@
   <!-- Métricas de negocio -->
   <div class="bg-white rounded-md shadow border p-6 w-[800px] h-[200px] flex flex-col justify-between">
     <h3 class="font-bold font-subheading text-lg mb-2">Métricas de negocio</h3>
-    <div class="grid grid-cols-2 gap-4 mt-2">
-      <div class="text-center">
-        <p class="text-sm text-gray-500 font-subheading">Ventas brutas</p>
-        <p class="text-lg font-bold font-subheading mt-1">$ $$.$$$$</p>
-      </div>
-      <div class="text-center">
-        <p class="text-sm text-gray-500 font-subheading">Cantidad de ventas</p>
-        <p class="text-lg font-bold font-subheading mt-1">####</p>
+    <div *ngIf="earnings != undefined">
+      <div class="grid grid-cols-2 gap-4 mt-2">
+        <div class="text-center">
+          <p class="text-sm text-gray-500 font-subheading">Ventas brutas</p>
+          <p class="text-lg font-bold font-subheading mt-1">${{ earnings.earnings.total }}</p>
+        </div>
+        <div class="text-center">
+          <p class="text-sm text-gray-500 font-subheading">Cantidad de ventas</p>
+          <p class="text-lg font-bold font-subheading mt-1">{{ earnings.salesCount.total }}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -67,8 +69,8 @@
 
 
     <h2 class="text-xl font-bold mb-4 font-subheading">Ventas</h2>
-    <div class="bg-white rounded-md shadow p-6 max-w-[1790px]">
-      <app-adminventas></app-adminventas>
+    <div *ngIf="earnings != undefined" class="bg-white rounded-md shadow p-6 max-w-[1790px]">
+      <app-adminventas [dataVentas]="earnings"></app-adminventas>
     </div>
   </main>
 

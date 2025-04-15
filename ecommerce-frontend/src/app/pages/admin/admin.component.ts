@@ -7,17 +7,21 @@ import { ResumenComponent } from '../../core/components/adminresumen/adminresume
 import { ContenidoResumenComponent } from '../../core/components/admincontenido/admincontenido.component';
 import { AdminventasComponent } from '../../core/components/adminventas/adminventas.component';
 import { FooterComponent } from '../../core/components/shared/footer/footer.component';
+import { OrderService } from '../../core/services/order.service';
+import { Earning } from '../../core/interfaces/order.interface';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-admin',
   imports: [
-       HeaderMenuComponent, 
-        Route, 
-        LogoComponent,
-        ResumenComponent,
-        ContenidoResumenComponent,
-        AdminventasComponent,
-        FooterComponent  
+      HeaderMenuComponent, 
+      Route, 
+      LogoComponent,
+      ResumenComponent,
+      ContenidoResumenComponent,
+      AdminventasComponent,
+      FooterComponent,
+      CommonModule
   ],
 
   templateUrl: './admin.component.html',
@@ -25,7 +29,12 @@ import { FooterComponent } from '../../core/components/shared/footer/footer.comp
 })
 export class AdminComponent {
 
-  constructor(private router: Router) {}
+  earnings!: Earning;
+
+
+  constructor(private router: Router, private orderService: OrderService) {
+    orderService.getEarnings().subscribe(data => this.earnings = data);
+  }
 
   resumenActivo: 'ordenes' | 'stock' = 'ordenes';
 

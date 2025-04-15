@@ -252,5 +252,55 @@ export class ContenidoResumenComponent {
       }
     });
   }
+
+
+  cancelarPedido(pedido: any): void {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: `Esta acción cancelará el pedido #${pedido.order_id} permanentemente.`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Sí, cancelar pedido',
+      cancelButtonText: 'No, mantener pedido',
+      customClass: {
+        title: "font-sans",
+        popup: "font-sans"
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {        
+        const ESTADO_CANCELADO = 6;
+  
+        this.orderService.updateOrderStatus(pedido.order_id, ESTADO_CANCELADO).subscribe({
+          next: () => {
+            Swal.fire({
+              title:'Cancelado', 
+              text: 'El pedido ha sido cancelado.',
+              icon: 'success',
+              customClass: {
+                title: "font-sans",
+                popup: "font-sans"
+              }
+            });
+            
+            this.updateOrders();
+          },
+          error: () => {
+            Swal.fire({
+              title: 'Error', 
+              text: 'No se pudo cancelar el pedido.', 
+              icon: 'error',
+              customClass: {
+                title: "font-sans",
+                popup: "font-sans"
+              }
+            });
+          }
+        });
+      }
+    });
+  }
+  
   
 }

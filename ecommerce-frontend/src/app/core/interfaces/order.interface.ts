@@ -31,3 +31,17 @@ export interface OrderDetails {
     quantity: number,
     subtotal: number
 }
+
+
+export interface Earning {
+    earnings: TimeInfo,
+    salesCount: TimeInfo
+}
+
+export interface TimeInfo {
+    total: number,
+    today: number,
+    last_week: number,
+    last_month: number,
+    last_3_months: number
+}

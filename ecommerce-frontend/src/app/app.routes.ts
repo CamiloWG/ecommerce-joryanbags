@@ -53,12 +53,12 @@ export const routes: Routes = [
     },
     {
         path: 'admin',
-        title: 'Pagina Administrador | Joryan Bags',
+        title: 'Administradción | Joryan Bags',
         component: AdminComponent
     },
     {
         path: 'usuario',
-        title: 'Pagina Usuario | Joryan Bags',
+        title: 'Usuario | Joryan Bags',
         component: UsuarioComponent,
         canActivate: [AuthGuard]
     },

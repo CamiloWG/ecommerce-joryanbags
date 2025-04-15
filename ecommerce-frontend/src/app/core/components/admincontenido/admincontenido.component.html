@@ -5,13 +5,13 @@
     <button 
       (click)="seleccionarVistaStock('listado')" 
       [ngClass]="vistaStock === 'listado' ? 'bg-gray-800 text-white' : 'bg-gray-200 text-gray-700'" 
-      class="px-4 py-2 rounded-md font-subheading text-sm border">
+      class="px-4 py-2 rounded-md font-subheading text-sm border cursor-pointer">
       Ver productos
     </button>
     <button 
       (click)="seleccionarVistaStock('nuevo')" 
       [ngClass]="vistaStock === 'nuevo' ? 'bg-gray-800 text-white' : 'bg-gray-200 text-gray-700'" 
-      class="px-4 py-2 rounded-md font-subheading text-sm border">
+      class="px-4 py-2 rounded-md font-subheading text-sm border cursor-pointer">
       Agregar producto
     </button>
   </div>
@@ -20,7 +20,7 @@
   
     
       
-  @for(product of productos; track product) 
+  @for(product of productos; track product.product_id) 
   {
     <div *ngIf="vistaStock === 'listado'" class="flex justify-between items-center w-full  rounded-radius-200 border border-border-default-default 
     border-solid box-border p-2">
@@ -156,7 +156,7 @@
   </div>
 
   <!-- Contenido de órdenes pendientes -->
-@for(pedido of pedidosPendientes; track pedido)
+@for(pedido of pedidosPendientes; track pedido.order_id)
 {
   <div *ngIf="vistaOrden === 'pendientes'" class="rounded-radius-200 border border-border-default-default border-solid box-border">
     <div class="flex justify-between items-center px-4 py-2">
@@ -188,9 +188,8 @@
             {{ ordenMostrandoDetalles === pedido.order_id ? 'Ocultar detalles' : 'Ver detalles' }}
           </button>
           <button
-            class="text-white px-20 py-2 font-subheading text-sm cursor-pointer bg-red-600 hover:bg-white hover:text-red-600 transition rounded-lg border border-red-500"
-            >
-            Eliminar pedido
+            class="text-white px-20 py-2 font-subheading text-sm cursor-pointer bg-red-600 hover:bg-white hover:text-red-600 transition rounded-lg border border-red-500" (click)="cancelarPedido(pedido)">
+            Cancelar pedido
           </button>
         </div>
       </div>
@@ -219,7 +218,7 @@
 
 
 <!-- Vista ordenes enviadas -->
-@for(pedido of pedidosEnviados; track pedido)
+@for(pedido of pedidosEnviados; track pedido.order_id)
 {
   <div *ngIf="vistaOrden === 'enviadas'" class="rounded-radius-200 border border-border-default-default border-solid box-border">
     <div class="flex justify-between items-center px-4 py-2">
@@ -278,7 +277,7 @@
 
 
 <!-- Vista ordenes entregadas -->
-@for(pedido of pedidosEntregados; track pedido)
+@for(pedido of pedidosEntregados; track pedido.order_id)
 {
   <div *ngIf="vistaOrden === 'entregadas'" class="rounded-radius-200 border border-border-default-default border-solid box-border">
     <div class="flex justify-between items-center px-4 py-2">

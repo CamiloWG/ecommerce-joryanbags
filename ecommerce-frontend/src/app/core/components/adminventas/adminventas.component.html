@@ -10,8 +10,8 @@
     <div *ngIf="periodoSeleccionado === 'hoy'" class="shadow border border-gray-200 rounded-md p-4">
       <h4 class="font-bold mb-2 font-subheading">Ventas realizadas - Hoy</h4>
       <div class="mt-4">
-        <p class="text-gray-700 font-semibold">Número de ventas: {{ ventasHoy.cantidad }}</p>
-        <p class="text-gray-700 font-semibold">Total de ventas: ${{ ventasHoy.dinero }}</p>
+        <p class="text-gray-700 font-semibold font-subheading">Número de ventas: {{ dataVentas.salesCount.today }}</p>
+        <p class="text-gray-700 font-semibold font-subheading">Total de ventas: ${{ dataVentas.earnings.today }}</p>
       </div>
     </div>
   
@@ -19,8 +19,8 @@
     <div *ngIf="periodoSeleccionado === 'ultimaSemana'" class="shadow border border-gray-200 rounded-md p-4">
       <h4 class="font-bold mb-2 font-subheading">Ventas realizadas - Última Semana</h4>
       <div class="mt-4">
-        <p class="text-gray-700 font-semibold">Número de ventas: {{ ventasUltimaSemana.cantidad }}</p>
-        <p class="text-gray-700 font-semibold">Total de ventas: ${{ ventasUltimaSemana.dinero }}</p>
+        <p class="text-gray-700 font-semibold font-subheading">Número de ventas: {{ dataVentas.salesCount.last_week }}</p>
+        <p class="text-gray-700 font-semibold font-subheading">Total de ventas: ${{ dataVentas.earnings.last_week }}</p>
       </div>
     </div>
   
@@ -28,8 +28,8 @@
     <div *ngIf="periodoSeleccionado === 'ultimoMes'" class="shadow border border-gray-200 rounded-md p-4">
       <h4 class="font-bold mb-2 font-subheading">Ventas realizadas - Último Mes</h4>
       <div class="mt-4">
-        <p class="text-gray-700 font-semibold">Número de ventas: {{ ventasUltimoMes.cantidad }}</p>
-        <p class="text-gray-700 font-semibold">Total de ventas: ${{ ventasUltimoMes.dinero }}</p>
+        <p class="text-gray-700 font-semibold font-subheading">Número de ventas: {{ dataVentas.salesCount.last_month }}</p>
+        <p class="text-gray-700 font-semibold font-subheading">Total de ventas: ${{ dataVentas.earnings.last_month }}</p>
       </div>
     </div>
   
@@ -37,8 +37,8 @@
     <div *ngIf="periodoSeleccionado === 'ultimosTresMeses'" class="shadow border border-gray-200 rounded-md p-4">
       <h4 class="font-bold mb-2 font-subheading">Ventas realizadas - Últimos tres meses</h4>
       <div class="mt-4">
-        <p class="text-gray-700 font-semibold">Número de ventas: {{ ventasUltimosTresMeses.cantidad }}</p>
-        <p class="text-gray-700 font-semibold">Total de ventas: ${{ ventasUltimosTresMeses.dinero }}</p>
+        <p class="text-gray-700 font-semibold font-subheading">Número de ventas: {{ dataVentas.salesCount.last_3_months }}</p>
+        <p class="text-gray-700 font-semibold font-subheading">Total de ventas: ${{ dataVentas.earnings.last_3_months }}</p>
       </div>
     </div>
   </div>

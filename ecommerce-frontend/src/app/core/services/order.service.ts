@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Order, OrderDetails, RawOrder } from '../interfaces/order.interface';
+import { Earning, Order, OrderDetails, RawOrder } from '../interfaces/order.interface';
 import { environment } from '../../../environments/environment';
 import { ProductInCart } from '../interfaces/product.interface';
 import { HttpClient } from '@angular/common/http';
@@ -15,6 +15,7 @@ export class OrderService {
   private API_URL_GET_ORDER_DETAILS: string = `${environment.API_URL_BASE}/api/orders/detail`;
   private API_URL_GET_ALL_ORDERS: string = `${environment.API_URL_BASE}/api/orders`;
   private API_URL_UPDATE_ORDER_STATUS: string = `${environment.API_URL_BASE}/api/orders/update-status`;
+  private API_URL_GET_EARNINGS: string = `${environment.API_URL_BASE}/api/orders/earnings`;
 
   private currentOrder = new BehaviorSubject<RawOrder>({} as RawOrder);
 
@@ -70,5 +71,9 @@ export class OrderService {
   updateOrderStatus(order_id: string | number, status: number): Observable<Order[]> {
     const body: any = {order_id, status};
     return this.http.post<Order[]>(this.API_URL_UPDATE_ORDER_STATUS, body);
-  } 
+  }
+
+  getEarnings(): Observable<Earning> {
+    return this.http.get<Earning>(this.API_URL_GET_EARNINGS);
+  }
 }
