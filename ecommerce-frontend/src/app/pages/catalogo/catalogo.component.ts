@@ -9,6 +9,7 @@ import { CatalogFilterComponent } from '../../core/components/CatalogFilter/Cata
 import { FooterComponent } from '../../core/components/shared/footer/footer.component';
 import { ProductListService } from '../../core/services/product-list.service';
 import { Product } from '../../core/interfaces/product.interface';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-catalogo',
@@ -19,17 +20,21 @@ import { Product } from '../../core/interfaces/product.interface';
     TagToggleGroup,
     ProductInfoCard,
     CatalogFilterComponent,
-    FooterComponent
+    FooterComponent,
+    CommonModule
   ],
   templateUrl: './catalogo.component.html',
   styleUrl: './catalogo.component.css'
 })
 export class CatalogoComponent {
   products: Product[] = []
+  skeletonArray = Array(8).fill(0);
 
+  isLoading = true;
   constructor(private ProductService: ProductListService) {
     ProductService.GetProducts().subscribe(data => {
       this.products = data;
+      this.isLoading = false;
     });
   }
 
