@@ -17,6 +17,7 @@ const router = Router();
 
 router.get("/count", ProductController.getCount);
 router.get("/", ProductController.getAll);
+router.get("/paginated", ProductController.getAllPaginated);
 router.get(
     "/get/:product_id",
     param("product_id")
