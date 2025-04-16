@@ -8,7 +8,8 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class ProductListService {
-  private URL_API_GET: string = `${environment.API_URL_BASE}/api/products`;
+  private URL_API_GET: string = `${environment.API_URL_BASE}/api/products`;  
+  private URL_API_GET_PAGINATED: string = `${environment.API_URL_BASE}/api/products/paginated`;
   private URL_API_UPDATE: string = `${environment.API_URL_BASE}/api/products/update`;
   private URL_API_CREATE: string = `${environment.API_URL_BASE}/api/products/create`;
 
@@ -24,6 +25,27 @@ export class ProductListService {
           image_url: `${environment.API_URL_BASE}${product.image_url}`
         }))
       )
+    );
+  }
+
+  GetProductsPaginated(page: number, limit: number): Observable<Product[]> {    
+    const params = {
+      page: page.toString(),
+      limit: limit.toString()
+    };
+    return this.http.get<Product[]>(this.URL_API_GET_PAGINATED, { params }).pipe(
+      map(products =>
+        products.map(product => ({
+          ...product,
+          image_url: `${environment.API_URL_BASE}${product.image_url}`
+        }))
+      )
+    );
+  }
+
+  getProductCount(): Observable<number> {
+    return this.http.get<{ count: number }>(`${this.URL_API_GET}/count`).pipe(
+      map(res => res.count)
     );
   }
 
