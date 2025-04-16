@@ -10,6 +10,8 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductListService } from '../../core/services/product-list.service';
 import { Product } from '../../core/interfaces/product.interface';
 import { CartService } from '../../core/services/cart.service';
+import { CommonModule } from '@angular/common';
+import { SkeletonProductComponent } from '../../core/components/skeleton-product/skeleton-product.component';
 
 @Component({
   selector: 'app-producto',
@@ -19,13 +21,16 @@ import { CartService } from '../../core/services/cart.service';
     CategoriasComponent,
     ProductComponent,
     ProductcardComponent,
-    FooterComponent
+    FooterComponent,
+    CommonModule,
+    SkeletonProductComponent
   ],
   templateUrl: './producto.component.html',
   styleUrl: './producto.component.css'
 })
 export class ProductoComponent {
   producto: Product = {} as Product;
+  productoCargado: boolean = false;
   private cartService = inject(CartService);
   constructor(private route: ActivatedRoute, private productService: ProductListService) { }
 
@@ -34,6 +39,7 @@ export class ProductoComponent {
     
     this.productService.GetProductById(idProduct).subscribe(data => {
       this.producto = data;
+      this.productoCargado = true;
     })
 
     this.gotoTop(); 
