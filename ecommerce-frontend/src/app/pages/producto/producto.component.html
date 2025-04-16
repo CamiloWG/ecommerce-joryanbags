@@ -23,7 +23,12 @@
         <menu-categorias class="max-w-[275px]"></menu-categorias>
       </div>
       <div class="w-[80%] flex-shrink-0">
-        <app-product [titulo]="producto.name" [precio]="producto.price" [image]="producto.image_url" [stock]="producto.stock" [id]="producto.product_id" [categoria]="producto.category_name" [descripcion]="producto.description" (buttonAddEvent)="onAdd($event)"></app-product>  
+        <ng-container *ngIf="productoCargado; else cargandoProducto">
+          <app-product [titulo]="producto.name" [precio]="producto.price" [image]="producto.image_url" [stock]="producto.stock" [id]="producto.product_id" [categoria]="producto.category_name" [descripcion]="producto.description" (buttonAddEvent)="onAdd($event)"></app-product>            
+        </ng-container>
+        <ng-template #cargandoProducto>
+          <app-skeleton-product></app-skeleton-product>
+        </ng-template>
       </div>
     </section>
 
