@@ -3,13 +3,13 @@ import { HeaderMenuComponent } from '../../core/components/shared/header-menu/he
 import { Route } from '../../core/components/shared/Route/Route.component';
 import { LogoComponent } from '../../core/components/shared/logo/logo.component';
 import { CategoriasComponent } from "../../core/components/categorias/categorias.component";
-import { TagToggleGroup } from '../../core/components/TagToggleGroup/TagToggleGroup.component';
 import { ProductInfoCard } from '../../core/components/ProductInfoCard/ProductInfoCard.component';
-import { CatalogFilterComponent } from '../../core/components/CatalogFilter/CatalogFilter.component';
 import { FooterComponent } from '../../core/components/shared/footer/footer.component';
 import { ProductListService } from '../../core/services/product-list.service';
 import { Product } from '../../core/interfaces/product.interface';
 import { CommonModule } from '@angular/common';
+import { CatalogFilterComponent } from '../../core/components/catalog-filter/catalog-filter.component';
+import { MatChipsModule } from '@angular/material/chips';
 
 @Component({
   selector: 'app-catalogo',
@@ -17,9 +17,9 @@ import { CommonModule } from '@angular/common';
     Route, 
     LogoComponent, 
     CategoriasComponent,
-    TagToggleGroup,
-    ProductInfoCard,
     CatalogFilterComponent,
+    MatChipsModule,
+    ProductInfoCard,
     FooterComponent,
     CommonModule
   ],
@@ -38,4 +38,12 @@ export class CatalogoComponent {
     });
   }
 
+  filtros = ['Nuevo', 'Precio ascendente', 'Precio descendente'];
+  filtroSeleccionado: string = 'Nuevo';
+
+  seleccionarFiltro(filtro: string) {
+    this.filtroSeleccionado = filtro;
+    // Aquí puedes agregar tu lógica de ordenamiento según el filtro
+    console.log('Filtro seleccionado:', filtro);
+  }
 }
