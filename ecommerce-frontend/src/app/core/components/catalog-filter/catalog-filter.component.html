@@ -1,0 +1,55 @@
+<div class="w-[287px] flex-1 shadow-[0px_4px_4px_-1px_rgba(12,_12,_13,_0.1),_0px_4px_4px_-1px_rgba(12,_12,_13,_0.05)] rounded-radius-200 bg-background-default-default border-border-default-default border-solid border-stroke-border box-border overflow-hidden flex flex-col items-start justify-start py-space-200 px-[7px] z-[1]">
+    <div class="self-stretch overflow-hidden flex flex-col items-start justify-start pt-space-200 px-space-400 pb-space-100">
+      <div class="self-stretch relative text-body-size-medium leading-[140%] font-body-font-weight-strong text-text-default-default font-subheading">
+        Filtros
+      </div>
+    </div>
+    <div>
+        <div class="p-8 space-y-4">
+            <div class="self-stretch relative text-body-size-medium leading-[140%] font-subheading">
+                Precio
+            </div>
+            <div class="relative flex flex-col justify-center">
+                <mat-slider
+                  min="200"
+                  max="500"
+                  style="--mdc-slider-track-height: 4px;"
+                  class="w-full z-10"
+                  [ngStyle]="{
+                    '--mdc-slider-active-track-color': '#000000',
+                    '--mdc-slider-handle-color': '#000000',
+                    '--mdc-slider-focus-handle-color': '#000000'
+                  }">
+                  <input matSliderStartThumb [(ngModel)]="startValue">
+                  <input matSliderEndThumb [(ngModel)]="endValue">
+                </mat-slider>
+                <div class="absolute top-1/2 left-0 right-0 z-0 flex justify-between px-2 -translate-y-1/2 pointer-events-none">
+                    <span *ngFor="let i of tickArray" class="w-1 h-1 bg-gray-400 rounded-full"></span>
+                </div>
+              </div>          
+            <div class="text-md font-subheading">
+              <p>Rango de precios: <span class="text-green-500">${{ startValue }} - ${{ endValue }}</span></p>
+            </div>
+          </div>          
+                  
+    </div>
+    <div>
+        <div class="py-0 p-8 space-y-4">
+            <div class="self-stretch relative text-body-size-medium leading-[140%] font-subheading">
+                Categorias
+            </div>
+            <mat-checkbox [(ngModel)]="isChecked1" class="text-lg text-black-800 hover:text-gray-500">
+              Opción 1
+            </mat-checkbox>
+          
+            <mat-checkbox [(ngModel)]="isChecked2" class="text-lg text-black-800 hover:text-gray-500">
+              Opción 2
+            </mat-checkbox>
+          
+            <mat-checkbox [(ngModel)]="isChecked3" class="text-lg text-black-800 hover:text-gray-500">
+              Opción 3
+            </mat-checkbox>
+          </div>                             
+          
+    </div>
+</div>
