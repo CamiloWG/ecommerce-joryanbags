@@ -94,15 +94,15 @@
           <!-- Mostrar Skeletons -->
           <ng-container *ngIf="isLoading">
             <ng-container *ngFor="let sk of skeletonArray">
-              <div class="mx-auto h-full max-h[300px] w-full max-w-[250px] rounded-md bg-background-default-default border-border-default-default border-solid border-stroke-border box-border flex flex-col items-start justify-start p-4 gap-4 min-w-0">
-                <div class="self-stretch h-[220px] bg-gray-300 rounded-md"></div>
+              <div class="mx-auto w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded-md bg-background-default-default border-border-default-default border-solid border-stroke-border box-border flex flex-col items-start justify-start p-4 gap-4 cursor-pointer">
+                <div class="w-full aspect-[4/5] bg-gray-300 rounded-md"></div>
                 <div class="w-full flex flex-col items-start justify-start gap-2">
                   <div class="h-4 bg-gray-300 rounded w-3/4"></div>
                   <div class="h-4 bg-gray-300 rounded w-1/2"></div>
                 </div>
               </div>
             </ng-container>
-          </ng-container>
+          </ng-container>          
  
           <!-- Mostrar Productos Reales -->
           <ng-container *ngIf="!isLoading">
