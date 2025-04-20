@@ -72,19 +72,24 @@
       <div class="md:py-0 col-span-1 lg:col-span-2 lg:row-span-2 md:col-span-2 p-0 m-0 order-3">
         
         <div class="max-w-[40%] md:max-w-[80%] justify-self-center">
-          <mat-chip-grid
-          class="gap-2 sm:mat-mdc-chip-set-stacked flex justify-center ">
-            
-          @for (filtro of filtros; track filtro) {
-              <mat-chip-option
-                [selected]="filtroSeleccionado === filtro"
-                (click)="seleccionarFiltro(filtro)"
-                [class]="filtroSeleccionado === filtro ? '!bg-black text-white' : '!bg-white-200 text-black'">
+          <mat-chip-listbox class="gap-2 flex flex-wrap justify-center" aria-label="Filtros de catálogo">
+            <mat-chip-option
+              *ngFor="let filtro of filtros"
+              [selected]="filtroSeleccionado === filtro"
+              (click)="seleccionarFiltro(filtro)"
+              [color]="filtroSeleccionado === filtro ? 'primary' : undefined"
+              [ngStyle]="{
+                'background-color': filtroSeleccionado === filtro ? '#000000' : '#f3f4f6'
+              }">
+              <span class="font-subheading"
+              [ngStyle]="{ 'color': filtroSeleccionado === filtro ? '#ffffff' : '#000000' }">
                 {{ filtro }}
-              </mat-chip-option>
-            }
-          </mat-chip-grid>          
+              </span>
+            </mat-chip-option>
+          </mat-chip-listbox>
+          
         </div>
+        
         <div class="py-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
           <!-- Mostrar Skeletons -->
           <ng-container *ngIf="isLoading">

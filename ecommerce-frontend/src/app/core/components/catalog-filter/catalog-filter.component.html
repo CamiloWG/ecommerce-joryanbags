@@ -14,7 +14,12 @@
                   min="200"
                   max="500"
                   style="--mdc-slider-track-height: 4px;"
-                  class="w-full z-10">
+                  class="w-full z-10"
+                  [ngStyle]="{
+                    '--mdc-slider-active-track-color': '#000000',
+                    '--mdc-slider-handle-color': '#000000',
+                    '--mdc-slider-focus-handle-color': '#000000'
+                  }">
                   <input matSliderStartThumb [(ngModel)]="startValue">
                   <input matSliderEndThumb [(ngModel)]="endValue">
                 </mat-slider>
