@@ -5,7 +5,6 @@ import { ProductServices } from "../services/productServices.js";
 export class ProductController {
     static getCount = async (req, res) => {
         try {
-            checkPermissions(req, res, 2);
             const count = await ProductServices.getCount();
             res.send(count);
         } catch (error) {
@@ -26,6 +25,29 @@ export class ProductController {
             console.error(error);
         }
     };
+
+    static getAllPaginated = async (req, res) => {
+        try {
+            let { page = 1, limit = 10 } = req.query;
+    
+            page = parseInt(page);
+            limit = parseInt(limit);
+    
+            if (isNaN(page) || page < 1) page = 1;
+            if (isNaN(limit) || limit < 1) limit = 12;
+    
+            const offset = (page - 1) * limit;
+    
+            const products = await ProductServices.getPaginated(offset, limit);
+            res.send(products);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({
+                error: "Error al obtener productos paginados",
+            });
+        }
+    };
+    
 
     static getTopPurchases = async (req, res) => {
         try {

@@ -4,18 +4,19 @@
   </h1>
 
   <div class="w-full flex flex-row items-start justify-start gap-spacing-sm text-5xl mq750:flex-col mq750:items-center mq750:gap-8">
-    <customer-quote 
+    <customer-quote class="w-full sm:w-[300px] self-stretch"
+      [customerQuoteAlignSelf]="'stretch'" 
       [aTerrificPieceOfPraise]="'“A terrific piece of praise”'" 
       [avatar]="'assets/images/avatar@2x.png'"> 
     </customer-quote>
 
-    <customer-quote 
+    <customer-quote class="w-full sm:w-[300px] self-stretch"
       [customerQuoteAlignSelf]="'stretch'" 
       [aTerrificPieceOfPraise]="'“A fantastic bit of feedback”'" 
       [avatar]="'assets/images/avatar-1@2x.png'"> 
     </customer-quote>
 
-    <customer-quote 
+    <customer-quote class="w-full sm:w-[300px] self-stretch"
       [customerQuoteAlignSelf]="'stretch'" 
       [aTerrificPieceOfPraise]="'“A genuinely glowing review”'" 
       [avatar]="'assets/images/avatar-2@2x.png'"> 

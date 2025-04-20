@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, HostListener, Input } from '@angular/core';
 import { HeaderMenuComponent } from '../../core/components/shared/header-menu/header-menu.component';
 import { Route } from '../../core/components/shared/Route/Route.component';
 import { LogoComponent } from '../../core/components/shared/logo/logo.component';
@@ -27,15 +27,37 @@ import { MatChipsModule } from '@angular/material/chips';
   styleUrl: './catalogo.component.css'
 })
 export class CatalogoComponent {
-  products: Product[] = []
-  skeletonArray = Array(8).fill(0);
+  products: Product[] = [];
+  skeletonArray = Array(12).fill(0);
+  
+  isLoading = false;  
+  page = 1;
+  limit = 12;
+  totalPages = 0;
 
-  isLoading = true;
-  constructor(private ProductService: ProductListService) {
-    ProductService.GetProducts().subscribe(data => {
-      this.products = data;
+  constructor(private productService: ProductListService) {}
+
+  ngOnInit(): void {
+    this.productService.getProductCount().subscribe(count => {
+      this.totalPages = Math.ceil(count / this.limit);
+    });
+    this.fetchProducts();
+  }
+
+  fetchProducts(): void {
+    this.isLoading = true;
+    this.productService.GetProductsPaginated(this.page, this.limit).subscribe(products => {
+      this.products = products;
       this.isLoading = false;
     });
+
+  }
+
+  nextPage(): void {
+    if (this.page < this.totalPages) {
+      this.page++;
+      this.fetchProducts();
+    }
   }
 
   filtros = ['Nuevo', 'Precio ascendente', 'Precio descendente'];
@@ -45,5 +67,12 @@ export class CatalogoComponent {
     this.filtroSeleccionado = filtro;
     // Aquí puedes agregar tu lógica de ordenamiento según el filtro
     console.log('Filtro seleccionado:', filtro);
+  }
+  
+  prevPage(): void {
+    if (this.page > 1) {
+      this.page--;
+      this.fetchProducts();
+    }
   }
 }

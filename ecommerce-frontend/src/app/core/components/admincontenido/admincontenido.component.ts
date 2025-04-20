@@ -138,7 +138,7 @@ export class ContenidoResumenComponent {
         Swal.fire({
           icon: 'success',
           title: 'Producto creado',
-          text: 'El producto fue creado correctamente 🎉',
+          text: 'El producto fue creado correctamente',
           confirmButtonColor: '#6366f1',
           customClass: {
             title: "font-sans",
@@ -155,7 +155,7 @@ export class ContenidoResumenComponent {
         Swal.fire({
           icon: 'error',
           title: 'Error al crear producto',
-          text: error?.message || 'Algo salió mal al guardar el producto 😢',
+          text: error?.message || 'Algo salió mal al guardar el producto',
           confirmButtonColor: '#ef4444',
           customClass: {
             title: "font-sans",
