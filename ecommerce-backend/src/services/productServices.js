@@ -16,6 +16,17 @@ export class ProductServices {
         return results;
     };
 
+    static async getPaginated(offset, limit) {
+        const products = await Product.findAll({
+            limit,
+            offset
+        });
+       
+        Product.find
+        return products;
+    }
+    
+
     static getTopPurchases = async () => {
         const [results] = await sequelize.query("LoadTopProducts");
         return results;
