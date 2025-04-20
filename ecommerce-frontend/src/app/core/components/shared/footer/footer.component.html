@@ -1,14 +1,14 @@
-<header class="self-stretch flex flex-row items-start justify-start py-0 px-[5vw] box-border max-w-full text-left text-body-size-medium text-darkslategray font-subheading">
-  <div class="flex-1 flex flex-col items-end justify-start gap-[47px] max-w-full mq750:gap-[23px]" (ngStyle)="frameDivStyle">
+<footer class="self-stretch flex flex-row items-start justify-start py-0 px-[5vw] box-border max-w-full text-left text-body-size-medium text-darkslategray font-subheading">
+  <div class="flex-1 flex flex-col items-center md:items-end justify-start gap-[47px] max-w-full" (ngStyle)="frameDivStyle">
 
     <!-- Línea divisoria -->
     <div class="self-stretch h-px relative border-background-brand-secondary border-t border-solid box-border"></div>
 
     <!-- Contenedor principal -->
-    <div class="self-stretch flex flex-row justify-between items-end gap-5 flex-wrap max-w-full mq750:flex-col mq750:items-center mq750:text-center">
+    <div class="self-stretch flex flex-col md:flex-row justify-between items-center md:items-end gap-5 flex-wrap max-w-full text-center ">
 
       <!-- Logo + íconos -->
-      <div class="w-full max-w-[220px] flex flex-col items-end justify-start gap-[40px] mq750:items-center mq750:gap-[24px]">
+      <div class="w-full max-w-[220px] flex flex-col items-center md:items-end md:mx-auto justify-start gap-[40px]">
         <img class="w-full h-auto object-contain" loading="lazy" alt="Logo" [src]="image5" />
         <div class="flex flex-row items-center justify-center gap-spacing-xs">
           <img class="h-10 w-10 rounded object-cover" loading="lazy" alt="Icono 1" src="assets/icons/buttons--icon@2x.png" />
@@ -19,20 +19,20 @@
       </div>
 
       <!-- Menú de enlaces -->
-      <div class="w-full max-w-[700px] flex flex-row justify-between items-start gap-8 flex-wrap mq750:gap-6">
-        <div class="flex-1 min-w-[140px] flex flex-col items-end justify-center gap-spacing-s mq750:items-center">
+      <div class="w-full max-w-[700px] flex  md:mx-auto md:flex-row justify-between items-center md:items-start gap-8 flex-wrap">
+        <div class="flex-1 min-w-[100px] flex flex-col items-center md:items-center justify-center gap-spacing-s">
           <div class="font-[500] text-black leading-[150%]">Topic</div>
           <div class="font-[500] leading-[150%]">Page</div>
           <div class="font-[500] leading-[150%]">Page</div>
           <div class="font-[500] leading-[150%]">Page</div>
         </div>
-        <div class="flex-1 min-w-[140px] flex flex-col items-end justify-center gap-spacing-s mq750:items-center">
+        <div class="flex-1 min-w-[100px] flex flex-col items-center md:items-center justify-center gap-spacing-s">
           <div class="font-[500] text-black leading-[150%]">Topic</div>
           <div class="font-[500] leading-[150%]">Page</div>
           <div class="font-[500] leading-[150%]">Page</div>
           <div class="font-[500] leading-[150%]">Page</div>
         </div>
-        <div class="flex-1 min-w-[140px] flex flex-col items-end justify-center gap-spacing-s mq750:items-center">
+        <div class="flex-1 min-w-[100px] flex flex-col items-center md:items-center justify-center gap-spacing-s">
           <div class="font-[500] text-black leading-[150%]">Topic</div>
           <div class="font-[500] leading-[150%]">Page</div>
           <div class="font-[500] leading-[150%]">Page</div>
@@ -41,4 +41,4 @@
       </div>
     </div>
   </div>
-</header>
+</footer>
