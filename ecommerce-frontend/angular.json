@@ -30,6 +30,11 @@
                 "glob": "**/*",
                 "input": "src/assets",
                 "output": "assets/"
+              },
+              {
+                "glob": "**/*",
+                "input": "staticwebapp.config",
+                "output": "staticwebapp.config"
               }
             ],
             "styles": [
@@ -91,6 +96,11 @@
                 "glob": "**/*",
                 "input": "src/assets",
                 "output": "assets/"
+              },
+              {
+                "glob": "**/*",
+                "input": "staticwebapp.config",
+                "output": "staticwebapp.config"
               }
             ],
             "styles": [
