@@ -12,6 +12,8 @@ import { Product } from '../../core/interfaces/product.interface';
 import { CartService } from '../../core/services/cart.service';
 import { CommonModule } from '@angular/common';
 import { SkeletonProductComponent } from '../../core/components/skeleton-product/skeleton-product.component';
+import { ProductInfoCard } from '../../core/components/ProductInfoCard/ProductInfoCard.component';
+
 
 @Component({
   selector: 'app-producto',
@@ -20,7 +22,7 @@ import { SkeletonProductComponent } from '../../core/components/skeleton-product
     LogoComponent,
     CategoriasComponent,
     ProductComponent,
-    ProductcardComponent,
+    ProductInfoCard,
     FooterComponent,
     CommonModule,
     SkeletonProductComponent
@@ -34,15 +36,29 @@ export class ProductoComponent {
   private cartService = inject(CartService);
   constructor(private route: ActivatedRoute, private productService: ProductListService) { }
 
+  products: Product[] = [];
+  
+  isLoading = false;  
+  page = 1;
+  limit = 3;
+  totalPages = 0;
+  
   ngOnInit(): void {    
     const idProduct = this.route.snapshot.paramMap.get('id') || 1;    
     
     this.productService.GetProductById(idProduct).subscribe(data => {
       this.producto = data;
       this.productoCargado = true;
+
+    
     })
 
     this.gotoTop(); 
+
+    this.productService.GetProductsPaginated(this.page, this.limit).subscribe(products => {
+      this.products = products;
+      this.isLoading = false;
+    });
   }
 
   gotoTop() {
@@ -56,4 +72,7 @@ export class ProductoComponent {
   onAdd(cantidad: number) {    
     this.cartService.addToCart(this.producto, cantidad);  
   }
+ 
+  
+
 }
