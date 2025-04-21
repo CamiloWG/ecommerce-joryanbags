@@ -1,52 +1,58 @@
-<div class="flex flex-col">
-  <header-menu></header-menu>
+<div class="pb-10">
+  <!-- Header -->
+  <header-menu class="w-full"></header-menu>
 
-  <main class="flex flex-col items-start justify-start pb-[50px] pl-3 pr-[18px] box-border max-w-full lg:pb-[50px] lg:box-border mq750:pb-[30px] mq750:box-border">
-    
-    <section class="relative w-full min-h-[150px] flex flex-wrap items-start sm:items-center">
-  
-      <app-logo class="mx-auto flex-shrink-0 "></app-logo>
-    
-      <div class="flex-1 min-w-[250px] sm:min-w-[365px] flex flex-col items-start justify-start gap-[50px]">
-        <div class="w-full flex flex-col">
+  <!-- Contenido principal -->
+  <section class="relative bg-background-default-default flex flex-col items-start justify-start pt-0 px-px pb-[10px] box-border gap-3.5 leading-[normal] tracking-[normal]">
+    <div class="mx-auto self-stretch w-full max-w-[95%] lg:max-w-[90%] grid grid-cols-1 lg:grid-cols-[auto,1fr,auto] md:grid-cols-2 gap-x-10 auto-rows-auto items-start">
+      
+      <!-- Logo -->
+      <div class="w-fit p-0 order-1 md:col-span-2 lg:col-span-1 flex justify-self-center lg:justify-self-end">
+        <app-logo></app-logo>
+      </div>
+      <!-- Portada -->
+      <div class="md:py-6 col-span-1 lg:col-span-2 lg:row-span-1 md:col-span-2 p-0 m-0 order-2">
+        <div class="flex flex-col items-start justify-start gap-[30px]">
           <route [breadcrumbs]="[
             { label: 'Carrito' },
           ]"></route>
         </div>
       </div>
-    
-    </section>    
-
-    <section class="py-2 mx-auto w-full max-w-[80%] flex flex-row justify-between items-start gap-8 px-10">
-      <div class="flex-1 flex flex-col gap-4">
-        @if (totalProductos.length > 0) {
-          @for (item of totalProductos; track item) {
-            <app-cartproduct 
-              (onChangeQty)="onChangeQuantity(item, $event)" 
-              (onDelete)="onDeleteProduct(item)" 
-              [nombreProducto]="item.name" 
-              [cantidad]="item.quantity" 
-              [stock]="item.stock"
-              [urlImagen]="item.image_url" 
-              [descripcion]="item.category_name" 
-              [precio]="item.price">
-            </app-cartproduct>
-          }
-        } @else {
-          <img src="assets/images/empty-cart.png" class="max-w-[400px] mx-auto" alt="Carrito vacio">
-          <h2 class="mx-auto font-subheading text-center text-gray-500">Aún no has agregado productos al carrito</h2>
-        }
-      </div>
-      <div class="w-[350px] flex-shrink-0">
+      <!-- Logo -->
+      <div class="w-fit p-0 order-4 md:col-span-2 lg:col-span-1 flex justify-self-center lg:justify-self-end">
         <app-cartbill *ngIf="totalProductos.length > 0" title="Mi carro de compras" buttonText="Continuar" rutaBttn="/checkout"></app-cartbill>
       </div>
-    </section>
+      <!-- Portada -->
+      <div class="md:py-2 py-5 col-span-1 lg:col-span-2 lg:row-span-1 md:col-span-2 p-0 m-0 order-3">
+        <div class="flex flex-col items-stretch justify-start gap-6 w-full">
+          @if (totalProductos.length > 0) {
+            @for (item of totalProductos; track item) {
+              <app-cartproduct 
+                (onChangeQty)="onChangeQuantity(item, $event)" 
+                (onDelete)="onDeleteProduct(item)" 
+                [nombreProducto]="item.name" 
+                [cantidad]="item.quantity" 
+                [stock]="item.stock"
+                [urlImagen]="item.image_url" 
+                [descripcion]="item.category_name" 
+                [precio]="item.price">
+              </app-cartproduct>
+            }                 
+          }
+        </div>
+      </div>
 
-  </main>
+    </div>
+  </section>
 
-  <footer class="w-full mt-5 mb-10">
-    <app-footer [frameHeaderAlignSelf]="'unset'" [frameHeaderPadding]="'0px 70px'" 
-                [frameDivFlex]="'unset'" [frameDivWidth]="'1290px'" 
-                [image5]="'assets/images/image-5@2x.png'"></app-footer>
+  <!-- Footer -->
+  <footer class="w-full mt-5 mb-10 z-[10] relative">
+    <app-footer 
+      [frameHeaderAlignSelf]="'unset'" 
+      [frameHeaderPadding]="'0px 70px'" 
+      [frameDivFlex]="'unset'" 
+      [frameDivWidth]="'1290px'" 
+      [image5]="'assets/images/image-5@2x.png'">
+    </app-footer>
   </footer>
 </div>
