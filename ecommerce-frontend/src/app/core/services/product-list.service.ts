@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Product } from '../interfaces/product.interface';
 import { map, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { ProductFilters } from '../interfaces/filter.interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -28,11 +29,9 @@ export class ProductListService {
     );
   }
 
-  GetProductsPaginated(page: number, limit: number): Observable<Product[]> {    
-    const params = {
-      page: page.toString(),
-      limit: limit.toString()
-    };
+  GetProductsPaginated(page: number, limit: number, filter: ProductFilters, order: string): Observable<Product[]> {    
+    const params = this.getQuerySearchParams(filter, page, limit, order);
+
     return this.http.get<Product[]>(this.URL_API_GET_PAGINATED, { params }).pipe(
       map(products =>
         products.map(product => ({
@@ -43,10 +42,34 @@ export class ProductListService {
     );
   }
 
-  getProductCount(): Observable<number> {
-    return this.http.get<{ count: number }>(`${this.URL_API_GET}/count`).pipe(
+  getProductCount(filter: ProductFilters): Observable<number> {
+    const params = this.getQuerySearchParams(filter);
+    return this.http.get<{ count: number }>(`${this.URL_API_GET}/count`, { params }).pipe(
       map(res => res.count)
     );
+  }
+
+  private getQuerySearchParams(filters: ProductFilters, page?: number, limit?: number, order?: string) {
+    const params: any = {};
+
+    if(page) params.page = page.toString();
+    if(limit) params.limit = limit.toString();
+
+    if (filters?.minPrice !== undefined) {
+      params.minPrice = filters.minPrice.toString();
+    }
+  
+    if (filters?.maxPrice !== undefined) {
+      params.maxPrice = filters.maxPrice.toString();
+    }
+  
+    if (filters?.categories?.length) {
+      params.categories = filters.categories.join(',');
+    }
+
+    if(order) params.sort = order;
+
+    return params;
   }
 
   GetProductById(id: string | number): Observable<Product> {

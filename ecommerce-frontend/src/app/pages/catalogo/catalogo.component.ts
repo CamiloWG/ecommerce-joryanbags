@@ -10,6 +10,7 @@ import { Product } from '../../core/interfaces/product.interface';
 import { CommonModule } from '@angular/common';
 import { CatalogFilterComponent } from '../../core/components/catalog-filter/catalog-filter.component';
 import { MatChipsModule } from '@angular/material/chips';
+import { ProductFilters } from '../../core/interfaces/filter.interfaces';
 
 @Component({
   selector: 'app-catalogo',
@@ -35,22 +36,30 @@ export class CatalogoComponent {
   limit = 12;
   totalPages = 0;
 
+  private filters: ProductFilters = {} as ProductFilters;
+  private sortQuery: string = 'new';
+
   constructor(private productService: ProductListService) {}
 
-  ngOnInit(): void {
-    this.productService.getProductCount().subscribe(count => {
-      this.totalPages = Math.ceil(count / this.limit);
-    });
+  ngOnInit(): void {    
     this.fetchProducts();
   }
 
   fetchProducts(): void {
     this.isLoading = true;
-    this.productService.GetProductsPaginated(this.page, this.limit).subscribe(products => {
+    this.productService.getProductCount(this.filters).subscribe(count => {
+      this.totalPages = Math.ceil(count / this.limit);
+    });
+    this.productService.GetProductsPaginated(this.page, this.limit, this.filters, this.sortQuery).subscribe(products => {
       this.products = products;
       this.isLoading = false;
     });
 
+  }
+
+  onFilterChange(filtros: ProductFilters) {
+    this.filters = filtros;
+    this.fetchProducts();
   }
 
   nextPage(): void {
@@ -60,13 +69,19 @@ export class CatalogoComponent {
     }
   }
 
-  filtros = ['Nuevo', 'Precio ascendente', 'Precio descendente'];
-  filtroSeleccionado: string = 'Nuevo';
+  orden = ['Nuevo', 'Precio ascendente', 'Precio descendente'];
+  ordenSeleccionado: string = 'Nuevo';
 
   seleccionarFiltro(filtro: string) {
-    this.filtroSeleccionado = filtro;
-    // Aquí puedes agregar tu lógica de ordenamiento según el filtro
-    console.log('Filtro seleccionado:', filtro);
+    this.ordenSeleccionado = filtro;
+    if(filtro === 'Precio ascendente') {
+      this.sortQuery = 'price_asc';
+    } else if(filtro === 'Precio descendente') {
+      this.sortQuery = 'price_desc';
+    } else {
+      this.sortQuery = 'new';
+    }
+    this.fetchProducts();
   }
   
   prevPage(): void {

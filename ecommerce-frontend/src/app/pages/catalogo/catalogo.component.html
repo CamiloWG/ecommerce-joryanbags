@@ -65,7 +65,7 @@
       
       
       <div class="w-fit p-5 order-1 md:col-span-2 lg:col-span-1 flex justify-self-center lg:justify-self-end">
-        <app-catalog-filter></app-catalog-filter>
+        <app-catalog-filter (filtersChanged)="onFilterChange($event)"></app-catalog-filter>
       </div> 
 
       <!-- Celda con tarjetas --> 
@@ -74,15 +74,15 @@
         <div class="max-w-[40%] md:max-w-[80%] justify-self-center">
           <mat-chip-listbox class="gap-2 flex flex-wrap justify-center" aria-label="Filtros de catálogo">
             <mat-chip-option
-              *ngFor="let filtro of filtros"
-              [selected]="filtroSeleccionado === filtro"
+              *ngFor="let filtro of orden"
+              [selected]="ordenSeleccionado === filtro"
               (click)="seleccionarFiltro(filtro)"
-              [color]="filtroSeleccionado === filtro ? 'primary' : undefined"
+              [color]="ordenSeleccionado === filtro ? 'primary' : undefined"
               [ngStyle]="{
-                'background-color': filtroSeleccionado === filtro ? '#000000' : '#f3f4f6'
+                'background-color': ordenSeleccionado === filtro ? '#000000' : '#f3f4f6'
               }">
               <span class="font-subheading"
-              [ngStyle]="{ 'color': filtroSeleccionado === filtro ? '#ffffff' : '#000000' }">
+              [ngStyle]="{ 'color': ordenSeleccionado === filtro ? '#ffffff' : '#000000' }">
                 {{ filtro }}
               </span>
             </mat-chip-option>

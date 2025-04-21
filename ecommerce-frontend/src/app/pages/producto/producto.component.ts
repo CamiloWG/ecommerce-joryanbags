@@ -39,9 +39,6 @@ export class ProductoComponent {
   products: Product[] = [];
   
   isLoading = false;  
-  page = 1;
-  limit = 3;
-  totalPages = 0;
   
   ngOnInit(): void {    
     const idProduct = this.route.snapshot.paramMap.get('id') || 1;    
@@ -49,16 +46,12 @@ export class ProductoComponent {
     this.productService.GetProductById(idProduct).subscribe(data => {
       this.producto = data;
       this.productoCargado = true;
-
-    
+      this.loadRelationedProducts();    
     })
 
     this.gotoTop(); 
 
-    this.productService.GetProductsPaginated(this.page, this.limit).subscribe(products => {
-      this.products = products;
-      this.isLoading = false;
-    });
+    
   }
 
   gotoTop() {
@@ -73,6 +66,12 @@ export class ProductoComponent {
     this.cartService.addToCart(this.producto, cantidad);  
   }
  
+  loadRelationedProducts() {
+    this.productService.GetProductsPaginated(1, 3, { categories: [this.producto.category_id] }, 'new').subscribe(products => {
+      this.products = products;
+      this.isLoading = false;
+    });
+  }
   
 
 }
