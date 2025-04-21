@@ -71,5 +71,6 @@ export const routes: Routes = [
         path: 'payment-result',
         title: 'Pago | Joryan Bags',
         component: PaymentResultComponent
-    }
+    },    
+    { path: '**', redirectTo: 'home' }
 ];

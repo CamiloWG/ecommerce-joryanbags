@@ -78,8 +78,8 @@ export class ConfirmacioncompraComponent {
     boton.setAttribute('data-order-id', this.order_key);
     boton.setAttribute('data-currency', 'COP');
     boton.setAttribute('data-customer-data', this.userDataFormatted(cliente));
-    boton.setAttribute('data-description', 'Compra en JoryanBags\nBolso 1\nBolso 2');
-    boton.setAttribute('data-redirections-url', `${environment.URL_APP}/payment-result/`);
+    boton.setAttribute('data-description', 'Compra en JoryanBags');
+    boton.setAttribute('data-redirection-url', `${environment.URL_APP}/payment-result/`);
     container.appendChild(boton);
   
   }
