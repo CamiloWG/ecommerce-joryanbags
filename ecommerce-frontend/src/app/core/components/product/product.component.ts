@@ -25,6 +25,15 @@ export class ProductComponent {
   cantidad: number = 1;
 
   addButtonClick() {
+    if (this.cantidad < 1 || this.cantidad > this.stock) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Cantidad inválida',
+        text: `Debes ingresar una cantidad entre 1 y ${this.stock}`,
+      });
+      return;
+    }
+    
     this.buttonAddEvent.emit(this.cantidad);
     Swal.fire({
       title: "¡Exito!",
