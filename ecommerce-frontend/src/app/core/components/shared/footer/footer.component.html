@@ -8,35 +8,31 @@
     <div class="self-stretch flex flex-col md:flex-row justify-between items-center md:items-end gap-5 flex-wrap max-w-full text-center ">
 
       <!-- Logo + íconos -->
-      <div class="w-full max-w-[220px] flex flex-col items-center md:items-end md:mx-auto justify-start gap-[40px]">
-        <img class="w-full h-auto object-contain" loading="lazy" alt="Logo" [src]="image5" />
-        <div class="flex flex-row items-center justify-center gap-spacing-xs">
-          <img class="h-10 w-10 rounded object-cover" loading="lazy" alt="Icono 1" src="assets/icons/buttons--icon@2x.png" />
-          <img class="h-10 w-10 rounded object-cover" alt="Icono 2" src="assets/icons/buttons--icon-1@2x.png" />
-          <img class="h-10 w-10 rounded object-cover" alt="Icono 3" src="assets/icons/buttons--icon-2@2x.png" />
-          <img class="h-10 w-10 rounded object-cover" alt="Icono 4" src="assets/icons/buttons--icon-3@2x.png" />
+      <div class="mx-auto w-full md:w-auto flex flex-col items-center md:items-end gap-6">
+        <img class="justify-self-end w-44 h-auto object-contain" loading="lazy" alt="Logo" src="assets/images/logo-texto.png" />
+        <div class="flex flex-row items-center justify-center gap-4">
+          <a href="https://www.facebook.com/people/Joryan-Bags/100064795278888/" target="_blank" rel="noopener noreferrer">
+            <img class="h-11 w-10 rounded-full object-cover" alt="Facebook" src="assets/icons/icon-facebook.png" />
+          </a>
+          <a href="https://www.tiktok.com/@joryanbags" target="_blank" rel="noopener noreferrer">
+            <img class="h-6 w-6 rounded-full object-cover" alt="Tiktok" src="assets/icons/icon-tiktok.png" />
+          </a>
+          <a href="https://www.instagram.com/joryanbags/" target="_blank" rel="noopener noreferrer">
+            <img class="h-10 w-10 object-cover" alt="Instagram" src="assets/icons/icon-instagram.png" />
+          </a>
+          <a href="https://api.whatsapp.com/send?phone=573176049916" target="_blank" rel="noopener noreferrer">
+            <img class="h-6 w-6 object-cover" alt="Whatsapp" src="assets/icons/icon-whatsapp.png" />
+          </a>
         </div>
       </div>
 
       <!-- Menú de enlaces -->
-      <div class="w-full max-w-[700px] flex  md:mx-auto md:flex-row justify-between items-center md:items-start gap-8 flex-wrap">
+      <div class="w-full max-w-[300px] flex  md:mx-auto md:flex-row justify-between items-center md:items-start gap-8 flex-wrap">
         <div class="flex-1 min-w-[100px] flex flex-col items-center md:items-center justify-center gap-spacing-s">
-          <div class="font-[500] text-black leading-[150%]">Topic</div>
-          <div class="font-[500] leading-[150%]">Page</div>
-          <div class="font-[500] leading-[150%]">Page</div>
-          <div class="font-[500] leading-[150%]">Page</div>
-        </div>
-        <div class="flex-1 min-w-[100px] flex flex-col items-center md:items-center justify-center gap-spacing-s">
-          <div class="font-[500] text-black leading-[150%]">Topic</div>
-          <div class="font-[500] leading-[150%]">Page</div>
-          <div class="font-[500] leading-[150%]">Page</div>
-          <div class="font-[500] leading-[150%]">Page</div>
-        </div>
-        <div class="flex-1 min-w-[100px] flex flex-col items-center md:items-center justify-center gap-spacing-s">
-          <div class="font-[500] text-black leading-[150%]">Topic</div>
-          <div class="font-[500] leading-[150%]">Page</div>
-          <div class="font-[500] leading-[150%]">Page</div>
-          <div class="font-[500] leading-[150%]">Page</div>
+          <button class="font-subheading font-[500] hover:underline bg-transparent border-none cursor-pointer text-inherit" (click)="onInicioClick()">Inicio</button>
+          <button class="font-subheading font-[500] hover:underline bg-transparent border-none cursor-pointer text-inherit" (click)="onCatalogoClick()">Catálogo</button>
+          <button class="font-subheading font-[500] hover:underline bg-transparent border-none cursor-pointer text-inherit" (click)="onIniciosesionClick()">Mi cuenta</button>
+          <button class="font-subheading font-[500] hover:underline bg-transparent border-none cursor-pointer text-inherit" (click)="onCarritoClick()">Mi carrito</button>
         </div>
       </div>
     </div>

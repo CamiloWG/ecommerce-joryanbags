@@ -4,7 +4,8 @@ import {
   HostBinding,
   Input,
 } from "@angular/core";
-import { RouterLink } from '@angular/router';
+import { Router } from "@angular/router";
+import { AuthService } from "../../../services/auth.service";
 
 @Component({
   selector: 'app-footer',
@@ -15,7 +16,7 @@ import { RouterLink } from '@angular/router';
 export class FooterComponent {
   @HostBinding("style.display") display = "contents";
 
-  constructor() {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   /** Value props */
   @Input() image5: string = "";
@@ -37,5 +38,29 @@ export class FooterComponent {
       flex: this.frameDivFlex,
       width: this.frameDivWidth,
     };
+  }
+  onInicioClick() {
+    this.router.navigate(['/']).then(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    })
+  }
+
+  onCatalogoClick(){
+    this.router.navigate(['catalogo']).then(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+  
+  onIniciosesionClick() {
+    const targetRoute = this.authService.isLoggedIn() ? '/usuario' : '/login';
+    this.router.navigate([targetRoute]).then(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+  
+  onCarritoClick() {
+    this.router.navigate(['/carrito']).then(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   }
 }
