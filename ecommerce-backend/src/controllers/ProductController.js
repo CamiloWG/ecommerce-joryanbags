@@ -5,15 +5,24 @@ import { ProductServices } from "../services/productServices.js";
 export class ProductController {
     static getCount = async (req, res) => {
         try {
-            const count = await ProductServices.getCount();
+            const { minPrice, maxPrice, categories } = req.query;
+    
+            const filters = {
+                minPrice: minPrice ? parseFloat(minPrice) : undefined,
+                maxPrice: maxPrice ? parseFloat(maxPrice) : undefined,
+                categories: categories ? categories.split(',') : undefined,
+            };
+    
+            const count = await ProductServices.getCount(filters);
             res.send(count);
         } catch (error) {
             res.status(500).json({
-                error: "Hubo un error al intentar obtener el conteo de products",
+                error: "Hubo un error al intentar obtener el conteo de productos",
             });
             console.error(error);
         }
     };
+    
     static getAll = async (req, res) => {
         try {
             const products = await ProductServices.getAll();
@@ -28,7 +37,7 @@ export class ProductController {
 
     static getAllPaginated = async (req, res) => {
         try {
-            let { page = 1, limit = 10 } = req.query;
+            let { page = 1, limit = 10, minPrice, maxPrice, categories, sort } = req.query;
     
             page = parseInt(page);
             limit = parseInt(limit);
@@ -38,7 +47,14 @@ export class ProductController {
     
             const offset = (page - 1) * limit;
     
-            const products = await ProductServices.getPaginated(offset, limit);
+            const filters = {
+                minPrice: minPrice ? parseFloat(minPrice) : undefined,
+                maxPrice: maxPrice ? parseFloat(maxPrice) : undefined,
+                categories: categories ? categories.split(',') : undefined,
+                sort
+            };
+    
+            const products = await ProductServices.getPaginated(offset, limit, filters);
             res.send(products);
         } catch (error) {
             console.error(error);

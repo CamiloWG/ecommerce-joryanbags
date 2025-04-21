@@ -1,14 +1,26 @@
-import { where } from "sequelize";
+import { where, Op } from "sequelize";
 import { sequelize } from "../data/db.js";
 import { Product } from "../models/productModel.js";
 import { Category } from "../models/categoryModel.js";
 
 export class ProductServices {
-    static getCount = async () => {
-        const [count] = await sequelize.query(
-            "SELECT COUNT(*) as count FROM products"
-        );
-        return count[0];
+    static getCount = async (filters) => {
+        const where = {};
+    
+        if (filters.minPrice && filters.maxPrice) {
+            where.price = {
+                [Op.between]: [filters.minPrice, filters.maxPrice]
+            };
+        }
+    
+        if (filters.categories) {
+            where.category_id = {
+                [Op.in]: filters.categories
+            };
+        }
+    
+        const count = await Product.count({ where });
+        return { count };
     };
 
     static getAll = async () => {
@@ -16,13 +28,37 @@ export class ProductServices {
         return results;
     };
 
-    static async getPaginated(offset, limit) {
+    static async getPaginated(offset, limit, filters) {
+        const where = {};
+        const order = [];
+    
+        if (filters.minPrice && filters.maxPrice) {
+            where.price = {
+                [Op.between]: [filters.minPrice, filters.maxPrice]
+            };
+        }
+    
+        if (filters.categories) {
+            where.category_id = {
+                [Op.in]: filters.categories
+            };
+        }
+    
+        if (filters.sort === 'price_asc') {
+            order.push(['price', 'ASC']);
+        } else if (filters.sort === 'price_desc') {
+            order.push(['price', 'DESC']);
+        } else {
+            order.push(['product_id', 'DESC']); 
+        }
+    
         const products = await Product.findAll({
+            where,
+            order,
             limit,
             offset
         });
-       
-        Product.find
+    
         return products;
     }
     
