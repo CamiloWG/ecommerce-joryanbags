@@ -21,8 +21,10 @@
       </h3>
 
       <!-- Botón -->
-      <button class="mt-4 max-w-[160px] w-full h-[52px] rounded-full overflow-hidden bg-tan-100 text-background-default-default font-m3-label-large text-[clamp(0.85rem,1.5vw,1rem)] font-medium flex items-center justify-center z-[2]" 
-              (click)="onButtonShopClick()">
+      <button
+        class="mt-4 max-w-[160px] w-full h-[52px] rounded-full overflow-hidden bg-tan-100 text-background-default-default font-m3-label-large text-[clamp(0.85rem,1.5vw,1rem)] font-medium flex items-center justify-center z-[2]
+              hover:bg-transparent hover:border hover:border-tan-100 cursor-pointer transition-colors duration-200"
+        (click)="onButtonShopClick()">
         COMPRAR
       </button>
       
