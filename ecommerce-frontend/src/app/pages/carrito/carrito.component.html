@@ -38,6 +38,9 @@
                 [precio]="item.price">
               </app-cartproduct>
             }                 
+          } @else {
+            <img src="assets/images/empty-cart.png" class="max-w-[400px] mx-auto" alt="Carrito vacio">
+            <h2 class="mx-auto font-subheading text-center text-gray-500">Aún no has agregado productos al carrito</h2>
           }
         </div>
       </div>
