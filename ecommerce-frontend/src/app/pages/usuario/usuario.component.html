@@ -25,7 +25,15 @@
                 
             <div class="px-2 flex flex-row">
                 <img class="h-20 w-8" loading="lazy" alt="info" src="assets/icons/info.svg" />
-                <h3 class="m-7 font-subheading flex">Tu perfil</h3>                
+                <h3 class="m-7 font-subheading flex">Tu perfil</h3>
+                <div class="mt-5 px-5">
+                  <button class="group cursor-pointer [border:none] p-0 bg-[transparent] w-[134px] h-10 flex flex-row items-center justify-start gap-space-400" (click)="cerrarSesion()">
+                    <div class="rounded-radius-200 bg-background-neutral-tertiary border-red-500 border-solid border-stroke-border overflow-hidden flex flex-row items-center justify-center p-space-300 gap-space-200 transition group-hover:bg-red-500">
+                      <div class="relative text-body-size-medium leading-[100%] font-subheading text-red-500 text-left transition group-hover:text-white"> Cerrar sesion </div>
+                    </div>
+                  </button>            
+                </div>
+                
             </div>
             
             <div class="flex flex-wrap items-center sm:items-start w-full gap-4">

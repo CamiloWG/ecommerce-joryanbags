@@ -45,5 +45,9 @@ export class UsuarioComponent {
     this.router.navigate(['/admin']);
   }
 
+  cerrarSesion() {
+    this.authService.deleteToken();
+    this.router.navigate(['/home']);
+  }
 
 }
