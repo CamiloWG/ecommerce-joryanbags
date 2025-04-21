@@ -28,7 +28,9 @@ export class ProductInfoCard {
   @Input() productInfoCardWidth: string | number = "";
 
   onProductInfoCardClick() {
-    this.router.navigate(['producto', this.productId]);
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['producto', this.productId]);
+    });    
   }
   get productInfoCardStyle() {
     return {
