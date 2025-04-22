@@ -28,7 +28,8 @@
             [hasIcon]="false"
             [label]="'Catalogo'"
             [hasDescription]="true"
-            [description]="'Ver catalogo'">
+            [description]="'Ver catalogo'"
+            urlButton="/catalogo">
           </menu-item>
       
           @for(categoria of categorias; track categoria.category_id) {
@@ -37,7 +38,8 @@
               [hasIcon]="false"
               [label]="categoria.name"
               [hasDescription]="true"
-              [description]="'Ver categoria'">
+              [description]="'Ver categoria'"
+              [urlButton]="'/catalogo?category='+categoria.category_id">
             </menu-item>
           }
         </ng-template>

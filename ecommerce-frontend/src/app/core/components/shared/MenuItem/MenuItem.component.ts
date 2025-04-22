@@ -51,8 +51,21 @@ export class MenuItem {
   }
 
   clickedItem() {
-    if(this.urlButton) {
-      this.router.navigate([this.urlButton]);
+    if (this.urlButton) {
+      const [path, queryString] = this.urlButton.split('?');
+  
+      if (queryString) {
+        const queryParams = new URLSearchParams(queryString);
+        const queryParamsObject: any = {};
+        queryParams.forEach((value, key) => {
+          queryParamsObject[key] = value;
+        });
+  
+        this.router.navigate([path], { queryParams: queryParamsObject });
+      } else {
+        this.router.navigate([path]);
+      }
     }
   }
+  
 }
