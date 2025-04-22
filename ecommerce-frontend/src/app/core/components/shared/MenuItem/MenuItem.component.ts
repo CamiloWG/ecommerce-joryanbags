@@ -6,6 +6,7 @@ import {
 } from "@angular/core";
 
 import { CommonModule } from "@angular/common";
+import { Router } from "@angular/router";
 @Component({
   selector: "menu-item",
   standalone: true,
@@ -16,7 +17,7 @@ import { CommonModule } from "@angular/common";
 export class MenuItem {
   @HostBinding("style.display") display = "contents";
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   /** Value props */
   @Input() hasShortcut: boolean = false;
@@ -30,6 +31,8 @@ export class MenuItem {
   /** Style props */
   @Input() menuItemAlignSelf: string | number = "";
   @Input() menuItemWidth: string | number = "";
+
+  @Input() urlButton: string | null = null;
   
   @Input() image: string = "";
   @Input() imageIconOverflow: string | number = "";
@@ -45,5 +48,11 @@ export class MenuItem {
     return {
       overflow: this.imageIconOverflow,
     };
+  }
+
+  clickedItem() {
+    if(this.urlButton) {
+      this.router.navigate([this.urlButton]);
+    }
   }
 }

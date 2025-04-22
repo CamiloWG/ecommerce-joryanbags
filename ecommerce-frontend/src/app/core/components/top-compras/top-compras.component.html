@@ -5,9 +5,10 @@
       </div>
       <menu-separator [menuSeparatorBorderRadius]="'unset'"> </menu-separator>
       <div class="self-stretch rounded-lg overflow-hidden flex flex-col items-start justify-start mq450:h-[210px]">
-        <menu-item [image]="'assets/images/image1@2x.png'" [hasImage]="true"> </menu-item>
-        <menu-item [image]="'assets/images/image-11@2x.png'" [hasImage]="true" [imageIconOverflow]="'hidden'"> </menu-item>
-        <menu-item [image]="'assets/images/star@2x.png'" [hasImage]="true" [imageIconOverflow]="'hidden'"> </menu-item>
+        @for(product of topProducts; track product.product_id) 
+        {
+          <menu-item [image]="product.image_url" [hasImage]="true" [label]="product.name" description="Ver producto" [urlButton]="'/producto/'+product.product_id"> </menu-item>  
+        }
       </div>
     </div>
   </div>

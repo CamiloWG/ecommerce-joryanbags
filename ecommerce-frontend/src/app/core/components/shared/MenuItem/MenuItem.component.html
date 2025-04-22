@@ -1,10 +1,11 @@
-<div class="self-stretch rounded-radius-md overflow-hidden flex flex-row items-start justify-start py-space-300 px-space-400 gap-space-300 text-left text-body-size-medium text-text-default-default font-subheading" [attr.data-state]="state" [ngStyle]="menuItemStyle">
-      <img class="w-5 relative h-5 overflow-hidden shrink-0" *ngIf="hasIcon" alt="" src="assets/star.svg" />
-      <img class="h-8 w-8 relative object-cover" *ngIf="hasImage" loading="lazy" alt="" [src]="image" [ngStyle]="imageIconStyle" />
-      <div class="flex-1 flex flex-col items-start justify-start gap-space-100">
-        <div class="self-stretch flex flex-row items-center justify-between gap-0">
-          <div class="flex-1 relative leading-[140%]">{{label}}</div>
-        </div>
-        <div class="self-stretch relative text-body-size-small leading-[140%] text-text-default-secondary" *ngIf="hasDescription">{{description}}</div>
-      </div>
+
+<div (click)="clickedItem()" class="cursor-pointer hover:bg-[#e0e0e0] self-stretch rounded-radius-md overflow-hidden flex flex-row items-start justify-start py-space-300 px-space-400 gap-space-300 text-left text-body-size-medium text-text-default-default font-subheading" [attr.data-state]="state" [ngStyle]="menuItemStyle">
+  <img class="w-5 relative h-5 overflow-hidden shrink-0" *ngIf="hasIcon" alt="" src="assets/star.svg" />
+  <img class="h-8 w-8 relative object-cover" *ngIf="hasImage" loading="lazy" alt="" [src]="image" [ngStyle]="imageIconStyle" />
+  <div class="flex-1 flex flex-col items-start justify-start gap-space-100">
+    <div class="self-stretch flex flex-row items-center justify-between gap-0">
+      <div class="flex-1 relative leading-[140%]">{{label}}</div>
     </div>
+    <div class="self-stretch relative text-body-size-small leading-[140%] text-text-default-secondary" *ngIf="hasDescription">{{description}}</div>
+  </div>
+</div>

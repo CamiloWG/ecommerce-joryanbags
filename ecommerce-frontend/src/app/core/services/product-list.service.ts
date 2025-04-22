@@ -13,6 +13,7 @@ export class ProductListService {
   private URL_API_GET_PAGINATED: string = `${environment.API_URL_BASE}/api/products/paginated`;
   private URL_API_UPDATE: string = `${environment.API_URL_BASE}/api/products/update`;
   private URL_API_CREATE: string = `${environment.API_URL_BASE}/api/products/create`;
+  private URL_API_GET_TOP: string = `${environment.API_URL_BASE}/api/products/top`;
 
   private productos: Product[] = [];
   
@@ -90,4 +91,15 @@ export class ProductListService {
     return this.http.post<Product>(this.URL_API_CREATE, product);
   }
 
+
+  GetTopProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.URL_API_GET_TOP).pipe(
+      map(products =>
+        products.map(product => ({
+          ...product,
+          image_url: `${environment.API_URL_BASE}${product.image_url}`
+        }))
+      )
+    );
+  }
 }
