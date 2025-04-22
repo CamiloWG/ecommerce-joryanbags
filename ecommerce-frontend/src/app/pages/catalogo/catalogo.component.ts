@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { CatalogFilterComponent } from '../../core/components/catalog-filter/catalog-filter.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { ProductFilters } from '../../core/interfaces/filter.interfaces';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-catalogo',
@@ -39,10 +40,15 @@ export class CatalogoComponent {
   private filters: ProductFilters = {} as ProductFilters;
   private sortQuery: string = 'new';
 
-  constructor(private productService: ProductListService) {}
+  constructor(private productService: ProductListService, private route: ActivatedRoute) {}
 
-  ngOnInit(): void {    
-    this.fetchProducts();
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      const category = params['category'];
+      if(params) {
+        this.onFilterChange({categories: [category]});
+      } else this.fetchProducts();      
+    });
   }
 
   fetchProducts(): void {
