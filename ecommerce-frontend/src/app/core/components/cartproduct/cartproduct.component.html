@@ -2,30 +2,9 @@
   <div class="w-full rounded-radius-200 bg-background-default-default border-border-default-default border-solid border-stroke-border box-border 
               flex flex-col sm:flex-row sm:flex-wrap items-start justify-start p-6 relative gap-6 min-w-[240px]">
 
-    <!-- Controles de cantidad -->
-<div class="sm:absolute sm:top-2 sm:right-2 absolute bottom-6 right-10 z-10 flex flex-col items-start justify-start gap-2">
-  <div class="font-subheading leading-[140%] px-3">Cantidad</div>
-  <div class="flex items-center gap-2 border border-border-default-default rounded-radius-200 
-              bg-background-default-default p-1 w-[90px] justify-between">
-    <button (click)="onProductLessQuantity()" 
-            class="w-6 h-6 flex items-center justify-center rounded-full bg-gray-100 hover:bg-background-brand-default transition cursor-pointer">
-      <span class="text-base font-bold text-white">−</span>
-    </button>
-    <input type="text" [value]="cantidad" 
-           class="w-6 text-center border-none bg-transparent text-base font-medium 
-                  focus:outline-none focus:ring-0 pointer-events-none" />
-    <button (click)="onProductAddQuantity()" 
-            class="w-6 h-6 flex items-center justify-center rounded-full bg-background-brand-default 
-                   text-white hover:bg-gray-100 transition cursor-pointer">
-      <span class="text-base font-bold">+</span>
-    </button>
-  </div>
-</div>
-
-
     <!-- Imagen -->
     <img 
-    class="w-full sm:w-40 h-auto sm:h-40 object-cover rounded-md cursor-pointer" 
+    class="flex-1 min-w-[289px] md:min-h-[400px] min-h-[300px] max-h-[400px] max-w-[400px] object-cover self-stretch z-[0] rounded-radius-200" 
     loading="lazy" 
     alt="" 
     [src]="urlImagen" />
@@ -39,6 +18,25 @@
         </div>
         <div class="font-subheading text-text-default-secondary text-body-size-medium leading-[140%]">
           ${{ precio }}
+        </div>
+      </div>
+      <!-- Controles de cantidad -->
+      <div class="sm:absolute sm:top-2 sm:right-2 absolute bottom-6 right-10 z-10 flex flex-col items-start justify-start gap-2">
+        <div class="font-subheading leading-[140%] px-3">Cantidad</div>
+        <div class="flex items-center gap-2 border border-border-default-default rounded-radius-200 
+                    bg-background-default-default p-1 w-[90px] justify-between">
+          <button (click)="onProductLessQuantity()" 
+                  class="w-6 h-6 flex items-center justify-center rounded-full bg-gray-100 hover:bg-background-brand-default transition cursor-pointer">
+            <span class="text-base font-bold text-white">−</span>
+          </button>
+          <input type="text" [value]="cantidad" 
+                class="w-6 text-center border-none bg-transparent text-base font-medium 
+                        focus:outline-none focus:ring-0 pointer-events-none" />
+          <button (click)="onProductAddQuantity()" 
+                  class="w-6 h-6 flex items-center justify-center rounded-full bg-background-brand-default 
+                        text-white hover:bg-gray-100 transition cursor-pointer">
+            <span class="text-base font-bold">+</span>
+          </button>
         </div>
       </div>
 

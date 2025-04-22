@@ -1,17 +1,17 @@
-<div class="p-space-300 bg-background-default-default flex flex-col gap-space-60 min-w-[240px] max-w-[90%]">
+<div class="mx-auto p-space-300 bg-background-default-default flex flex-col gap-space-200 min-w-[240px] max-w-[90%]">
   <!-- Contenedor principal con imagen y detalles -->
-  <div class="flex flex-row flex-wrap justify-center gap-space-1600 mq1050:gap-8 mq750:gap-4">
+  <div class="mx-auto w-[80%] flex flex-row flex-wrap justify-center sm:gap-x-16">
     
     <!-- Imagen del producto -->
     <img 
-      class="flex-1 min-w-[289px] max-h-[400px] max-w-[400px] max-w-full object-cover self-stretch z-[0] rounded-radius-200" 
+      class="flex-1 min-w-[289px] md:min-h-[400px] min-h-[400px] max-h-[200px] max-w-[400px] object-cover self-stretch z-[0] rounded-radius-200" 
       loading="lazy" 
       alt="Producto" 
       [src]="image" 
     />
 
     <!-- Contenedor de información -->
-    <div class="pb-2 flex-1 flex flex-col justify-center gap-space-60 max-w[5px] min-w-[289px] z-[1]">
+    <div class="pb-2 flex-1 flex flex-col justify-center gap-space-60 max-w-[400px] min-w-[289px] z-[1]">
       
       <!-- Título y etiqueta -->
       <div class="flex flex-col">
@@ -45,7 +45,7 @@
       <button
         (click)="addButtonClick()"
         [disabled]="stock === 0"
-        class="group p-space-300 rounded-radius-200 flex items-center justify-center w-full mt-6 border transition
+        class="group p-space-300 rounded-radius-200 flex items-center justify-center w-full mt-2 border transition
           bg-background-brand-default border-background-brand-default
           text-white font-subheading text-body-size-medium cursor-pointer
           hover:bg-white hover:text-black
@@ -54,14 +54,15 @@
       </button>
 
     </div>
-  </div>
-
-  <!-- Descripción -->
-  <div class="w-[922px] flex gap-space-600 text-heading-size-base">
-    <img class="h-20 w-8" loading="lazy" alt="info" src="assets/icons/info.svg" />
-    <div class=" flex-col gap-space-400 min-w-[160px]">
-      <h3 class="font-subheading tracking-[-0.02em] font-semibold">Descripción</h3>
-      <p class="font-subheading text-body-size-medium text-text-default-secondary">
+    <!-- Descripción -->
+  <div class="w-full max-w-[922px] mx-auto flex flex-wrap items-start gap-4 text-heading-size-base mt-1">
+    <img class="h-16 w-6 sm:h-20 sm:w-8" loading="lazy" alt="info" src="assets/icons/info.svg" />
+    
+    <div class="flex flex-col space-y-0 min-w-0 flex-1">
+      <h3 class="font-subheading font-semibold">
+        Descripción
+      </h3>
+      <p class="font-subheading text-body-size-medium text-text-default-secondary break-words">
         {{ descripcion }}
       </p>
     </div>
