@@ -1,17 +1,15 @@
-<div class="w-[287px] flex-1 overflow-hidden flex flex-col items-start justify-start py-space-200 px-[7px] z-[1]">
-  <div class="self-stretch rounded-radius-200 bg-background-default-default border-border-default-default 
-              border-solid border-stroke-border box-border flex flex-row items-start justify-start flex-wrap 
-              content-start py-[22px] px-[23px] relative gap-space-300 min-w-[240px]">
-    
+<div class="min-w-[287px] flex flex-col items-start justify-start px-0 pb-0 box-border">
+  
+  <div class="self-stretch flex-1 shadow-[0px_4px_4px_-1px_rgba(12,_12,_13,_0.1),_0px_4px_4px_-1px_rgba(12,_12,_13,_0.05)] rounded-radius-200 bg-background-default-default border-border-default-default border-solid border-stroke-border overflow-hidden flex flex-col items-start justify-start py-space-200 px-[7px]">
     <!-- Título dinámico -->
-    <div class="w-full font-subheading bg-tan-200 p-2 text-body-size-medium text-text-default-default font-body-font-weight-strong">
+    <div class="self-stretch font-subheading bg-tan-200 p-2 text-body-size-medium text-text-default-default font-body-font-weight-strong mt-4 mb-4 ml-4 mr-4 ">
       {{ title }}
     </div>
     
     <div class="w-full h-px bg-border-default-default my-2"></div>
 
     @for(item of productos; track item) {
-      <div class="w-full flex flex-row justify-between items-center p-2">
+      <div class="self-stretch overflow-hidden flex justify-between pt-space-200 px-space-400 pb-space-100">
         <div class="text-body-size-medium font-subheading">{{item.name}} x{{item.quantity}}</div>
         <div class="font-subheading">${{item.price * item.quantity}}</div>
       </div>
@@ -19,12 +17,12 @@
     
     <div class="w-full h-px bg-border-default-default my-2"></div>
 
-    <div class="w-full flex flex-row justify-between items-center p-2">
+    <div class="self-stretch overflow-hidden flex justify-between pt-space-200 px-space-400 pb-space-100">
       <div class="text-body-size-medium font-subheading">Costo de envio</div>
       <div class="font-subheading">${{costoEnvio}}</div>
     </div>
 
-    <div class="w-full flex flex-row justify-between items-center p-2">
+    <div class="self-stretch overflow-hidden flex justify-between pt-space-200 px-space-400 pb-space-100">
       <div class="text-body-size-medium font-subheading">Subtotal</div>
       <div class="font-subheading">${{costoTotal}}</div>
     </div>
