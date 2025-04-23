@@ -19,10 +19,11 @@ export class CustomerQuote {
   constructor() {}
 
   /** Value props */
-  @Input() aTerrificPieceOfPraise: string = "";
+  @Input() comment: string = "";
   @Input() avatar: string = "";
   /** Style props */
   @Input() customerQuoteAlignSelf: string | number = "";
+  @Input() name: string = '';  
 
   get customerQuoteStyle() {
     return {

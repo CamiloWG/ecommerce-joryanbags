@@ -1,10 +1,10 @@
 <div class="flex-1 rounded-xl bg-background-default-default border-background-brand-secondary border-solid border-[1px] flex flex-col items-start justify-start p-spacing-sm gap-spacing-m text-left text-5xl text-black font-subheading" [ngStyle]="customerQuoteStyle">
-      <h3 class="m-0 self-stretch relative text-inherit leading-[150%] font-[500] font-[inherit]">{{aTerrificPieceOfPraise}}</h3>
+      <h3 class="m-0 self-stretch relative text-inherit leading-[150%] font-[500] font-[inherit]">{{ comment }}</h3>
       <div class="flex flex-row items-center justify-start gap-4 text-body-size-medium">
         <img class="h-[45px] w-[45px] relative rounded-[50%] object-cover" loading="lazy" alt="" [src]="avatar" />
         <div class="flex flex-col items-start justify-start gap-0.5">
-          <div class="relative leading-[150%] font-[500]">Name</div>
-          <div class="relative leading-[150%] font-[500] text-gray-100">Description</div>
+          <div class="relative leading-[150%] font-[500]"> {{ name }}</div>
+          <div class="relative leading-[150%] font-[500] text-gray-100">Cliente de JoryanBags</div>
         </div>
       </div>
     </div>
