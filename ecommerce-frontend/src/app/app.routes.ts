@@ -11,6 +11,7 @@ import { UsuarioComponent } from './pages/usuario/usuario.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { PaymentResultComponent } from './pages/payment-result/payment-result.component';
+import { TycComponent } from './pages/tyc/tyc.component';
 
 
 export const routes: Routes = [
@@ -72,5 +73,10 @@ export const routes: Routes = [
         title: 'Pago | Joryan Bags',
         component: PaymentResultComponent
     },    
+    {
+        path: 'terminos-condiciones',
+        title: 'Terminos y Condiciones | Joryan Bags',
+        component: TycComponent
+    },
     { path: '**', redirectTo: 'home' }
 ];

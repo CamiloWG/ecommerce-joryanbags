@@ -1,0 +1,84 @@
+<div class="pb-10">
+    <!-- Header -->
+    <header-menu class="w-full"></header-menu>
+    
+    <section class="relative bg-background-default-default flex flex-col items-start justify-start pt-0 px-px pb-[10px] box-border gap-3.5 leading-[normal] tracking-[normal]">
+      <div class="mx-auto self-stretch w-full max-w-[95%] lg:max-w-[90%] grid grid-cols-1 lg:grid-cols-[auto,1fr,auto] md:grid-cols-2 gap-x-10 auto-rows-auto items-start">
+        
+        <!-- Logo -->
+        <div class="w-fit p-0 order-1 md:col-span-2 lg:col-span-1 flex justify-self-center lg:justify-self-end">
+          <app-logo></app-logo>
+        </div>
+        <!-- Portada -->
+        <div class="md:py-6 col-span-1 lg:col-span-2 lg:row-span-1 md:col-span-2 p-0 m-0 order-2">
+          <div class="flex flex-col items-start justify-start gap-[30px]">
+            <route [breadcrumbs]="[{label:'Términos y Condiciones'}]"></route>
+          </div>
+        </div>
+        </div>
+    </section>
+    <div class="ml-5 mr-5 sm:ml-40 sm:mr-40 mx-auto bg-white rounded-2xl  mt-10 mb-10 text-gray-900 font-subheading">
+        <h1 class="text-3xl font-bold mb-6 text-center">Términos y Condiciones / Política de Privacidad</h1>
+      
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4">1. Aceptación de los Términos</h2>
+          <p class="text-base leading-relaxed">
+            Al registrarte en nuestra tienda virtual <strong>JORYAN bags</strong>, aceptas cumplir estos Términos y Condiciones, así como nuestra Política de Privacidad. Por favor, lee atentamente antes de utilizar nuestros servicios.
+          </p>
+        </section>
+      
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4">2. Registro y Cuenta de Usuario</h2>
+          <p class="text-base leading-relaxed">
+            Para registrarte debes proporcionar información veraz, actual y completa. Eres responsable de mantener la confidencialidad de tu contraseña y actividades realizadas desde tu cuenta.
+          </p>
+        </section>
+      
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4">3. Uso Permitido</h2>
+          <p class="text-base leading-relaxed">
+            El uso de tu cuenta debe ser exclusivamente para fines personales o comerciales legítimos relacionados con nuestra tienda. Nos reservamos el derecho de cancelar cuentas que incumplan estos términos.
+          </p>
+        </section>
+      
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4">4. Política de Privacidad</h2>
+          <p class="text-base leading-relaxed mb-2">
+            Recopilamos datos personales como nombre, correo electrónico, dirección y datos de navegación. Utilizamos esta información para procesar pedidos, mejorar la experiencia del usuario y enviarte comunicaciones relevantes.
+          </p>
+          <p class="text-base leading-relaxed mb-2">
+            Protegemos tus datos mediante medidas de seguridad y no compartimos tu información con terceros, salvo que sea necesario para completar una compra o por obligaciones legales.
+          </p>
+          <p class="text-base leading-relaxed">
+            Puedes ejercer tus derechos de acceso, rectificación o eliminación de datos escribiéndonos a 
+            <a href="mailto:joryanbags@hotmail.com" class="text-blue-600 underline">
+                {{ 'joryanbags@hotmail.com' }}
+              </a>              
+          </p>
+        </section>
+      
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4">5. Cambios en los Términos</h2>
+          <p class="text-base leading-relaxed">
+            Nos reservamos el derecho de modificar estos Términos y la Política de Privacidad en cualquier momento. Las modificaciones serán efectivas al ser publicadas en nuestro sitio web.
+          </p>
+        </section>
+      
+        <section class="text-center mt-10">
+          <p class="text-sm text-gray-500">Última actualización: 26 - 04 - 2025</p>
+        </section>
+      </div>
+      
+
+  
+    <footer class="w-full mt-5 mb-10 font-subheading">
+      <app-footer 
+        [frameHeaderAlignSelf]="'unset'" 
+        [frameHeaderPadding]="'0px 70px'" 
+        [frameDivFlex]="'unset'" 
+        [frameDivWidth]="'1290px'" 
+        [image5]="'assets/images/image-5@2x.png'">
+      </app-footer>
+    </footer>
+  </div>
+  

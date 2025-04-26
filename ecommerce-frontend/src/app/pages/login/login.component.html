@@ -1,20 +1,26 @@
-<div class="flex flex-col">
-  <header-menu></header-menu>
+<div class="pb-10">
+  <!-- Header -->
+  <header-menu class="w-full"></header-menu>
   
-  <main class="flex flex-col items-start justify-start pb-[50px] pl-3 pr-[18px] box-border max-w-full lg:pb-[50px] lg:box-border mq750:pb-[30px] mq750:box-border">
-
-    <section class="relative w-full h-[150px] flex"> 
-      <app-logo class="absolute top-0 left-0"></app-logo>
-
-      <div class="absolute top-[19px] left-[365px] flex flex-col items-start justify-start gap-[50px] w-[calc(100%-365px)]">
-        <div class="w-full flex flex-col font-subheading">
-          <route [breadcrumbs]="[{ label: 'Iniciar sesión' }]"></route>
+  <section class="relative bg-background-default-default flex flex-col items-start justify-start pt-0 px-px pb-[10px] box-border gap-3.5 leading-[normal] tracking-[normal]">
+    <div class="mx-auto self-stretch w-full max-w-[95%] lg:max-w-[90%] grid grid-cols-1 lg:grid-cols-[auto,1fr,auto] md:grid-cols-2 gap-x-10 auto-rows-auto items-start">
+      
+      <!-- Logo -->
+      <div class="w-fit p-0 order-1 md:col-span-2 lg:col-span-1 flex justify-self-center lg:justify-self-end">
+        <app-logo></app-logo>
+      </div>
+      <!-- Portada -->
+      <div class="md:py-6 col-span-1 lg:col-span-2 lg:row-span-1 md:col-span-2 p-0 m-0 order-2">
+        <div class="flex flex-col items-start justify-start gap-[30px]">
+          <route [breadcrumbs]="[
+            { label: 'Iniciar sesión' }]"></route>
         </div>
+      </div>
       </div>
     </section>
 
-    <div class="items-center justify-center min-h-screen w-full">
-      <section class=" w-[60%] flex-col items-center justify-center pb-[100px] box-border  mx-auto">
+    <div class="items-center justify-center self-stretch w-full">
+      <section class="w-[95%] sm:w-[60%] flex-col items-center justify-center pb-[10px] box-border  mx-auto">
         <div class="flex flex-col items-center justify-center gap-5 max-w-full mq1050:gap-3">
           
           <div class="self-stretch h-[auto] flex flex-row items-center justify-center max-w-full">
@@ -97,7 +103,6 @@
         </div>
       </section>
     </div>
-  </main>
 
   <footer class="w-full mt-5 mb-10 font-subheading">
     <app-footer 
