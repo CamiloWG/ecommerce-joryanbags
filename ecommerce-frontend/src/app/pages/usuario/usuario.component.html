@@ -1,41 +1,48 @@
-<div class="flex flex-col">
-    <header-menu></header-menu>
+<div class="pb-10">
+  <!-- Header -->
+  <header-menu class="w-full"></header-menu>
   
-    <main class="flex flex-col items-start justify-start pb-[50px] pl-3 pr-[18px] box-border max-w-full lg:pb-[50px] lg:box-border mq750:pb-[30px] mq750:box-border">
-
-      <section class="relative w-full min-h-[150px] flex flex-wrap items-start sm:items-center">
-  
-        <app-logo class="mx-auto flex-shrink-0 "></app-logo>
+  <section class="relative bg-background-default-default flex flex-col items-start justify-start pt-0 px-px pb-[10px] box-border gap-3.5 leading-[normal] tracking-[normal]">
+    <div class="mx-auto self-stretch w-full max-w-[95%] lg:max-w-[90%] grid grid-cols-1 lg:grid-cols-[auto,1fr,auto] md:grid-cols-2 gap-x-10 auto-rows-auto items-start">
       
-        <div class="flex-1 min-w-[250px] sm:min-w-[365px] flex flex-col items-start justify-start gap-[50px]">
-          <div class="w-full flex flex-col">
-            <route [breadcrumbs]="[
+      <!-- Logo -->
+      <div class="w-fit p-0 order-1 md:col-span-2 lg:col-span-1 flex justify-self-center lg:justify-self-end">
+        <app-logo></app-logo>
+      </div>
+      <!-- Portada -->
+      <div class="md:py-6 col-span-1 lg:col-span-2 lg:row-span-1 md:col-span-2 p-0 m-0 order-2">
+        <div class="flex flex-col items-start justify-start gap-[30px]">
+          <route [breadcrumbs]="[
               { label: 'Usuario', }
             ]"></route>
           </div>
         </div>
-      
+        </div>
       </section>
       
-      <section class="py-2 w-[70%] mx-auto self-stretch flex flex-col items-start justify-start gap-space-600">
+      <section class="py-2 w-[95%] sm:w-[70%] mx-auto self-stretch flex flex-col items-start justify-start gap-space-600">
         <div *ngIf="usuario; else skeleton" 
             class="mx-auto w-full self-stretch rounded-radius-200 border border-border-default-default 
                     border-solid border-stroke-border box-border flex flex-col items-start justify-start flex-wrap 
-                    content-start py-[22px] px-[23px] relative gap-space-500 min-w-[240px]">
+                    content-start py-[18px] px-[23px] relative gap-space-500 min-w-[240px]">
                 
-            <div class="px-2 flex flex-row">
-                <img class="h-20 w-8" loading="lazy" alt="info" src="assets/icons/info.svg" />
-                <h3 class="m-7 font-subheading flex">Tu perfil</h3>
-                <div class="mt-5 px-5">
-                  <button class="group cursor-pointer [border:none] p-0 bg-[transparent] w-[134px] h-10 flex flex-row items-center justify-start gap-space-400" (click)="cerrarSesion()">
-                    <div class="rounded-radius-200 bg-background-neutral-tertiary border-red-500 border-solid border-stroke-border overflow-hidden flex flex-row items-center justify-center p-space-300 gap-space-200 transition group-hover:bg-red-500">
-                      <div class="relative text-body-size-medium leading-[100%] font-subheading text-red-500 text-left transition group-hover:text-white"> Cerrar sesion </div>
-                    </div>
-                  </button>            
-                </div>
-                
-            </div>
-            
+                    <div class="relative px-2 flex flex-row items-center gap-2 w-full">
+                      <!-- Botón en esquina superior derecha bien pegado -->
+                      <button
+                        class="absolute top-0 right-0 group cursor-pointer [border:none] p-0 bg-transparent h-8 flex items-start justify-start"
+                        (click)="cerrarSesion()">
+                        
+                        <div class=" rounded-radius-200 bg-background-neutral-tertiary border border-red-500 border-solid overflow-hidden flex items-center justify-center px-3 py-1 transition group-hover:bg-red-500">
+                          <div class="text-sm font-subheading text-red-500 text-left transition group-hover:text-white whitespace-nowrap">
+                            Cerrar sesión
+                          </div>
+                        </div>
+                      </button>
+                    
+                      <!-- Contenido principal -->
+                      <img class="h-20 w-8 mt-2" loading="lazy" alt="info" src="assets/icons/info.svg" />
+                      <h3 class="font-subheading m-4 mt-6">Tu perfil</h3>
+                    </div>        
             <div class="flex flex-wrap items-center sm:items-start w-full gap-4">
                 <img class="px-3 h-30 min-w-[60px]" src="assets/icons/generic-avatar.svg">
 
@@ -107,14 +114,10 @@
                       @for(pedido of orders; track pedido) 
                       {
                         <app-pedido class="w-full" [pedido]="pedido"></app-pedido>
-                      }
-                      
+                      }          
                       
         </div>
       </section>
-      
-    </main>
-
     <footer class="w-full mt-5 mb-10">
         <app-footer [frameHeaderAlignSelf]="'unset'" [frameHeaderPadding]="'0px 70px'" 
                     [frameDivFlex]="'unset'" [frameDivWidth]="'1290px'" 

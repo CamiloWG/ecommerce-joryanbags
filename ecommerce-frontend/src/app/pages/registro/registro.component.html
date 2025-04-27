@@ -1,15 +1,21 @@
-<div class="flex flex-col">
-  <header-menu></header-menu>
+<div class="pb-10">
+  <!-- Header -->
+  <header-menu class="w-full"></header-menu>
   
-  <main class="flex flex-col items-start justify-start pb-[30px] pl-3 pr-[18px] box-border max-w-full lg:pb-[30px] lg:box-border mq750:pb-[20px] mq750:box-border">
-    <section class="relative w-full min-h-[150px] flex flex-wrap items-start sm:items-center">
-  
-      <app-logo class="mx-auto flex-shrink-0 "></app-logo>
-    
-      <div class="flex-1 min-w-[250px] sm:min-w-[365px] flex flex-col items-start justify-start gap-[50px]">
-        <div class="w-full flex flex-col">
-          <route [breadcrumbs]="[{ label: 'Crear cuenta' }]"></route>
+  <section class="relative bg-background-default-default flex flex-col items-start justify-start pt-0 px-px pb-[10px] box-border gap-3.5 leading-[normal] tracking-[normal]">
+    <div class="mx-auto self-stretch w-full max-w-[95%] lg:max-w-[90%] grid grid-cols-1 lg:grid-cols-[auto,1fr,auto] md:grid-cols-2 gap-x-10 auto-rows-auto items-start">
+      
+      <!-- Logo -->
+      <div class="w-fit p-0 order-1 md:col-span-2 lg:col-span-1 flex justify-self-center lg:justify-self-end">
+        <app-logo></app-logo>
+      </div>
+      <!-- Portada -->
+      <div class="md:py-6 col-span-1 lg:col-span-2 lg:row-span-1 md:col-span-2 p-0 m-0 order-2">
+        <div class="flex flex-col items-start justify-start gap-[30px]">
+          <route [breadcrumbs]="[
+            { label: 'Crear cuenta' }]"></route>
         </div>
+      </div>
       </div>
     </section>
 
@@ -20,6 +26,8 @@
             <h1 class="text-xl font-bold font-subheading mb-1">Crea una cuenta</h1>
             <p class="text-gray-600 font-subheading mt-0">Si ya tiene una cuenta, por favor ingrese en la página de login.</p>
           </div>
+          
+          <div class="w-[80%] h-px bg-border-default-default my-5"></div>
           
           <div class="self-stretch w-[1305px] flex flex-col items-center justify-center gap-[20px] max-w-full mq1050:gap-[15px]">
             <div class="m-0 rounded-radius-200 bg-background-default-default box-border flex flex-col items-center justify-center py-space-300 px-[30px] w-full max-w-[600px] z-[1] mt-[0px] mq450:min-h-[auto]">
@@ -131,7 +139,16 @@
               
                 <!-- Términos y condiciones -->
                 <div class="w-full">
-                  <p class="font-subheading text-gray-700 text-left">¿Aceptas los términos y condiciones?</p>
+                  <p class="font-subheading text-gray-700 text-left">
+                    ¿Aceptas los
+                    <span
+                      class="font-subheading underline cursor-pointer text-inherit inline-block mr-0"
+                      (click)="onTyCClick()"
+                    >
+                      términos y condiciones
+                    </span>?
+                  </p>
+                  
                   <div class="flex gap-4">
                     <label class="font-subheading text-gray-700">
                       <input
@@ -153,14 +170,11 @@
                 </button>
               </form>
               
-              
-              
             </div>
           </div>
         </div>
       </section>
     </div>
-  </main>
 
   <footer class="w-full mt-3 mb-5 font-subheading">
     <app-footer [frameHeaderAlignSelf]="'unset'" [frameHeaderPadding]="'0px 70px'" [frameDivFlex]="'unset'" [frameDivWidth]="'1290px'" [image5]="'assets/images/image-5@2x.png'"></app-footer>

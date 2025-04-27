@@ -63,4 +63,9 @@ export class FooterComponent {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
+  onTyCClick() {
+    this.router.navigate(['/terminos-condiciones']).then(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    })
+  }
 }

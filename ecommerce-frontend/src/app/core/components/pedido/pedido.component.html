@@ -1,24 +1,24 @@
 <div
   class="mx-auto w-full self-stretch rounded-radius-200 border border-border-default-default 
          border-solid box-border flex flex-row items-center justify-start flex-wrap 
-         content-start py-6 px-6 relative gap-6 min-w-[240px] bg-white shadow-sm transition">
+         content-start py-6 px-6 relative gap-6 min-w-[240px] bg-white shadow-sm transition ">
 
   <!-- Imagen del producto -->
-  <img src="assets/images/logo-icono.png" alt="Imagen del producto" class="h-40 w-40 object-cover flex-shrink-0 rounded-lg" />
+  <img src="assets/images/logo-icono.png" alt="Imagen del producto" class="h-40 w-40 object-cover flex-shrink-0 rounded-lg mx-auto" />
 
   <!-- Información del pedido -->
-  <div class="flex flex-col flex-grow min-w-[50px] items-start space-y-1">
+  <div class="flex flex-col flex-grow w-[90%] sm:w-[25%] items-start space-y-1">
     <h2 class="font-subheading text-lg m-2">Pedido #{{ pedido.order_id }}</h2>
     <h3 class="font-subheading bg-black text-white px-3 py-1 rounded-full inline-block text-sm m-2">
       {{ pedido.name }}
     </h3>
     <p class="font-subheading text-gray-600 m-2">Fecha: {{ pedido.date_creation | date:'dd/MM/yyyy' }}</p>
-    <p class="font-subheading text-gray-600 m-2 max-w-[50%]">Dirección: {{ pedido.address }}</p>
+    <p class="font-subheading text-gray-600 m-2 max-w-[100%]">Dirección: {{ pedido.address }}</p>
     <p class="font-subheading text-gray-600 m-2">Precio total: ${{ pedido.total_price }}</p>
   </div>
 
   <!-- Botones -->
-  <div class="flex flex-col sm:flex-row gap-2 min-w-[200px] items-center">
+  <div class="flex flex-col sm:flex-row gap-2 min-w-[270px] items-center">
     <button
       (click)="toggleDetalles()"
       class="w-full font-[550] py-2 px-4 bg-black text-white font-subheading rounded-lg 

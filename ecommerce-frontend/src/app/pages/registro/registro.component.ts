@@ -105,4 +105,9 @@ export class RegistroComponent {
       }
     });
   }
+  onTyCClick() {
+    this.router.navigate(['/terminos-condiciones']).then(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    })
+  }
 }

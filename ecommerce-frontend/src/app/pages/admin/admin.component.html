@@ -1,78 +1,89 @@
-<div class="flex flex-col bg-white">
-  <header-menu></header-menu>
+<div class="pb-10">
+  <!-- Header -->
+  <header-menu class="w-full"></header-menu>
 
-  <section class="relative w-full h-[120px] flex"> 
-    <app-logo class="absolute top-0 left-0"></app-logo>
-    <div class="absolute top-[15px] left-[365px] flex flex-col items-start justify-start gap-[30px] w-[calc(100%-365px)]">
-      <div class="w-full flex flex-col font-subheading">
-        <route [breadcrumbs]="[{ label: 'Administración' }]"></route>
+  <section class="relative bg-background-default-default flex flex-col items-start justify-start pt-0 px-px pb-[10px] box-border gap-3.5 leading-[normal] tracking-[normal]">
+    <div class="mx-auto self-stretch w-full max-w-[95%] lg:max-w-[90%] grid grid-cols-1 lg:grid-cols-[auto,1fr,auto] md:grid-cols-2 gap-x-10 auto-rows-auto items-start">
+      
+      <!-- Logo -->
+      <div class="w-fit p-0 order-1 md:col-span-2 lg:col-span-1 flex justify-self-center lg:justify-self-end">
+        <app-logo></app-logo>
       </div>
+      <!-- Portada -->
+      <div class="md:py-6 col-span-1 lg:col-span-2 lg:row-span-1 md:col-span-2 p-0 m-0 order-2">
+        <div class="flex flex-col items-start justify-start gap-[30px]">
+          <route [breadcrumbs]="[{ label: 'Administración' }]"></route>
+      </div>
+    </div>
+
+    <div class="col-span-1 lg:col-span-2 md:col-span-2 order-5 py-3">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 w-[80%] md:w-full mx-auto">
+          
+          <!-- Tarjeta 1 -->
+          <div class="w-[95%] self-stretch flex flex-col items-start justify-start gap-6 cursor-pointer order-2 md:order-1">
+            <div class="bg-white rounded-md shadow border p-6 w-full h-[200px]">
+              <app-resumen 
+                [resumenActivo]="resumenActivo"
+                (resumenSeleccionado)="actualizarResumen($event)">
+              </app-resumen>
+            </div>
+          </div>
+
+          <!-- Tarjeta 2 -->
+          <div class="w-[95%] self-stretch flex flex-col items-start justify-start gap-6 cursor-pointer order-1 md:order-2">
+            <div class="bg-white rounded-md shadow border p-6 w-full h-[200px] flex flex-col justify-between">
+              <h3 class="font-bold font-subheading text-lg mb-2">Métricas de negocio</h3>
+              <div *ngIf="earnings != undefined">
+                <div class="grid grid-cols-2 gap-4 mt-2">
+                  <div class="text-center">
+                    <p class="text-sm text-gray-500 font-subheading">Ventas brutas</p>
+                    <p class="text-lg font-bold font-subheading mt-1">${{ earnings.earnings.total }}</p>
+                  </div>
+                  <div class="text-center">
+                    <p class="text-sm text-gray-500 font-subheading">Cantidad de ventas</p>
+                    <p class="text-lg font-bold font-subheading mt-1">{{ earnings.salesCount.total }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+    
+  <section class="relative bg-background-default-default flex flex-col items-start justify-start pt-0 px-px pb-[10px] box-border gap-3.5 leading-[normal] tracking-[normal]">
+    <div class="mx-auto self-stretch w-full max-w-[90%] lg:max-w-[90%] items-start">
+      <div class="px-2 flex flex-col">
+          <div class="relative flex flex-row ">
+            <input
+              type="text"
+              placeholder="Buscar pedido"
+              class="bg-gray-300 font-subheading w-full py-2 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800 pl-10 pr-10"
+            />
+            <button class="absolute inset-y-0 left-0 flex items-center pl-3 hover:opacity-75 transition-opacity bg-transparent">
+              <img src="assets/icons/icon1.svg" alt="Menú" class="w-5 h-5">
+            </button>
+        
+            <button class="absolute inset-y-0 right-0 flex items-center pr-3 hover:opacity-75 transition-opacity bg-transparent">
+              <img src="assets/icons/icon-11.svg" alt="Buscar" class="w-5 h-5">
+            </button>
+          </div>
+        </div>
+        <div class="bg-white rounded-md shadow p-4 mb-6">
+          <app-contenido [tipoResumen]="resumenActivo"></app-contenido>
+        </div>
+        
+        <h2 class="text-xl font-bold mb-4 font-subheading">Ventas</h2>
+        <div *ngIf="earnings != undefined" class="bg-white rounded-md shadow p-6 max-w-[1790px]">
+          <app-adminventas [dataVentas]="earnings"></app-adminventas>
+        </div>
     </div>
   </section>
   
-  <main class="container mx-auto px-6 py-8">
-    <h2 class="text-xl font-bold mb-6 font-subheading">Tu desempeño</h2>
-    
-    <div class="flex flex-row gap-6 items-start">
-      <!-- Resumen -->
-      <div class="bg-white rounded-md shadow border p-6 w-[900px] h-[200px]">
-        <app-resumen 
-          [resumenActivo]="resumenActivo"
-          (resumenSeleccionado)="actualizarResumen($event)">
-        </app-resumen>
-      </div>
-      
-     
-
-  <!-- Métricas de negocio -->
-  <div class="bg-white rounded-md shadow border p-6 w-[800px] h-[200px] flex flex-col justify-between">
-    <h3 class="font-bold font-subheading text-lg mb-2">Métricas de negocio</h3>
-    <div *ngIf="earnings != undefined">
-      <div class="grid grid-cols-2 gap-4 mt-2">
-        <div class="text-center">
-          <p class="text-sm text-gray-500 font-subheading">Ventas brutas</p>
-          <p class="text-lg font-bold font-subheading mt-1">${{ earnings.earnings.total }}</p>
-        </div>
-        <div class="text-center">
-          <p class="text-sm text-gray-500 font-subheading">Cantidad de ventas</p>
-          <p class="text-lg font-bold font-subheading mt-1">{{ earnings.salesCount.total }}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Barra de búsqueda -->
-<div class="mt-8 mb-6 flex justify-between items-center w-[580px] px-2 py-2 rounded-full" style="background-color: #cecccc;">
-  <div class="relative bg-gray-200 rounded-full flex items-center w-full px-3 py-1">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
-    </svg>
-
-    <input
-      type="text"
-      placeholder="Hinted search text"
-      class="bg-transparent focus:outline-none font-subheading text-sm w-full"
-    />
-
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-    </svg>
-  </div>
-</div>
-
-
-<div class="bg-white rounded-md shadow p-4 mb-6 max-w-[1790px]">
-  <app-contenido [tipoResumen]="resumenActivo"></app-contenido>
-</div>
-
-
-
-    <h2 class="text-xl font-bold mb-4 font-subheading">Ventas</h2>
-    <div *ngIf="earnings != undefined" class="bg-white rounded-md shadow p-6 max-w-[1790px]">
-      <app-adminventas [dataVentas]="earnings"></app-adminventas>
-    </div>
-  </main>
 
   <footer class="w-full mt-5 mb-10 font-subheading">
     <app-footer 

@@ -1,7 +1,7 @@
 <!-- STOCK -->
 <div *ngIf="tipoResumen === 'stock'" class="space-y-4">
   <!-- Tabs -->
-  <div class="flex gap-4">
+  <div class="flex md:flex-row flex-col gap-4">
     <button 
       (click)="seleccionarVistaStock('listado')" 
       [ngClass]="vistaStock === 'listado' ? 'bg-gray-800 text-white' : 'bg-gray-200 text-gray-700'" 
@@ -29,50 +29,46 @@
   </div>
 
   <!-- Listado de productos -->
-  
+@for(product of productos; track product.product_id)
+{
+  <div *ngIf="vistaStock === 'listado'" class="flex flex-col md:flex-row justify-between items-center w-full rounded-radius-200 border border-border-default-default border-solid box-border p-2 gap-2">
     
-      
-  @for(product of productos; track product.product_id) 
-  {
-    <div *ngIf="vistaStock === 'listado'" class="flex justify-between items-center w-full  rounded-radius-200 border border-border-default-default 
-    border-solid box-border p-2">
-      <div class="flex items-center space-x-4">
-        <div class="rounded-full p-2">
-          <img class="w-[70px] h-[90px]" loading="lazy" [src]="product.image_url" />
-        </div>
-        <div class="leading-tight">
-          <h4 class="font-bold font-subheading text-sm">{{ product.stock > 0 ? 'Producto en stock' : 'Producto fuera de stock' }}</h4>
-          <p class="text-gray-500 text-sm font-subheading">{{ product.name }}</p>
-    
-          <!-- Cantidad -->
-          <div *ngIf="productoEditandoId !== product.product_id; else editCantidad">
-            <p class="text-gray-500 text-sm font-subheading">Cantidad disponible: {{ product.stock }}</p>
-          </div>
-          <ng-template #editCantidad>
-            <input [(ngModel)]="product.stock" type="number"
-                  class="text-sm font-subheading border rounded px-2 py-1 w-24" />
-          </ng-template>
-        </div>
+    <!-- Imagen y detalles -->
+    <div class="flex items-center gap-2">
+      <div class="rounded-full p-2">
+        <img class="w-[70px] h-[90px] object-cover" loading="lazy" [src]="product.image_url" alt="Producto" />
       </div>
-            <!-- Precio y botón -->
-      <div class="flex items-center space-x-60 pr-40">
-        <div *ngIf="productoEditandoId !== product.product_id; else editPrecio">
-          <p class="text-gray-500 text-sm font-subheading">${{ product.price }}</p>
+      <div class="leading-tight">
+        <h4 class="font-bold font-subheading text-sm">{{ product.stock > 0 ? 'Producto en stock' : 'Producto fuera de stock' }}</h4>
+        <p class="text-gray-500 text-sm font-subheading">{{ product.name }}</p>
+
+        <!-- Cantidad disponible -->
+        <div *ngIf="productoEditandoId !== product.product_id; else editCantidad">
+          <p class="text-gray-500 text-sm font-subheading">Cantidad disponible: {{ product.stock }}</p>
         </div>
-        <ng-template #editPrecio>
-          <input [(ngModel)]="product.price" type="number" class="text-sm font-subheading border rounded px-2 py-1 w-24" />
+        <ng-template #editCantidad>
+          <input [(ngModel)]="product.stock" type="number" class="text-sm font-subheading border rounded px-2 py-1 w-24" />
         </ng-template>
-
-        <!-- Botón toggle -->
-        <button class="bg-gray-800 text-white px-3 py-2 rounded-md font-subheading text-sm cursor-pointer flex items-center gap-1"(click)="toggleEditarStock(product)">
-          <span>{{ productoEditandoId === product.product_id ? 'Guardar' : '✏️ Editar' }}</span>
-        </button>      
-      </div> 
+      </div>
     </div>
-  }
-  
 
-  
+    <!-- Precio y botón -->
+    <div class="flex flex-col lg:flex-row items-center lg:items-center gap-2 lg:gap-24 lg:mr-20">
+      <div *ngIf="productoEditandoId !== product.product_id; else editPrecio">
+        <p class="text-gray-500 text-sm font-subheading">${{ product.price }}</p>
+      </div>
+      <ng-template #editPrecio>
+        <input [(ngModel)]="product.price" type="number" class="text-sm font-subheading border rounded px-2 py-1 w-24" />
+      </ng-template>
+
+      <button class="bg-gray-800 text-white px-3 py-2 rounded-md font-subheading text-sm cursor-pointer flex items-center gap-1"
+        (click)="toggleEditarStock(product)">
+        {{ productoEditandoId === product.product_id ? 'Guardar' : '✏️ Editar' }}
+      </button>
+    </div>
+
+  </div>
+}
 
   <!-- Formulario nuevo producto -->
   <form [formGroup]="formProducto" (ngSubmit)="crearProducto()" *ngIf="vistaStock === 'nuevo'" class="space-y-4 bg-gray-50 p-4 rounded-md shadow">
@@ -138,99 +134,92 @@
       {{ isLoading ? 'Creando producto...' : 'Crear producto' }}
     </button>
   </form>
-  
-</div>
+  <!-- CATEGORIAS -->
+  @for(category of categorias; track category.category_id) {
+    <div *ngIf="vistaStock === 'categoria'" 
+        class="my-4 flex justify-between items-center w-full rounded-radius-200 border border-border-default-default 
+                border-solid box-border p-2">
 
+      <!-- Parte izquierda: Nombre y estado -->
+      <div class="flex items-center">
+        <div class="leading-tight">
+          <!-- Nombre -->
+          <div *ngIf="categoriaEditandoId !== category.category_id; else editNombre">
+            <h4 class="m-2 font-bold font-subheading text-sm">{{ category.name }}</h4>
+          </div>
+          <ng-template #editNombre>
+            <input [(ngModel)]="category.name" type="text"
+                  class="m-2 text-sm font-subheading border rounded px-2 py-1 w-40" />
+          </ng-template>
 
-<!-- CATEGORIAS -->
-@for(category of categorias; track category.category_id) {
-  <div *ngIf="vistaStock === 'categoria'" 
-       class="my-4 flex justify-between items-center w-full rounded-radius-200 border border-border-default-default 
-              border-solid box-border p-2">
-
-    <!-- Parte izquierda: Nombre y estado -->
-    <div class="flex items-center">
-      <div class="leading-tight">
-        <!-- Nombre -->
-        <div *ngIf="categoriaEditandoId !== category.category_id; else editNombre">
-          <h4 class="m-2 font-bold font-subheading text-sm">{{ category.name }}</h4>
+          <!-- Estado is_disabled -->
+          <div *ngIf="categoriaEditandoId !== category.category_id; else editEstado">
+            <p class="m-2 text-sm font-subheading text-gray-500">
+              Estado: {{ category.is_disabled ? 'Deshabilitada' : 'Activa' }}
+            </p>
+          </div>
+          <ng-template #editEstado>
+            <label class="text-sm font-subheading text-gray-500 flex items-center gap-2">
+              <input class="m-2" type="checkbox" [(ngModel)]="category.is_disabled" />
+              ¿Deshabilitada?
+            </label>
+          </ng-template>
         </div>
-        <ng-template #editNombre>
-          <input [(ngModel)]="category.name" type="text"
-                class="m-2 text-sm font-subheading border rounded px-2 py-1 w-40" />
-        </ng-template>
+      </div>
 
-        <!-- Estado is_disabled -->
-        <div *ngIf="categoriaEditandoId !== category.category_id; else editEstado">
-          <p class="m-2 text-sm font-subheading text-gray-500">
-            Estado: {{ category.is_disabled ? 'Deshabilitada' : 'Activa' }}
-          </p>
-        </div>
-        <ng-template #editEstado>
-          <label class="text-sm font-subheading text-gray-500 flex items-center gap-2">
-            <input class="m-2" type="checkbox" [(ngModel)]="category.is_disabled" />
-            ¿Deshabilitada?
-          </label>
-        </ng-template>
+      <!-- Parte derecha: botón -->
+      <div class="flex items-center space-x-4">
+        <button class="bg-gray-800 text-white px-3 py-2 rounded-md font-subheading text-sm cursor-pointer flex items-center gap-1"
+          (click)="toggleEditarCategoria(category)"
+          [disabled]="guardandoCategoriaId === category.category_id">
+          <span>
+            {{
+              guardandoCategoriaId === category.category_id
+                ? 'Guardando...'
+                : (categoriaEditandoId === category.category_id ? 'Guardar' : '✏️ Editar')
+            }}
+          </span>
+        </button>
       </div>
     </div>
+  }
 
-    <!-- Parte derecha: botón -->
-    <div class="flex items-center space-x-4">
-      <button class="bg-gray-800 text-white px-3 py-2 rounded-md font-subheading text-sm cursor-pointer flex items-center gap-1"
-        (click)="toggleEditarCategoria(category)"
-        [disabled]="guardandoCategoriaId === category.category_id">
-        <span>
-          {{
-            guardandoCategoriaId === category.category_id
-              ? 'Guardando...'
-              : (categoriaEditandoId === category.category_id ? 'Guardar' : '✏️ Editar')
-          }}
-        </span>
-      </button>
+  <div *ngIf="vistaStock === 'nuevaCategoria'" class="space-y-4 bg-gray-50 p-4 rounded-md shadow">
+    <h2 class="font-bold font-subheading text-lg">Crear nueva categoría</h2>
+
+    <div class="mr-6">
+      <input
+        [(ngModel)]="nuevaCategoria.name"
+        type="text"
+        placeholder="Nombre de la categoría"
+        class="w-full py-2 px-3 border rounded-md text-sm font-subheading"
+        [ngClass]="{
+          'border-red-500': !nuevaCategoria.name?.trim()
+        }"
+        required
+      />
     </div>
+
+    <button
+      (click)="crearCategoria()"
+      [disabled]="!nuevaCategoria.name?.trim() || creandoCategoria"
+      class="bg-gray-800 text-white px-4 py-2 rounded-md font-subheading text-sm cursor-pointer
+      hover:bg-gray-600 transition font-subheading text-sm px-4 py-2 rounded-md w-full transition duration-200"
+    >
+      {{ creandoCategoria ? 'Creando...' : 'Crear Categoría' }}
+    </button>
   </div>
-}
-
-
-<div *ngIf="vistaStock === 'nuevaCategoria'" class="m-4 bg-white p-6 rounded-md shadow w-full max-w-md space-y-4">
-  <h2 class="font-bold font-subheading text-lg">Crear nueva categoría</h2>
-
-  <div class="max-w-[94%]">
-    <input
-      [(ngModel)]="nuevaCategoria.name"
-      type="text"
-      placeholder="Nombre de la categoría"
-      class="w-full py-2 px-3 border rounded-md text-sm font-subheading"
-      [ngClass]="{
-        'border-red-500': !nuevaCategoria.name?.trim()
-      }"
-      required
-    />
-  </div>
-
-  <button
-    (click)="crearCategoria()"
-    [disabled]="!nuevaCategoria.name?.trim() || creandoCategoria"
-    class="bg-gray-800 text-white px-4 py-2 rounded-md font-subheading text-sm cursor-pointer
-    hover:bg-gray-600 transition font-subheading text-sm px-4 py-2 rounded-md w-full transition duration-200"
-  >
-    {{ creandoCategoria ? 'Creando...' : 'Crear Categoría' }}
-  </button>
 </div>
-  
 
-
- 
 
 <!-- ÓRDENES -->
 <div *ngIf="tipoResumen === 'ordenes'" class="space-y-4">
   <!-- Tabs para órdenes -->
-  <div class="flex gap-4">
+  <div class="flex flex-col sm:flex-row gap-2">
     <button 
       (click)="seleccionarVistaOrden('pendientes')" 
       [ngClass]="vistaOrden === 'pendientes' ? 'bg-gray-800 text-white' : 'bg-gray-200 text-gray-700'" 
-      class="px-4 py-2 rounded-md font-subheading text-sm cursor-pointer border">
+      class="py-2 rounded-md font-subheading text-sm cursor-pointer border">
       Pendientes de envio
     </button>
     <button 
@@ -251,72 +240,74 @@
 @for(pedido of pedidosPendientes; track pedido.order_id)
 {
   <div *ngIf="vistaOrden === 'pendientes'" class="rounded-radius-200 border border-border-default-default border-solid box-border">
-    <div class="flex justify-between items-center px-4 py-2">
-      <div class="flex items-center space-x-4">
-        <div class="{{ pedido.status_id == 2 ? 'bg-[#32c471]' :  pedido.status_id == 1 ? 'bg-[#efe97f]' : 'bg-[#d2614b]'}} rounded-full p-2">
-          <img class="w-[50px] h-[59px] object-cover" loading="lazy" alt="Avatar" src="assets/images/logo-icono.png" />
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center px-4 py-2 gap-4">
+      <!-- Info del cliente -->
+      <div class="flex items-center space-x-4 w-full md:w-auto">
+        <div class="bg-[#efe97f] p-2 rounded-full">
+          <img class="w-[50px] h-[50px] object-cover" loading="lazy" alt="Avatar" src="assets/images/logo-icono.png" />
         </div>
         <div class="leading-tight">
           <h4 class="font-bold font-subheading text-sm">Procesando en bodega</h4>
           <p class="text-gray-500 text-sm font-subheading">ORDEN #{{ pedido.order_id }} - {{ pedido.date_creation | date:'dd/MM/yyyy' }}</p>
-          <p class="text-gray-500 text-sm font-subheading">Cliente: {{ pedido.client_name }} | {{ pedido.details }} </p>
-          <p class="text-gray-500 text-sm font-subheading">Teléfono: {{ pedido.client_phone }} </p>
-          <p class="text-gray-500 text-sm font-subheading">Dirección: {{ pedido.address }} </p>
-          <p class="text-gray-500 text-sm font-subheading">Pago: {{ pedido.name }} </p>
+          <p class="text-gray-500 text-sm font-subheading">Cliente: {{ pedido.client_name }} | {{ pedido.details }}</p>
+          <p class="text-gray-500 text-sm font-subheading">Teléfono: {{ pedido.client_phone }}</p>
+          <p class="text-gray-500 text-sm font-subheading">Dirección: {{ pedido.address }}</p>
+          <p class="text-gray-500 text-sm font-subheading">Pago: {{ pedido.name }}</p>
         </div>
       </div>
-      
 
       <!-- Total y botones -->
-      <div class="flex items-center space-x-60 pr-20">
-        <p class="text-gray-500 text-m font-subheading">Total: ${{ pedido.total_price }}</p>
-        <div class="flex flex-col gap-2 w-[280px]">
-          <button class="bg-gray-800 text-white px-20 py-2 font-subheading text-sm cursor-pointer hover:text-black hover:bg-white transition rounded-lg 
-          border border-border-neutral-secondary"(click)="aprobarEnvioOrden(pedido)">
+      <div class="flex flex-col md:flex-row md:items-center gap-2 w-full md:w-auto">
+        <p class="text-gray-500 text-m font-subheading md:mr-4 mx-auto">Total: ${{ pedido.total_price }}</p>
+        <div class="flex flex-col gap-2 w-full md:w-[280px]">
+          <button
+            class="bg-gray-800 text-white py-2 font-subheading text-sm cursor-pointer hover:text-black hover:bg-white transition rounded-lg border border-border-neutral-secondary w-full"
+            (click)="aprobarEnvioOrden(pedido)">
             Enviar pedido
           </button>
-          <button class="bg-gray-800 text-white px-20 py-2 font-subheading text-sm cursor-pointer hover:text-black hover:bg-white transition rounded-lg border border-border-neutral-secondary"
+          <button
+            class="bg-gray-800 text-white py-2 font-subheading text-sm cursor-pointer hover:text-black hover:bg-white transition rounded-lg border border-border-neutral-secondary w-full"
             (click)="verDetalles(pedido)">
             {{ ordenMostrandoDetalles === pedido.order_id ? 'Ocultar detalles' : 'Ver detalles' }}
           </button>
           <button
-            class="text-white px-20 py-2 font-subheading text-sm cursor-pointer bg-red-600 hover:bg-white hover:text-red-600 transition rounded-lg border border-red-500" (click)="cancelarPedido(pedido)">
+            class="text-white py-2 font-subheading text-sm cursor-pointer bg-red-600 hover:bg-white hover:text-red-600 transition rounded-lg border border-red-500 w-full"
+            (click)="cancelarPedido(pedido)">
             Cancelar pedido
           </button>
         </div>
       </div>
 
     </div>
-    <!-- Sección de detalles -->
-    <div
-    *ngIf="ordenMostrandoDetalles === pedido.order_id"
-    class="block m-4 p-4 w-[95%] rounded-radius-200 border border-border-default-default 
-    border-solid box-border">
-    <ng-container *ngIf="cargandoDetalles; else detallesCargados">
-      <p class="text-sm text-gray-600 font-subheading italic">Cargando detalles...</p>
-    </ng-container>
 
-    <ng-template #detallesCargados>
-      <h5 class="font-bold text-sm text-gray-700 font-subheading mb-3">Detalles del pedido:</h5>
-      <ul class="space-y-2">
-        <li *ngFor="let detalle of detallePedidoSeleccionado" class="text-sm text-gray-700 font-subheading">
-          {{ detalle.name }} – Cantidad: {{ detalle.quantity }} – Subtotal: ${{ detalle.subtotal }}
-        </li>
-      </ul>
-    </ng-template>
+    <!-- Sección de detalles -->
+    <div *ngIf="ordenMostrandoDetalles === pedido.order_id"
+         class="block m-4 p-4 w-[95%] rounded-radius-200 border border-border-default-default border-solid box-border">
+      <ng-container *ngIf="cargandoDetalles; else detallesCargados">
+        <p class="text-sm text-gray-600 font-subheading italic">Cargando detalles...</p>
+      </ng-container>
+
+      <ng-template #detallesCargados>
+        <h5 class="font-bold text-sm text-gray-700 font-subheading mb-3">Detalles del pedido:</h5>
+        <ul class="space-y-2">
+          <li *ngFor="let detalle of detallePedidoSeleccionado" class="text-sm text-gray-700 font-subheading">
+            {{ detalle.name }} – Cantidad: {{ detalle.quantity }} – Subtotal: ${{ detalle.subtotal }}
+          </li>
+        </ul>
+      </ng-template>
     </div>
   </div>
 }
-
 
 <!-- Vista ordenes enviadas -->
 @for(pedido of pedidosEnviados; track pedido.order_id)
 {
   <div *ngIf="vistaOrden === 'enviadas'" class="rounded-radius-200 border border-border-default-default border-solid box-border">
-    <div class="flex justify-between items-center px-4 py-2">
-      <div class="flex items-center space-x-4">
-        <div class="bg-[#b0daff] rounded-full p-2">
-          <img class="w-[50px] h-[59px] object-cover" loading="lazy" alt="Avatar" src="assets/images/logo-icono.png" />
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center px-4 py-2 gap-4">
+      <!-- Info del cliente -->
+      <div class="flex items-center space-x-4 w-full md:w-auto">
+        <div class="bg-[#85ffa5] rounded-full p-2 ">
+          <img class="w-[50px] h-[50px] object-cover" loading="lazy" alt="Avatar" src="assets/images/logo-icono.png" />
         </div>
         <div class="leading-tight">
           <h4 class="font-bold font-subheading text-sm">Pedido enviado</h4>
@@ -327,12 +318,11 @@
           <p class="text-gray-500 text-sm font-subheading">Estado: {{ pedido.name }} </p>
         </div>
       </div>
-      
-
+  
       <!-- Total y botones -->
-      <div class="flex items-center space-x-60 pr-20">
-        <p class="text-gray-500 text-m font-subheading">Total: ${{ pedido.total_price }}</p>
-        <div class="flex flex-col gap-2 w-[280px]">
+      <div class="flex flex-col md:flex-row md:items-center gap-2 w-full md:w-auto">
+        <p class="text-gray-500 text-m font-subheading md:mr-4 mx-auto">Total: ${{ pedido.total_price }}</p>
+        <div class="flex flex-col gap-2 w-full md:w-[280px]">
           <button class="bg-gray-800 text-white px-20 py-2 font-subheading text-sm cursor-pointer hover:text-black hover:bg-white transition rounded-lg 
           border border-border-neutral-secondary" (click)="aprobarOrdenEntregada(pedido)">
             Entregado
@@ -343,27 +333,28 @@
           </button>
         </div>
       </div>
-
     </div>
+  
     <!-- Sección de detalles -->
     <div
-    *ngIf="ordenMostrandoDetalles === pedido.order_id"
-    class="block m-4 p-4 w-[95%] rounded-radius-200 border border-border-default-default 
-    border-solid box-border">
-    <ng-container *ngIf="cargandoDetalles; else detallesCargados">
-      <p class="text-sm text-gray-600 font-subheading italic">Cargando detalles...</p>
-    </ng-container>
-
-    <ng-template #detallesCargados>
-      <h5 class="font-bold text-sm text-gray-700 font-subheading mb-3">Detalles del pedido:</h5>
-      <ul class="space-y-2">
-        <li *ngFor="let detalle of detallePedidoSeleccionado" class="text-sm text-gray-700 font-subheading">
-          {{ detalle.name }} – Cantidad: {{ detalle.quantity }} – Subtotal: ${{ detalle.subtotal }}
-        </li>
-      </ul>
-    </ng-template>
+      *ngIf="ordenMostrandoDetalles === pedido.order_id"
+      class="block m-4 p-4 w-[95%] rounded-radius-200 border border-border-default-default 
+      border-solid box-border">
+      <ng-container *ngIf="cargandoDetalles; else detallesCargados">
+        <p class="text-sm text-gray-600 font-subheading italic">Cargando detalles...</p>
+      </ng-container>
+  
+      <ng-template #detallesCargados>
+        <h5 class="font-bold text-sm text-gray-700 font-subheading mb-3">Detalles del pedido:</h5>
+        <ul class="space-y-2">
+          <li *ngFor="let detalle of detallePedidoSeleccionado" class="text-sm text-gray-700 font-subheading">
+            {{ detalle.name }} – Cantidad: {{ detalle.quantity }} – Subtotal: ${{ detalle.subtotal }}
+          </li>
+        </ul>
+      </ng-template>
     </div>
   </div>
+  
 }
 
 
@@ -372,10 +363,11 @@
 @for(pedido of pedidosEntregados; track pedido.order_id)
 {
   <div *ngIf="vistaOrden === 'entregadas'" class="rounded-radius-200 border border-border-default-default border-solid box-border">
-    <div class="flex justify-between items-center px-4 py-2">
-      <div class="flex items-center space-x-4">
-        <div class="bg-[#b0daff] rounded-full p-2">
-          <img class="w-[50px] h-[59px] object-cover" loading="lazy" alt="Avatar" src="assets/images/logo-icono.png" />
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center px-4 py-2 gap-4">
+      <!-- Info del cliente -->
+      <div class="flex items-center space-x-4 w-full md:w-auto ">
+        <div class="bg-[#ff8585] rounded-full p-2">
+          <img class="w-[50px] h-[50px] object-cover" loading="lazy" alt="Avatar" src="assets/images/logo-icono.png" />
         </div>
         <div class="leading-tight">
           <h4 class="font-bold font-subheading text-sm">Pedido entregado</h4>
@@ -386,37 +378,35 @@
           <p class="text-gray-500 text-sm font-subheading">Estado: {{ pedido.name }} </p>
         </div>
       </div>
-      
 
-      <!-- Total y botones -->
-      <div class="flex items-center space-x-60 pr-20">
-        <p class="text-gray-500 text-m font-subheading">Total: ${{ pedido.total_price }}</p>
-        <div class="flex flex-col gap-2 w-[280px]">
+      <!-- Total y botón -->
+      <div class="flex flex-col md:flex-row md:items-center gap-2 w-full md:w-auto">
+        <p class="text-gray-500 text-m font-subheading md:mr-4 mx-auto">Total: ${{ pedido.total_price }}</p>
+        <div class="flex flex-col gap-2 w-full md:w-[280px]">
           <button class="bg-gray-800 text-white px-20 py-2 font-subheading text-sm cursor-pointer hover:text-black hover:bg-white transition rounded-lg border border-border-neutral-secondary"
             (click)="verDetalles(pedido)">
             {{ ordenMostrandoDetalles === pedido.order_id ? 'Ocultar detalles' : 'Ver detalles' }}
           </button>
         </div>
       </div>
-
     </div>
+
     <!-- Sección de detalles -->
     <div
-    *ngIf="ordenMostrandoDetalles === pedido.order_id"
-    class="block m-4 p-4 w-[95%] rounded-radius-200 border border-border-default-default 
-    border-solid box-border">
-    <ng-container *ngIf="cargandoDetalles; else detallesCargados">
-      <p class="text-sm text-gray-600 font-subheading italic">Cargando detalles...</p>
-    </ng-container>
+      *ngIf="ordenMostrandoDetalles === pedido.order_id"
+      class="block m-4 p-4 w-[95%] rounded-radius-200 border border-border-default-default border-solid box-border">
+      <ng-container *ngIf="cargandoDetalles; else detallesCargados">
+        <p class="text-sm text-gray-600 font-subheading italic">Cargando detalles...</p>
+      </ng-container>
 
-    <ng-template #detallesCargados>
-      <h5 class="font-bold text-sm text-gray-700 font-subheading mb-3">Detalles del pedido:</h5>
-      <ul class="space-y-2">
-        <li *ngFor="let detalle of detallePedidoSeleccionado" class="text-sm text-gray-700 font-subheading">
-          {{ detalle.name }} – Cantidad: {{ detalle.quantity }} – Subtotal: ${{ detalle.subtotal }}
-        </li>
-      </ul>
-    </ng-template>
+      <ng-template #detallesCargados>
+        <h5 class="font-bold text-sm text-gray-700 font-subheading mb-3">Detalles del pedido:</h5>
+        <ul class="space-y-2">
+          <li *ngFor="let detalle of detallePedidoSeleccionado" class="text-sm text-gray-700 font-subheading">
+            {{ detalle.name }} – Cantidad: {{ detalle.quantity }} – Subtotal: ${{ detalle.subtotal }}
+          </li>
+        </ul>
+      </ng-template>
     </div>
   </div>
 }
