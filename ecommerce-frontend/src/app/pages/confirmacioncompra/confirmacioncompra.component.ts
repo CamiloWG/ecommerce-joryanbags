@@ -50,7 +50,7 @@ export class ConfirmacioncompraComponent {
     const cliente = this.orderService.getOrder();
     this.order_key = this.orderService.generateOrderUniqueKey();
     const TotalCost = this.cartService.getTotalCost().toString();
-    const secretKey = 'h6zLQThK3fBAghlP8TWqEA';
+    const secretKey = environment.BOLD_SECRET_KEY;
   
     const container = document.getElementById('bold-button-container');
     if (!container) return;
@@ -72,7 +72,7 @@ export class ConfirmacioncompraComponent {
   
     const boton = document.createElement('script');
     boton.setAttribute('data-bold-button', 'dark-L');
-    boton.setAttribute('data-api-key', 'dxzLd_YF_InRvzQTh2UIYl-C8eRsZM9wT1Wvb58Ycgs');
+    boton.setAttribute('data-api-key', environment.API_BOLD_KEY);
     boton.setAttribute('data-integrity-signature', await this.generateHash(`${this.order_key}${TotalCost}COP${secretKey}`));
     boton.setAttribute('data-amount', TotalCost);
     boton.setAttribute('data-order-id', this.order_key);
