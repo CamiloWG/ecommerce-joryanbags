@@ -14,7 +14,7 @@
     </h3>
     <p class="font-subheading text-gray-600 m-2">Fecha: {{ pedido.date_creation | date:'dd/MM/yyyy' }}</p>
     <p class="font-subheading text-gray-600 m-2 max-w-[100%]">Dirección: {{ pedido.address }}</p>
-    <p class="font-subheading text-gray-600 m-2">Precio total: ${{ pedido.total_price }}</p>
+    <p class="font-subheading text-gray-600 m-2">Precio total: ${{ pedido.total_price.toLocaleString('es-CO') }}</p>
   </div>
 
   <!-- Botones -->
@@ -41,10 +41,10 @@
 
     <ul *ngIf="!cargandoDetalles" class="space-y-2">
       <li *ngFor="let item of detalles" class="font-subheading text-gray-700">
-        {{ item.name }} – Cantidad: {{ item.quantity }} – Subtotal: ${{ item.subtotal }}        
+        {{ item.name }} – Cantidad: {{ item.quantity }} – Subtotal: ${{ item.subtotal.toLocaleString('es-CO') }}        
       </li>
       <li class="font-subheading text-gray-700">
-        Envio - Subtotal: ${{ precioEnvio }}
+        Envio - Subtotal: ${{ precioEnvio.toLocaleString('es-CO') }}
       </li>
     </ul>
   </div>

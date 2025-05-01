@@ -16,15 +16,15 @@
       <!-- Título y etiqueta -->
       <div class="flex flex-col">
         <h3 class="font-subheading">{{ titulo }}</h3>
-        <div class="w-8 rounded-radius-200 bg-green-300  p-space-200">
-          <div class="font-subheading leading-[100%]">Tag</div>
+        <div class="w-8 rounded-radius-200 bg-transparent  p-space-200">
+          <div class="font-subheading leading-[100%] text-transparent">Tag</div>
         </div>
       </div>
 
       <!-- Precio -->
       <div class="font-subheading flex items-end text-heading-size-base text-text-default-default gap-2">
         <h3 class="text-inherit tracking-[-0.02em] font-bold">$</h3>
-        <b class="text-[40px] tracking-[-0.02em]">{{ precio }}</b>
+        <b class="text-[40px] tracking-[-0.02em]">{{ precio.toLocaleString('es-CO') }}</b>
       </div>
 
       <!-- Información adicional -->

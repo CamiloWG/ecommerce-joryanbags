@@ -11,7 +11,9 @@
     @for(item of productos; track item) {
       <div class="self-stretch overflow-hidden flex justify-between pt-space-300 px-space-400 pb-space-100">
         <div class="text-body-size-medium font-subheading">{{item.name}} x{{item.quantity}}</div>
-        <div class="font-subheading">${{item.price * item.quantity}}</div>
+        <div class="font-subheading">
+          ${{ (item.price * item.quantity).toLocaleString('es-CO') }}
+        </div>        
       </div>
     }
     
@@ -19,12 +21,12 @@
 
     <div class="self-stretch overflow-hidden flex justify-between pt-space-300 px-space-400 pb-space-100">
       <div class="text-body-size-medium font-subheading">Costo de envio</div>
-      <div class="font-subheading">${{costoEnvio}}</div>
+      <div class="font-subheading">${{costoEnvio.toLocaleString('es-CO')}}</div>
     </div>
 
     <div class="self-stretch overflow-hidden flex justify-between pt-space-300 px-space-400 pb-space-100">
       <div class="text-body-size-medium font-subheading">Subtotal</div>
-      <div class="font-subheading">${{costoTotal}}</div>
+      <div class="font-subheading">${{costoTotal.toLocaleString('es-CO')}}</div>
     </div>
 
     <!-- Botón con texto dinámico -->

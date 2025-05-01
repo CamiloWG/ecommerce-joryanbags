@@ -20,8 +20,8 @@
           Categoría: {{ descripcion }}
         </div>
         <div class="font-subheading text-text-default-secondary text-body-size-medium leading-[140%]">
-          ${{ precio }}
-        </div>
+          {{ precio.toLocaleString('es-CO') }}
+        </div>        
       </div>
       <!-- Controles de cantidad -->
       <div class="sm:absolute sm:top-2 sm:right-2 absolute bottom-6 right-10 z-10 flex flex-col items-start justify-start gap-2">

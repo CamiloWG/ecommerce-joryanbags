@@ -11,7 +11,7 @@
       <h4 class="font-bold mb-2 font-subheading">Ventas realizadas - Hoy</h4>
       <div class="mt-4">
         <p class="text-gray-700 font-semibold font-subheading">Número de ventas: {{ dataVentas.salesCount.today }}</p>
-        <p class="text-gray-700 font-semibold font-subheading">Total de ventas: ${{ dataVentas.earnings.today }}</p>
+        <p class="text-gray-700 font-semibold font-subheading">Total de ventas: ${{ dataVentas.earnings.today.toLocaleString('es-CO')  }}</p>
       </div>
     </div>
   
@@ -20,7 +20,7 @@
       <h4 class="font-bold mb-2 font-subheading">Ventas realizadas - Última Semana</h4>
       <div class="mt-4">
         <p class="text-gray-700 font-semibold font-subheading">Número de ventas: {{ dataVentas.salesCount.last_week }}</p>
-        <p class="text-gray-700 font-semibold font-subheading">Total de ventas: ${{ dataVentas.earnings.last_week }}</p>
+        <p class="text-gray-700 font-semibold font-subheading">Total de ventas: ${{ dataVentas.earnings.last_week.toLocaleString('es-CO')  }}</p>
       </div>
     </div>
   
@@ -29,7 +29,7 @@
       <h4 class="font-bold mb-2 font-subheading">Ventas realizadas - Último Mes</h4>
       <div class="mt-4">
         <p class="text-gray-700 font-semibold font-subheading">Número de ventas: {{ dataVentas.salesCount.last_month }}</p>
-        <p class="text-gray-700 font-semibold font-subheading">Total de ventas: ${{ dataVentas.earnings.last_month }}</p>
+        <p class="text-gray-700 font-semibold font-subheading">Total de ventas: ${{ dataVentas.earnings.last_month.toLocaleString('es-CO')  }}</p>
       </div>
     </div>
   
@@ -38,7 +38,7 @@
       <h4 class="font-bold mb-2 font-subheading">Ventas realizadas - Últimos tres meses</h4>
       <div class="mt-4">
         <p class="text-gray-700 font-semibold font-subheading">Número de ventas: {{ dataVentas.salesCount.last_3_months }}</p>
-        <p class="text-gray-700 font-semibold font-subheading">Total de ventas: ${{ dataVentas.earnings.last_3_months }}</p>
+        <p class="text-gray-700 font-semibold font-subheading">Total de ventas: ${{ dataVentas.earnings.last_3_months.toLocaleString('es-CO')  }}</p>
       </div>
     </div>
   </div>
