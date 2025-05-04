@@ -20,8 +20,8 @@
       </div>
 
       <!-- Menú Categorías -->
-      <div class="hidden lg:block py-3 w-fit p-0 order-3 md:col-span-1 lg:col-span-1 flex justify-self-center lg:justify-self-end">
-        <menu-categorias></menu-categorias>
+      <div class="py-3 w-fit p-0 order-3 md:col-span-1 lg:col-span-1 flex justify-self-center lg:justify-self-end ">
+        <menu-categorias class="hidden lg:block md:max-h-[400px] overflow-y-auto"></menu-categorias>
       </div>
 
       <!-- Portada -->
@@ -111,7 +111,7 @@
                 [showDescription]="false"
                 [image]="product.image_url"
                 [titulo]="product.name"
-                [precio]="'$'+product.price"
+                [precio]="'$'+product.price.toLocaleString('es-CO')"
                 [productId]="product.product_id">                  
               </product-info-card>
             }
