@@ -104,13 +104,24 @@ export class ContenidoResumenComponent {
     return !!ctrl && ctrl.invalid && (ctrl.touched || ctrl.dirty);
   }
 
-  onFileSelected(event: any) {
+  onFileSelected(event: any, product?: any) {
     const file = event.target.files[0];
-    if (file) {
+    if (!file) return;
+  
+    if (product) {
+      // Estamos en modo edición de producto
+      const reader = new FileReader();
+      reader.onload = () => {
+        product.image_url = reader.result as string;
+        product._newImageFile = file; // por si necesitas enviarlo
+      };
+      reader.readAsDataURL(file);
+    } else {
+      // Estamos en modo creación
       this.imagenSeleccionada = file;
       this.formProducto.get('image_url')?.setValue(file);
     }
-  }
+  }  
 
   crearProducto() {
     if (this.formProducto.invalid) {
