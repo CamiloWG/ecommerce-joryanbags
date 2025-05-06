@@ -20,20 +20,22 @@
       </div>
 
       <!-- Menú Categorías -->
-      <div class="py-3 w-fit p-0 order-3 md:col-span-1 lg:col-span-1 flex justify-self-center lg:justify-self-end ">
-        <menu-categorias class="hidden lg:block md:max-h-[400px] overflow-y-auto"></menu-categorias>
+      <div class="hidden lg:block py-3 w-fit p-0 order-3 md:col-span-1 lg:col-span-1 flex justify-self-center lg:justify-self-end">
+        <menu-categorias></menu-categorias>
       </div>
 
       <!-- Portada -->
       <div class="py-3 md:py-0 col-span-1 lg:col-span-2 lg:row-span-2 md:col-span-2 p-0 m-0 order-3">
         <div class="max-w-full">
           <div class="flex-1 flex flex-col items-start justify-start gap-[33px] max-w-full ">
-            <div class="w-full flex flex-col items-start justify-end pt-40 pb-12 px-6 box-border relative gap-[24px] text-background-default-default font-subheading">
+            <div class="w-full flex flex-col items-start justify-end pt-60 pb-12 px-6 box-border relative gap-[24px] text-background-default-default font-subheading">
               <!-- Imagen de fondo -->
               <img class="w-full absolute !m-[0] h-full top-0 right-0 bottom-0 left-0 max-w-full overflow-hidden object-cover z-[0]" 
                    loading="lazy" 
                    alt="" 
-                   src="assets/images/image-12@2x.png" />
+                   src="assets/images/imagen-inicio.png" />
+
+              <div class="absolute top-0 left-0 w-full h-full bg-white/15 z-1"></div>
             
               <!-- Texto -->
               <div class="h-auto min-w-[300px] flex flex-col items-start justify-between gap-0 z-[1]">
@@ -132,11 +134,7 @@
     </div>
     
   </section>
-
-
   
-
-
   <!-- Footer -->
   <footer class="w-full mt-5 mb-10 z-[10] relative">
     <app-footer 
