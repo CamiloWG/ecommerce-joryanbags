@@ -81,7 +81,7 @@ router.patch(
         .withMessage("Precio inválido"),
     body("stock")
         .optional()
-        .isInt({ min: 1 })
+        .isInt({ min: 0 })
         .withMessage("Cantidad de stock inválido"),
     body("category_id")
         .optional()
