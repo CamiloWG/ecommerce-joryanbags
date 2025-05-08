@@ -109,7 +109,8 @@
           <!-- Mostrar Productos Reales -->
           <ng-container *ngIf="!isLoading">
             @for(product of products; track product) {
-              <product-info-card                  
+              <product-info-card
+                *ngIf="product.stock > 0"             
                 [showDescription]="false"
                 [image]="product.image_url"
                 [titulo]="product.name"

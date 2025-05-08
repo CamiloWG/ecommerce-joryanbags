@@ -54,7 +54,7 @@ export const routes: Routes = [
     },
     {
         path: 'admin',
-        title: 'Administradción | Joryan Bags',
+        title: 'Administración | Joryan Bags',
         component: AdminComponent
     },
     {
