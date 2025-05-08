@@ -91,13 +91,35 @@ export class ContenidoResumenComponent {
   //////////////// VISTA DE STOCK
 
   toggleEditarStock(product: Product) {
-    if (this.productoEditandoId === product.product_id) {      
-      this.productService.UpdateProduct(product).subscribe();
-      this.productoEditandoId = null;
-    } else {      
+    if (this.productoEditandoId === product.product_id) {
+      const formData = new FormData();
+      formData.append('product_id', product.product_id.toString());
+      formData.append('name', product.name);
+      formData.append('stock', product.stock.toString());
+      formData.append('price', product.price.toString());
+  
+      if ((product as any)._newImageFile) {
+        formData.append('image_url', (product as any)._newImageFile);
+      }      
+  
+      this.productService.UpdateProduct(formData).subscribe({
+        next: () => {
+          this.productoEditandoId = null;
+        },
+        error: (error) => {
+          console.error('Error actualizando producto:', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Error al actualizar',
+            text: 'Ocurrió un error actualizando el producto',
+            confirmButtonColor: '#ef4444'
+          });
+        }
+      });
+    } else {
       this.productoEditandoId = product.product_id;
     }
-  }
+  }  
 
   campoInvalido(campo: string): boolean {
     const ctrl = this.formProducto.get(campo);
@@ -109,15 +131,13 @@ export class ContenidoResumenComponent {
     if (!file) return;
   
     if (product) {
-      // Estamos en modo edición de producto
       const reader = new FileReader();
       reader.onload = () => {
         product.image_url = reader.result as string;
-        product._newImageFile = file; // por si necesitas enviarlo
+        product._newImageFile = file; 
       };
       reader.readAsDataURL(file);
     } else {
-      // Estamos en modo creación
       this.imagenSeleccionada = file;
       this.formProducto.get('image_url')?.setValue(file);
     }

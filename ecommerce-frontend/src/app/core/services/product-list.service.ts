@@ -83,7 +83,7 @@ export class ProductListService {
   }
 
 
-  UpdateProduct(product: Product): Observable<Product> {
+  UpdateProduct(product: FormData): Observable<Product> {
     return this.http.patch<Product>(this.URL_API_UPDATE, product);
   }
 
