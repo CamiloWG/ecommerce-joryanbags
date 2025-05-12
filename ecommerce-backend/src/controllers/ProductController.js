@@ -106,7 +106,7 @@ export class ProductController {
         try {
             checkPermissions(req, res, 2);
             const product = await ProductServices.create(req.body);
-            renameImage(req.file, `product_${product.product_id}.png`);
+            await renameImage(req.file, `product_${product.product_id}`);
             res.send(product);
         } catch (error) {
             res.status(500).json({
@@ -122,7 +122,7 @@ export class ProductController {
             const product = await ProductServices.update(req.body);
             if (req.file) {
                 await ProductServices.updateImage(product_id);
-                renameImage(req.file, `product_${product_id}.png`);
+                await renameImage(req.file, `product_${product_id}`);
             }
             if (!product.length) {
                 const error = new Error("No se encontró el producto");

@@ -1,11 +1,20 @@
 import fs from "node:fs";
 import path from "path";
+import sharp from 'sharp';
 
-export const renameImage = (file, newName) => {
+export const renameImage = async (file, newNameNoExt) => {
     const folderPath = path.resolve("public");
-    
-    const filePath = path.join(folderPath, newName);
-    
-    fs.renameSync(file.path, filePath);
-    return filePath;
+    const webpFileName = `${newNameNoExt}.webp`;
+    const webpPath = path.join(folderPath, webpFileName);
+
+    try {
+        await sharp(file.path)
+            .webp({ quality: 80 })
+            .toFile(webpPath);
+
+        return webpPath;
+    } catch (error) {
+        console.error('Error convirtiendo imagen a .webp:', error);
+        throw error;
+    }
 };

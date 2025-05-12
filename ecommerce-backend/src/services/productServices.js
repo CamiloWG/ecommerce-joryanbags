@@ -139,7 +139,7 @@ export class ProductServices {
     };
 
     static updateImage = async (product_id) => {
-        const filePath = `/public/product_${product_id}.png`;
+        const filePath = `/public/product_${product_id}.webp`;
 
         await Product.update(
             {
