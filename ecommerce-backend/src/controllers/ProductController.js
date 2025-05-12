@@ -1,5 +1,5 @@
 import { checkPermissions } from "../middleware/permissions.js";
-import { renameImage } from "../middleware/image.js";
+import { renameImage, transformImage } from "../middleware/image.js";
 import { ProductServices } from "../services/productServices.js";
 
 export class ProductController {
@@ -154,4 +154,22 @@ export class ProductController {
             console.error(error);
         }
     };
+
+    static convertImagesToWebp = async (req, res) => {
+        try {
+          if (req.headers['x-secret-key'] !== process.env.SECRET_IMAGE_KEY) {
+            console.log(req.headers['x-secret-key']);
+            
+            return res.status(403).json({ error: 'No autorizado' });
+          }
+      
+          await transformImage();
+      
+          res.json({ message: 'Todas las imágenes fueron convertidas a .webp con éxito' });
+        } catch (error) {
+          console.error('Error al convertir imágenes:', error);
+          res.status(500).json({ error: 'Hubo un error al convertir las imágenes' });
+        }
+      };
+      
 }

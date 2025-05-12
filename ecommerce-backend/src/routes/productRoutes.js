@@ -40,6 +40,9 @@ router.get(
     ProductController.getBy
 );
 
+router.post('/convert-images', ProductController.convertImagesToWebp);
+
+
 router.use(authenticate);
 
 router.post(
